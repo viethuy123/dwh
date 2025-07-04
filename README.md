@@ -12,6 +12,8 @@ Dự án này sử dụng Docker Compose để triển khai các services cho DW
 ## Cách triển khai
 
 ```bash
+## Triển khai docker
+
 cd airflow && docker compose up airflow-init && docker compose up -d --build # airflow
 
 cd ../postgre && docker compose up -d # psql warehouse storage
@@ -23,3 +25,13 @@ cd ../metabase && docker compose up -d # BI service
 ## Dừng cách dịch vụ
 
 cd ${project_folder} && docker compose down --rmi all --volumes --remove-orphans 
+```
+## Lưu ý
+
+Để chạy great_expectations cần exec vào container của airflow và kích hoạt great_expectations init
+
+``` bash
+docker exec -it airflow-airflow-worker-1 /bin/bash
+
+cd great_expectations && python3 -c "from great_expectations.data_context import get_context; get_context()"
+```

@@ -1,6 +1,6 @@
 __pycache__/
-*.py[cod]
-*$py.class
+*.pyc
+*.pyo
 *.cfg
 logs/*
 !logs/.gitkeep

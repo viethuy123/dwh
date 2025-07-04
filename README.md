@@ -12,7 +12,7 @@ Dự án này sử dụng Docker Compose để triển khai các services cho DW
 ## Cách triển khai
 
 ```bash
-## Triển khai docker
+## Triển khai docker compose
 
 cd airflow && docker compose up airflow-init && docker compose up -d --build # airflow
 
@@ -22,7 +22,7 @@ cd ../minio && docker compose up -d # s3
 
 cd ../metabase && docker compose up -d # BI service
 
-## Dừng cách dịch vụ
+## Dừng docker compose
 
 cd ${project_folder} && docker compose down --rmi all --volumes --remove-orphans 
 ```

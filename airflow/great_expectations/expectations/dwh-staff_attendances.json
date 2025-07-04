@@ -1,0 +1,344 @@
+{
+  "expectations": [
+    {
+      "id": "fa31c718-5102-4e66-8bcb-dad9716a8815",
+      "kwargs": {
+        "column": "attendance_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8627f08e-9400-452d-bafc-ed092a6f0f94",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4e8330b4-9450-4f11-a5ae-36caa35f6332",
+      "kwargs": {
+        "column": "attendance_type_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9c8a36a1-95d0-4d44-800e-0265883a7e98",
+      "kwargs": {
+        "column": "from_date"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "91b7385d-741a-4116-aad8-8d09ea9cad92",
+      "kwargs": {
+        "column": "end_date"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4db6a444-c9ae-4ed4-a4ef-c7653fd80d9a",
+      "kwargs": {
+        "column": "absent_day"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f5f3debd-5004-4734-a92d-795d8212cbb7",
+      "kwargs": {
+        "column": "absent_reason"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "25eac03f-a549-4b53-84a3-0e241d88bb91",
+      "kwargs": {
+        "column": "status_approval"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d77a0c5d-9748-4ab9-ba33-9c93e44d7def",
+      "kwargs": {
+        "column": "date_approval"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "37aac963-b000-41f0-acd0-1cd9026ebb6a",
+      "kwargs": {
+        "column": "type"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f2b0d9ff-ab41-4be1-9d45-547e920e59bd",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "198f145e-962b-48a1-8c7a-96d446550630",
+      "kwargs": {
+        "column": "is_deleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3a9572eb-2d38-4003-8376-1142b9e113f6",
+      "kwargs": {
+        "column": "created_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "70c0f9cd-bbcc-4a9e-995a-b0d885d66510",
+      "kwargs": {
+        "column": "updated_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "47072959-13c3-4368-b6a6-15598d80fa27",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "29bbb9bb-6871-4af3-90d3-e2c1f5fe998a",
+      "kwargs": {
+        "column": "attendance_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "68f899bf-879e-4477-8d05-5de61e043f4b",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "5c82ca27-cdee-4084-ac6a-e68b3abffd6f",
+      "kwargs": {
+        "column": "attendance_type_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "77cfbfc0-2427-4bda-8787-9d4ae6e07238",
+      "kwargs": {
+        "column": "absent_day",
+        "max_value": 2.0,
+        "min_value": 0.5,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "6da23527-fd03-45cf-b6b2-6bdddb6b0b8a",
+      "kwargs": {
+        "column": "attendance_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "0140ba60-fc13-46c5-b591-a338fd9c2b14",
+      "kwargs": {
+        "column": "user_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c129e3d1-6a0a-410b-98cd-114d4cdc5825",
+      "kwargs": {
+        "column": "attendance_type_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "949a151c-9e8b-4453-94bc-76bdc78b3fa2",
+      "kwargs": {
+        "column": "from_date",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f86f8871-331a-46c1-a197-e1bf144a042f",
+      "kwargs": {
+        "column": "end_date",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "601a0289-7b2c-4e7c-9cfe-9bb1652dc284",
+      "kwargs": {
+        "column": "absent_day",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "608fc37e-29c1-4d58-a8e9-166cdf0f0849",
+      "kwargs": {
+        "column": "absent_reason",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "92cb30cf-d823-4f7d-81cb-be28a35bff95",
+      "kwargs": {
+        "column": "status_approval",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "077ad8ef-8b84-4662-b04c-bfc64e9799ae",
+      "kwargs": {
+        "column": "date_approval",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a986f57f-3c70-44a2-8008-ae80899f83c8",
+      "kwargs": {
+        "column": "type",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e2227f8f-5caf-4957-ab3e-c4e7e4bcb58a",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "dc67608b-a8b8-4f8b-b311-03dd2f1639e5",
+      "kwargs": {
+        "column": "is_deleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "04ccbc52-cfa8-4b9c-9553-2a80230a695d",
+      "kwargs": {
+        "column": "created_time",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "40c7aea7-6c23-4ca4-ae24-bfc0a465e480",
+      "kwargs": {
+        "column": "updated_time",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ce8f28de-e081-4e69-810d-f57f09a1dc46",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a0527222-90b5-493b-8ca8-87c26e672762",
+      "kwargs": {
+        "column": "absent_day",
+        "mostly": 0.99,
+        "value_set": [
+          3.0,
+          3.0,
+          4.0,
+          6.0,
+          3.0,
+          3.0,
+          3.0,
+          5.0,
+          3.0,
+          4.0,
+          3.0,
+          4.0,
+          3.0,
+          3.0,
+          4.0,
+          3.0,
+          6.0,
+          3.0,
+          3.0,
+          3.0,
+          3.0,
+          4.0,
+          4.0,
+          5.0,
+          3.0,
+          4.0,
+          3.0,
+          3.0,
+          3.0,
+          5.0,
+          4.0,
+          3.0,
+          4.0
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "97ef04ad-e8b2-4250-aa0e-ef8e63db37a3",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "dwh-staff_attendances",
+  "notes": null
+}

@@ -1,0 +1,267 @@
+{
+  "expectations": [
+    {
+      "id": "5c8405bd-106b-45d7-815b-7408bb4acdda",
+      "kwargs": {
+        "column": "effort_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0378bba9-9364-4c42-b530-a1ff8b0e35cd",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "52d2d167-7d6e-4b21-8c1d-8d3d0f125f90",
+      "kwargs": {
+        "column": "pod_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "7a100cd8-2094-4be8-a483-0fabb6e38d21",
+      "kwargs": {
+        "column": "department_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "427d42ad-bcd0-4370-a130-ce25c04ca95d",
+      "kwargs": {
+        "column": "effort"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2184bdd5-0f14-4ef6-be48-3da96b8af141",
+      "kwargs": {
+        "column": "month_year"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "db33ff9f-910c-464d-9910-f904296e947c",
+      "kwargs": {
+        "column": "user_role"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ac77604f-e820-4fb9-8a16-e087ae95a0c1",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c1171930-94f8-4f1c-ac28-f6bbab85850f",
+      "kwargs": {
+        "column": "is_deleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "025b1fdf-c081-4872-b2c5-16ebf31407cc",
+      "kwargs": {
+        "column": "created_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8f78779f-8054-4c75-a66a-b037de028741",
+      "kwargs": {
+        "column": "updated_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a80f1d46-01a6-4523-898f-beb95a953c72",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a0143ded-9f99-4049-87dc-f99ab03c2a41",
+      "kwargs": {
+        "column": "effort_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "e06c1e8d-9948-4d44-b0c5-7f6b8031bb6f",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "8a6b3512-1cb3-4790-9aa5-54a51a63bed1",
+      "kwargs": {
+        "column": "pod_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "79ddbf0a-ed2b-48a1-a516-04e14c7773a4",
+      "kwargs": {
+        "column": "department_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "9027d498-b74a-42b5-a3dc-84d960d85c41",
+      "kwargs": {
+        "column": "effort",
+        "max_value": 1.0,
+        "min_value": 0.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "8b9f9d5d-646b-4ad5-ae7b-e96df9dffc51",
+      "kwargs": {
+        "column": "effort_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2c4fcf6a-d034-4eb6-914e-11c0ae2e0b4b",
+      "kwargs": {
+        "column": "user_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "5e8347a9-7500-40c1-8b8d-05b53284a7f6",
+      "kwargs": {
+        "column": "pod_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "725f4085-c463-43b4-b762-1edc13030562",
+      "kwargs": {
+        "column": "department_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2301e5ed-bff1-4d8f-ae92-e695ecc84f0d",
+      "kwargs": {
+        "column": "effort",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "98152d13-8d7f-40d1-b913-9c90520093ee",
+      "kwargs": {
+        "column": "month_year",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "12e983f9-663b-44f0-b634-ad805bc44894",
+      "kwargs": {
+        "column": "user_role",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ca39e2ec-966c-40d8-baf7-b404a474215a",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e22f3f1c-d3aa-4072-b497-a126f45bc3fd",
+      "kwargs": {
+        "column": "is_deleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "128bc9f8-c807-4396-93e5-4e8656cb7c79",
+      "kwargs": {
+        "column": "created_time",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ae790d29-6cd3-4e18-bf0b-d256bd3e536a",
+      "kwargs": {
+        "column": "updated_time",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d84275a1-e391-429f-8ccf-390feb593662",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2ff124ac-e3a1-4a50-8e7b-825c493025ba",
+      "kwargs": {
+        "column": "effort",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "610e1055-354d-4f1e-94d9-55f577f75445",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "dwh-billable_efforts_approveds",
+  "notes": null
+}

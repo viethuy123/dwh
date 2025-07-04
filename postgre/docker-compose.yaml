@@ -1,0 +1,33 @@
+x-postgres-common:
+  &postgres-common
+  image: postgres:14-alpine
+  user: postgres
+  restart: always
+  healthcheck:
+    test: 'pg_isready -U dev_user --dbname=postgres'
+    interval: 10s
+    timeout: 5s
+    retries: 5
+
+services:
+  dwh_postgres:
+    <<: *postgres-common
+    ports:
+      - 5433:5432
+    environment: 
+      POSTGRES_USER: dev_user
+      POSTGRES_DB: postgres
+      POSTGRES_PASSWORD: dev_password
+    volumes:
+      - dwh_data:/var/lib/postgresql/data
+      - ./00_init.sql:/docker-entrypoint-initdb.d/00_init.sql
+    networks:
+      dev-network:
+        ipv4_address: 172.18.0.10
+
+networks:
+  dev-network:
+     external: true
+
+volumes:
+  dwh_data:

@@ -1,0 +1,557 @@
+{
+  "expectations": [
+    {
+      "id": "6d86f123-3a1a-45f6-bc9e-31d9125b7010",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c877b3d8-61c7-426a-b5ac-089b9dfaad4f",
+      "kwargs": {
+        "column": "departmentCode"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "63a5ee04-3b68-489d-936a-847aef3fcebd",
+      "kwargs": {
+        "column": "departmentDescription"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b8627b84-437d-4452-a418-c73af7e68efc",
+      "kwargs": {
+        "column": "level"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "175a6ef9-8026-47f1-88c1-076154460b50",
+      "kwargs": {
+        "column": "children"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0829c2cb-327c-41d6-a6d1-4ae0c9d92ef8",
+      "kwargs": {
+        "column": "departmentType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e1dee8c2-4ce4-40ec-91dc-6b5ac72a796b",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f90f5a1e-e243-4a33-900b-204a6cf516a5",
+      "kwargs": {
+        "column": "order"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "19baec52-f0cd-43c3-8aea-66edbb46a87a",
+      "kwargs": {
+        "column": "isDeleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "42974352-f6ef-4837-b5a3-11bdeb39b4fe",
+      "kwargs": {
+        "column": "departmentName"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f60e6af8-1d2a-49e4-939e-13b8cb512f22",
+      "kwargs": {
+        "column": "parentObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2b4fe9ab-1783-40df-ae3a-27b51393312b",
+      "kwargs": {
+        "column": "departmentTypeObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4ff43a18-a9ce-4ca8-ba7a-4157837dbf8a",
+      "kwargs": {
+        "column": "note"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "07fd05ae-d5b7-48e6-b7cc-8793f0e99e93",
+      "kwargs": {
+        "column": "createdAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e21b6628-326a-4407-9954-7c730a2236c7",
+      "kwargs": {
+        "column": "createdBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e2912ad6-aad6-4a95-bfed-2050b4cbafb4",
+      "kwargs": {
+        "column": "branchObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d353c702-1245-4663-a61d-af460536e4d5",
+      "kwargs": {
+        "column": "isHidden"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b27f5e64-58da-4b03-819d-63d0ccb2c35c",
+      "kwargs": {
+        "column": "accessedDepartments"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e63a7e54-45e4-4ea0-8cd5-a6791cf88680",
+      "kwargs": {
+        "column": "updatedAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "cd544d41-6745-46d0-91d0-0c3571940d48",
+      "kwargs": {
+        "column": "updatedBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "af840bcf-4eeb-4561-9921-d0e46f6405d1",
+      "kwargs": {
+        "column": "MISACode"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "37d83e25-928f-4618-b67c-5df38fa6fe11",
+      "kwargs": {
+        "column": "OrganizationUnitId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fda7f405-5b2c-4f00-affc-bdaf93d6a4bd",
+      "kwargs": {
+        "column": "OrganizationUnitName"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "df19fbd4-e787-425e-aab4-fe090f9a12aa",
+      "kwargs": {
+        "column": "managerObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "77f891a5-2008-43cf-b366-f83f7a54a55c",
+      "kwargs": {
+        "column": "departmentTypeLevel"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0a35181d-f507-4a83-b926-833ef1f80c8e",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "7ffbfd0a-9c14-4cea-8121-31a19ba76b2d",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "60fa5d91-728f-4161-97eb-dcb23ee5fe48",
+      "kwargs": {
+        "column": "parentObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "742986e9-0124-4d54-a1fd-06187a7778af",
+      "kwargs": {
+        "column": "departmentTypeObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "623e5ea5-1593-4bf9-ab9e-692cae9b659f",
+      "kwargs": {
+        "column": "branchObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "2c5cfdc7-f9fd-4b7a-a735-7d0b1048f239",
+      "kwargs": {
+        "column": "isHidden"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "747278f8-eba0-40b4-beab-6dabafceb583",
+      "kwargs": {
+        "column": "OrganizationUnitId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "975a28b8-8bde-40d0-b6cd-97a39cbbb3ee",
+      "kwargs": {
+        "column": "managerObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "cfad1c98-f3d7-4e0b-bc51-a3c30903513f",
+      "kwargs": {
+        "column": "level",
+        "max_value": 6.0,
+        "min_value": 2.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "cca68ba0-316e-4f41-bfd0-958f1fe8f845",
+      "kwargs": {
+        "column": "order",
+        "max_value": 255.0,
+        "min_value": 255.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "07c8ca0c-fd54-4977-90f9-121e8692a517",
+      "kwargs": {
+        "column": "_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "1f8fd479-e854-490d-afda-b11949219544",
+      "kwargs": {
+        "column": "departmentCode",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "84f50b8f-0140-4681-8c18-633124a49eb5",
+      "kwargs": {
+        "column": "departmentDescription",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f485f763-07eb-43c8-91dc-30c9705c020e",
+      "kwargs": {
+        "column": "level",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "cac89c83-1895-40d5-8515-cea8ecdeff60",
+      "kwargs": {
+        "column": "children",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "228e218d-9dc1-4a4e-9eea-1f1f17cc0066",
+      "kwargs": {
+        "column": "departmentType",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e4ce6d8c-5c16-44c4-8524-fa26e8f182a5",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "5f405330-c5d5-412c-8ae4-8419eb9fa7bb",
+      "kwargs": {
+        "column": "order",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "9605be52-3b59-47e3-b182-554e352e61cc",
+      "kwargs": {
+        "column": "isDeleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d0d95447-2819-4ab6-be26-53be4039e0cd",
+      "kwargs": {
+        "column": "departmentName",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3d8b55f5-1ec5-4547-bad2-4dce223ce779",
+      "kwargs": {
+        "column": "parentObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "dd2abf0e-5013-435b-87d2-e708492e6968",
+      "kwargs": {
+        "column": "departmentTypeObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "98a707d0-98df-4d52-8d4b-25dc2fb33277",
+      "kwargs": {
+        "column": "note",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "764668cb-887c-4ea9-b53b-34f40446f763",
+      "kwargs": {
+        "column": "createdAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "0875c3b6-34f2-4538-98f1-4189d1a6a84b",
+      "kwargs": {
+        "column": "createdBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "eb17b551-cf95-4964-9e1b-90b89e4ec16b",
+      "kwargs": {
+        "column": "branchObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b2000e47-6fbd-4b0b-be22-62ae6505d68d",
+      "kwargs": {
+        "column": "isHidden",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "675cb9d9-4f7a-47c3-b60b-a3b69c64b588",
+      "kwargs": {
+        "column": "accessedDepartments",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "81c18592-1c48-442d-b220-bef148364316",
+      "kwargs": {
+        "column": "updatedAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2e7102f6-cfc1-43bb-a669-32c34a5c57b0",
+      "kwargs": {
+        "column": "updatedBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "70a6d5b0-47a2-441b-958e-cb57b960d553",
+      "kwargs": {
+        "column": "MISACode",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a92991c2-e0a9-4936-ae38-67a7f7bc410d",
+      "kwargs": {
+        "column": "OrganizationUnitId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "cd323d46-07dc-4457-801a-33cb136daa98",
+      "kwargs": {
+        "column": "OrganizationUnitName",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "8509d01a-015a-45a6-b179-dd9d422c2b83",
+      "kwargs": {
+        "column": "managerObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d9165079-8ff6-4b3e-9311-26947529d54d",
+      "kwargs": {
+        "column": "departmentTypeLevel",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "54f978f5-8bc0-4311-9c46-ab41673044c7",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "bb170b68-4d0e-4679-8ef4-e3af0503ac57",
+      "kwargs": {
+        "column": "level",
+        "mostly": 0.99,
+        "value_set": [
+          0
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "f63a127f-5e75-4813-83d1-431452dc1d33",
+      "kwargs": {
+        "column": "order",
+        "mostly": 0.99,
+        "value_set": [
+          0.0,
+          3.0,
+          1.0,
+          2.0
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "f14e97e9-a0eb-47b1-9a57-4e92ec54e043",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "src_create-stg_company_departments",
+  "notes": null
+}

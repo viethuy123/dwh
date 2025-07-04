@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "id": "7029dd10-0cbc-451d-b656-92d14e36020f",
+      "kwargs": {
+        "column": "resolution_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c2d1f059-899f-45ee-837e-39574dcaf189",
+      "kwargs": {
+        "column": "resolution_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "537eeb4f-bc2e-4739-b1af-4c1fcc1d6aa0",
+      "kwargs": {
+        "column": "resolution_description"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "1aca7c57-ca8e-4842-8aa2-b505ce5c0ece",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ee09c21c-c678-48b5-a02c-a615968f9bdf",
+      "kwargs": {
+        "column": "resolution_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "51045d62-53b4-403d-8658-5deaff99d402",
+      "kwargs": {
+        "column": "resolution_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ff53bd8a-fe85-4e61-9b95-f193d8418202",
+      "kwargs": {
+        "column": "resolution_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "01c8f019-e1f6-415f-9710-edcefd48f1e5",
+      "kwargs": {
+        "column": "resolution_description",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "0a433d04-8909-4602-870f-b7b94ca48301",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    }
+  ],
+  "id": "e153ec39-02b2-478f-9beb-175140d9fc3b",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "dwh-jira_issue_resolution",
+  "notes": null
+}

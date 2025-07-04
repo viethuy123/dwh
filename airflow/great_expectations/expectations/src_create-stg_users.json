@@ -1,0 +1,962 @@
+{
+  "expectations": [
+    {
+      "id": "4f040e0d-84f2-4374-ace8-27c7d932333e",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6bf94805-325c-4227-a37d-e341df50bada",
+      "kwargs": {
+        "column": "uid"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "327f381f-7997-4f3f-a635-1ae0fb6dc066",
+      "kwargs": {
+        "column": "name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ee9b5a9d-35dd-4d96-814d-afb7e4a9f818",
+      "kwargs": {
+        "column": "branchObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d0252e78-46c6-445b-b56d-40a412aaf9f0",
+      "kwargs": {
+        "column": "userPositionObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e92a21f9-cf0a-4000-b3d7-0ccdde338f7c",
+      "kwargs": {
+        "column": "mobile"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fec968f4-ce4d-4618-a114-50d506869d77",
+      "kwargs": {
+        "column": "jira_user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4d84cd4d-3f67-4884-86c8-252a67f6a873",
+      "kwargs": {
+        "column": "note"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "1a043033-f39b-492e-88dc-aafce0b46cc0",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c16f84b1-4376-43ce-892c-f85661daae58",
+      "kwargs": {
+        "column": "order"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "cc264193-2533-4069-b60a-7631b5112dcd",
+      "kwargs": {
+        "column": "isDeleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "77485a1a-1edf-4895-aec0-846b17470127",
+      "kwargs": {
+        "column": "username"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c4178b12-46a1-43a9-ba91-87e0e9dc04c2",
+      "kwargs": {
+        "column": "password"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "206c0bc7-329e-42aa-8455-15158fcb6e8d",
+      "kwargs": {
+        "column": "email"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "5b182bd5-567d-4251-97a1-da0f62641f16",
+      "kwargs": {
+        "column": "createdAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "7e78acfb-456b-4fe2-bfdf-8904666f7b00",
+      "kwargs": {
+        "column": "createdBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8e7b92b3-b16b-4ed5-a448-e12379437226",
+      "kwargs": {
+        "column": "staffCode"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6aec5cab-afd9-4edd-81e8-c40614bdc5e1",
+      "kwargs": {
+        "column": "mobileCountryCode"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b306ddab-572f-4fa6-bdc6-268a219ced32",
+      "kwargs": {
+        "column": "departmentObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3482533d-829d-41a1-aba5-1a970a4a8be2",
+      "kwargs": {
+        "column": "positionObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "5729e3ed-9431-410b-addd-faeae13ede67",
+      "kwargs": {
+        "column": "updatedAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "78fca899-3193-4369-90e8-624feb7c6fac",
+      "kwargs": {
+        "column": "updatedBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "259f3b46-7941-42d7-a37b-e401db16ae06",
+      "kwargs": {
+        "column": "userType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "45894684-767f-4343-ba4c-8a3e6788837f",
+      "kwargs": {
+        "column": "userJiraMapping"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ebe55ef7-2e2d-43b9-91ab-04843821a97a",
+      "kwargs": {
+        "column": "welcomeDay"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "1de9d2c8-da95-4e7d-a8bb-e69e2964379a",
+      "kwargs": {
+        "column": "userStatus"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e2550f1b-76a3-438b-9a1c-da87f2f0d83a",
+      "kwargs": {
+        "column": "expiresDate"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "85448f85-acd7-4b5d-b6ed-a89c6fa69f11",
+      "kwargs": {
+        "column": "userCode"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "1632a42b-561c-4d7a-bc45-f5a3f3e3b22b",
+      "kwargs": {
+        "column": "flagCron"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "91098fb3-81e2-4fa0-8881-9b186a4ed203",
+      "kwargs": {
+        "column": "countFailed"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "734efba4-1943-45a9-95a9-8bba32cca2fd",
+      "kwargs": {
+        "column": "resetToken"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e4b42b9a-20ec-48fb-a0cb-63bc62283cc1",
+      "kwargs": {
+        "column": "nameTag"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f9c2eab4-eb65-4193-b069-f3876a9c472a",
+      "kwargs": {
+        "column": "level"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8992f788-bb52-4435-9edb-a97afea3589c",
+      "kwargs": {
+        "column": "userLevel"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6f5a2665-7bd2-4a7c-8e77-a747ace6201a",
+      "kwargs": {
+        "column": "userUpdatedAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e170e156-edda-4935-8730-4d1e01b598c2",
+      "kwargs": {
+        "column": "userSubPositionObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c9e76c55-4097-4f35-bf2a-36c887b38a91",
+      "kwargs": {
+        "column": "performanceFactor"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "09123030-44ac-4d1a-a8f3-117fb47e38c5",
+      "kwargs": {
+        "column": "jobObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b7e62be3-7c69-4fd8-8aec-d2f1ecac69c2",
+      "kwargs": {
+        "column": "userJobStatus"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4d7a32f7-b3b9-4133-b8a2-1cdba562e583",
+      "kwargs": {
+        "column": "jiraUserId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "56d6ebbc-45b8-4841-9b56-ced60f2e1f32",
+      "kwargs": {
+        "column": "jiraName"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a3b6d545-d6b2-41a0-8d62-8410dc9c4321",
+      "kwargs": {
+        "column": "birthDay"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6c840d89-a3ec-4b94-8a8f-d1598e75ccb2",
+      "kwargs": {
+        "column": "emailPersonal"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4e59e17f-b8b6-413c-8902-cbc1e1e3c602",
+      "kwargs": {
+        "column": "gender"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2701215c-c270-4177-b0d1-0b263d95e6a8",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f1ae1f27-c853-48a2-b9c0-e7e582b4354c",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "36fa41e3-fed4-4ba8-babf-33d9ab9854e7",
+      "kwargs": {
+        "column": "uid"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "b909fd85-2842-466e-b8b6-79375985c5f4",
+      "kwargs": {
+        "column": "branchObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "59501ecb-c1ed-4f5e-91e4-29fac4b4690c",
+      "kwargs": {
+        "column": "userPositionObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "ce5d903a-bb83-4c0d-9f37-2ade4792dbb3",
+      "kwargs": {
+        "column": "jira_user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "e40cb26b-fdcf-41d6-8d79-a598d994ec9a",
+      "kwargs": {
+        "column": "departmentObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "b617e1a9-1c2e-4dde-af75-f75fcf1a6b77",
+      "kwargs": {
+        "column": "positionObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "e2084496-dded-487e-a1db-044089d64df7",
+      "kwargs": {
+        "column": "userSubPositionObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "48a66b9b-97a8-42ac-89a6-d1a09775ee7f",
+      "kwargs": {
+        "column": "jobObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "5c49af3b-374d-49f2-8481-c8c82d82be40",
+      "kwargs": {
+        "column": "jiraUserId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "4e8bcf66-72e9-49b1-9345-2303092295ca",
+      "kwargs": {
+        "column": "order",
+        "max_value": 255.0,
+        "min_value": 255.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "045c5eb9-9788-47d8-84d5-f23243cb736a",
+      "kwargs": {
+        "column": "staffCode",
+        "max_value": 3788.15,
+        "min_value": 1313.55,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "bee9b06b-fe23-4ea9-8991-6452bb96c7be",
+      "kwargs": {
+        "column": "countFailed",
+        "max_value": 0.0,
+        "min_value": 0.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "b7f07e9a-8cb5-43dd-a24e-3393eb809e75",
+      "kwargs": {
+        "column": "level",
+        "max_value": 0.0,
+        "min_value": 0.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "a5999dd2-b4a8-41a9-b35d-6aa0c2f16f55",
+      "kwargs": {
+        "column": "performanceFactor",
+        "max_value": 1.0,
+        "min_value": 1.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "6bdf26a3-e399-498e-a6ea-8fad249c65a1",
+      "kwargs": {
+        "column": "_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c118cf1f-b436-4286-a54c-43a1e125cc45",
+      "kwargs": {
+        "column": "uid",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2d6e6227-eb8a-426a-a1d8-4f2675515550",
+      "kwargs": {
+        "column": "name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "07d1aec5-cb19-4f27-823f-e096c528208a",
+      "kwargs": {
+        "column": "branchObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b8a62f14-1a51-4cb3-870a-71143bd5e7ef",
+      "kwargs": {
+        "column": "userPositionObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "8adc32f6-a2c9-4793-8844-dd589cff01c8",
+      "kwargs": {
+        "column": "mobile",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "78805797-827c-4072-88ec-69e5822a1e5a",
+      "kwargs": {
+        "column": "jira_user_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c8b7f0e3-5fac-454e-a9f3-ac91fbd14b9c",
+      "kwargs": {
+        "column": "note",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "bfed2565-a6f3-46a9-85a1-aa11f0959815",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2668e5ea-acc5-4970-88f0-07df6e9b0058",
+      "kwargs": {
+        "column": "order",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "23f7fac5-d48a-4b33-a5b7-1fe654c3409e",
+      "kwargs": {
+        "column": "isDeleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "61dcc8dd-d18e-44d4-a8ff-60d00721dbf1",
+      "kwargs": {
+        "column": "username",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b9ab7a79-5075-4077-b298-51137c5f2c8e",
+      "kwargs": {
+        "column": "password",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6f13c2c8-40e8-4059-a34d-878ca1fc8db5",
+      "kwargs": {
+        "column": "email",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d62147f3-123e-4234-ad84-7cba56439a11",
+      "kwargs": {
+        "column": "createdAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f4a2c2a0-5b6f-49af-be23-b8d459e1651f",
+      "kwargs": {
+        "column": "createdBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6434f8c3-b799-467b-b181-9846adc17624",
+      "kwargs": {
+        "column": "staffCode",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "cff07ec9-efa3-413c-a3db-132b94a5c09d",
+      "kwargs": {
+        "column": "mobileCountryCode",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "cf6eb2d9-3cc9-4b7e-8b7a-e64c4901ffed",
+      "kwargs": {
+        "column": "departmentObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2e3c11e2-b0ca-4e2e-a932-d0a8cb27f07e",
+      "kwargs": {
+        "column": "positionObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "63e6ec85-9648-41ee-b9b1-c07a272714ec",
+      "kwargs": {
+        "column": "updatedAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "982ba73e-86a0-4d92-b113-afbd7338ac03",
+      "kwargs": {
+        "column": "updatedBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "1302ae9b-2f1f-4c46-9eb7-8037fb3ee9a2",
+      "kwargs": {
+        "column": "userType",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "9e3cf1f7-fd60-4c38-83fb-dd230894cb03",
+      "kwargs": {
+        "column": "userJiraMapping",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "da8f9504-ea3d-43b2-8685-7ba5a3370d74",
+      "kwargs": {
+        "column": "welcomeDay",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b8cc2a22-2aa3-4c42-a6d5-8df4effcb665",
+      "kwargs": {
+        "column": "userStatus",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "dc4de4a8-b1ae-4728-8a0b-3a4464a320a0",
+      "kwargs": {
+        "column": "expiresDate",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "9741e2f4-07c4-42eb-a69e-88ee26901b48",
+      "kwargs": {
+        "column": "userCode",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "5f50dfae-8f3b-4392-aefb-3de1529f1a69",
+      "kwargs": {
+        "column": "flagCron",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "116402bc-88b3-49fc-abe5-e9f1fc5bd6a8",
+      "kwargs": {
+        "column": "countFailed",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c81b081a-5d39-40ee-bcb1-8bad5dddc85d",
+      "kwargs": {
+        "column": "resetToken",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "20c1ce00-6c8b-456f-be2a-9e5e84bbfff7",
+      "kwargs": {
+        "column": "nameTag",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "24dee3f9-3d7f-4ba1-8690-9e027a4d799d",
+      "kwargs": {
+        "column": "level",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3aa4fec2-e29a-49f2-9f13-47c91deeeefe",
+      "kwargs": {
+        "column": "userLevel",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "9a66d61d-689e-4e99-a435-5e9f33ddb512",
+      "kwargs": {
+        "column": "userUpdatedAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "55dae5d3-d342-4456-aca3-4ab43dc6e4dc",
+      "kwargs": {
+        "column": "userSubPositionObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c811cf5b-1c78-4015-aadf-680a0dfde6cc",
+      "kwargs": {
+        "column": "performanceFactor",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6a921fd4-e33c-4653-92e1-1a2c06cf4de5",
+      "kwargs": {
+        "column": "jobObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3a2ce1b3-1bab-4994-b2d3-a62a63022f2a",
+      "kwargs": {
+        "column": "userJobStatus",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2ee69f22-2b77-4f1d-a603-63ed43f65664",
+      "kwargs": {
+        "column": "jiraUserId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "8009b1bc-5523-45c0-bb59-50f527c4aad0",
+      "kwargs": {
+        "column": "jiraName",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "5863225a-2482-4aaf-9a33-63124179dae5",
+      "kwargs": {
+        "column": "birthDay",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "31fc5daa-8c03-4b37-9c47-dda8f6729e10",
+      "kwargs": {
+        "column": "emailPersonal",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "04b9b145-94e6-4862-a8a6-6218972573fa",
+      "kwargs": {
+        "column": "gender",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "0fe8d710-fa00-422d-8957-3cde05c15389",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "fb6cfec0-f0a6-48f4-9da0-586f9fe2c091",
+      "kwargs": {
+        "column": "order",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "333d6d93-d4ff-4fe8-b9ea-be1e5f3ef916",
+      "kwargs": {
+        "column": "staffCode",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "3c281784-be75-4709-b407-a0d4d07fd3b4",
+      "kwargs": {
+        "column": "countFailed",
+        "mostly": 0.99,
+        "value_set": [
+          4.0
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "6859f0b0-3a81-4ae3-b13f-6d1a4f34d464",
+      "kwargs": {
+        "column": "level",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "eed1edb4-2784-4529-9cea-9eb328eda22f",
+      "kwargs": {
+        "column": "performanceFactor",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "a72f6641-c72e-44ee-9ad3-69a4ae9fd8c8",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "src_create-stg_users",
+  "notes": null
+}

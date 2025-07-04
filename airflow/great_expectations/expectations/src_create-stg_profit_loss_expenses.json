@@ -1,0 +1,587 @@
+{
+  "expectations": [
+    {
+      "id": "d95378b1-6716-4971-8336-faecbb598e26",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "5fdd9ef6-3f51-4249-8e21-86d4e247bedf",
+      "kwargs": {
+        "column": "staffCode"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "48947c10-4c58-4468-b7b9-932267a331fd",
+      "kwargs": {
+        "column": "branchObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3187964a-0ec5-4512-8007-d2670221e951",
+      "kwargs": {
+        "column": "departmentObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "27312268-f81e-4346-b556-14f1cf2572e8",
+      "kwargs": {
+        "column": "userObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0eeeba0c-e86b-4f13-b564-48e16166215c",
+      "kwargs": {
+        "column": "profitType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4d365e79-db99-4e32-8eb7-8e975edad1cb",
+      "kwargs": {
+        "column": "projectObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "feffa69b-c555-497f-b1e9-ecd195768b03",
+      "kwargs": {
+        "column": "profitLossInvoiceObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "05506919-880b-4d85-869d-936ba698f342",
+      "kwargs": {
+        "column": "value"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "393ec6f8-7c72-48b4-8066-af04b05d587d",
+      "kwargs": {
+        "column": "value1"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8d92b29e-a633-4240-a3b5-a5f8a1041b1d",
+      "kwargs": {
+        "column": "description"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "bc1f0822-8e25-4743-93fa-0ade82f54ba9",
+      "kwargs": {
+        "column": "type"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2cf45317-a5d3-46a5-b6c3-3a9a25465440",
+      "kwargs": {
+        "column": "infoOther"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d48680fc-9657-4c46-8c8f-c93a676ff97d",
+      "kwargs": {
+        "column": "userPositionObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "29cd2d8b-8258-403c-98d8-ecaa7c8b8a61",
+      "kwargs": {
+        "column": "userLevel"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b147af60-27a0-4994-8ca2-5f7f85c0847e",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "50c7a5eb-6ed4-42bc-8698-8705e09051e4",
+      "kwargs": {
+        "column": "order"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9653864c-1876-4c54-a82b-ee4c96c8d38e",
+      "kwargs": {
+        "column": "isDeleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "afcc8c5c-ccfa-4932-8d81-b2f871fbcc69",
+      "kwargs": {
+        "column": "monthAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "73147cf8-f095-45d4-850e-a13c5a8da6b0",
+      "kwargs": {
+        "column": "configCode"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "025a8a7f-e8e0-4367-85bf-8588953ad17a",
+      "kwargs": {
+        "column": "closingMonthObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "987e9447-fc8d-44ed-a706-beaa02e628f3",
+      "kwargs": {
+        "column": "configObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a734a68e-dca7-4937-9fc5-d752cbdf74e5",
+      "kwargs": {
+        "column": "createdAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e676a7da-ce69-4617-b6a6-9511345b6176",
+      "kwargs": {
+        "column": "createdBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d5cdf33f-8b47-4894-9224-b55badc8cc06",
+      "kwargs": {
+        "column": "info"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "96ae15f9-dc9d-4ea7-acc4-fb88b85b1679",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6c9999db-0adb-4967-80dd-1cccca0991a3",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "277fde50-016c-4414-ba35-8ab778c0804f",
+      "kwargs": {
+        "column": "branchObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "fd318c65-ddbb-4337-b31e-05ce538f6cd2",
+      "kwargs": {
+        "column": "departmentObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "e29f08e0-5606-4c24-a0c8-418db98daeb6",
+      "kwargs": {
+        "column": "userObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "12fd6708-4644-44a5-93e7-d502aaa0db44",
+      "kwargs": {
+        "column": "projectObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "46d7bb6a-5845-4879-aff9-d2e84238e50f",
+      "kwargs": {
+        "column": "profitLossInvoiceObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "47e659ec-8b21-4034-aa4d-864782525ace",
+      "kwargs": {
+        "column": "userPositionObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "61a35637-0a2b-4b30-8454-9ba8b60fcb12",
+      "kwargs": {
+        "column": "closingMonthObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "bdff1b0e-79ca-43a3-96f4-98a196b9de78",
+      "kwargs": {
+        "column": "configObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "7dd3c60c-0240-4a76-9e02-4163309001be",
+      "kwargs": {
+        "column": "value",
+        "max_value": 40846833.33333332,
+        "min_value": 0.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "124ea42c-8a92-4682-be2e-76cc542fa986",
+      "kwargs": {
+        "column": "value1",
+        "max_value": 0.0,
+        "min_value": 0.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "3011a62c-b555-4585-87ef-5f7809929919",
+      "kwargs": {
+        "column": "order",
+        "max_value": 255.0,
+        "min_value": 255.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "264a2170-688f-4416-80c5-77574e53483a",
+      "kwargs": {
+        "column": "_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2475d699-6b6a-4a6c-a464-4ed3459c53bb",
+      "kwargs": {
+        "column": "staffCode",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d9a0c14a-8fb8-4c2f-95d9-34c1ddcf34ad",
+      "kwargs": {
+        "column": "branchObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "09fc90b4-6eae-4434-a0ed-e4edfec62344",
+      "kwargs": {
+        "column": "departmentObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6f73bdb9-4da6-4a89-8825-526b40390683",
+      "kwargs": {
+        "column": "userObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "91133f2d-0b88-47b9-bd06-dc95cdf66894",
+      "kwargs": {
+        "column": "profitType",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f0f5a2bf-5a93-47e0-8cc1-d3e65ee2c2e6",
+      "kwargs": {
+        "column": "projectObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2258b469-f047-4dc9-a54e-7ad8a4d2b3ac",
+      "kwargs": {
+        "column": "profitLossInvoiceObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "26ec02c5-2dfb-4faf-a8da-4bdd25cc4665",
+      "kwargs": {
+        "column": "value",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a9cb0efa-cd5d-423c-be5a-3588ac888fe4",
+      "kwargs": {
+        "column": "value1",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "520e9255-2f03-4a06-b3e0-14fb0fd5d5d6",
+      "kwargs": {
+        "column": "description",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c6c695b7-f059-4149-8acf-8afe27a23412",
+      "kwargs": {
+        "column": "type",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d2d55605-478b-4cc6-9302-8008474dd390",
+      "kwargs": {
+        "column": "infoOther",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "dc270176-56be-4ae7-946a-01a5059a121a",
+      "kwargs": {
+        "column": "userPositionObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a5b9a72e-e8cc-46e0-aaf3-0972ef3fe8f0",
+      "kwargs": {
+        "column": "userLevel",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "67bbd1e0-0bed-4b9c-a3f8-9334f66ee9ca",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "1099fd78-9bc2-4662-9890-962dc33302e6",
+      "kwargs": {
+        "column": "order",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "9be53bf0-d357-461d-8fcb-a381d01bbb30",
+      "kwargs": {
+        "column": "isDeleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "fdcff937-7c7a-4c18-821d-0b56af6ce86a",
+      "kwargs": {
+        "column": "monthAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "430a347e-d312-4c6a-9dd2-30d2e7241c60",
+      "kwargs": {
+        "column": "configCode",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "0e84e00e-4845-4da5-a466-97356e93417f",
+      "kwargs": {
+        "column": "closingMonthObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "de4aec47-26fe-4c8d-95d0-ddc905cb7fef",
+      "kwargs": {
+        "column": "configObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6e1a63a8-6c23-49ab-aca0-aeaa309b900a",
+      "kwargs": {
+        "column": "createdAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d795eea0-2c36-4d71-ab9b-a9c223a2cbb7",
+      "kwargs": {
+        "column": "createdBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "fd2dead7-7aa7-49fd-9ca9-e755ab16d044",
+      "kwargs": {
+        "column": "info",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "13bba30b-a1c6-4e27-ab30-75c03ca88360",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "919a46a5-c8da-466f-8815-565d007575aa",
+      "kwargs": {
+        "column": "value",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "26f2c6bc-8154-4912-a667-1cd9aeb56095",
+      "kwargs": {
+        "column": "value1",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "0f791ec3-d325-4775-85cf-cfbcc49ce2b6",
+      "kwargs": {
+        "column": "order",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "f0330404-7bf7-4ab5-8a33-fff972912e0a",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "src_create-stg_profit_loss_expenses",
+  "notes": null
+}

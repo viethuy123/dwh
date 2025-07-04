@@ -1,0 +1,393 @@
+{
+  "expectations": [
+    {
+      "id": "1388a703-61b3-44b1-95e6-ce23376c1138",
+      "kwargs": {
+        "column": "issue_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d8afa35b-e903-4bf0-947b-0085b0d6ff45",
+      "kwargs": {
+        "column": "jira_project_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "002e3226-e26c-4178-af9d-0e673e41bc18",
+      "kwargs": {
+        "column": "issue_assignee"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "cae1ee88-85fd-4913-bf2f-8a245c716f0e",
+      "kwargs": {
+        "column": "priority"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0bea3fe8-2bab-45eb-ab06-45a43b1e0d2c",
+      "kwargs": {
+        "column": "type"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6b1de4e6-24e8-4629-a8a6-fda27fcbab50",
+      "kwargs": {
+        "column": "resolution"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9d283eed-b6d0-48fa-908c-a01158c966b9",
+      "kwargs": {
+        "column": "resolution_date"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4a06bdfe-9123-4a08-93ca-418bd7328638",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ed68eca5-a5e1-4082-bfcd-db793ae32649",
+      "kwargs": {
+        "column": "due_date"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fd8f73d0-29f9-4058-a7c2-198d31ced8fe",
+      "kwargs": {
+        "column": "time_original_estimate"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "106e36ac-07a6-420b-a9e6-00c959135bc3",
+      "kwargs": {
+        "column": "time_estimate"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "beb5c9db-65e1-4de1-a6e5-eae14ea07d45",
+      "kwargs": {
+        "column": "time_spent"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fce3d9a2-2c9e-4e38-9a49-0bb0b974a926",
+      "kwargs": {
+        "column": "created_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "5ddb7f4e-75b0-4262-81a1-5afecca746d4",
+      "kwargs": {
+        "column": "updated_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "aab43c41-9645-4c5a-90a8-41bf3acc1662",
+      "kwargs": {
+        "column": "issue_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "31219a5d-b5a4-44c8-8221-18067222e254",
+      "kwargs": {
+        "column": "jira_project_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "ed6ad0e1-ea28-4a0a-8fdc-d89379e3a80b",
+      "kwargs": {
+        "column": "issue_id",
+        "max_value": 286034.5999999999,
+        "min_value": 19912.55,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "ed69c849-3df0-4e17-a2a3-124efbecf3aa",
+      "kwargs": {
+        "column": "jira_project_id",
+        "max_value": 12204.1,
+        "min_value": 10105.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "52ec476e-12e1-4b2a-ac0e-a6ec5e82345e",
+      "kwargs": {
+        "column": "time_original_estimate",
+        "max_value": 81000.0,
+        "min_value": 0.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "fc472063-b52a-47c0-abf2-30c41da08ae5",
+      "kwargs": {
+        "column": "time_estimate",
+        "max_value": 57600.0,
+        "min_value": 0.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "6a90fb82-5b29-44b8-8068-ef809210e0b1",
+      "kwargs": {
+        "column": "time_spent",
+        "max_value": 1965437.9999999998,
+        "min_value": 3735.000000000002,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "94a6df7a-23f8-4c4f-9707-58c063cd8fe3",
+      "kwargs": {
+        "column": "issue_id",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b8287595-4ce9-4861-8bc9-0e55281913c9",
+      "kwargs": {
+        "column": "jira_project_id",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "80ea32a9-8485-4400-9649-198f96509955",
+      "kwargs": {
+        "column": "issue_assignee",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "1d29683f-95f0-4fc7-9940-ec3990aebfba",
+      "kwargs": {
+        "column": "priority",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2348fcab-ce4c-4ee0-b695-08401cc385db",
+      "kwargs": {
+        "column": "type",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e7143edb-729a-493b-abe3-9e6bcaa144bd",
+      "kwargs": {
+        "column": "resolution",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f59949bc-eed3-4959-b3f1-683f5d21210d",
+      "kwargs": {
+        "column": "resolution_date",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "bb9a12cb-6689-432d-9b4e-b2ae9a0c7e84",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "99aded17-aa9b-444f-90cf-d50b39f3f6ae",
+      "kwargs": {
+        "column": "due_date",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c41a3e59-a7d0-4cbd-85aa-755342ba84d4",
+      "kwargs": {
+        "column": "time_original_estimate",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "29aa0831-aea8-416f-9396-b80d15bd3e1a",
+      "kwargs": {
+        "column": "time_estimate",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "96ce4fbf-b747-43ee-b197-030024fc17d4",
+      "kwargs": {
+        "column": "time_spent",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "9338c48b-7cd8-4db5-b1c6-d7b248a3065f",
+      "kwargs": {
+        "column": "created_time",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "fed0b23f-f4de-4851-89fb-449c46fef1c9",
+      "kwargs": {
+        "column": "updated_time",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "cd43bd9f-ccf7-4cb6-af3e-5ee33c789ef1",
+      "kwargs": {
+        "column": "issue_id",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "fc488a06-4b0c-4b8d-b070-304bab3c6514",
+      "kwargs": {
+        "column": "jira_project_id",
+        "mostly": 0.99,
+        "value_set": [
+          12804.0,
+          12807.0,
+          12807.0,
+          12804.0,
+          12807.0,
+          12807.0,
+          12804.0
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "112a7628-d66b-459b-88ca-7dacea8852c7",
+      "kwargs": {
+        "column": "time_original_estimate",
+        "mostly": 0.99,
+        "value_set": [
+          288000.0,
+          288000.0
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "ecf27ef1-f698-4b4a-90ff-1bb781f5ee13",
+      "kwargs": {
+        "column": "time_estimate",
+        "mostly": 0.99,
+        "value_set": [
+          444600.0,
+          288000.0,
+          201600.0,
+          403200.0
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "4bb5e314-4bc5-428f-b3d6-f6202807a56a",
+      "kwargs": {
+        "column": "time_spent",
+        "mostly": 0.99,
+        "value_set": [
+          9716400.0,
+          4597200.0,
+          4648320.0,
+          6226200.0,
+          9045900.0,
+          8586000.0,
+          19000800.0
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "37dce348-6098-4855-b11d-0d8fa1124d14",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "jira_dtm-fct_issues",
+  "notes": null
+}

@@ -1,0 +1,665 @@
+{
+  "expectations": [
+    {
+      "id": "91be1cc2-9bed-482a-96b4-4bc5b56df591",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6f9c85e1-2561-4d8c-ac35-5cabd2961082",
+      "kwargs": {
+        "column": "projectCode"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "27ef06e6-8709-4c61-8a88-9af34943641a",
+      "kwargs": {
+        "column": "projectName"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4faeb273-e592-4f27-8a6d-472897a7cdeb",
+      "kwargs": {
+        "column": "projectType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a10ab87e-2c99-4c5e-863e-409c17b94f82",
+      "kwargs": {
+        "column": "projectSize"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a5998a0f-b94f-45b4-b841-9319bd19fa21",
+      "kwargs": {
+        "column": "projectRank"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c13434e0-a9d8-4299-ad91-1c3da04ba599",
+      "kwargs": {
+        "column": "startDate"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "17779b9d-474b-4101-83a4-75d48c7e1bcc",
+      "kwargs": {
+        "column": "planUATDate"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e44a4b29-c020-4831-af10-7b143a4b7d63",
+      "kwargs": {
+        "column": "planReleaseDate"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6c26c02c-5c44-48d2-a31f-bf03d8fbbd97",
+      "kwargs": {
+        "column": "finalReleaseDate"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f71ba39f-1f90-40fe-86b1-d3f1a7eb1fc0",
+      "kwargs": {
+        "column": "warrantyCondition"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "7cbc98d5-f610-4755-ad0a-9af03190e226",
+      "kwargs": {
+        "column": "projectOverview"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "45730748-9e70-4c22-a395-e78719338782",
+      "kwargs": {
+        "column": "developmentModel"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f70e653b-4539-49f5-87d4-4233b8535938",
+      "kwargs": {
+        "column": "jiraUrl"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b33c9ded-6501-4cbd-ae3d-a394f4098170",
+      "kwargs": {
+        "column": "weUrl"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "957a008a-0fb7-4f21-aea2-262f5fb071ca",
+      "kwargs": {
+        "column": "gitUrl"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9664727e-19aa-4fc7-9ed9-4367fdb3c1ee",
+      "kwargs": {
+        "column": "statusPOD"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "cced4678-25bd-40d3-b84e-30cb5e7f183c",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fae18d8a-1aaa-4d36-bf45-bd42802dfb54",
+      "kwargs": {
+        "column": "order"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f24a749d-4e99-4743-81cb-37cd0690d9e3",
+      "kwargs": {
+        "column": "isDeleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "60bf3a1b-a9ad-4593-b249-d7bf553a10d5",
+      "kwargs": {
+        "column": "departmentObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3804bd98-4c08-4d2b-8f3d-62d607e4147d",
+      "kwargs": {
+        "column": "pmObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "32340a43-affa-4ff6-8463-4fa9fabfe0ce",
+      "kwargs": {
+        "column": "saleObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "aa2c800d-5e16-4f04-b3f9-5a8d10604909",
+      "kwargs": {
+        "column": "customerObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "458b07b3-36ac-4e24-b773-00a27d88f70b",
+      "kwargs": {
+        "column": "domain"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "82b15aeb-6b4c-4e01-a23c-9893d0bfe392",
+      "kwargs": {
+        "column": "createdAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "794b1287-9e58-4cd7-9ddd-0fd8106588e8",
+      "kwargs": {
+        "column": "createdBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "51523a2c-5d50-412e-8c77-b856f0b93825",
+      "kwargs": {
+        "column": "updatedAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "636854cd-889d-4544-89af-26d8b54d93da",
+      "kwargs": {
+        "column": "updatedBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4fc811fe-2782-46ab-b9ad-366ed5ae11ed",
+      "kwargs": {
+        "column": "referList"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "34562cb6-7264-41b1-be27-07108cca6167",
+      "kwargs": {
+        "column": "marketObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8c479c49-be46-48e8-b299-3f5b35c95522",
+      "kwargs": {
+        "column": "projectCategory"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "397ced45-d89c-4e4a-93ca-8a69dd70e2b3",
+      "kwargs": {
+        "column": "subPmObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "35f3a1bc-18db-4ce2-9d73-32db4a80c6d9",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ae21d1ea-0748-4563-9dea-049c62a9e318",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "9a7646df-cfd9-4d92-8115-ba63b69c0ffb",
+      "kwargs": {
+        "column": "departmentObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "7294b075-ac8c-40ac-8b40-790c8fc60253",
+      "kwargs": {
+        "column": "pmObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "741079b5-6418-458d-aea0-71fe01181482",
+      "kwargs": {
+        "column": "saleObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "cae8db2c-54cf-4d26-8ab6-b730307c5d4c",
+      "kwargs": {
+        "column": "customerObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "a53c3fa6-f0e2-485a-bf7b-d9c10acc9538",
+      "kwargs": {
+        "column": "marketObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "019a97c8-e8e2-4c35-9fc0-2f95f6306f98",
+      "kwargs": {
+        "column": "subPmObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "c4ae7b5f-1be0-4767-ab4f-bcf869e4ed3a",
+      "kwargs": {
+        "column": "order",
+        "max_value": 255.0,
+        "min_value": 255.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "9ec512af-236c-4a2c-bcf0-5f3b34480ce4",
+      "kwargs": {
+        "column": "_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "376bcded-9605-45f8-8883-51d444d2d99b",
+      "kwargs": {
+        "column": "projectCode",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "7cb06333-86f1-4baa-a603-cddd32665c31",
+      "kwargs": {
+        "column": "projectName",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "65c272e2-6d54-4104-ab81-d05820fc84a3",
+      "kwargs": {
+        "column": "projectType",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "57e780c3-c2ca-4731-9985-7885c1c967b3",
+      "kwargs": {
+        "column": "projectSize",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2c080333-ff5d-441b-ad17-de32e43720c1",
+      "kwargs": {
+        "column": "projectRank",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "7b8b40f2-8601-482a-92b7-371d7c91a117",
+      "kwargs": {
+        "column": "startDate",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c76c23f3-e130-4873-b020-f65626454934",
+      "kwargs": {
+        "column": "planUATDate",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2e8b86a0-6e17-4cfe-8e9e-19a38b94c41e",
+      "kwargs": {
+        "column": "planReleaseDate",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3d8d8119-c5c4-4e1f-87d9-50f74824796c",
+      "kwargs": {
+        "column": "finalReleaseDate",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e4b4953d-7d8f-480a-9a7c-5731bf11920d",
+      "kwargs": {
+        "column": "warrantyCondition",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6cd06f53-95fe-4100-ade6-e40b7acd7d78",
+      "kwargs": {
+        "column": "projectOverview",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "cb1363dc-186f-47d1-b4f3-596b2570413a",
+      "kwargs": {
+        "column": "developmentModel",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "1b7cdaa8-cb6d-48ae-b919-792f83e7ddf8",
+      "kwargs": {
+        "column": "jiraUrl",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e875d743-5df9-432b-af8b-30367a7283ac",
+      "kwargs": {
+        "column": "weUrl",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "bb4a00d0-1d8a-4332-8f93-d6e4219e5165",
+      "kwargs": {
+        "column": "gitUrl",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3c090db2-6f90-4419-ba9b-259aeb0ab861",
+      "kwargs": {
+        "column": "statusPOD",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3acb188a-c0af-4b14-80c7-904d79847ebb",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "99f5192d-f917-4cb8-bf20-3a31e4cfea58",
+      "kwargs": {
+        "column": "order",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d52cb5ad-dbc4-4b98-90dd-6ff4f1b861d4",
+      "kwargs": {
+        "column": "isDeleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "85d4c330-1926-4912-8d7f-b5137e2ee100",
+      "kwargs": {
+        "column": "departmentObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "0d3dad97-b734-4fac-a5ef-d2491635b89c",
+      "kwargs": {
+        "column": "pmObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "fdf4a5ee-e6d0-4515-9ef3-ef01a659359b",
+      "kwargs": {
+        "column": "saleObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "da051f77-dfaf-481e-9e3c-72b332962d72",
+      "kwargs": {
+        "column": "customerObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3fd7c87e-1cda-4380-ae8c-8ad1ca2b44a5",
+      "kwargs": {
+        "column": "domain",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "fb6d284a-d19e-4915-902b-e1fc558de6a5",
+      "kwargs": {
+        "column": "createdAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "1e81194e-8df7-4b65-bc4c-3654ba29870a",
+      "kwargs": {
+        "column": "createdBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "25443884-33be-4cf1-9711-5de490b659b0",
+      "kwargs": {
+        "column": "updatedAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6c7d7afe-94de-4ac5-ae8b-6600c9451779",
+      "kwargs": {
+        "column": "updatedBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "7d1673c1-12c7-456a-828a-4dbdd1908da6",
+      "kwargs": {
+        "column": "referList",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e7c2f7ae-0521-4f02-bee6-48c52dfa277c",
+      "kwargs": {
+        "column": "marketObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "1aa90502-4360-41c9-9d1c-0ae4d314fe6d",
+      "kwargs": {
+        "column": "projectCategory",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "73f025a1-9f5c-47e8-bc3e-19167ed7d3a0",
+      "kwargs": {
+        "column": "subPmObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f9e82974-932c-4391-8c1f-346fab7849b2",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "dfb1e523-2223-4327-a296-783032835472",
+      "kwargs": {
+        "column": "order",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "c415cad4-7106-4b4f-905e-88c31512c8d4",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "src_create-stg_pods",
+  "notes": null
+}

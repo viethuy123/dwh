@@ -1,0 +1,141 @@
+{
+  "expectations": [
+    {
+      "id": "48f1858b-6eb0-4674-895d-927dd1510902",
+      "kwargs": {
+        "column": "ID"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "66ee4eec-6e7a-446c-a6e8-cfc6ac367093",
+      "kwargs": {
+        "column": "SEQUENCE"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "158c2f6e-6445-4f55-9b6e-390e8748cb69",
+      "kwargs": {
+        "column": "pname"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "212e3459-fbb3-4d4a-95f4-50186045c8d0",
+      "kwargs": {
+        "column": "DESCRIPTION"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9787d8c9-f239-4144-88b0-5231b3770951",
+      "kwargs": {
+        "column": "ICONURL"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "edc8e921-ca87-4f8b-8417-460719fc0975",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "289174c8-0e5b-4c2f-9fab-f71c6cb6cb17",
+      "kwargs": {
+        "column": "ID"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "e10ad1a0-e8d6-447a-963e-c5b1ca5dbd36",
+      "kwargs": {
+        "column": "SEQUENCE",
+        "max_value": 13.35,
+        "min_value": 1.65,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "5fc63cdc-2d45-48c4-a752-7fc4e9235698",
+      "kwargs": {
+        "column": "ID",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "87f28a22-46e9-4fe4-8861-bdefc550f2fd",
+      "kwargs": {
+        "column": "SEQUENCE",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2344e6d7-6f8e-4361-8116-342d5a470fd9",
+      "kwargs": {
+        "column": "pname",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "477587e9-5d6f-42fa-88be-751b28c217e4",
+      "kwargs": {
+        "column": "DESCRIPTION",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "10754fae-605d-4268-9d1f-51d99dd68689",
+      "kwargs": {
+        "column": "ICONURL",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d7c57e1a-97f4-4d87-a78b-e9d2764fef98",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6d88b10a-9015-4b0d-92b8-380e8439e9f8",
+      "kwargs": {
+        "column": "SEQUENCE",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "597f88f6-38cf-4c3b-bf32-a243c2607f8d",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "src_jira-stg_resolution",
+  "notes": null
+}

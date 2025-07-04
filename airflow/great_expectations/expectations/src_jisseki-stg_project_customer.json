@@ -1,0 +1,199 @@
+{
+  "expectations": [
+    {
+      "id": "4502dfae-0a6d-409c-ad81-fdb7878194c1",
+      "kwargs": {
+        "column": "id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a15b6e8a-1b9c-4d41-a97b-ad25e9388b92",
+      "kwargs": {
+        "column": "project_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "bf9667ab-29d6-47d1-a5af-125f269fdfac",
+      "kwargs": {
+        "column": "customer_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4009dc23-5404-4cfe-8b3b-19a9e5e75da3",
+      "kwargs": {
+        "column": "created_at"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3a956b8e-361d-4ca4-bced-b7dae3993aef",
+      "kwargs": {
+        "column": "updated_at"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "629ec357-3c85-4e55-b801-76d94b3ab162",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "28eaf682-6e3a-4c8a-952d-fd6029d24b9e",
+      "kwargs": {
+        "column": "id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "28360c3c-21bd-4dd4-b09f-3e92f63fc65e",
+      "kwargs": {
+        "column": "project_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "a3580122-6c58-430b-bc08-de5596da1c01",
+      "kwargs": {
+        "column": "customer_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "8224e975-f4c2-4a37-96df-889380615212",
+      "kwargs": {
+        "column": "id",
+        "max_value": 1357.65,
+        "min_value": 493.75,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "95352161-1de1-48c5-82c8-9e61ac669d6e",
+      "kwargs": {
+        "column": "project_id",
+        "max_value": 272.65,
+        "min_value": 27.35,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "18e35e9f-189c-425e-a5bc-bb4929dd6d31",
+      "kwargs": {
+        "column": "customer_id",
+        "max_value": 105.0,
+        "min_value": 2.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "ce71c51f-2872-4a78-a974-b8f411811a56",
+      "kwargs": {
+        "column": "id",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3b21acee-3f5c-468f-8de1-90782a24a34e",
+      "kwargs": {
+        "column": "project_id",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "936118ec-63d1-4e15-aead-de16fd175f93",
+      "kwargs": {
+        "column": "customer_id",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ce91cfaa-25d3-4fd2-b5d9-6dd2c8428031",
+      "kwargs": {
+        "column": "created_at",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ce7f021c-000a-437c-9948-c93f69e94b50",
+      "kwargs": {
+        "column": "updated_at",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3a96099c-0b15-4503-a6d3-9afbf41e1db4",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e5ff1909-84fe-41d4-86b4-e9b662fe797f",
+      "kwargs": {
+        "column": "id",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "ae2a2a7e-5e6a-4b60-8a28-03add550d95e",
+      "kwargs": {
+        "column": "project_id",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "345b6640-0932-4bae-822f-a3b6f59cecd4",
+      "kwargs": {
+        "column": "customer_id",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "77958a3b-9798-4511-a7ab-3a0bc836d3a4",
+  "meta": {
+    "great_expectations_version": "1.5.4"
+  },
+  "name": "src_jisseki-stg_project_customer",
+  "notes": null
+}

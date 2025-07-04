@@ -1,0 +1,271 @@
+{
+  "expectations": [
+    {
+      "id": "4dc37263-a049-4e9d-9a40-899e2a37ec8e",
+      "kwargs": {
+        "column": "project_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2775cf0d-ded0-4c8b-81c3-4364d58513fe",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e8cd6e8f-fb80-4428-aa39-f68bc08a2fff",
+      "kwargs": {
+        "column": "department_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "1b2fc7f9-3bdc-4f66-a187-a107d4621f9f",
+      "kwargs": {
+        "column": "branch_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "424a04cf-1df3-4011-8b43-044a8bbc2392",
+      "kwargs": {
+        "column": "value"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "bf319a93-1ac7-4386-b082-ba1dc76bd4d9",
+      "kwargs": {
+        "column": "value1"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0120aabe-edea-43f2-bf38-1c1e6cc57b12",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "603b3fb2-2840-4622-b3fc-bc9930d94ade",
+      "kwargs": {
+        "column": "is_deleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ed5f1d5b-b0fc-4774-b2de-1e01c1f2bf35",
+      "kwargs": {
+        "column": "month_at"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "95816224-711a-4a0e-a832-89f29a411483",
+      "kwargs": {
+        "column": "updated_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "538f1012-d497-43d3-87b8-1cb88ec0cec9",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "92825bec-38eb-43c6-a10e-7c49cb41f7de",
+      "kwargs": {
+        "column": "project_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "936ad365-552f-4202-9c38-6e90147558b4",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "6c50e05c-416a-43d2-b796-13b655045bb3",
+      "kwargs": {
+        "column": "department_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "38e7659c-556e-41da-aff1-26e033d33420",
+      "kwargs": {
+        "column": "branch_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "478304a2-c3f1-4372-8ce2-d088b10316f3",
+      "kwargs": {
+        "column": "value",
+        "max_value": 1608075.2688172043,
+        "min_value": 56262.27089581353,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "5e4a56e3-058b-436e-b722-b8416e5c762c",
+      "kwargs": {
+        "column": "value1",
+        "max_value": 0.0,
+        "min_value": 0.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "df91445c-b2fd-4ff6-9b75-787fa2e6e7a1",
+      "kwargs": {
+        "column": "project_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "5e7cc169-b6c4-4123-86a5-a2fa5f1d5450",
+      "kwargs": {
+        "column": "user_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "0a4e0c7f-e266-42fe-912d-412a6fef6c81",
+      "kwargs": {
+        "column": "department_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "dbe0f66e-8d53-4cad-b75c-2047b94de9d3",
+      "kwargs": {
+        "column": "branch_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6a28747f-dddf-48b8-ac4f-c9ccb7160e58",
+      "kwargs": {
+        "column": "value",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "61b8a194-ec91-4453-8e39-c94af2cf16d2",
+      "kwargs": {
+        "column": "value1",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "4272170a-11fe-4c6d-85e9-333c78032839",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "fdd974aa-5970-4b0f-b57d-a7c7f3714016",
+      "kwargs": {
+        "column": "is_deleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "565f31fc-7910-47e8-af9e-a9e7ccfda05b",
+      "kwargs": {
+        "column": "month_at",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "cd80151f-e491-44cf-a0ff-c4880cf9a135",
+      "kwargs": {
+        "column": "updated_time",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d66580ce-a18d-4b0d-a784-a105dcf4d56b",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "da5eea0d-3617-4904-ad59-54953a8ce032",
+      "kwargs": {
+        "column": "value",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "7784920b-a56b-4e29-8834-0fff71b61b10",
+      "kwargs": {
+        "column": "value1",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "d29760c2-9fb4-44d0-982b-ce8386eba5a4",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "dwh-project_profit_loss",
+  "notes": null
+}

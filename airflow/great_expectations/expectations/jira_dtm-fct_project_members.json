@@ -1,0 +1,94 @@
+{
+  "expectations": [
+    {
+      "id": "6f125f1a-e12b-4695-bf7e-888f67024913",
+      "kwargs": {
+        "column": "project_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "88d9f061-7ed0-4750-9c98-0c65acfaaa17",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0f2b346d-5cc1-4bf0-93ce-2125f0c16af8",
+      "kwargs": {
+        "column": "joined_at"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a0e667de-eead-4429-9db2-a528ee33587c",
+      "kwargs": {
+        "column": "left_at"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "1ff0275f-f901-4297-81ca-1b7cc47e3846",
+      "kwargs": {
+        "column": "project_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "6fb62818-5a1e-4772-9219-2b890288d627",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "27d0f8fe-fddc-4d09-800d-54c8ab1655ef",
+      "kwargs": {
+        "column": "project_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f02c310c-0baa-47ae-b004-b3afb0b69a9e",
+      "kwargs": {
+        "column": "user_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "60b9230a-62f1-4fa0-8e29-2db40379038c",
+      "kwargs": {
+        "column": "joined_at",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ada6cce3-935d-4ed0-8a07-7ad7d5ed39cf",
+      "kwargs": {
+        "column": "left_at",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    }
+  ],
+  "id": "065adeab-2cc6-413b-8fdd-381c647628b7",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "jira_dtm-fct_project_members",
+  "notes": null
+}

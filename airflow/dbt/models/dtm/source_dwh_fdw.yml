@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: dwh
+    database: dtm
+    schema: dwh_fdw
+    tables:
+      - name: branches
+      - name: departments
+      - name: jira_issue_resolution
+      - name: jira_issue_status
+      - name: jira_issue_types
+      - name: jira_issues
+      - name: jira_issue_priority
+      - name: jira_worklog
+      - name: project_members
+      - name: project_profit_loss
+      - name: projects
+      - name: users
+      - name: user_positions
+      - name: time_series
+      - name: staff_attendances
+      - name: staff_attendances_types
+      - name: salaries
+      - name: pods
+      - name: billable_efforts_approveds

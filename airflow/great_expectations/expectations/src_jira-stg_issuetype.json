@@ -1,0 +1,196 @@
+{
+  "expectations": [
+    {
+      "id": "c3a55a34-a23f-4d0c-8768-d578db94c27e",
+      "kwargs": {
+        "column": "ID"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2dedad44-bf63-4bc3-b1b5-2bed1a54d4aa",
+      "kwargs": {
+        "column": "SEQUENCE"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3bacdde8-8359-4f3c-8aac-37ce35f3ee48",
+      "kwargs": {
+        "column": "pname"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e1888d1b-3cec-49b5-985b-ea889bf4f5e6",
+      "kwargs": {
+        "column": "pstyle"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c149b304-4cf6-41b8-80f8-cc42c94f3f64",
+      "kwargs": {
+        "column": "DESCRIPTION"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3ced4c1a-cae3-4b9b-9ca6-1f1084af0e1a",
+      "kwargs": {
+        "column": "ICONURL"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "1d566df2-2c82-4a29-966f-378bfe1c782f",
+      "kwargs": {
+        "column": "AVATAR"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ad0a8149-2128-448a-a3ef-8eae25d4dec7",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fcb81eaa-81be-4f47-a5ef-9bfb0749b1a0",
+      "kwargs": {
+        "column": "ID"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "0f13ef99-7c33-4a58-b4a9-4f5837766e7a",
+      "kwargs": {
+        "column": "SEQUENCE",
+        "max_value": 0.0,
+        "min_value": 0.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "1706910f-c904-4712-a814-f94021d2cafa",
+      "kwargs": {
+        "column": "AVATAR",
+        "max_value": 13121.65,
+        "min_value": 10300.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "011f8c71-d197-4d5c-9f65-1c998de534cf",
+      "kwargs": {
+        "column": "ID",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "db067068-a5f5-4083-9055-f84992822883",
+      "kwargs": {
+        "column": "SEQUENCE",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "eb4e138b-e07d-4932-8b24-5b3664897b99",
+      "kwargs": {
+        "column": "pname",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3ec71352-7651-4196-938d-e75faa81a3f4",
+      "kwargs": {
+        "column": "pstyle",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "9f627ac2-721c-483a-a2d5-93376585c42e",
+      "kwargs": {
+        "column": "DESCRIPTION",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "cfc153c5-2421-4ea8-b635-a1a1da4f7b0a",
+      "kwargs": {
+        "column": "ICONURL",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "38d46bd5-d3e3-4bf0-a80e-c36ada69c768",
+      "kwargs": {
+        "column": "AVATAR",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "76685b65-ea89-4d33-913e-5fae41b6db9c",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d6fe03cd-a071-4dd1-a616-7f035e0341fd",
+      "kwargs": {
+        "column": "SEQUENCE",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "ec558b07-fa5e-4770-b534-051a6a3726a1",
+      "kwargs": {
+        "column": "AVATAR",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "c982daf5-673c-49d6-bd79-96f718d6d845",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "src_jira-stg_issuetype",
+  "notes": null
+}

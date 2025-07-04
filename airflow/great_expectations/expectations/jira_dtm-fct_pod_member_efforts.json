@@ -1,0 +1,174 @@
+{
+  "expectations": [
+    {
+      "id": "268398bf-334f-404d-a5dc-a4d1ef09d9f2",
+      "kwargs": {
+        "column": "pod_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0137c051-d0f8-4da8-9118-cf3c515184f1",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "bceeffd4-8627-496b-93a3-bf6732e4f436",
+      "kwargs": {
+        "column": "department_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "75376137-4fe1-49b3-aa0f-93de4de3c90f",
+      "kwargs": {
+        "column": "user_role"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "15920111-4a8b-4602-9eac-96d0da542492",
+      "kwargs": {
+        "column": "effort"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c21bdff6-33f8-45bc-aa89-5bfd45192fd8",
+      "kwargs": {
+        "column": "month_year"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3036cda8-9ab9-4847-b142-7183dc2bc183",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3318bac6-afed-4aa8-a867-e5945d24a08c",
+      "kwargs": {
+        "column": "pod_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "2331bd61-1647-40b3-88cb-f26caca789de",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "4824ba10-8461-4a99-8534-68cb43731fca",
+      "kwargs": {
+        "column": "department_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "a1471772-5d15-43f1-a5ef-c8474f3e893e",
+      "kwargs": {
+        "column": "effort",
+        "max_value": 1.0,
+        "min_value": 0.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "06944908-c2f9-40f1-b142-a74bf62f92df",
+      "kwargs": {
+        "column": "pod_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "91756e73-532d-4c17-b461-37126ccd072d",
+      "kwargs": {
+        "column": "user_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "799665ce-4e45-4a3f-bc73-18a03cda2734",
+      "kwargs": {
+        "column": "department_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "de5788e8-8686-446f-8155-65930d861b68",
+      "kwargs": {
+        "column": "user_role",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f5543320-c4aa-4ecc-8704-dfac219402e2",
+      "kwargs": {
+        "column": "effort",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c1a7d2bc-ee28-4994-b0e9-a818ad8cbde6",
+      "kwargs": {
+        "column": "month_year",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "5e7d711d-79db-4dcb-ad99-cc40dc635ed3",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "907fdda1-d0ee-48d7-9248-d07ce0cad021",
+      "kwargs": {
+        "column": "effort",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "609ce4e2-e36d-448b-a3ee-36a8383cbb3a",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "jira_dtm-fct_pod_member_efforts",
+  "notes": null
+}

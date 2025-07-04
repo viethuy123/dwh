@@ -1,0 +1,95 @@
+{
+  "expectations": [
+    {
+      "id": "ef021991-0971-4078-aa85-971a1b20deac",
+      "kwargs": {
+        "column": "date"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "67f87fe6-6300-4057-be97-e4cbf1afe875",
+      "kwargs": {
+        "column": "freq_code"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "28995b97-c34e-4c78-9aac-9790e4ea5b8b",
+      "kwargs": {
+        "column": "year"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b92738dc-a68e-4408-8601-6893426d4ef6",
+      "kwargs": {
+        "column": "month_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "76245b36-b659-4b95-a812-815b9fbc38eb",
+      "kwargs": {
+        "column": "month_year"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "81c263ad-be99-49d3-a3af-061722cd744d",
+      "kwargs": {
+        "column": "date",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ebedaab8-c5b6-4c26-9a1b-10570b215736",
+      "kwargs": {
+        "column": "freq_code",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "52690b28-105f-4931-88b2-a8a913194dc0",
+      "kwargs": {
+        "column": "year",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "5e71edc8-5f67-4ce5-aac3-95c454b13557",
+      "kwargs": {
+        "column": "month_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c6dfe456-10e3-49b5-b8b8-3bb3cdbf6ba7",
+      "kwargs": {
+        "column": "month_year",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    }
+  ],
+  "id": "25bb2fd9-0410-4e4d-ad67-36edced07f58",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "hr_dtm-dim_month_year",
+  "notes": null
+}

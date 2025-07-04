@@ -1,0 +1,340 @@
+{
+  "expectations": [
+    {
+      "id": "43611cd6-4253-43c0-81a8-925339fd0580",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "359c2ed2-4ae1-49cb-8110-e763438cc2e2",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c3333ac8-deda-4289-81a7-e2bd7cd82c02",
+      "kwargs": {
+        "column": "order"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e57e9998-c695-43a9-9da7-a0fd6296a99a",
+      "kwargs": {
+        "column": "isDeleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "63b5871f-f6bf-4bc2-b8f8-5088579fb70c",
+      "kwargs": {
+        "column": "positionName"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "793c8c15-a4ae-4eba-a5d6-2f60f14767fe",
+      "kwargs": {
+        "column": "positionCode"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3d4dac38-53f8-4857-a3ea-91c13e32ec0d",
+      "kwargs": {
+        "column": "positionDescription"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d3f10d20-bd13-4cfd-9a89-82abc5754fe9",
+      "kwargs": {
+        "column": "createdAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "419a1e1e-1062-437e-a8eb-bb343bf512af",
+      "kwargs": {
+        "column": "createdBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e9141cc1-0a15-49f4-9b7c-536441204c34",
+      "kwargs": {
+        "column": "updatedAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "80efb9b0-4d32-4512-8a51-39ee809a3b63",
+      "kwargs": {
+        "column": "updatedBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ec3fd3f7-e3a6-4576-8723-3faf87ceccae",
+      "kwargs": {
+        "column": "positionStatus"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9b273e57-5da2-455a-9645-86b180d0441f",
+      "kwargs": {
+        "column": "positionLevel"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "7cdad5d4-ad82-4514-a38b-58c89b20118b",
+      "kwargs": {
+        "column": "eLearningGroupPositionObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "20d774a9-5fb7-4ae9-939f-644748a52612",
+      "kwargs": {
+        "column": "type"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e3b88b90-1a6e-49a6-8267-79cdf59b8781",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "bb895db8-61cf-4a8d-a2b5-56816c08fbc5",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "eefad53d-37c2-4246-a96a-9571b6430353",
+      "kwargs": {
+        "column": "eLearningGroupPositionObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "0bddc385-89b4-4691-b9b8-8d91a9023c45",
+      "kwargs": {
+        "column": "order",
+        "max_value": 255.0,
+        "min_value": 255.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "778f7286-dc24-47f3-bc72-032e1dc5dd4f",
+      "kwargs": {
+        "column": "positionLevel",
+        "max_value": 1.0,
+        "min_value": 1.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "508c3696-1c90-4493-9f9d-cb22f87e3ccd",
+      "kwargs": {
+        "column": "_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "9fedf15d-1b4d-4b70-96bf-5c86c504557e",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "eca75319-a462-4005-b311-1bf5e7269de2",
+      "kwargs": {
+        "column": "order",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "98d878ac-067e-43d0-b41c-d3ebefc91ff2",
+      "kwargs": {
+        "column": "isDeleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "fbd9f093-1bba-4a38-82b7-1b0c3eaba343",
+      "kwargs": {
+        "column": "positionName",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "dc536375-9dea-4240-8a63-372798962377",
+      "kwargs": {
+        "column": "positionCode",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "13369641-952d-461f-853b-4b0c8a3c1ded",
+      "kwargs": {
+        "column": "positionDescription",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "4a58303b-338e-48cd-ae36-cb6ed6e7bbde",
+      "kwargs": {
+        "column": "createdAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2ea46f08-5a2c-4833-a3a6-e72d7c317601",
+      "kwargs": {
+        "column": "createdBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "44f15d24-bbf4-41df-bb9b-a9ca3a0330f2",
+      "kwargs": {
+        "column": "updatedAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "4a71f51a-3489-45c0-8d07-9fe294d6a6f4",
+      "kwargs": {
+        "column": "updatedBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a2d5d168-b126-4d03-810c-6c46114960c7",
+      "kwargs": {
+        "column": "positionStatus",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6c6a6a9f-2aa8-4aaf-9d9a-fecc8192ebd9",
+      "kwargs": {
+        "column": "positionLevel",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "631a75fa-1f2b-4fa7-8dae-717adf1ddb92",
+      "kwargs": {
+        "column": "eLearningGroupPositionObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a5e99d0f-70f3-4264-8c33-de5ec754e590",
+      "kwargs": {
+        "column": "type",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "aae1732a-a12e-495b-9ec9-591c405cb637",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d1d02e5e-46a4-421c-adb1-065305407932",
+      "kwargs": {
+        "column": "order",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "7a82da75-d1c3-465f-b9c1-b3e77627ae18",
+      "kwargs": {
+        "column": "positionLevel",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "315a3561-b88f-4e33-a851-1cea727ca192",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "src_create-stg_user_positions",
+  "notes": null
+}

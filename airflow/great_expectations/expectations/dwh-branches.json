@@ -1,0 +1,179 @@
+{
+  "expectations": [
+    {
+      "id": "3d9eb170-dea9-4869-bb9e-8a1a618b46f4",
+      "kwargs": {
+        "column": "branch_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "769b953f-a1aa-4882-b62e-87353848a24a",
+      "kwargs": {
+        "column": "branch_code"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2e7338e8-829f-4171-a4f8-f88a1fe65140",
+      "kwargs": {
+        "column": "branch_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "45556160-d13a-4da5-94af-6d4219e5a108",
+      "kwargs": {
+        "column": "branch_address"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "545b43b0-a794-4f53-84dd-64937d15408e",
+      "kwargs": {
+        "column": "is_hidden"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "816f60d7-de85-4f43-8e6c-69bbbb29379f",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "dcbe4af5-77f5-4053-b2c3-0f732091a634",
+      "kwargs": {
+        "column": "is_deleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "08681898-2d17-4b60-9a8c-c1bbb3789067",
+      "kwargs": {
+        "column": "created_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f7cf0d8b-c69f-4c12-873a-2570e48084f3",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f1907292-afd7-4155-a36c-7014891e7dc9",
+      "kwargs": {
+        "column": "branch_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "b099c4d3-d57e-4667-b221-064e3285e593",
+      "kwargs": {
+        "column": "is_hidden"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "cfe85127-86d0-4f71-b733-42c871fdc0f6",
+      "kwargs": {
+        "column": "branch_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "fd5abb0f-3853-4787-aa18-cda0e946f2d2",
+      "kwargs": {
+        "column": "branch_code",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "1123d074-e423-4edd-9c5a-d34b47ade50a",
+      "kwargs": {
+        "column": "branch_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a1b120e1-9afa-4ae7-8c6c-592ed75324e4",
+      "kwargs": {
+        "column": "branch_address",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "fd4c6309-8f63-466e-93bb-66112938f16c",
+      "kwargs": {
+        "column": "is_hidden",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "55573e76-4eab-4e8a-af99-c4daddc69f8f",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6e5b84b0-9a49-4e91-a3b5-5406c5eafe06",
+      "kwargs": {
+        "column": "is_deleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f3108249-96ef-463c-b163-f4eeea473236",
+      "kwargs": {
+        "column": "created_time",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "839e5547-6944-4f17-97f6-c75e902906cd",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    }
+  ],
+  "id": "d4d54396-9a78-4b70-9468-ea3e9db7fc96",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "dwh-branches",
+  "notes": null
+}

@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "id": "a152ddc8-d428-4ca6-8a70-db39af6bfbd4",
+      "kwargs": {
+        "column": "type_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4dbd2cb5-419c-4b54-94fc-2c71898ad143",
+      "kwargs": {
+        "column": "type_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2ca0db0e-22e2-4c96-a0ff-d5795dacfd5d",
+      "kwargs": {
+        "column": "type_description"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "311d31e5-a90d-4efc-a29e-4286a12e3d2b",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9aad7761-101a-4959-a15e-0593ced55594",
+      "kwargs": {
+        "column": "type_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "4de8644f-55f7-45c8-8071-11886f311b09",
+      "kwargs": {
+        "column": "type_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2abeb25e-0f4c-44c6-b99f-e67a6eda03c5",
+      "kwargs": {
+        "column": "type_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c5acf9bb-2eda-4aa9-96e6-2bb4079e2405",
+      "kwargs": {
+        "column": "type_description",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c5f365fc-c2e2-450b-b1c1-843750f54ab4",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    }
+  ],
+  "id": "1921a1e7-6f6f-4262-969c-b5ad76bfdb4b",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "dwh-jira_issue_types",
+  "notes": null
+}

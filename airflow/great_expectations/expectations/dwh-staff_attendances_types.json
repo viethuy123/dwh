@@ -1,0 +1,281 @@
+{
+  "expectations": [
+    {
+      "id": "8609c094-1945-4712-9eaf-962bbc5843af",
+      "kwargs": {
+        "column": "attendance_type_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2329d4e8-e66f-41cf-a497-67e56641867e",
+      "kwargs": {
+        "column": "attendance_type_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9f5eb71c-3984-4196-9e99-8ce53859c5ee",
+      "kwargs": {
+        "column": "attendance_type_code"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fbd2a2f9-ef39-4591-ad07-c6e9bbef9587",
+      "kwargs": {
+        "column": "attendance_work_day"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b8c27331-926c-4b4c-9f79-071691d91810",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c7d89aa1-c961-48c8-9404-f99b01577f16",
+      "kwargs": {
+        "column": "is_deleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "22d73882-502f-4cfa-bfda-875406220df8",
+      "kwargs": {
+        "column": "type"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "5a4b5f64-7bad-4f8c-ae62-d0f56827a2af",
+      "kwargs": {
+        "column": "unit_status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "78938397-f49a-4196-9e62-ce414d732cd3",
+      "kwargs": {
+        "column": "unit_type"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "487abcda-acac-4863-9dc8-5c4f41d04a38",
+      "kwargs": {
+        "column": "unit_value"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "cefe200d-654c-4fff-99ad-5609c051b574",
+      "kwargs": {
+        "column": "created_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2e8fbd0a-822b-47ce-9138-b98f7a26b81c",
+      "kwargs": {
+        "column": "updated_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "17271ee6-0e4f-4269-8463-005c7eb9a7b9",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d342e5cb-3f87-46b6-86bd-771491647d4e",
+      "kwargs": {
+        "column": "attendance_type_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "a1154c6e-320c-42c7-a2b6-5a0b6c1d302e",
+      "kwargs": {
+        "column": "attendance_work_day",
+        "max_value": 1.0,
+        "min_value": 0.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "ba5aaef8-de09-4cc4-8032-0c81de172916",
+      "kwargs": {
+        "column": "unit_value",
+        "max_value": 144.79999999999995,
+        "min_value": 1.4,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "3b482bb9-f8f3-40e7-add2-a55d335d5eec",
+      "kwargs": {
+        "column": "attendance_type_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "bd682f37-961e-4e08-832d-261665f23944",
+      "kwargs": {
+        "column": "attendance_type_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6fd5a6ae-382b-4531-83dd-41305c933934",
+      "kwargs": {
+        "column": "attendance_type_code",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "150b5c5d-2016-4252-8841-3286ded2ad50",
+      "kwargs": {
+        "column": "attendance_work_day",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "9225cd94-ca53-493d-9728-fd4f390ff944",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "11d2a475-77a9-4c36-b796-545ab71c9479",
+      "kwargs": {
+        "column": "is_deleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "dd56a0d7-e34d-4148-90f0-0eae2ee9056b",
+      "kwargs": {
+        "column": "type",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "4665afb2-e3c1-478b-a54a-9b911de42fa6",
+      "kwargs": {
+        "column": "unit_status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "bc6f7464-6f4b-48ab-bfaa-02ae535c5b66",
+      "kwargs": {
+        "column": "unit_type",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e4234406-de29-4b66-bef1-c03d7dfec1ba",
+      "kwargs": {
+        "column": "unit_value",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "7c07684e-183e-49ed-9c16-fd84a99392ad",
+      "kwargs": {
+        "column": "created_time",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ffe0c699-07db-4ace-83bb-22cd657f99d2",
+      "kwargs": {
+        "column": "updated_time",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "7af97696-15bd-43ef-a134-9c60ee73ea9d",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "8eeda12b-041d-4259-98d4-88408f654007",
+      "kwargs": {
+        "column": "attendance_work_day",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "3c3cd328-5a14-466b-9eb4-7aff89c0326f",
+      "kwargs": {
+        "column": "unit_value",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "95181278-eaee-424e-96e2-b08794796840",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "dwh-staff_attendances_types",
+  "notes": null
+}

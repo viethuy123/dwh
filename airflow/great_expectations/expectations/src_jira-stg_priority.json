@@ -1,0 +1,158 @@
+{
+  "expectations": [
+    {
+      "id": "9020b308-4b32-4547-8d4f-2c2ec8887ef3",
+      "kwargs": {
+        "column": "ID"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8d71543a-2952-4fa2-b816-f7356b369367",
+      "kwargs": {
+        "column": "SEQUENCE"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f23bbdab-92d9-45a1-b92a-9d00e5e089ed",
+      "kwargs": {
+        "column": "pname"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "7861da88-e497-4b7b-9dc4-d1eedccfbfae",
+      "kwargs": {
+        "column": "DESCRIPTION"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0baa3d64-f249-4cf2-96e8-8ac25b428089",
+      "kwargs": {
+        "column": "ICONURL"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "7c6f9b3f-433a-46b5-9e07-37eaab1c831a",
+      "kwargs": {
+        "column": "STATUS_COLOR"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "21d588e7-4693-4bc5-81a3-780b862cd14e",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "5b5071fa-70f7-4c68-a0e5-17813c7cbf1e",
+      "kwargs": {
+        "column": "ID"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "33848343-45b3-486d-9ea9-223741be5bd9",
+      "kwargs": {
+        "column": "SEQUENCE",
+        "max_value": 6.699999999999999,
+        "min_value": 1.3,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "1102a95f-cfea-43fa-bd05-e6461037818a",
+      "kwargs": {
+        "column": "ID",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d78ac7b7-c46a-4911-8f5a-8a468618a1ef",
+      "kwargs": {
+        "column": "SEQUENCE",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "94ba016f-712d-48f9-aab1-3fe73e318bae",
+      "kwargs": {
+        "column": "pname",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3911c679-6127-4be6-80ad-e71be9bc085f",
+      "kwargs": {
+        "column": "DESCRIPTION",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "5eb6eab9-633f-4de3-83de-24a23a7a2b96",
+      "kwargs": {
+        "column": "ICONURL",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "52c096d7-5b62-4ddd-83a7-7264cbf24186",
+      "kwargs": {
+        "column": "STATUS_COLOR",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d77ac3da-2919-4f0d-8c05-ff37024698c8",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d4a27c0d-2cd7-4cd5-9ad5-465f6a18683a",
+      "kwargs": {
+        "column": "SEQUENCE",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "aadc8815-338d-4a9b-9a28-23b78daf2cd2",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "src_jira-stg_priority",
+  "notes": null
+}

@@ -1,0 +1,226 @@
+{
+  "expectations": [
+    {
+      "id": "245aaca6-de47-4c8b-9804-987ed5859a59",
+      "kwargs": {
+        "column": "position_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d7d3a73c-f0eb-4491-b9c3-db40751425e4",
+      "kwargs": {
+        "column": "position_code"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "254c9f04-bced-4324-a461-a0b78c183246",
+      "kwargs": {
+        "column": "position_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "cbfaa64a-dde7-4dc9-b0c1-d7bfb4cfc036",
+      "kwargs": {
+        "column": "position_level"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "cdc97984-cee3-43d1-91ec-b384e29a7857",
+      "kwargs": {
+        "column": "position_description"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9bc28088-6b9c-45d3-bb0c-22b6c463e318",
+      "kwargs": {
+        "column": "position_status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a4cfcfe7-df27-43fa-96f8-41f01911eeae",
+      "kwargs": {
+        "column": "position_type"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "40b96ca9-d267-4a0f-ab72-0cd3d6b82178",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0146cafd-f4ae-49bc-b7f9-8804d6273174",
+      "kwargs": {
+        "column": "is_deleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3cb49801-ddf1-419d-9015-7fc454079311",
+      "kwargs": {
+        "column": "updated_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c249ea99-e7dd-496f-a802-bdcec0339bb7",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "88ee9463-3c79-4bc4-8ed2-a8a63378cfb7",
+      "kwargs": {
+        "column": "position_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "e111e597-9ea2-4aba-af6e-d72ee56df1c6",
+      "kwargs": {
+        "column": "position_level",
+        "max_value": 1.0,
+        "min_value": 1.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "60799869-5c4f-4adf-99e9-7567dab3a8e0",
+      "kwargs": {
+        "column": "position_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "4cf6c52a-42af-4b72-a4fa-4e6101fa58ce",
+      "kwargs": {
+        "column": "position_code",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "dfed8101-4049-4844-afcb-8eb4d150ad25",
+      "kwargs": {
+        "column": "position_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "fb4cc6d8-75b4-42e7-a946-63bebc432378",
+      "kwargs": {
+        "column": "position_level",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2e478713-d728-46d8-9fcf-54915a8e9706",
+      "kwargs": {
+        "column": "position_description",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a4704e34-e82e-4e3e-ae14-ed67688afdec",
+      "kwargs": {
+        "column": "position_status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "16f69999-2004-4707-86d5-8b10ff4e0386",
+      "kwargs": {
+        "column": "position_type",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "99639f9e-e078-4f3e-bdf2-28f61f1ae25d",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6e03f506-8532-4b9f-a077-3f7a8f45ce21",
+      "kwargs": {
+        "column": "is_deleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d2140cc5-f021-426e-87ed-04d2308eab0a",
+      "kwargs": {
+        "column": "updated_time",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "0bc044bc-873d-4e2e-b7ce-441759177584",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "94b942ff-cb1b-40b0-9c68-916e1455e018",
+      "kwargs": {
+        "column": "position_level",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "b3b443c3-1f31-4933-976c-ba148e5ff7bd",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "dwh-user_positions",
+  "notes": null
+}

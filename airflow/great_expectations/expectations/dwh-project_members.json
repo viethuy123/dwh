@@ -1,0 +1,179 @@
+{
+  "expectations": [
+    {
+      "id": "42f419d2-78ee-4bf4-9538-e15af0e388b3",
+      "kwargs": {
+        "column": "project_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3dcbe504-41ae-4fc3-83f1-8021b499258f",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "7f6c43be-6eef-4e9a-a087-faee0d347fe5",
+      "kwargs": {
+        "column": "joined_at"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "1dac64a4-4891-49f3-8d51-0880daaadf4a",
+      "kwargs": {
+        "column": "left_at"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2a8f768b-ab4a-4b10-b196-d1c8efce3661",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b8093e46-a11f-487e-af26-ddfef892a076",
+      "kwargs": {
+        "column": "is_deleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "1f4557f2-e689-48fc-be61-7430daa6b453",
+      "kwargs": {
+        "column": "user_level"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2484ecd1-d51e-4be2-aa6f-b9499179d701",
+      "kwargs": {
+        "column": "updated_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "61875dd1-15cf-47e3-abd7-e6af310bd828",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4fda644e-6382-416b-aaa1-f7850332f869",
+      "kwargs": {
+        "column": "project_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "181a1842-0321-4288-9c7e-7da56b7e3b4b",
+      "kwargs": {
+        "column": "user_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "9718a7d0-6048-459c-bbe6-a408b547496e",
+      "kwargs": {
+        "column": "project_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b91f94e3-4808-4892-9bfd-7f055f16c086",
+      "kwargs": {
+        "column": "user_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "04a64f2f-403f-45d7-946c-bbcaef8ede11",
+      "kwargs": {
+        "column": "joined_at",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "1214bac5-9758-435e-863b-0d36d836f8f3",
+      "kwargs": {
+        "column": "left_at",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "96e02d60-2e77-44f0-831b-d93f95fe22b2",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6ab8c293-45a5-4c8a-8b9a-9e316b55daf3",
+      "kwargs": {
+        "column": "is_deleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e21ac4d4-8fb7-4426-96a0-2bc1c3dc6451",
+      "kwargs": {
+        "column": "user_level",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "5ad1accb-cfd7-4490-add5-e1329516d802",
+      "kwargs": {
+        "column": "updated_time",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6de2cf23-a5d0-4c02-82c2-3099e5f764f9",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    }
+  ],
+  "id": "7d783f41-75e3-489b-93a7-fc9df9565ff2",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "dwh-project_members",
+  "notes": null
+}

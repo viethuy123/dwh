@@ -1,0 +1,274 @@
+{
+  "expectations": [
+    {
+      "id": "dcff55bf-5006-437d-8e6e-cac42b9d556c",
+      "kwargs": {
+        "column": "worklog_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a8e6b018-fc35-4c83-aa56-06d0aa3a219d",
+      "kwargs": {
+        "column": "issue_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6e42594b-8ecb-42a6-96d7-d333c80f6d8a",
+      "kwargs": {
+        "column": "jira_project_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e5d04476-7d3b-47f0-9aeb-7a257c3ab765",
+      "kwargs": {
+        "column": "worklog_author"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a26c1010-87d3-4cde-956e-bd7f3f13a2bd",
+      "kwargs": {
+        "column": "worklog_description"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c55232a9-1f82-4fdb-b595-9ba7fb06ddb5",
+      "kwargs": {
+        "column": "start_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "529b8df0-f992-4b18-8a98-e3190bf72163",
+      "kwargs": {
+        "column": "time_worked"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4a93bd54-d80b-4bee-81d7-1771913999f6",
+      "kwargs": {
+        "column": "created_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "60a353d1-58fc-4d92-b202-64f8a20ba8c5",
+      "kwargs": {
+        "column": "updated_time"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "977cc5a5-bc2d-475a-bc79-31ab47b4e011",
+      "kwargs": {
+        "column": "worklog_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "ff790b41-1185-494d-94cb-b312492e29a9",
+      "kwargs": {
+        "column": "issue_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "107e3568-45bb-4810-898a-b4f930699bb0",
+      "kwargs": {
+        "column": "jira_project_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "8970eb53-5aee-4bf7-a24b-aa2c64db1ea0",
+      "kwargs": {
+        "column": "worklog_id",
+        "max_value": 792545.05,
+        "min_value": 20547.95,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "a70904d1-6d81-404c-8b20-ce784c0e8d30",
+      "kwargs": {
+        "column": "issue_id",
+        "max_value": 16562.0,
+        "min_value": 11668.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "354c2011-14be-41ec-bb8f-142ec05e8499",
+      "kwargs": {
+        "column": "jira_project_id",
+        "max_value": 10346.0,
+        "min_value": 10300.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "c93a143c-dc19-49e7-967f-af325bea2c18",
+      "kwargs": {
+        "column": "time_worked",
+        "max_value": 28800.0,
+        "min_value": 900.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "30cea517-6dd5-42e6-a5de-1ec100c2f41d",
+      "kwargs": {
+        "column": "worklog_id",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "1a25310e-655a-4729-a94c-19f3bc9e128f",
+      "kwargs": {
+        "column": "issue_id",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "45b1ff5c-e290-41a9-ba51-0d65301f78f4",
+      "kwargs": {
+        "column": "jira_project_id",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "39c0d150-335d-4fbd-8f8f-d8b370c1ca1e",
+      "kwargs": {
+        "column": "worklog_author",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "7dea36fb-4153-4a67-be27-76e5b4c59b9e",
+      "kwargs": {
+        "column": "worklog_description",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b2501e6c-2de9-4d2c-a338-9ffa70ff2e9c",
+      "kwargs": {
+        "column": "start_time",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "701d21a4-a2b5-4ef8-8107-fcbc3feb24ff",
+      "kwargs": {
+        "column": "time_worked",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "7974edfe-2644-457d-b71d-9c9495df82d7",
+      "kwargs": {
+        "column": "created_time",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "42e193e2-a69d-40d5-b81a-c470d3bea589",
+      "kwargs": {
+        "column": "updated_time",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3eca36ec-583d-4c2a-89bb-9d07acf00ed3",
+      "kwargs": {
+        "column": "worklog_id",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "b651c1c7-13ee-4834-8565-2536c42d5d4e",
+      "kwargs": {
+        "column": "issue_id",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "05cf41b9-0de9-4d76-8378-32c3190e955a",
+      "kwargs": {
+        "column": "jira_project_id",
+        "mostly": 0.99,
+        "value_set": [
+          10200.0,
+          10200.0
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "2071684a-5dcc-443e-a2d0-9c866edb7208",
+      "kwargs": {
+        "column": "time_worked",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "ad96fc2b-21e6-436f-805f-081d5858706c",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "jira_dtm-fct_worklog",
+  "notes": null
+}

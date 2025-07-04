@@ -1,0 +1,86 @@
+{
+  "expectations": [
+    {
+      "id": "43527da4-8f1d-497b-9d9f-40a95457e528",
+      "kwargs": {
+        "column": "status_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "25ca7c1d-671e-4504-b708-73ed1d9dc0a9",
+      "kwargs": {
+        "column": "status_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d0402063-f870-433f-b541-717718666327",
+      "kwargs": {
+        "column": "status_description"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3b0ebdaa-b83f-4161-b6ad-260b0f657e66",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8ea521cf-fa98-40c1-8e96-4f3809077613",
+      "kwargs": {
+        "column": "status_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "39e3169b-23fd-4bc2-befa-a2e9b00981c9",
+      "kwargs": {
+        "column": "status_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "cad7bfcc-7a4b-4c4c-8696-a6e8bbe18305",
+      "kwargs": {
+        "column": "status_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ed116ec1-5c8e-4295-be72-916f5e746006",
+      "kwargs": {
+        "column": "status_description",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "5d0ce1eb-f3bb-4a71-bc36-f3c52ef1a43e",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns, UTC]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    }
+  ],
+  "id": "743221d7-eaeb-4aea-af7c-e5ab580d1c09",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "dwh-jira_issue_status",
+  "notes": null
+}

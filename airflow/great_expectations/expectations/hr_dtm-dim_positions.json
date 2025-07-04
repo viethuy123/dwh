@@ -1,0 +1,52 @@
+{
+  "expectations": [
+    {
+      "id": "b44e13ea-622c-4f83-8c48-1d4b906d6679",
+      "kwargs": {
+        "column": "position_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e1272ca1-6300-4a43-8225-5c6d34992ee2",
+      "kwargs": {
+        "column": "position_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2fda4734-f3e3-4465-9551-4906df77adc4",
+      "kwargs": {
+        "column": "position_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "50ff80d2-5346-42ce-965f-e8135539080a",
+      "kwargs": {
+        "column": "position_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "040bc929-7531-4fa1-a4bd-328a6fca771f",
+      "kwargs": {
+        "column": "position_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    }
+  ],
+  "id": "6537d335-5283-4b83-b448-b77c912690ad",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "hr_dtm-dim_positions",
+  "notes": null
+}

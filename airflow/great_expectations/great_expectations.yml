@@ -1,0 +1,364 @@
+# Welcome to Great Expectations! Always know what to expect from your data.
+#
+# Here you can define datasources, batch kwargs generators, integrations and
+# more. This file is intended to be committed to your repo. For help with
+# configuration please:
+#   - Read our docs: https://docs.greatexpectations.io/docs/guides/connecting_to_your_data/connect_to_data_overview/#2-configure-your-datasource
+#   - Join our slack channel: http://greatexpectations.io/slack
+
+# config_version refers to the syntactic version of this config file, and is used in maintaining backwards compatibility
+# It is auto-generated and usually does not need to be changed.
+config_version: 4.0
+
+# This config file supports variable substitution which enables: 1) keeping
+# secrets out of source control & 2) environment-based configuration changes
+# such as staging vs prod.
+#
+# When GX encounters substitution syntax (like `my_key: ${my_value}` or
+# `my_key: $my_value`) in the great_expectations.yml file, it will attempt
+# to replace the value of `my_key` with the value from an environment
+# variable `my_value` or a corresponding key read from this config file,
+# which is defined through the `config_variables_file_path`.
+# Environment variables take precedence over variables defined here.
+#
+# Substitution values defined here can be a simple (non-nested) value,
+# nested value such as a dictionary, or an environment variable (i.e. ${ENV_VAR})
+#
+#
+# https://docs.greatexpectations.io/docs/guides/setup/configuring_data_contexts/how_to_configure_credentials
+
+
+config_variables_file_path: uncommitted/config_variables.yml
+
+# The plugins_directory will be added to your python path for custom modules
+# used to override and extend Great Expectations.
+plugins_directory: plugins/
+
+stores:
+# Stores are configurable places to store things like Expectations, Validations
+# Data Docs, and more. These are for advanced users only - most users can simply
+# leave this section alone.
+  expectations_store:
+    class_name: ExpectationsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: expectations/
+
+  validation_results_store:
+    class_name: ValidationResultsStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/validations/
+
+  checkpoint_store:
+    class_name: CheckpointStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      suppress_store_backend_id: true
+      base_directory: checkpoints/
+
+  validation_definition_store:
+    class_name: ValidationDefinitionStore
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: validation_definitions/
+
+expectations_store_name: expectations_store
+validation_results_store_name: validation_results_store
+checkpoint_store_name: checkpoint_store
+
+data_docs_sites:
+  # Data Docs make it simple to visualize data quality in your project. These
+  # include Expectations, Validations & Profiles. The are built for all
+  # Datasources from JSON artifacts in the local repo including validations &
+  # profiles from the uncommitted directory. Read more at https://docs.greatexpectations.io/docs/terms/data_docs
+  local_site:
+    class_name: SiteBuilder
+    show_how_to_buttons: true
+    store_backend:
+      class_name: TupleFilesystemStoreBackend
+      base_directory: uncommitted/data_docs/local_site/
+    site_index_builder:
+      class_name: DefaultSiteIndexBuilder
+fluent_datasources:
+  pd_2025-05-28 09:49:14.189611:
+    type: pandas
+    id: 6ed7250f-847f-4751-b724-4ab1695b7803
+  pd_2025-05-28 09:49:15.466550:
+    type: pandas
+    id: a600a519-0d44-4860-bdab-f96ef5a07c53
+  pd_2025-05-28 09:49:17.784016:
+    type: pandas
+    id: 2961d1f0-8b40-41b7-8ab7-1067f9bbb9c7
+  pd_2025-05-28 09:49:18.731951:
+    type: pandas
+    id: ee7e7c47-7331-456e-b3ca-fff9a42d05d0
+  pd_2025-05-28 09:50:11.975549:
+    type: pandas
+    id: d7452d81-fa38-4c1b-bbe1-05dd52a9caa9
+  pd_2025-05-28 09:54:22.063222:
+    type: pandas
+    id: 56831068-c432-474d-a5a2-116c76114800
+  pd_2025-05-28 09:54:23.303163:
+    type: pandas
+    id: de88891a-6a75-4d05-99ff-114cd903f076
+  pd_2025-05-28 09:59:15.319107:
+    type: pandas
+    id: e7ee1949-7bcd-4fc5-83e7-124afaaad11a
+  pd_2025-05-28 10:08:57.589054:
+    type: pandas
+    id: 269327b8-8700-4648-a079-83ef095ef8b5
+  pd_2025-05-28 10:19:55.138726:
+    type: pandas
+    id: a015c7fa-2dbc-4ce7-9829-196b0f718fdf
+  pd_2025-05-28 10:19:56.201633:
+    type: pandas
+    id: fa67bd53-83e1-4523-9e7c-3c41b8d2f983
+  pd_2025-05-28 10:19:58.954796:
+    type: pandas
+    id: 92aa7482-a442-4f7b-9f0b-ebf68fec3eff
+  pd_2025-05-28 10:24:26.080457:
+    type: pandas
+    id: 63e9133b-3314-4c29-9936-555e0877274e
+  pd_2025-05-28 10:24:27.877483:
+    type: pandas
+    id: 13880ec2-c93d-4985-8adb-b2559cd99b71
+  pd_2025-05-28 10:24:31.232534:
+    type: pandas
+    id: 0fa09a43-952c-46ad-bc88-52b1117f9089
+  pd_2025-05-28 10:27:53.369005:
+    type: pandas
+    id: 53f48f48-5d32-4463-ac2c-2bac1957a79b
+  pd_2025-05-28 10:29:38.967341:
+    type: pandas
+    id: 4f67358a-e092-4d29-82df-76c64c3d4d38
+  pd_2025-06-02 03:28:56.214405:
+    type: pandas
+    id: e1a0aecc-0e0e-4fbe-a26c-b94e461eaee1
+  pd_2025-06-02 03:29:08.973972:
+    type: pandas
+    id: c11be9be-8193-4208-b451-552c05e787c6
+  pd_2025-06-02 03:29:17.580813:
+    type: pandas
+    id: 003fcca3-f05b-49cd-a692-aea020dc8602
+  pd_2025-06-02 03:35:09.165504:
+    type: pandas
+    id: 41619187-4014-45a8-823e-ea2e590726f8
+  pd_2025-06-02 03:51:30.706186:
+    type: pandas
+    id: 0e8391f8-4883-403d-8861-7bd65777bb24
+  pd_2025-06-02 03:51:46.790331:
+    type: pandas
+    id: 67d9c13b-a826-4c14-95f3-bdea0cdf932a
+  pd_2025-06-02 03:51:54.974524:
+    type: pandas
+    id: bd68e784-e812-493c-aaf0-396af4ca0e3a
+  pd_2025-06-02 03:54:14.190919:
+    type: pandas
+    id: d4369593-554f-4f7b-99f2-ff041947bd5d
+  pd_2025-06-02 03:55:21.403839:
+    type: pandas
+    id: 3e1e250c-b1ac-4d00-870c-85a0311ca81b
+  pd_2025-06-02 03:55:57.626928:
+    type: pandas
+    id: 6c63fed5-c61b-499c-ad12-950e71c2fabd
+  pd_2025-06-02 03:57:00.013289:
+    type: pandas
+    id: 4eb9f00b-b024-4978-930e-a2c63e0851e1
+  pd_2025-06-02 04:11:54.712420:
+    type: pandas
+    id: 748860c0-9cda-40b7-b09c-8caefa89200a
+  pd_2025-06-02 09:20:34.621125:
+    type: pandas
+    id: 22d597fd-2e7f-48e8-8521-b2f57944beb9
+  pd_2025-06-02 09:20:46.862017:
+    type: pandas
+    id: 16197ad1-3c3a-4006-8161-8ce3202ca3ca
+  pd_2025-06-02 09:20:54.690373:
+    type: pandas
+    id: e5653ade-ec5a-4302-a8af-8a62d2ab68e7
+  pd_2025-06-02 09:21:08.400774:
+    type: pandas
+    id: e9dc6378-7e1c-46cf-8032-badf191e6ecd
+  pd_2025-06-02 09:21:18.507214:
+    type: pandas
+    id: 1cf59957-54a7-4ae0-9713-1fd9e2f5fb50
+  pd_2025-06-02 09:25:12.275645:
+    type: pandas
+    id: 2623b502-e942-43bc-8da3-ab3009314e0c
+  pd_2025-06-02 09:26:07.823567:
+    type: pandas
+    id: d2a0723a-6982-43dd-ab31-8e919f3f87ff
+  pd_2025-06-02 09:26:33.609756:
+    type: pandas
+    id: 18a116ad-758b-43b0-aeb6-af5d45873bc9
+  pd_2025-06-02 09:32:27.913944:
+    type: pandas
+    id: bcd063e8-fab9-4684-9555-b0ca687c0ebf
+  pd_2025-06-02 09:58:05.562588:
+    type: pandas
+    id: 09b0d103-1c2b-44c2-8e26-ec229c6c3793
+  pd_2025-06-05 07:41:50.132248:
+    type: pandas
+    id: 495fdead-fd06-417f-bb17-6d20d5f2e831
+  pd_2025-06-05 07:55:21.362514:
+    type: pandas
+    id: 4ea2127a-98cf-4f4e-a4bf-b033a2254d8f
+  pd_2025-06-05 07:55:23.423316:
+    type: pandas
+    id: 846378e0-e2b6-4429-94c8-bc11c1ec5b9a
+  pd_2025-06-05 09:51:20.646833:
+    type: pandas
+    id: a90f5ca1-7a20-4429-8ec8-338bc8da9b7d
+  pd_2025-06-05 09:51:22.542865:
+    type: pandas
+    id: e6d89d4c-bc43-4090-be9c-c43ee5d6cfd8
+  pd_2025-06-05 09:51:24.436013:
+    type: pandas
+    id: 30c2bc06-1c2f-4508-ab4f-b346d5248935
+  pd_2025-06-05 09:51:26.314659:
+    type: pandas
+    id: 926814e2-3c79-4933-9534-6a62ac24bd51
+  pd_2025-06-05 09:51:50.219075:
+    type: pandas
+    id: 2a5709f6-762b-48c3-888e-2d140930eb20
+  pd_2025-06-05 09:55:14.006097:
+    type: pandas
+    id: ed38f8c7-f3cf-49e1-b0f6-003af97835ec
+  pd_2025-06-05 09:55:17.970264:
+    type: pandas
+    id: 010d5408-172a-4426-aa7b-ac1a3071abed
+  pd_2025-06-05 09:55:41.026583:
+    type: pandas
+    id: b8d4e31f-8fc3-496a-beb8-881feba0003d
+  pd_2025-07-03 04:02:27.304506:
+    type: pandas
+    id: 168b5066-8088-4b89-8294-3fa21d5377b2
+  pd_2025-07-03 04:02:34.425626:
+    type: pandas
+    id: 2a0a44cf-8a47-464b-a98b-484ce7a77998
+  pd_2025-07-03 04:07:12.139099:
+    type: pandas
+    id: bd48f6cc-b3fe-4a8e-b7f3-087cae473a86
+  pd_2025-07-03 04:07:18.975585:
+    type: pandas
+    id: 6383a546-48e3-4038-a204-57f96d0aaa51
+  pd_2025-07-03 04:07:27.530450:
+    type: pandas
+    id: 10acffb2-f728-46b3-8515-e1e3cbf72ef1
+  pd_2025-07-03 04:07:33.301820:
+    type: pandas
+    id: cea6101c-67ce-4076-af2d-c4f51229744d
+  pd_2025-07-03 04:07:46.799909:
+    type: pandas
+    id: 0cd444e1-8540-4308-8b2b-815916149bff
+  pd_2025-07-03 04:19:53.270279:
+    type: pandas
+    id: 9f1cd04c-d3ca-41e0-be2f-c00614ac1af4
+  pd_2025-07-03 04:19:54.877927:
+    type: pandas
+    id: 948b0228-cdca-47f1-b9e7-6b7febf2f386
+  pd_2025-07-03 04:20:00.278522:
+    type: pandas
+    id: 7a27c124-0275-4dea-9d6d-a4895fd88b26
+  pd_2025-07-03 04:20:15.469867:
+    type: pandas
+    id: dad3b6f2-5fbd-464d-bc86-c88a7ec7dc38
+  pd_2025-07-03 04:20:20.211612:
+    type: pandas
+    id: 62face06-494d-4392-88ed-9801a891d1d0
+  pd_2025-07-03 04:20:24.817427:
+    type: pandas
+    id: 363ea713-2712-4d7f-b973-14f35dd209ea
+  pd_2025-07-03 04:20:40.285517:
+    type: pandas
+    id: cf8a17b3-af3e-48a6-a743-89ab3c090681
+  pd_2025-07-03 04:25:36.381740:
+    type: pandas
+    id: af9e59cc-39cb-48a0-a183-9a7814213a1f
+  pd_2025-07-03 04:35:31.509459:
+    type: pandas
+    id: 2949c5bc-accf-4802-91c2-d85086d82823
+  pd_2025-07-03 04:42:51.466404:
+    type: pandas
+    id: a2f910ed-c993-418e-997a-15a9719d96b8
+  pd_2025-07-03 04:42:54.722924:
+    type: pandas
+    id: 8459144b-a58f-4873-9978-48da191ac773
+  pd_2025-07-03 04:42:58.589911:
+    type: pandas
+    id: 342b26fe-cebe-4917-9309-c587e3113512
+  pd_2025-07-03 04:43:02.062689:
+    type: pandas
+    id: 70653cf2-d346-4e6f-8c6e-86d15c9ddff7
+  pd_2025-07-03 04:43:08.297303:
+    type: pandas
+    id: b13c94c9-1cc6-4b69-af98-a7a97d3d7138
+  pd_2025-07-03 04:58:04.084480:
+    type: pandas
+    id: d11603a9-215e-4728-850a-84ffdde01c0a
+  pd_2025-07-03 04:58:15.943571:
+    type: pandas
+    id: 6dbb1d7f-276f-4076-b8b4-05380d2c2328
+  pd_2025-07-03 04:58:25.009391:
+    type: pandas
+    id: 57520350-fa80-4f86-8a4a-af6d53847afc
+  pd_2025-07-03 04:58:42.043587:
+    type: pandas
+    id: bd994ee1-3fc6-4cce-b191-e3a54f0a86e1
+  pd_2025-07-03 04:58:50.500982:
+    type: pandas
+    id: 6d2d8abf-4f71-4aeb-894c-adc4ae11bdf1
+  pd_2025-07-03 04:59:01.186615:
+    type: pandas
+    id: bfe8cc9f-c9a7-4610-9c8e-fddeed383726
+  pd_2025-07-03 04:59:16.852790:
+    type: pandas
+    id: be36c41b-6e18-4ded-a329-4f57b879a680
+  pd_2025-07-03 04:59:24.345200:
+    type: pandas
+    id: c8387a6b-268a-4577-a0cd-79c8bf0b7600
+  pd_2025-07-03 05:03:43.537764:
+    type: pandas
+    id: dd356438-16b0-4762-af7d-7f6c28d5b738
+  pd_2025-07-03 08:02:00.019033:
+    type: pandas
+    id: bf14d226-59b2-4f12-bede-8cb6a8751657
+  pd_2025-07-03 08:02:04.382791:
+    type: pandas
+    id: 75419eb1-fb9d-4b36-b6f9-4cb420ab621e
+  pd_2025-07-03 08:02:11.403281:
+    type: pandas
+    id: d4d70810-66c1-49dd-8705-06d90124c72d
+  pd_2025-07-03 08:05:40.012437:
+    type: pandas
+    id: 7d7c8cc4-0c3f-4581-af67-20eb6634ee5c
+  pd_2025-07-03 08:05:48.572736:
+    type: pandas
+    id: f2914e65-e890-4c64-9c3e-6638558d5a52
+  pd_2025-07-03 08:06:13.824169:
+    type: pandas
+    id: 814794ed-3b7d-48bd-a9df-6a33a2c331d5
+  pd_2025-07-03 08:06:42.996803:
+    type: pandas
+    id: 31ee092b-2dd7-46e9-a6aa-a1537161c6f5
+  pd_2025-07-03 08:46:48.238238:
+    type: pandas
+    id: 790c850e-9ac3-4aba-92b2-1e2c5c856bdb
+  pd_2025-07-03 08:46:58.674070:
+    type: pandas
+    id: 29864889-39fa-4e7f-a300-f467fcaa39bd
+  pd_2025-07-03 08:47:08.662902:
+    type: pandas
+    id: aa274fc9-0136-4a88-858a-a837daf4c880
+  pd_2025-07-03 08:47:44.583391:
+    type: pandas
+    id: c521b639-d923-4af0-90c3-9cc15be1f877
+  pd_2025-07-03 08:48:20.868450:
+    type: pandas
+    id: d3d67a4f-4084-4532-8795-ce68ac38b7ce
+  pd_2025-07-04 04:36:11.321476:
+    type: pandas
+    id: a67c8bf8-aeff-4b83-937d-84ee611aaf52
+analytics_enabled:
+data_context_id: 64a7d1bf-005e-41ba-b412-a75c535391d9

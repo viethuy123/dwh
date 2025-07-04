@@ -1,0 +1,52 @@
+{
+  "expectations": [
+    {
+      "id": "d51cdb41-b3cc-4142-a7fc-430d0bc04ef1",
+      "kwargs": {
+        "column": "department_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a9f2f5c3-4e19-4d85-9d4e-20e1e734b083",
+      "kwargs": {
+        "column": "department_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fb5bbabf-9457-493b-96f4-63b8a6b8fb56",
+      "kwargs": {
+        "column": "department_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "ecadda17-a9a0-4f60-8ce2-a51727f18744",
+      "kwargs": {
+        "column": "department_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ed7a1748-cffe-482d-8eca-8cd987f515e0",
+      "kwargs": {
+        "column": "department_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    }
+  ],
+  "id": "c15c4653-3593-49b1-acb1-556e710f5b45",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "hr_dtm-dim_departments",
+  "notes": null
+}

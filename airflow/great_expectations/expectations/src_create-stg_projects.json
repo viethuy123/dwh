@@ -1,0 +1,797 @@
+{
+  "expectations": [
+    {
+      "id": "b07b434f-3d67-407e-b049-831bfa760494",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f36c8246-31f0-476d-9f75-210bd7d2073b",
+      "kwargs": {
+        "column": "projectCategoryObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2ea3bf2b-702a-405f-8be2-7626d49a9f99",
+      "kwargs": {
+        "column": "note"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d7167147-1a99-4ccc-827a-98bba3d524e7",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "92b3c489-4112-4773-a365-1934b51a7820",
+      "kwargs": {
+        "column": "order"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6cbadbc3-596e-4fb7-93dd-946274721f8a",
+      "kwargs": {
+        "column": "isDeleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f7506e67-0aed-4f7f-84d6-0285c145b31a",
+      "kwargs": {
+        "column": "projectName"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "cf5dc130-5bb8-40e1-9884-b5edd25d1c74",
+      "kwargs": {
+        "column": "projectCode"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "042fe59d-c004-4823-9719-4dfa7d47b7eb",
+      "kwargs": {
+        "column": "projectStatus"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b8cb7e0e-9ea3-4af3-a34d-5cc7233490b1",
+      "kwargs": {
+        "column": "projectJiraUrl"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "159e2bdf-09fc-4bb7-a472-687e111c694f",
+      "kwargs": {
+        "column": "projectDescription"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "195672ce-ec6b-45c8-8ae7-02385f02d1bb",
+      "kwargs": {
+        "column": "createdAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "231a5404-c562-44d6-aea1-0a0814d339cb",
+      "kwargs": {
+        "column": "createdBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "67504160-7b8a-4df7-9a71-6466fee3e509",
+      "kwargs": {
+        "column": "jiraProjectId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "72c3756c-4bc2-4b57-be5b-124a41934fd8",
+      "kwargs": {
+        "column": "jiraProjectKey"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "af8af010-9382-46c4-9ab7-b81be9739138",
+      "kwargs": {
+        "column": "projectType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "6188f1bd-8637-4049-a499-38363e8a0ffa",
+      "kwargs": {
+        "column": "jiraType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8bcc6a69-98b5-44da-8d9a-3e251cfb9440",
+      "kwargs": {
+        "column": "projectLeadObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "bc94c14b-9f0f-4581-b716-2c98df8c6501",
+      "kwargs": {
+        "column": "updatedAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "dc4e409b-3df3-460d-b75f-70646a730d25",
+      "kwargs": {
+        "column": "updatedBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "dd0b90ac-e5f5-4811-8eba-30cb8c257627",
+      "kwargs": {
+        "column": "type"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "72f028a9-58ab-44d0-97ad-d8de84a85354",
+      "kwargs": {
+        "column": "flagCron"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "1b782845-b05e-40f8-a3cd-3ea974bda44a",
+      "kwargs": {
+        "column": "dataType"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fbd12bdd-d12c-44ab-8d28-69125234aa3c",
+      "kwargs": {
+        "column": "projectTypeKeyJira"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0e69d74e-b206-431e-a1cd-9d43c8da6324",
+      "kwargs": {
+        "column": "projectCustomerCode"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8def1c8b-7431-40ed-a263-d49d1f46b3d4",
+      "kwargs": {
+        "column": "projectObjective"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e27d2e18-2384-4ff9-af76-0e77ccbff403",
+      "kwargs": {
+        "column": "projectOverView"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a8f18c05-d5ab-4424-a449-0d63e8499f83",
+      "kwargs": {
+        "column": "projectRank"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "20eedc8e-d012-4a70-af6e-d7beaa44bd0a",
+      "kwargs": {
+        "column": "projectScope"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c8d7dd85-1e04-4850-a43e-bb6847497074",
+      "kwargs": {
+        "column": "totalBillEffort"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c6a0bf8b-1212-493d-b9af-bc1354ca06a8",
+      "kwargs": {
+        "column": "totalIntBillEffort"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "04b520b6-83d5-4517-aec0-c2579f88ccb6",
+      "kwargs": {
+        "column": "endAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "60e26260-5d8a-40d4-85e7-474a61a883fa",
+      "kwargs": {
+        "column": "startAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9c7e0105-da92-4634-a14d-f9a8237981b5",
+      "kwargs": {
+        "column": "releaseAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ea2c4ab0-8386-4b21-a4b9-b7720cd4a218",
+      "kwargs": {
+        "column": "podLink"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e97296d4-f93e-4a84-868c-a36c838a03a9",
+      "kwargs": {
+        "column": "podWe"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "7f07de60-5af0-459b-9333-a66ff1f3484f",
+      "kwargs": {
+        "column": "projectDiv"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "5adb9c4f-8723-4db4-8b68-9030ff631381",
+      "kwargs": {
+        "column": "projectChildObjIds"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "cd5614f6-8889-4cda-a6e9-348e43d38cbc",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "38a9501e-1c2d-4dbf-82ce-4c80e3fb061b",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "1f83a83b-9104-48f4-9579-2bb73e4335c7",
+      "kwargs": {
+        "column": "projectCategoryObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "305c2f5b-702c-44d8-b914-9dc36db70b98",
+      "kwargs": {
+        "column": "jiraProjectId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "5845393c-7e4f-4a51-ab38-1dc05dedf923",
+      "kwargs": {
+        "column": "projectLeadObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "fdf594c1-ee09-4264-8ab6-9f629452bd09",
+      "kwargs": {
+        "column": "projectChildObjIds"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "27954174-4b37-4fd6-a5d0-a9cf04da75ab",
+      "kwargs": {
+        "column": "order",
+        "max_value": 255.0,
+        "min_value": 255.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "f5af04b4-29fb-4b43-b72b-705c3b29157b",
+      "kwargs": {
+        "column": "jiraProjectId",
+        "max_value": 15022.9,
+        "min_value": 12088.55,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "36232097-0c01-4e8c-9b9e-4f2016e27e5e",
+      "kwargs": {
+        "column": "totalBillEffort",
+        "max_value": 340.65,
+        "min_value": 0.15000000000000002,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "9975a2bf-6fe5-46d3-a5c4-d91dcb085f40",
+      "kwargs": {
+        "column": "totalIntBillEffort",
+        "max_value": 0.0,
+        "min_value": -10.2,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "192ec5d2-7c06-423b-a088-a1e72145541b",
+      "kwargs": {
+        "column": "_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "18487e21-0326-40b1-8a28-7e1332231fda",
+      "kwargs": {
+        "column": "projectCategoryObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6ac86fd5-4702-435d-ac76-4852da4f38fa",
+      "kwargs": {
+        "column": "note",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "abf38bc0-a2a9-44d4-b217-72bd753ea10e",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "76d8d76b-1489-4013-9aa2-4f2a51e87c95",
+      "kwargs": {
+        "column": "order",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ec56e1cd-0b23-43d6-9a6b-69b6365cfc09",
+      "kwargs": {
+        "column": "isDeleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c967930a-39cd-4910-8e00-43f4c39087af",
+      "kwargs": {
+        "column": "projectName",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ff8dfcd6-7e7c-4fa7-9096-9b6d5bfb8b3d",
+      "kwargs": {
+        "column": "projectCode",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "fdf5f057-f047-406f-b9c2-25abe54b449e",
+      "kwargs": {
+        "column": "projectStatus",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "8b77bd2a-56e8-40cb-af20-443427dde421",
+      "kwargs": {
+        "column": "projectJiraUrl",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "84467cc1-7515-43f4-affc-183198d34f15",
+      "kwargs": {
+        "column": "projectDescription",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "754e67de-b1ea-43a9-b6b0-13a7e2425693",
+      "kwargs": {
+        "column": "createdAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "73e45e00-8461-4a2d-bfd4-367ed7dda9ae",
+      "kwargs": {
+        "column": "createdBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "25d37bb4-d66b-40b8-b61f-a3791bb1b1a9",
+      "kwargs": {
+        "column": "jiraProjectId",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a527c3d5-6252-4d4c-86c6-aa277f36d66c",
+      "kwargs": {
+        "column": "jiraProjectKey",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2a33de80-166f-4076-ab3a-0bf42062fc85",
+      "kwargs": {
+        "column": "projectType",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b6f27522-e713-4d27-916e-0c73f068c363",
+      "kwargs": {
+        "column": "jiraType",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f50d0cb2-ea96-4683-a2d2-9b52077bd9a7",
+      "kwargs": {
+        "column": "projectLeadObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ddedc6ac-98fd-4092-b72c-1d5ce4aac966",
+      "kwargs": {
+        "column": "updatedAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "22afb19e-714f-411f-89d0-cc233818719b",
+      "kwargs": {
+        "column": "updatedBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "7ed74038-442b-4d50-88f1-0911b646fafb",
+      "kwargs": {
+        "column": "type",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "363e3560-a958-4817-bfdf-bdc0f3d4904c",
+      "kwargs": {
+        "column": "flagCron",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "34368b5b-1d59-44a3-91da-981b20940d0d",
+      "kwargs": {
+        "column": "dataType",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2dfd24d6-5682-4c9a-995b-f7ddeae7ac62",
+      "kwargs": {
+        "column": "projectTypeKeyJira",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "173386c6-8d94-4246-a7a8-dcdddd2f7649",
+      "kwargs": {
+        "column": "projectCustomerCode",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2c7b7e48-36dd-4e5a-aa0f-c7d441424fa5",
+      "kwargs": {
+        "column": "projectObjective",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a57a5103-7c9c-450d-8fcc-b22cc109bd59",
+      "kwargs": {
+        "column": "projectOverView",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "4d52b2e0-e198-4f02-b84b-b5a752115a7b",
+      "kwargs": {
+        "column": "projectRank",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a7640436-860d-443b-bd6c-0769a707b66a",
+      "kwargs": {
+        "column": "projectScope",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d6c1d5c1-8e7d-498f-894c-304ad778f32f",
+      "kwargs": {
+        "column": "totalBillEffort",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "508faa16-decb-457b-902e-1f951b173f91",
+      "kwargs": {
+        "column": "totalIntBillEffort",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "54d5e700-bd3e-4ebd-9ddb-ad2acf3ad665",
+      "kwargs": {
+        "column": "endAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "764eb8b9-c935-41b1-9e7e-df0996beed79",
+      "kwargs": {
+        "column": "startAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "373601d2-4e4b-448e-8cf3-d78f7adcddf6",
+      "kwargs": {
+        "column": "releaseAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e19abf87-24bd-48a9-a311-1b0534e63e41",
+      "kwargs": {
+        "column": "podLink",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6dcd8d82-bf73-48ca-9937-353af9d80eff",
+      "kwargs": {
+        "column": "podWe",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ee8fe86d-fff4-4eb4-8470-1c03f0016e7f",
+      "kwargs": {
+        "column": "projectDiv",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b8fee899-ca86-4e96-8a54-825b369b0bf5",
+      "kwargs": {
+        "column": "projectChildObjIds",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c3f48d06-824b-4dce-9364-255034bc054b",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "39842d33-dd8f-43d7-9a15-d374017a4e3c",
+      "kwargs": {
+        "column": "order",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "3d30c21d-5154-4f9f-8bec-4373a806c21e",
+      "kwargs": {
+        "column": "jiraProjectId",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "969876a8-f5bd-47ee-9300-c23922e5e37d",
+      "kwargs": {
+        "column": "totalBillEffort",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "d554f590-e600-41bb-95ca-5c84085a1966",
+      "kwargs": {
+        "column": "totalIntBillEffort",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "51ad88c6-cd64-4dd6-998c-cd5f3ad69794",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "src_create-stg_projects",
+  "notes": null
+}

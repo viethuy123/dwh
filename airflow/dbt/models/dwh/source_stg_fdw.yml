@@ -1,0 +1,39 @@
+version: 2
+
+sources:
+  - name: jira
+    database: dwh
+    schema: jira_fdw
+    tables:
+      - name: stg_jiraissue
+      - name: stg_issuestatus
+      - name: stg_project
+      - name: stg_resolution
+      - name: stg_worklog
+      - name: stg_issuetype
+      - name: stg_priority
+  - name: jisseki
+    database: dwh
+    schema: jisseki_fdw
+    tables:
+      - name: stg_projects
+  - name: create
+    database: dwh
+    schema: create_fdw
+    tables:
+      - name: stg_branches
+      - name: stg_company_departments
+      - name: stg_projects
+      - name: stg_users
+      - name: stg_user_infos
+      - name: stg_profit_loss_expenses
+      - name: stg_profit_loss_project_expenses
+      - name: stg_project_categories
+      - name: stg_project_members
+      - name: stg_user_positions
+      - name: stg_user_skills
+      - name: stg_staff_attendances
+      - name: stg_staff_attendance_types
+      - name: stg_salaries
+      - name: stg_pods
+      - name: stg_billable_efforts_approveds

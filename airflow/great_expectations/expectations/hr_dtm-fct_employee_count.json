@@ -1,0 +1,184 @@
+{
+  "expectations": [
+    {
+      "id": "6c766715-b61c-4c94-9f0c-8e47b8003238",
+      "kwargs": {
+        "column": "report_date"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b55f2d49-f8ce-4178-bb28-b456ae746b9f",
+      "kwargs": {
+        "column": "freq_code"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f21161f8-356d-49c0-b396-ad5a1421253b",
+      "kwargs": {
+        "column": "branch_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "673de00c-40f9-47ab-8552-c20800630ce8",
+      "kwargs": {
+        "column": "department_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a2f80d1a-5da8-419f-8c75-4461d580c3c2",
+      "kwargs": {
+        "column": "user_level"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "ff8c984b-bc13-40df-98ac-dbe5da11b8d9",
+      "kwargs": {
+        "column": "employee_count"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a96022a0-b3f3-4d46-a394-44e2ef58f5a9",
+      "kwargs": {
+        "column": "branch_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "eb9a19c1-5426-4ccc-b7b6-744ed6b49b8b",
+      "kwargs": {
+        "column": "department_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "ed0e764c-e9f7-4dc7-a332-6def38a1304f",
+      "kwargs": {
+        "column": "employee_count",
+        "max_value": 2.0,
+        "min_value": 1.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "03d12a5a-af6e-4743-962b-ff949e0a87ab",
+      "kwargs": {
+        "column": "report_date",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "bcc3bd35-11af-425b-afd1-e8ce1f8c0e61",
+      "kwargs": {
+        "column": "freq_code",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "efc9e80a-40b0-4201-9fd9-b9f67554346c",
+      "kwargs": {
+        "column": "branch_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "146a8889-af87-4489-89ff-093724ae5863",
+      "kwargs": {
+        "column": "department_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "dea2a4ad-443e-4617-b729-4a817309d0cd",
+      "kwargs": {
+        "column": "user_level",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3090106c-c529-43fe-95a2-c64439502e0b",
+      "kwargs": {
+        "column": "employee_count",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "bf35cb3d-9ac0-4a5a-b332-34e3b3c91505",
+      "kwargs": {
+        "column": "employee_count",
+        "mostly": 0.99,
+        "value_set": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "b30cd741-0202-49bb-b2ea-da4cdd9bb39f",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "hr_dtm-fct_employee_count",
+  "notes": null
+}

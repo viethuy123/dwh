@@ -1,0 +1,200 @@
+{
+  "expectations": [
+    {
+      "id": "c507eed6-8012-4175-bf2e-a30d9010cb78",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "cb8e8689-b3cc-463a-a1d9-05b15b3ffe56",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "d372b63e-cf0e-4309-8847-4d2d96d48193",
+      "kwargs": {
+        "column": "order"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9b5bfe56-31a8-407c-834e-d0f51d3d0d06",
+      "kwargs": {
+        "column": "isDeleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "eb49a079-56a7-49f2-ae84-6657858e34dc",
+      "kwargs": {
+        "column": "userObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8498a428-b1c6-4d2f-a5f4-1ac0c654557f",
+      "kwargs": {
+        "column": "userSkills"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fa74a920-98a8-4854-814b-85f76772c11e",
+      "kwargs": {
+        "column": "createdAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "37c36ce0-2d37-4003-b41f-b98d67c1c8f1",
+      "kwargs": {
+        "column": "createdBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "5b0e77cc-4d86-40bf-8ef1-9b26b8962434",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f82019a6-659e-47b1-a834-b2b841c74e30",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "318099e9-587b-41ad-bb42-e73941951a86",
+      "kwargs": {
+        "column": "userObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "7c4ef137-c180-4d0b-a1eb-7bb02a6dfbdd",
+      "kwargs": {
+        "column": "order",
+        "max_value": 255.0,
+        "min_value": 255.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "8d420dfb-8006-46f1-9d14-998558a1b1c4",
+      "kwargs": {
+        "column": "_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "1070461a-2b3a-4a6c-a389-3071c2d1b0ea",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a48e739f-91c0-4a82-a830-60be3adfaf33",
+      "kwargs": {
+        "column": "order",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "4faecc4e-10ce-45c1-b255-626cca6cc750",
+      "kwargs": {
+        "column": "isDeleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a65381e2-60d5-4663-840c-71cf26461086",
+      "kwargs": {
+        "column": "userObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f8dd3d57-013c-4e0c-9ca8-9864f47f234e",
+      "kwargs": {
+        "column": "userSkills",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "59961aeb-18cc-4134-8f37-93f02ad226df",
+      "kwargs": {
+        "column": "createdAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "9c88ae9f-1b01-49af-b9f2-98beae2528a8",
+      "kwargs": {
+        "column": "createdBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "8cfc9b45-d241-41dc-8f90-4bad76f1f5d9",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d2d43fcf-7ae0-45a2-afa9-72968b532fde",
+      "kwargs": {
+        "column": "order",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "1fca7748-c323-4f7f-8479-455f96585990",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "src_create-stg_user_skills",
+  "notes": null
+}

@@ -1,0 +1,11 @@
+pandas==2.1.4
+airflow-dbt-python[postgres]
+psycopg2-binary
+great_expectations
+openpyxl
+minio
+PyMySQL
+pymongo
+cryptography
+python-telegram-bot
+slack-sdk

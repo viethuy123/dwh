@@ -1,0 +1,196 @@
+{
+  "expectations": [
+    {
+      "id": "1edc8bd8-0557-4692-ab60-37dca73a9a65",
+      "kwargs": {
+        "column": "member_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "14bd8941-86ec-40d7-8d41-492e97a26802",
+      "kwargs": {
+        "column": "member_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8e10e0b7-b125-4415-a30f-2e7d3dd64b23",
+      "kwargs": {
+        "column": "member_email"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "351a0b13-0e3b-4486-984c-ff9fc0831240",
+      "kwargs": {
+        "column": "staff_code"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "5f70fd3e-79cc-44cd-9264-9d93ed7f4605",
+      "kwargs": {
+        "column": "branch_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "2f538eda-d224-4631-86d1-174f8d4f25da",
+      "kwargs": {
+        "column": "department_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4b98ecc9-db7e-4136-938c-316fa7e19957",
+      "kwargs": {
+        "column": "position_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "17a40371-0751-4e4a-a6e4-e2e39989d51f",
+      "kwargs": {
+        "column": "user_level"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c131d5f6-5f52-4bfb-8895-83ffac821e39",
+      "kwargs": {
+        "column": "user_status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "0c0206e6-5c8c-421d-9e00-5f7260cb1b62",
+      "kwargs": {
+        "column": "member_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "b4d9e6c9-30c8-4924-9ff2-d9857e508e5d",
+      "kwargs": {
+        "column": "staff_code",
+        "max_value": 5233.25,
+        "min_value": 1726.75,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "f901570d-6acb-4ac9-9e7e-2b7e500e704e",
+      "kwargs": {
+        "column": "member_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "470f6310-87b7-47dd-bb1f-8a2faa69fa98",
+      "kwargs": {
+        "column": "member_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "552516f2-4ff6-46a4-b251-99d91e2a4db2",
+      "kwargs": {
+        "column": "member_email",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f84fa748-077e-4ed2-9193-b934c4e5f1ba",
+      "kwargs": {
+        "column": "staff_code",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d1a6e866-2872-4ddf-8490-54231273f723",
+      "kwargs": {
+        "column": "branch_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "8a11f567-6e3b-4675-8d14-2e15ebff7243",
+      "kwargs": {
+        "column": "department_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ff58537d-48be-4cc4-92ba-5c5fd3862b1d",
+      "kwargs": {
+        "column": "position_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e0f0a409-5188-4e0e-8382-d818a952930b",
+      "kwargs": {
+        "column": "user_level",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "73a2427e-f4d0-4f96-a480-882376517bd4",
+      "kwargs": {
+        "column": "user_status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "0079783c-ac6a-4e37-9739-dd074ae9d336",
+      "kwargs": {
+        "column": "staff_code",
+        "mostly": 0.99,
+        "value_set": [
+          111.0,
+          555.0,
+          118.0
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "5c000f2e-421a-4c1d-b6b7-f07a86c4e7bf",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "jira_dtm-dim_members",
+  "notes": null
+}

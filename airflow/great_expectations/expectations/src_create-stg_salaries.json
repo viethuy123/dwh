@@ -1,0 +1,352 @@
+{
+  "expectations": [
+    {
+      "id": "48c13a3a-e958-439a-9d15-3b56c828d16a",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "196b0b75-1757-4c6f-bd86-a5083bfc0be5",
+      "kwargs": {
+        "column": "closingMonthObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "eb7bc8b7-c745-498b-9471-e1cbe8228328",
+      "kwargs": {
+        "column": "userObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "f37139a1-ebfd-4bb9-a960-22d6c4eea75d",
+      "kwargs": {
+        "column": "createdAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "70ed7c72-79b3-404f-8b5e-acda42fc47c4",
+      "kwargs": {
+        "column": "createdBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9795290e-b7f5-4ca9-8c45-6e742df75f05",
+      "kwargs": {
+        "column": "insurance"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "26d81366-c7b2-45dc-9741-064ba68fa00f",
+      "kwargs": {
+        "column": "isDeleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "79e90a50-d4db-4ee3-aed0-a130bc42a32a",
+      "kwargs": {
+        "column": "order"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "842094e6-d7f8-4f3a-88f4-0b1896107458",
+      "kwargs": {
+        "column": "salaryBasic"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "25016e68-8d16-4027-90f6-b86882425bc5",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3358cd57-86ab-4e9e-8318-691768e29da1",
+      "kwargs": {
+        "column": "totalSalary"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "254433f6-7501-4f59-bcaf-897bb81e4c05",
+      "kwargs": {
+        "column": "updatedBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "33ac5485-59bb-4c29-804a-fbde514db8ea",
+      "kwargs": {
+        "column": "userInfoBlock"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "278cd4a2-b547-488e-a51d-9dd065cd7c11",
+      "kwargs": {
+        "column": "editUserObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "7ca6759e-7336-4642-97ea-9175d4bb64d5",
+      "kwargs": {
+        "column": "updatedAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "aa842aa0-ce7e-4568-b13a-79287c0b2950",
+      "kwargs": {
+        "column": "note"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "22924c97-9fbe-4e43-a754-673d762a2b5d",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "8877030c-b6d7-4a98-8320-239fd3dfa9c2",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "e04b4f76-e842-4974-9c0c-d455b2d45b30",
+      "kwargs": {
+        "column": "closingMonthObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "a17a6241-9a96-4c15-beda-4951e453c895",
+      "kwargs": {
+        "column": "userObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "16b907fd-8b0f-4912-9401-8a736b1df574",
+      "kwargs": {
+        "column": "editUserObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "404232b6-72b1-4bea-a84a-ffa45b0cc7a5",
+      "kwargs": {
+        "column": "order",
+        "max_value": 255.0,
+        "min_value": 255.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "b8f97979-a674-442a-85d5-a004a70e7803",
+      "kwargs": {
+        "column": "_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6be81f29-de81-4bf4-8d72-ce3fa8b06e9e",
+      "kwargs": {
+        "column": "closingMonthObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a82e513b-4b8a-496c-84e0-496d5f48f8be",
+      "kwargs": {
+        "column": "userObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a5b49251-3b62-4eb0-a641-d8bcc1123da7",
+      "kwargs": {
+        "column": "createdAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "6e944a56-aecc-4ddc-8284-0bad67595e7e",
+      "kwargs": {
+        "column": "createdBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "e1379a45-d62a-4ff1-b8bc-c74186e7ccde",
+      "kwargs": {
+        "column": "insurance",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "73422876-51c6-4d3c-ab4a-751fc9dadd0f",
+      "kwargs": {
+        "column": "isDeleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "f8f3a7f9-cd06-4d9a-b30e-5e7f5dcd1cbb",
+      "kwargs": {
+        "column": "order",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2fa9eb0e-03ba-42f3-92db-e08bfd0a1fd2",
+      "kwargs": {
+        "column": "salaryBasic",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b943333f-4605-4ff3-ba66-9c80c71ce0c0",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "35d03669-0384-4f1e-9c62-03196aa1d40f",
+      "kwargs": {
+        "column": "totalSalary",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "5f69aeec-6603-4a6b-8358-43bdf317e368",
+      "kwargs": {
+        "column": "updatedBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "087f98e6-18e9-4e22-bd11-99739acd387b",
+      "kwargs": {
+        "column": "userInfoBlock",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "5adb8e54-dd9c-48a5-b45a-94c81aeb4cf5",
+      "kwargs": {
+        "column": "editUserObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ef43bdcc-8d69-4bf0-89ef-d30b5615eabe",
+      "kwargs": {
+        "column": "updatedAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "a62f9d21-f73c-41cd-89dc-56b43e28fb1c",
+      "kwargs": {
+        "column": "note",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "99599858-c94b-4cb7-af60-0e5c3c2b8d50",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "24f0c80f-c775-44ab-b2a3-ce288cb08541",
+      "kwargs": {
+        "column": "order",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "36544025-92ce-452d-8908-722b9c662ca1",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "src_create-stg_salaries",
+  "notes": null
+}

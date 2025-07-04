@@ -1,0 +1,342 @@
+{
+  "expectations": [
+    {
+      "id": "2eb76c69-82a4-498c-9aab-2b4ce62b5654",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "aa3f33b2-a01f-4c90-9e07-abc9b1767915",
+      "kwargs": {
+        "column": "status"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e89768bb-0321-4d54-b0f5-2b80ae23b39d",
+      "kwargs": {
+        "column": "order"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "68f92ec2-9adb-4538-bace-ded87b83b5b7",
+      "kwargs": {
+        "column": "isDeleted"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "4094cec4-4188-4c01-b8d9-6638bcf42b1e",
+      "kwargs": {
+        "column": "departmentName"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "509055d2-8b8e-45bb-a1ae-a7acf3830425",
+      "kwargs": {
+        "column": "departmentCode"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "3e181b77-6f22-4161-9f97-e2ceda3ed871",
+      "kwargs": {
+        "column": "createdAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "597e95bf-fc3e-42ac-ab76-deccc452cecc",
+      "kwargs": {
+        "column": "createdBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "76c61cca-60c0-40e3-a22f-8070c28206de",
+      "kwargs": {
+        "column": "departmentDescription"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "efd9ff58-13af-414e-8fc1-b6f69f23f64a",
+      "kwargs": {
+        "column": "children"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "9adebf82-8e9b-448e-b9ef-ccf49a3da219",
+      "kwargs": {
+        "column": "level"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "09d2e9a2-39e0-4e0d-8893-d535a0ef3ada",
+      "kwargs": {
+        "column": "updatedAt"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "7570c632-6014-406e-8178-bf160c2f03b9",
+      "kwargs": {
+        "column": "updatedBy"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "376990d3-5cc4-42f3-b383-57503a90db1e",
+      "kwargs": {
+        "column": "parent"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "c4fb78f9-87fe-496c-b2e6-a46252eccbe9",
+      "kwargs": {
+        "column": "branchObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "e681aade-1c56-4823-8faa-22c3aea6359e",
+      "kwargs": {
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "80b6cbdd-a3ed-4756-8fc1-ed06b1271396",
+      "kwargs": {
+        "column": "_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "a7653b34-904f-43f6-8f1b-8f200cbede3f",
+      "kwargs": {
+        "column": "branchObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "240c9188-c99d-422c-b4b7-e645cae09306",
+      "kwargs": {
+        "column": "order",
+        "max_value": 255.0,
+        "min_value": 255.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "5d3cfc40-f7a9-4c8f-a3fb-05e7227cfbcc",
+      "kwargs": {
+        "column": "level",
+        "max_value": 2.0999999999999943,
+        "min_value": 1.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "c93a9595-6257-429d-b361-e22b8b057131",
+      "kwargs": {
+        "column": "_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "4d8cdf91-2c9b-4c53-a69e-ddb2ae443e5a",
+      "kwargs": {
+        "column": "status",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "d5c2033e-a8e8-4bbe-a4ff-fc0da4da21c3",
+      "kwargs": {
+        "column": "order",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "60dacd08-6e59-4dd1-b768-d917aa8d209b",
+      "kwargs": {
+        "column": "isDeleted",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "058e1c60-f6cd-43c2-8502-04f23260f5fe",
+      "kwargs": {
+        "column": "departmentName",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "55b118c7-e722-42c7-a1d5-facc62c30338",
+      "kwargs": {
+        "column": "departmentCode",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b3a1aeb0-c251-4620-ac27-630b714c06ba",
+      "kwargs": {
+        "column": "createdAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "8638d209-ae96-4292-9e0c-1680d3c54bbe",
+      "kwargs": {
+        "column": "createdBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "7d7b93ae-9425-4272-8863-7d4ea702428f",
+      "kwargs": {
+        "column": "departmentDescription",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2b2a486b-4871-47ec-bba8-4e2ae8bea6eb",
+      "kwargs": {
+        "column": "children",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "ea59bb15-8292-4a04-8a23-6d2c4f8cae49",
+      "kwargs": {
+        "column": "level",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "3ffce034-e0cc-4a8a-bee2-4e3bfe344a2e",
+      "kwargs": {
+        "column": "updatedAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "c4a71e6f-cd28-4f28-836e-a370dd3ac93c",
+      "kwargs": {
+        "column": "updatedBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b01a3fc2-bfab-42ed-84a3-c86282759553",
+      "kwargs": {
+        "column": "parent",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "876fa67e-b0ae-4b80-8502-d9660bb99ced",
+      "kwargs": {
+        "column": "branchObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b8860359-b573-4340-9715-ec46c5680b2a",
+      "kwargs": {
+        "column": "etl_datetime",
+        "type_": "datetime64[ns]"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "24b52d61-e0aa-4a4b-94a6-774415b19657",
+      "kwargs": {
+        "column": "order",
+        "mostly": 0.99,
+        "value_set": []
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    },
+    {
+      "id": "55093cab-1928-4bc8-8556-859796a87238",
+      "kwargs": {
+        "column": "level",
+        "mostly": 0.99,
+        "value_set": [
+          4.0
+        ]
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_in_set"
+    }
+  ],
+  "id": "b46ecfe9-76d1-4bf7-be33-f1cd0cf7d285",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "src_create-stg_departments",
+  "notes": null
+}

@@ -1,0 +1,52 @@
+{
+  "expectations": [
+    {
+      "id": "f068b80b-74b7-4750-84e8-8cb81de1a9f5",
+      "kwargs": {
+        "column": "branch_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "a03ac1e4-6465-44bb-9bec-107ef57433a7",
+      "kwargs": {
+        "column": "branch_name"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "fe8db907-cc4a-4227-8ac3-f50849d342b6",
+      "kwargs": {
+        "column": "branch_id"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "9b9d6b89-27c5-4db0-a603-ad4792369d32",
+      "kwargs": {
+        "column": "branch_id",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2c32517e-604a-4b65-9fea-94df7fb45c1f",
+      "kwargs": {
+        "column": "branch_name",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    }
+  ],
+  "id": "ba4730c1-4c44-49a8-9bf1-b75be6dab2a7",
+  "meta": {
+    "great_expectations_version": "1.4.5"
+  },
+  "name": "hr_dtm-dim_branches",
+  "notes": null
+}

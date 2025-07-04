@@ -1,0 +1,31 @@
+name: 'dwh_project'
+version: '1.0.0'
+config-version: 2
+
+profile: 'dwh_project'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dwh_project:
+    dwh:
+      materialized: table
+    dtm:
+      hr:
+        schema: hr 
+        +generate_schema_name: false
+        materialized: table
+      jira:
+        schema: jira
+        +generate_schema_name: false
+        materialized: table

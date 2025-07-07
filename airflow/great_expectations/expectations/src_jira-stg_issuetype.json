@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "c3a55a34-a23f-4d0c-8768-d578db94c27e",
+      "id": "b6f8343d-a5eb-4f9f-bbca-a6ed7d9cdaf2",
       "kwargs": {
         "column": "ID"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2dedad44-bf63-4bc3-b1b5-2bed1a54d4aa",
+      "id": "675cbc5c-aadb-40fa-85d3-85be8f741c16",
       "kwargs": {
         "column": "SEQUENCE"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "3bacdde8-8359-4f3c-8aac-37ce35f3ee48",
+      "id": "4ef58635-a273-4364-ac0e-827a0678ef8a",
       "kwargs": {
         "column": "pname"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "e1888d1b-3cec-49b5-985b-ea889bf4f5e6",
+      "id": "30304dc4-e03b-4355-a9a0-fc896173bd72",
       "kwargs": {
         "column": "pstyle"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c149b304-4cf6-41b8-80f8-cc42c94f3f64",
+      "id": "50f66bfa-1f0d-4a8f-a633-ae31a6afaa5c",
       "kwargs": {
         "column": "DESCRIPTION"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "3ced4c1a-cae3-4b9b-9ca6-1f1084af0e1a",
+      "id": "2daaaaea-9ae0-4ea6-9d66-04a7f7e74a9e",
       "kwargs": {
         "column": "ICONURL"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "1d566df2-2c82-4a29-966f-378bfe1c782f",
+      "id": "0b92c674-8d4a-47df-b6e3-72822b9c393c",
       "kwargs": {
         "column": "AVATAR"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ad0a8149-2128-448a-a3ef-8eae25d4dec7",
+      "id": "15d2a3c2-64ff-42ac-9c84-30fd2cc78a37",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "fcb81eaa-81be-4f47-a5ef-9bfb0749b1a0",
+      "id": "f116bd74-42f8-4fca-8633-7f8b99dbeb9a",
       "kwargs": {
         "column": "ID"
       },
@@ -73,7 +73,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "0f13ef99-7c33-4a58-b4a9-4f5837766e7a",
+      "id": "2572bca8-fb6e-4bd3-b310-d7ffa98281ed",
       "kwargs": {
         "column": "SEQUENCE",
         "max_value": 0.0,
@@ -84,7 +84,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "1706910f-c904-4712-a814-f94021d2cafa",
+      "id": "e81a2af5-a307-46e6-9981-198ed75e9826",
       "kwargs": {
         "column": "AVATAR",
         "max_value": 13121.65,
@@ -95,7 +95,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "011f8c71-d197-4d5c-9f65-1c998de534cf",
+      "id": "21daa042-1dd2-46d4-a9f6-369a8e808bfb",
       "kwargs": {
         "column": "ID",
         "type_": "object"
@@ -104,7 +104,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "db067068-a5f5-4083-9055-f84992822883",
+      "id": "c3172b67-620b-4f7d-983b-e12c9cedcf0e",
       "kwargs": {
         "column": "SEQUENCE",
         "type_": "float64"
@@ -113,7 +113,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "eb4e138b-e07d-4932-8b24-5b3664897b99",
+      "id": "f4ef87ed-564d-470b-8109-a375f66fdbd1",
       "kwargs": {
         "column": "pname",
         "type_": "object"
@@ -122,7 +122,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "3ec71352-7651-4196-938d-e75faa81a3f4",
+      "id": "5e091b22-9a47-4c19-b9ab-eac38c74415e",
       "kwargs": {
         "column": "pstyle",
         "type_": "object"
@@ -131,7 +131,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "9f627ac2-721c-483a-a2d5-93376585c42e",
+      "id": "4779bbba-df43-4640-a3c9-0c107ffe46d3",
       "kwargs": {
         "column": "DESCRIPTION",
         "type_": "object"
@@ -140,7 +140,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "cfc153c5-2421-4ea8-b635-a1a1da4f7b0a",
+      "id": "ec955784-d92f-4cde-ba0a-2a718d8966c5",
       "kwargs": {
         "column": "ICONURL",
         "type_": "object"
@@ -149,7 +149,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "38d46bd5-d3e3-4bf0-a80e-c36ada69c768",
+      "id": "0d7867b6-4ab2-449a-97e2-0243b6d98bd9",
       "kwargs": {
         "column": "AVATAR",
         "type_": "float64"
@@ -158,7 +158,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "76685b65-ea89-4d33-913e-5fae41b6db9c",
+      "id": "665d4cbe-c8ac-45e9-adbe-172d8a7ebe1c",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns]"
@@ -167,7 +167,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "d6fe03cd-a071-4dd1-a616-7f035e0341fd",
+      "id": "d59e7587-6e5e-4473-8b4b-54d018e649b4",
       "kwargs": {
         "column": "SEQUENCE",
         "mostly": 0.99,
@@ -177,7 +177,7 @@
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "ec558b07-fa5e-4770-b534-051a6a3726a1",
+      "id": "37d4330a-c140-47c5-af82-582e9abfd5a7",
       "kwargs": {
         "column": "AVATAR",
         "mostly": 0.99,
@@ -189,7 +189,7 @@
   ],
   "id": "c982daf5-673c-49d6-bd79-96f718d6d845",
   "meta": {
-    "great_expectations_version": "1.4.5"
+    "great_expectations_version": "1.5.4"
   },
   "name": "src_jira-stg_issuetype",
   "notes": null

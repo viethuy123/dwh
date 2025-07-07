@@ -2,19 +2,11 @@
 CREATE SERVER staging_server
   FOREIGN DATA WRAPPER postgres_fdw
   OPTIONS (host 'localhost', dbname 'stg', port '5432');
+
 CREATE USER MAPPING FOR dev_user
   SERVER staging_server
   OPTIONS (user 'dev_user', password 'dev_password');
-IMPORT FOREIGN SCHEMA src_jisseki
-  FROM SERVER staging_server
-  INTO jisseki_fdw;
-IMPORT FOREIGN SCHEMA src_jira
-  FROM SERVER staging_server
-  INTO jira_fdw;
-IMPORT FOREIGN SCHEMA src_create
-  FROM SERVER staging_server
-  INTO create_fdw;
-
+ 
 IMPORT FOREIGN SCHEMA information_schema
   LIMIT TO (tables)
   FROM SERVER staging_server
@@ -29,10 +21,6 @@ CREATE SERVER warehouse_server
 CREATE USER MAPPING FOR dev_user
   SERVER warehouse_server
   OPTIONS (user 'dev_user', password 'dev_password');
-
-IMPORT FOREIGN SCHEMA public
-  FROM SERVER warehouse_server
-  INTO dwh_fdw;
 
 IMPORT FOREIGN SCHEMA information_schema
   LIMIT TO (tables)
@@ -78,5 +66,3 @@ BEGIN
     END LOOP;
 END;
 $$;
-
-DROP FOREIGN TABLE IF EXISTS dwh_fdw.pods CASCADE;

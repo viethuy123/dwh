@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "8d2c8581-0779-4f85-88dd-07c2d3aeddbe",
+      "id": "6cf93133-a8d5-4eda-8c8a-719ecf5e7449",
       "kwargs": {
         "column": "ID"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ada5353b-90fc-417f-b23a-09cae7970653",
+      "id": "97b86ac2-f431-4f1b-99b8-75eada9a38c8",
       "kwargs": {
         "column": "SEQUENCE"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "59f6d8ee-6f59-4d47-882d-7b4382983a04",
+      "id": "2965f4d2-32e7-443b-b490-efadfedc9e36",
       "kwargs": {
         "column": "pname"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "1b057b46-8beb-4014-a46f-1203ea8eaf83",
+      "id": "e6c227d6-d7e1-4f91-92dd-de6e7d9d4edb",
       "kwargs": {
         "column": "DESCRIPTION"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f07afa82-5edd-4d5a-8551-0173e6a4010d",
+      "id": "94911805-8998-43dc-b418-b9b7a7aae959",
       "kwargs": {
         "column": "ICONURL"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c1781094-89ee-4b9b-a037-1450f1afd6b9",
+      "id": "ab66c710-7a1d-45e9-81f7-56a1e267cd82",
       "kwargs": {
         "column": "STATUSCATEGORY"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "988dd82a-3963-43b8-8255-95d4451d237d",
+      "id": "d09c1a9b-1d5e-4e8e-b656-fee62c33eff4",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "0719f744-2815-49b3-878f-c4d70c191380",
+      "id": "518f3ff9-8be1-4be6-9f2b-c32a352e40de",
       "kwargs": {
         "column": "ID"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "ea411944-a635-4bf2-85b9-b997113ce489",
+      "id": "9f7fa60a-3b0a-4ff8-b72a-33c9ca4dce74",
       "kwargs": {
         "column": "SEQUENCE",
         "max_value": 51.4,
@@ -76,7 +76,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "89e12720-8852-49af-949c-16454de05f61",
+      "id": "b1352271-730d-4870-b3d4-c9cc901d0c2d",
       "kwargs": {
         "column": "STATUSCATEGORY",
         "max_value": 4.0,
@@ -87,7 +87,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "2ab8be2d-1607-4815-9d3a-11f761baa5b7",
+      "id": "6e206c13-7172-4299-a7e8-8f48da7a02a6",
       "kwargs": {
         "column": "ID",
         "type_": "object"
@@ -96,7 +96,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "77890269-bde2-4bbe-a582-2e3f6216b60b",
+      "id": "513c3b36-1579-47d5-bde4-cadc543bb071",
       "kwargs": {
         "column": "SEQUENCE",
         "type_": "float64"
@@ -105,7 +105,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "f13746f4-14a2-4ed9-bb17-3596a188382f",
+      "id": "408457e1-4a49-4d6a-88e7-44e0a0023206",
       "kwargs": {
         "column": "pname",
         "type_": "object"
@@ -114,7 +114,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "6213d170-6f33-48e9-bacd-4e82d3d69539",
+      "id": "272a7ab1-4865-4fa8-8bc1-0fac2a1c1b51",
       "kwargs": {
         "column": "DESCRIPTION",
         "type_": "object"
@@ -123,7 +123,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "b25bf6a7-1741-4b6c-8fab-884a776e1e45",
+      "id": "53b36b79-ca81-45f1-bc1e-3ff366c6c89a",
       "kwargs": {
         "column": "ICONURL",
         "type_": "object"
@@ -132,7 +132,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "90100f1c-f631-4b84-943f-89be0717c56c",
+      "id": "54f6c054-a613-45b2-b0dd-a1f6556ef137",
       "kwargs": {
         "column": "STATUSCATEGORY",
         "type_": "float64"
@@ -141,7 +141,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "54d82b56-9b48-42b1-b513-970d2b03d015",
+      "id": "e649e6a3-f612-4ff6-8044-24c08e30da7c",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns]"
@@ -150,7 +150,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "af5b530d-7a7b-4d7b-a901-230943c6e59d",
+      "id": "c5d2bf7a-7ea2-496e-a3d5-2c3e9d132578",
       "kwargs": {
         "column": "SEQUENCE",
         "mostly": 0.99,
@@ -160,7 +160,7 @@
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "fd09f8b8-6ba6-4edd-b05f-31612079d5fa",
+      "id": "a18529c5-be07-4334-adf9-356aaacf9d4d",
       "kwargs": {
         "column": "STATUSCATEGORY",
         "mostly": 0.99,
@@ -172,7 +172,7 @@
   ],
   "id": "cf194364-bee9-4673-82a8-10dab1908a52",
   "meta": {
-    "great_expectations_version": "1.4.5"
+    "great_expectations_version": "1.5.4"
   },
   "name": "src_jira-stg_issuestatus",
   "notes": null

@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "f068b80b-74b7-4750-84e8-8cb81de1a9f5",
+      "id": "158e5849-b9d3-4e65-b379-acfa129279a1",
       "kwargs": {
         "column": "branch_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "a03ac1e4-6465-44bb-9bec-107ef57433a7",
+      "id": "6a503176-dcc0-435c-b4b1-bbe1b0b5658e",
       "kwargs": {
         "column": "branch_name"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "fe8db907-cc4a-4227-8ac3-f50849d342b6",
+      "id": "52ce7e30-7168-421f-9fd2-cc7f8dd85193",
       "kwargs": {
         "column": "branch_id"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "9b9d6b89-27c5-4db0-a603-ad4792369d32",
+      "id": "1b9aa510-2ec3-41c2-b65f-ba5089b31f74",
       "kwargs": {
         "column": "branch_id",
         "type_": "object"
@@ -34,7 +34,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "2c32517e-604a-4b65-9fea-94df7fb45c1f",
+      "id": "dae16e3f-1aa9-44a6-820a-8c1d685e409b",
       "kwargs": {
         "column": "branch_name",
         "type_": "object"
@@ -45,7 +45,7 @@
   ],
   "id": "ba4730c1-4c44-49a8-9bf1-b75be6dab2a7",
   "meta": {
-    "great_expectations_version": "1.4.5"
+    "great_expectations_version": "1.5.4"
   },
   "name": "hr_dtm-dim_branches",
   "notes": null

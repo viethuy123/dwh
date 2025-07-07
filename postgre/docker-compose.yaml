@@ -22,8 +22,7 @@ services:
       - dwh_data:/var/lib/postgresql/data
       - ./00_init.sql:/docker-entrypoint-initdb.d/00_init.sql
     networks:
-      dev-network:
-        ipv4_address: 172.18.0.10
+      - dev-network
 
 networks:
   dev-network:

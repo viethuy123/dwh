@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "a152ddc8-d428-4ca6-8a70-db39af6bfbd4",
+      "id": "0c6aa495-d853-4618-814e-5aa23a3338db",
       "kwargs": {
         "column": "type_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "4dbd2cb5-419c-4b54-94fc-2c71898ad143",
+      "id": "66fbfc46-e8db-4df2-82d2-30908387108a",
       "kwargs": {
         "column": "type_name"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2ca0db0e-22e2-4c96-a0ff-d5795dacfd5d",
+      "id": "911b1570-60ce-4a84-873a-a7512516da5f",
       "kwargs": {
         "column": "type_description"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "311d31e5-a90d-4efc-a29e-4286a12e3d2b",
+      "id": "36c516e6-b834-4d54-9a3e-f2802528566a",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9aad7761-101a-4959-a15e-0593ced55594",
+      "id": "a2c2083f-8a8b-42fc-8a37-f649828e5f1a",
       "kwargs": {
         "column": "type_id"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "4de8644f-55f7-45c8-8071-11886f311b09",
+      "id": "d99252c6-0220-4083-9b4e-5b2cbc3130e5",
       "kwargs": {
         "column": "type_id",
         "type_": "object"
@@ -50,7 +50,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "2abeb25e-0f4c-44c6-b99f-e67a6eda03c5",
+      "id": "486cabde-c841-450f-99b0-2c9c34666137",
       "kwargs": {
         "column": "type_name",
         "type_": "object"
@@ -59,7 +59,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "c5acf9bb-2eda-4aa9-96e6-2bb4079e2405",
+      "id": "ac28a152-772a-4f17-b415-900d679b3a30",
       "kwargs": {
         "column": "type_description",
         "type_": "object"
@@ -68,7 +68,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "c5f365fc-c2e2-450b-b1c1-843750f54ab4",
+      "id": "04a15514-b9f4-4997-8f18-5c36e498d4f2",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns, UTC]"
@@ -79,7 +79,7 @@
   ],
   "id": "1921a1e7-6f6f-4262-969c-b5ad76bfdb4b",
   "meta": {
-    "great_expectations_version": "1.4.5"
+    "great_expectations_version": "1.5.4"
   },
   "name": "dwh-jira_issue_types",
   "notes": null

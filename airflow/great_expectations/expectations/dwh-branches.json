@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "3d9eb170-dea9-4869-bb9e-8a1a618b46f4",
+      "id": "73d06ba2-9e40-4608-b1db-a9551272a440",
       "kwargs": {
         "column": "branch_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "769b953f-a1aa-4882-b62e-87353848a24a",
+      "id": "ad4f4cb4-c23c-4f02-9453-7d7827ebad17",
       "kwargs": {
         "column": "branch_code"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2e7338e8-829f-4171-a4f8-f88a1fe65140",
+      "id": "25723754-362c-4de5-bf31-c79bbe399dcb",
       "kwargs": {
         "column": "branch_name"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "45556160-d13a-4da5-94af-6d4219e5a108",
+      "id": "d8e1bbc7-2266-47cd-a606-c7206571a7ad",
       "kwargs": {
         "column": "branch_address"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "545b43b0-a794-4f53-84dd-64937d15408e",
+      "id": "4c257ba1-d1ec-49d9-9893-776573a03197",
       "kwargs": {
         "column": "is_hidden"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "816f60d7-de85-4f43-8e6c-69bbbb29379f",
+      "id": "56c29205-12b3-4206-a18f-53b8d61e5d04",
       "kwargs": {
         "column": "status"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "dcbe4af5-77f5-4053-b2c3-0f732091a634",
+      "id": "6d310616-8570-4b0c-a7a4-010b91b07cb9",
       "kwargs": {
         "column": "is_deleted"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "08681898-2d17-4b60-9a8c-c1bbb3789067",
+      "id": "069ba42a-0a3b-4ba5-a1a0-be2e8379336d",
       "kwargs": {
         "column": "created_time"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f7cf0d8b-c69f-4c12-873a-2570e48084f3",
+      "id": "04f70e01-6838-4bdc-9b9e-8da1e2df3a04",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -73,7 +73,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f1907292-afd7-4155-a36c-7014891e7dc9",
+      "id": "fc240226-67e9-4f81-adc4-d66ced745e4d",
       "kwargs": {
         "column": "branch_id"
       },
@@ -81,7 +81,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "b099c4d3-d57e-4667-b221-064e3285e593",
+      "id": "d77dc7d4-d1fc-4957-95e4-da49af57fa14",
       "kwargs": {
         "column": "is_hidden"
       },
@@ -89,7 +89,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "cfe85127-86d0-4f71-b733-42c871fdc0f6",
+      "id": "a399ae0b-9b03-439e-90c1-24efec3412fb",
       "kwargs": {
         "column": "branch_id",
         "type_": "object"
@@ -98,7 +98,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "fd5abb0f-3853-4787-aa18-cda0e946f2d2",
+      "id": "fb06c0c4-22ab-487f-aed9-83275a0b5601",
       "kwargs": {
         "column": "branch_code",
         "type_": "object"
@@ -107,7 +107,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "1123d074-e423-4edd-9c5a-d34b47ade50a",
+      "id": "078ad6a0-9330-41b9-94be-751352a9f587",
       "kwargs": {
         "column": "branch_name",
         "type_": "object"
@@ -116,7 +116,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "a1b120e1-9afa-4ae7-8c6c-592ed75324e4",
+      "id": "9074603a-2edd-40a1-86c5-88b8a4c0feac",
       "kwargs": {
         "column": "branch_address",
         "type_": "object"
@@ -125,7 +125,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "fd4c6309-8f63-466e-93bb-66112938f16c",
+      "id": "ad05c32c-d36d-4b3c-9dd3-7d0cb180d0c7",
       "kwargs": {
         "column": "is_hidden",
         "type_": "object"
@@ -134,7 +134,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "55573e76-4eab-4e8a-af99-c4daddc69f8f",
+      "id": "17b6d386-eab7-4125-bfb4-d6af930be268",
       "kwargs": {
         "column": "status",
         "type_": "object"
@@ -143,7 +143,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "6e5b84b0-9a49-4e91-a3b5-5406c5eafe06",
+      "id": "458ea098-919d-4931-b4c4-fc8f37dbc889",
       "kwargs": {
         "column": "is_deleted",
         "type_": "object"
@@ -152,7 +152,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "f3108249-96ef-463c-b163-f4eeea473236",
+      "id": "8cef67fd-ab9a-42d0-bf2f-78344995eb57",
       "kwargs": {
         "column": "created_time",
         "type_": "datetime64[ns, UTC]"
@@ -161,7 +161,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "839e5547-6944-4f17-97f6-c75e902906cd",
+      "id": "1580f804-0a8c-4c9f-b591-c8802949c74c",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns, UTC]"
@@ -172,7 +172,7 @@
   ],
   "id": "d4d54396-9a78-4b70-9468-ea3e9db7fc96",
   "meta": {
-    "great_expectations_version": "1.4.5"
+    "great_expectations_version": "1.5.4"
   },
   "name": "dwh-branches",
   "notes": null

@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "8609c094-1945-4712-9eaf-962bbc5843af",
+      "id": "36dbe222-a6da-45a3-804a-81a0ac238c1b",
       "kwargs": {
         "column": "attendance_type_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2329d4e8-e66f-41cf-a497-67e56641867e",
+      "id": "3c037ccf-f741-4837-8743-215f598bb55b",
       "kwargs": {
         "column": "attendance_type_name"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9f5eb71c-3984-4196-9e99-8ce53859c5ee",
+      "id": "3f0af99a-4889-45d4-add6-ddcb4c80e843",
       "kwargs": {
         "column": "attendance_type_code"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "fbd2a2f9-ef39-4591-ad07-c6e9bbef9587",
+      "id": "52efe081-ee3a-45e3-aa1f-2e055c385dcd",
       "kwargs": {
         "column": "attendance_work_day"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "b8c27331-926c-4b4c-9f79-071691d91810",
+      "id": "e29d0c89-12e8-4375-8288-4263407bbcfa",
       "kwargs": {
         "column": "status"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c7d89aa1-c961-48c8-9404-f99b01577f16",
+      "id": "b7f1ee8f-d44d-4b5b-b544-21f49d4213e8",
       "kwargs": {
         "column": "is_deleted"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "22d73882-502f-4cfa-bfda-875406220df8",
+      "id": "48a6cd9a-05a4-4c37-b8db-341f9f4f6256",
       "kwargs": {
         "column": "type"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "5a4b5f64-7bad-4f8c-ae62-d0f56827a2af",
+      "id": "d123f1b4-e778-401f-ba60-162185922955",
       "kwargs": {
         "column": "unit_status"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "78938397-f49a-4196-9e62-ce414d732cd3",
+      "id": "03af9a8b-4a0b-4cda-b9b7-aba8b12e773e",
       "kwargs": {
         "column": "unit_type"
       },
@@ -73,7 +73,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "487abcda-acac-4863-9dc8-5c4f41d04a38",
+      "id": "3e4fcf0a-9fe8-4f63-951b-8f37bccdf18e",
       "kwargs": {
         "column": "unit_value"
       },
@@ -81,7 +81,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "cefe200d-654c-4fff-99ad-5609c051b574",
+      "id": "41b355c1-5406-4c36-9930-68519f0502eb",
       "kwargs": {
         "column": "created_time"
       },
@@ -89,7 +89,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2e8fbd0a-822b-47ce-9138-b98f7a26b81c",
+      "id": "ff0801e6-ab18-4212-976d-0782ee0e7d01",
       "kwargs": {
         "column": "updated_time"
       },
@@ -97,7 +97,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "17271ee6-0e4f-4269-8463-005c7eb9a7b9",
+      "id": "9a5d4fc3-8b2b-424a-9b9d-24c93030f504",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -105,7 +105,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d342e5cb-3f87-46b6-86bd-771491647d4e",
+      "id": "afe2f0a9-4f0c-4d9b-8124-9b8c37b89034",
       "kwargs": {
         "column": "attendance_type_id"
       },
@@ -113,7 +113,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "a1154c6e-320c-42c7-a2b6-5a0b6c1d302e",
+      "id": "3b5e0ec3-54ca-45b7-896f-3647192a5486",
       "kwargs": {
         "column": "attendance_work_day",
         "max_value": 1.0,
@@ -124,7 +124,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "ba5aaef8-de09-4cc4-8032-0c81de172916",
+      "id": "b6acbd76-e72f-4f69-a6d6-039292efc13d",
       "kwargs": {
         "column": "unit_value",
         "max_value": 144.79999999999995,
@@ -135,7 +135,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "3b482bb9-f8f3-40e7-add2-a55d335d5eec",
+      "id": "0825ee0a-8d05-40f7-938a-bc844cc23d8c",
       "kwargs": {
         "column": "attendance_type_id",
         "type_": "object"
@@ -144,7 +144,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "bd682f37-961e-4e08-832d-261665f23944",
+      "id": "8d538b41-27a4-4850-9dfa-ffe2ccab3fd9",
       "kwargs": {
         "column": "attendance_type_name",
         "type_": "object"
@@ -153,7 +153,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "6fd5a6ae-382b-4531-83dd-41305c933934",
+      "id": "ceb80d09-6e5b-4d9f-b17e-ec40fa81c6be",
       "kwargs": {
         "column": "attendance_type_code",
         "type_": "object"
@@ -162,7 +162,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "150b5c5d-2016-4252-8841-3286ded2ad50",
+      "id": "32bc2c49-a9c0-431c-a515-f4136862d17e",
       "kwargs": {
         "column": "attendance_work_day",
         "type_": "int64"
@@ -171,7 +171,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "9225cd94-ca53-493d-9728-fd4f390ff944",
+      "id": "90dc6e58-8220-440e-9842-b52fd8c3e225",
       "kwargs": {
         "column": "status",
         "type_": "object"
@@ -180,7 +180,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "11d2a475-77a9-4c36-b796-545ab71c9479",
+      "id": "9224faa4-cabc-4960-841a-df4eab81ffa7",
       "kwargs": {
         "column": "is_deleted",
         "type_": "object"
@@ -189,7 +189,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "dd56a0d7-e34d-4148-90f0-0eae2ee9056b",
+      "id": "535b8b13-d058-44f9-a160-f1d2a7064f18",
       "kwargs": {
         "column": "type",
         "type_": "object"
@@ -198,7 +198,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4665afb2-e3c1-478b-a54a-9b911de42fa6",
+      "id": "1c2992de-abe6-4a6f-8d15-83cf50ebeb36",
       "kwargs": {
         "column": "unit_status",
         "type_": "object"
@@ -207,7 +207,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "bc6f7464-6f4b-48ab-bfaa-02ae535c5b66",
+      "id": "3a3085f4-f3ca-4480-b762-c22fdd61dc82",
       "kwargs": {
         "column": "unit_type",
         "type_": "object"
@@ -216,7 +216,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "e4234406-de29-4b66-bef1-c03d7dfec1ba",
+      "id": "9a3d3799-089e-46ca-a78d-3cdd6dd9dfa8",
       "kwargs": {
         "column": "unit_value",
         "type_": "float64"
@@ -225,7 +225,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "7c07684e-183e-49ed-9c16-fd84a99392ad",
+      "id": "c2bf8b66-2fb0-4d42-99a7-9e10959a7849",
       "kwargs": {
         "column": "created_time",
         "type_": "datetime64[ns, UTC]"
@@ -234,7 +234,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "ffe0c699-07db-4ace-83bb-22cd657f99d2",
+      "id": "cbd3c55e-a275-41bc-8885-02282e8777a8",
       "kwargs": {
         "column": "updated_time",
         "type_": "datetime64[ns, UTC]"
@@ -243,7 +243,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "7af97696-15bd-43ef-a134-9c60ee73ea9d",
+      "id": "2e0cabc5-39d5-4372-901c-48ad1e0e5421",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns, UTC]"
@@ -252,7 +252,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "8eeda12b-041d-4259-98d4-88408f654007",
+      "id": "96bd4d84-0868-4e6e-804a-92bc75a2d9f0",
       "kwargs": {
         "column": "attendance_work_day",
         "mostly": 0.99,
@@ -262,7 +262,7 @@
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "3c3cd328-5a14-466b-9eb4-7aff89c0326f",
+      "id": "f0e664d0-bbbd-4bd0-865b-5acc8fe2e6f0",
       "kwargs": {
         "column": "unit_value",
         "mostly": 0.99,
@@ -274,7 +274,7 @@
   ],
   "id": "95181278-eaee-424e-96e2-b08794796840",
   "meta": {
-    "great_expectations_version": "1.4.5"
+    "great_expectations_version": "1.5.4"
   },
   "name": "dwh-staff_attendances_types",
   "notes": null

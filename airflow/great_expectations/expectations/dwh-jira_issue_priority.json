@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "bc2b1bae-9514-40de-ae66-3dc0f3c2eb37",
+      "id": "2ab1c2fa-774a-47af-9313-4f4f1f72a262",
       "kwargs": {
         "column": "priority_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d0feb274-8496-4e57-b86f-5aa955efdb40",
+      "id": "00fc4564-f8f8-4d88-8fa6-e13c4b3af2b6",
       "kwargs": {
         "column": "priority_name"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ef072062-a0e3-489a-89db-5913242d8074",
+      "id": "56f89ed6-c468-48de-b861-282c1bde04d2",
       "kwargs": {
         "column": "priority_description"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "be8516ee-0073-4628-a16e-9c8b5baeed0f",
+      "id": "35abdbe8-4062-4dee-9528-36ee06a2b6e7",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f436ca0a-481e-43d4-9814-8cc36974ae2f",
+      "id": "e2f51f53-5014-438d-b759-8e0372576f3d",
       "kwargs": {
         "column": "priority_id"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "3494aff4-1a53-45aa-a8b1-47727f52f0bd",
+      "id": "d6b7864e-9de4-4b92-bc05-1d1efebf1739",
       "kwargs": {
         "column": "priority_id",
         "type_": "object"
@@ -50,7 +50,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "7bed480a-4818-4174-bbe5-2e9489b50196",
+      "id": "93d54587-1873-4551-81f7-5de732845eca",
       "kwargs": {
         "column": "priority_name",
         "type_": "object"
@@ -59,7 +59,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "11bee934-85a3-4125-b2f6-7174543e92e1",
+      "id": "c3ff2670-de99-4049-87d1-77e546c764ae",
       "kwargs": {
         "column": "priority_description",
         "type_": "object"
@@ -68,7 +68,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "83273f3b-a994-4914-969b-71da3b550a85",
+      "id": "dc5836d9-a519-419e-b367-a9813df5586b",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns, UTC]"
@@ -79,7 +79,7 @@
   ],
   "id": "e1334d99-b81f-41ea-850d-0889fcdade7b",
   "meta": {
-    "great_expectations_version": "1.4.5"
+    "great_expectations_version": "1.5.4"
   },
   "name": "dwh-jira_issue_priority",
   "notes": null

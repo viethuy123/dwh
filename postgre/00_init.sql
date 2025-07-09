@@ -36,10 +36,90 @@ SELECT
     END AS is_month_end
 FROM generate_series('2000-01-01'::date, '2099-12-31'::date, interval '1 day') AS date_series;
 
+CREATE OR REPLACE PROCEDURE sync_fdw_tables(
+    local_schema TEXT,
+    remote_schema TEXT,
+    server_name TEXT,
+    metadata_schema TEXT DEFAULT 'fdw_metadata'
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    foreign_table TEXT;
+    existing_tables TEXT[];
+BEGIN
+
+    SELECT array_agg(ft.relname)
+    INTO existing_tables
+    FROM pg_foreign_table f
+    JOIN pg_class ft ON f.ftrelid = ft.oid
+    JOIN pg_namespace ns ON ft.relnamespace = ns.oid
+    WHERE ns.nspname = local_schema;
+
+    FOR foreign_table IN
+        EXECUTE format(
+            'SELECT table_name FROM %I.tables WHERE table_schema = %L AND table_type = %L',
+            metadata_schema, remote_schema, 'BASE TABLE'
+        )
+    LOOP
+        IF existing_tables IS NULL OR NOT foreign_table = ANY(existing_tables) THEN
+            RAISE NOTICE 'Importing new table: %', foreign_table;
+
+            EXECUTE format($f$
+                IMPORT FOREIGN SCHEMA %I
+                LIMIT TO (%I)
+                FROM SERVER %I
+                INTO %I;
+            $f$, remote_schema, foreign_table, server_name, local_schema);
+        END IF;
+    END LOOP;
+END;
+$$;
+
 \c dtm;
 create schema dwh_fdw;
 create schema fdw_metadata;
 CREATE EXTENSION IF NOT EXISTS postgres_fdw;
+
+CREATE OR REPLACE PROCEDURE sync_fdw_tables(
+    local_schema TEXT,
+    remote_schema TEXT,
+    server_name TEXT,
+    metadata_schema TEXT DEFAULT 'fdw_metadata'
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    foreign_table TEXT;
+    existing_tables TEXT[];
+BEGIN
+
+    SELECT array_agg(ft.relname)
+    INTO existing_tables
+    FROM pg_foreign_table f
+    JOIN pg_class ft ON f.ftrelid = ft.oid
+    JOIN pg_namespace ns ON ft.relnamespace = ns.oid
+    WHERE ns.nspname = local_schema;
+
+    FOR foreign_table IN
+        EXECUTE format(
+            'SELECT table_name FROM %I.tables WHERE table_schema = %L AND table_type = %L',
+            metadata_schema, remote_schema, 'BASE TABLE'
+        )
+    LOOP
+        IF existing_tables IS NULL OR NOT foreign_table = ANY(existing_tables) THEN
+            RAISE NOTICE 'Importing new table: %', foreign_table;
+
+            EXECUTE format($f$
+                IMPORT FOREIGN SCHEMA %I
+                LIMIT TO (%I)
+                FROM SERVER %I
+                INTO %I;
+            $f$, remote_schema, foreign_table, server_name, local_schema);
+        END IF;
+    END LOOP;
+END;
+$$;
 
 \c monitoring;
 CREATE TABLE etl_job_logs (

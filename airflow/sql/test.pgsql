@@ -298,6 +298,6 @@ select * from etl_job_logs where status = 'FAILURE' order by created_time desc
 
 select * from jira.dim_members where member_id = '608285d10e83773bc64b264f'
 
-select distinct position_name from jira.dim_members
+select distinct department_name from jira.dim_members
 
 SELECT * FROM pg_locks;

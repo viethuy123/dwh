@@ -160,6 +160,8 @@ services:
       <<: *airflow-common-depends-on
       airflow-init:
         condition: service_completed_successfully
+      airflow-worker:
+        condition: service_started
 
 
   airflow-worker:

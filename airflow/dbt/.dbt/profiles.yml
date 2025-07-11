@@ -2,7 +2,7 @@ dwh_project:
   outputs:
     dwh:
       type: postgres           
-      host: 172.18.0.10 
+      host: postgre-dwh_postgres-1 
       port: 5432              
       user: dev_user  
       password: dev_password  
@@ -11,7 +11,7 @@ dwh_project:
       threads: 4
     dtm:
       type: postgres           
-      host: 172.18.0.10 
+      host: postgre-dwh_postgres-1 
       port: 5432              
       user: dev_user  
       password: dev_password  

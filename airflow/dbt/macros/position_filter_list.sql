@@ -1,0 +1,36 @@
+{% macro position_filter_list() %}
+  {% set filter_list = [
+    'Bridge System Engineer',
+    'Thử việc (BrSE)',
+    'IT Engineer',
+    'Internship (Developer)',
+    'Thử việc Tester',
+    'Team Leader',
+    'Engineer',
+    'Sub Team Leader',
+    'Test Leader',
+    'Internship BA',
+    'Architect',
+    'Division Manager',
+    'BU Leader',
+    'Software Engineer',
+    'Senior Tester',
+    'AI Engineer',
+    'Fresher Developer',
+    'Thử việc Developer',
+    'Manager',
+    'Department Manager',
+    'BrSE Leader',
+    'Thử việc (Developer)',
+    'BA Leader',
+    'Thử việc (Data Engineer)',
+    'Infra Engineer',
+    'Thử việc (Tester)',
+    'Technical Leader',
+    'Project Manager',
+    'Thử việc (BA)',
+    'Software Machine Learning',
+    'Developer'
+] %}
+  {{ return(filter_list) }}
+{% endmacro %}

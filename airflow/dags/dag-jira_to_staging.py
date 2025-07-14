@@ -15,8 +15,7 @@ default_args = {
     'owner': 'huynnx',
     'start_date': datetime.today() - timedelta(days=1),
     'retries': 3,
-    'retry_delay': timedelta(minutes=5),
-    'provide_context': True
+    'retry_delay': timedelta(minutes=1)
 }
 
 dag = DAG(
@@ -198,8 +197,7 @@ with TaskGroup(group_id='jira_to_staging', dag=dag) as outer_group:
                         'src_table':src_table,
                         'tgt_table':tgt_table,
                         'status':'SUCCESS'
-                    },
-                    provide_context=True
+                    }
                 )
 
 

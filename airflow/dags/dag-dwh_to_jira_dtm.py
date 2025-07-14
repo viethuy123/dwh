@@ -17,14 +17,14 @@ default_args = {
     "owner": "huynnx",
     "depends_on_past": False,
     'retries': 3,
-    'retry_delay': timedelta(minutes=5),
+    'retry_delay': timedelta(minutes=1),
     'provide_context': True
 }
 
 dag = DAG(
     dag_id="dag-dwh_to_jira_dtm",
     default_args=default_args,
-    schedule_interval="@once",
+    schedule="@once",
     start_date=pendulum.today("UTC").add(days=-1),
     catchup=False,
     dagrun_timeout=timedelta(minutes=60),

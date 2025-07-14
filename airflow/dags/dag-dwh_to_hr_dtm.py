@@ -17,14 +17,13 @@ default_args = {
     "owner": "huynnx",
     "depends_on_past": False,
     'retries': 3,
-    'retry_delay': timedelta(minutes=5),
-    'provide_context': True
+    'retry_delay': timedelta(minutes=1)
 }
 
 dag = DAG(
     dag_id="dag-dwh_to_hr_dtm",
     default_args=default_args,
-    schedule_interval="@once",
+    schedule="@once",
     start_date=pendulum.today("UTC").add(days=-1),
     catchup=False,
     dagrun_timeout=timedelta(minutes=60),
@@ -142,8 +141,7 @@ with TaskGroup(group_id='warehouse_to_mart', dag=dag) as outer_group:
                         'src_table':src_table,
                         'tgt_table':tgt_table,
                         'status':'SUCCESS'
-                    },
-                    provide_context=True
+                    }
                 )
 
 

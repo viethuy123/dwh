@@ -20,5 +20,6 @@ LEFT JOIN {{ source('dwh', 'user_positions') }} d
 ON a.position_id = d.position_id
 WHERE a.company_email is not NULL AND a.company_email != 'null' AND a.company_email NOT LIKE 'Inactive%'
 AND b.branch_name is not NULL AND b.branch_name != 'null'
-AND c.department_name is not NULL AND c.department_name != 'null'
-AND d.position_name is not NULL AND d.position_name != 'null'
+AND c.department_name in ({{ quote_list(department_filter_list()) }})
+AND d.position_name in ({{ quote_list(position_filter_list()) }})
+AND a.user_level in ({{ quote_list(level_filter_list()) }})

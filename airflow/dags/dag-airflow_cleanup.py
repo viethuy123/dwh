@@ -8,8 +8,8 @@ from airflow.utils.trigger_rule import TriggerRule
 default_args = {
     'owner': 'huynnx',
     'start_date': days_ago(1),
-    'retries': 1,
-    'retry_delay': timedelta(minutes=5),
+    'retries': 3,
+    'retry_delay': timedelta(minutes=1),
     'email_on_failure': False,
     'email_on_retry': False,
 }
@@ -17,7 +17,7 @@ default_args = {
 with DAG(
         dag_id='dag-cleanup_airflow_logs',
         default_args=default_args,
-        schedule_interval='@daily',  
+        schedule='@daily',  
         catchup=False,               
 ) as dag:
     

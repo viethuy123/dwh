@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "f099ab68-74f8-470f-b211-19dea171919e",
+      "id": "c9aa0463-ad45-499b-9f91-55d7b66adbfe",
       "kwargs": {
         "column": "project_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "860de03e-49e9-4549-823e-dd37889970fa",
+      "id": "3b03a637-a695-451b-9bec-e2ef1306d265",
       "kwargs": {
         "column": "user_id"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "43ef8c8e-e2fa-42fe-9ba9-48dee9de4696",
+      "id": "a0bef3d7-a88e-41ec-8b42-009aa3b3b423",
       "kwargs": {
         "column": "joined_at"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "7cab7679-d39f-45c0-994e-fa94185a31cf",
+      "id": "a799824f-973a-472e-bcc8-0b63be9fb3e6",
       "kwargs": {
         "column": "left_at"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "fec50966-f2f7-447d-a730-4ce8bb9b4d66",
+      "id": "7041fddb-4165-4afa-9489-49c323d67ec9",
       "kwargs": {
         "column": "project_id"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "d191218c-c7f3-4603-b503-03774d223d45",
+      "id": "1b4840ea-5661-4a1a-b202-4f125e420653",
       "kwargs": {
         "column": "user_id"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "f391b7f8-9e3d-43de-8700-2fa8f5ca7b3f",
+      "id": "70f7261c-dda3-45dd-a5ef-2ff6c6ecb5f6",
       "kwargs": {
         "column": "project_id",
         "type_": "object"
@@ -58,7 +58,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "96a6784e-e69d-4da4-9f49-78993b66de75",
+      "id": "745fec7c-a98d-476d-8f01-fa5be8bd1b16",
       "kwargs": {
         "column": "user_id",
         "type_": "object"
@@ -67,7 +67,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "068b6d14-a67d-4f26-884d-92bdb51af0f0",
+      "id": "fe1b923d-9864-4aa4-ada7-48e80e508088",
       "kwargs": {
         "column": "joined_at",
         "type_": "object"
@@ -76,7 +76,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "faeb6e88-2e9f-48af-88c1-31c97761b7d4",
+      "id": "6a28fa09-3fa2-4ec5-856d-812dae0a62dc",
       "kwargs": {
         "column": "left_at",
         "type_": "object"

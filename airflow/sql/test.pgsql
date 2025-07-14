@@ -293,7 +293,7 @@ select * from projects where start_date > current_date
 
 select * from etl_job_logs where target_table = 'stg_pods'
 
-select * from etl_job_logs where status = 'FAILURE' order by created_time desc
+select * from etl_job_logs where status = 'SUCCESS' order by created_time desc
 
 
 select * from jira.dim_members where member_id = '608285d10e83773bc64b264f'

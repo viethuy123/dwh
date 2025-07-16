@@ -8,8 +8,7 @@ services:
       - MINIO_ROOT_PASSWORD=admin123
       - MINIO_DOMAIN=minio
     networks:
-      dev-network:
-        ipv4_address: 172.18.0.100 
+      - dev-network 
     ports:
       - 9001:9001
       - 9000:9000
@@ -35,6 +34,7 @@ services:
       /usr/bin/mc policy set public minio/test;
       tail -f /dev/null
       "
+    restart: always
 
 networks:
   dev-network:

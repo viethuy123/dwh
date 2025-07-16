@@ -85,6 +85,8 @@ x-airflow-common:
     - ${AIRFLOW_PROJ_DIR:-.}/sql:/opt/airflow/sql
     - ${AIRFLOW_PROJ_DIR:-.}/dbt:/opt/airflow/dbt
     - ${AIRFLOW_PROJ_DIR:-.}/great_expectations:/opt/airflow/great_expectations
+    - ${AIRFLOW_PROJ_DIR:-.}/scripts:/opt/airflow/scripts
+    - ${AIRFLOW_PROJ_DIR:-.}/database_backup:/opt/airflow/database_backup
   user: "${AIRFLOW_UID:-50000}:0"
   networks:
     - dev-network

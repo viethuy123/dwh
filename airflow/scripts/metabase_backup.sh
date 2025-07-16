@@ -52,6 +52,8 @@ fi
 
 find "$LOCAL_BACKUP_DIR" -name "metabase_database_*.sql.gz" -mtime +7 -delete
 
+find "$LOCAL_BACKUP_DIR" -name "metabase_backup_*.log" -mtime +7 -delete
+
 echo "Backup process completed at $(date)"
 
 chmod -R 600 "$LOCAL_BACKUP_DIR"

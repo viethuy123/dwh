@@ -51,6 +51,8 @@ fi
 
 find "$LOCAL_BACKUP_DIR" -name "warehouse_databases_*.sql.gz" -mtime +7 -delete
 
+find "$LOCAL_BACKUP_DIR" -name "warehouse_backup_*.log" -mtime +7 -delete
+
 echo "Backup process completed at $(date)"
 
 chmod -R 600 "$LOCAL_BACKUP_DIR"

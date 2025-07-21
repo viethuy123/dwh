@@ -7,6 +7,7 @@ CREATE DATABASE monitoring;
 create schema src_jira;
 create schema src_create;
 create schema src_jisseki;
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 
 \c dwh;
 create schema jira_fdw;
@@ -14,6 +15,7 @@ create schema create_fdw;
 create schema jisseki_fdw;
 create schema fdw_metadata;
 CREATE EXTENSION IF NOT EXISTS postgres_fdw;
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 CREATE TABLE time_series (
     time_id SERIAL PRIMARY KEY,
     date DATE NOT NULL,
@@ -80,7 +82,7 @@ $$;
 create schema dwh_fdw;
 create schema fdw_metadata;
 CREATE EXTENSION IF NOT EXISTS postgres_fdw;
-
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 CREATE OR REPLACE PROCEDURE sync_fdw_tables(
     local_schema TEXT,
     remote_schema TEXT,
@@ -122,6 +124,7 @@ END;
 $$;
 
 \c monitoring;
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
 CREATE TABLE etl_job_logs (
     id SERIAL PRIMARY KEY,
     job_name VARCHAR(255),

@@ -301,3 +301,21 @@ select * from jira.dim_members where member_id = '608285d10e83773bc64b264f'
 select distinct department_name from jira.dim_members
 
 SELECT * FROM pg_locks;
+
+SELECT rolname, rolpassword FROM pg_authid WHERE rolname = 'dev_user';
+
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements;
+GRANT pg_read_all_stats TO dev_user;
+
+show shared_preload_libraries ;
+
+       SELECT
+        u.usename,
+        d.datname database_name,
+        s.query query_text,
+        s.total_exec_time duration
+      FROM
+        pg_stat_statements s
+        JOIN pg_catalog.pg_database d ON s.dbid = d.oid
+        JOIN pg_catalog.pg_user u ON s.userid = u.usesysid
+        LIMIT 1

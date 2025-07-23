@@ -18,18 +18,17 @@ def main():
         f"/opt/airflow/database_backup/metabase/metabase_database_{today_str}.sql.gz"
     ]
 
-    bucket_name_list = ["database_backup/warehouse/","database_backup/metabase/"]
+    bucket_name = "database-backup"
 
-    for bucket_name in bucket_name_list:
-        found = client.bucket_exists(bucket_name)
-        if not found:
-            client.make_bucket(bucket_name)
-            print("Created bucket", bucket_name)
-        else:
-            print("Bucket", bucket_name, "already exists")
+    found = client.bucket_exists(bucket_name)
+    if not found:
+        client.make_bucket(bucket_name)
+        print("Created bucket", bucket_name)
+    else:
+        print("Bucket", bucket_name, "already exists")
 
-    for source_file, bucket_name in zip(source_files_list, bucket_name_list):
-        object_name = source_file.split("/")[-1]
+    for source_file in source_files_list:
+        object_name = source_file.split("/")[-2] + "/" + source_file.split("/")[-1]
         client.fput_object(
             bucket_name, object_name, source_file,
         )

@@ -17,7 +17,7 @@ default_args = {
 with DAG(
         dag_id='dag-database_backup',
         default_args=default_args,
-        schedule='@daily',  
+        schedule='59 16 * * *',  
         catchup=False,               
 ) as dag:
     

@@ -4,3 +4,5 @@ __pycache__/
 *.cfg
 logs/*
 !logs/.gitkeep
+database_backup/*
+!database_backup/.gitkeep

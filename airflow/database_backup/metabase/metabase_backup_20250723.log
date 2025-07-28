@@ -1,6 +1,0 @@
-Starting PostgreSQL daily backup process at Wed Jul 23 04:12:28 UTC 2025
-Successfully created backup in container: /tmp/metabase_database_20250723.sql
-Successfully copied backup to local: /opt/airflow/database_backup/metabase/metabase_database_20250723.sql
-Successfully compressed /opt/airflow/database_backup/metabase/metabase_database_20250723.sql.gz
-Successfully removed temporary backup file from container
-Backup process completed at Wed Jul 23 04:12:46 UTC 2025

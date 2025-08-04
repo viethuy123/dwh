@@ -1,37 +1,35 @@
-import pendulum
-from airflow.models import Variable, DAG
+from airflow.sdk import Variable, DAG, TaskGroup
 from airflow_dbt_python.operators.dbt import DbtRunOperator
-from airflow.operators.python import PythonOperator
-from airflow.operators.empty import EmptyOperator
-from airflow.utils.task_group import TaskGroup
-from airflow.utils.trigger_rule import TriggerRule
+from airflow.providers.standard.operators.python import PythonOperator
+from airflow.providers.standard.operators.empty import EmptyOperator
 from utils.data_quality import validate_dataframe
 from utils.data_quality_notification import send_validation_results
 from utils.etl_job_logs import save_etl_job_logs
 from utils.extract_data import extract_sql_data
 from utils.mappings import hr_dtm_mapping
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 
 default_args = {
     "owner": "huynnx",
     "depends_on_past": False,
     'retries': 3,
-    'retry_delay': timedelta(minutes=1)
+    'retry_delay': timedelta(minutes=1),
+    'depends_on_past': False
 }
 
 dag = DAG(
     dag_id="dag-dwh_to_hr_dtm",
     default_args=default_args,
     schedule="@once",
-    start_date=pendulum.today("UTC").add(days=-1),
+    start_date=datetime.today() - timedelta(days=1),
     catchup=False,
     dagrun_timeout=timedelta(minutes=60),
 )
 
 start = EmptyOperator(task_id='start', dag=dag)
 
-end = EmptyOperator(task_id='end', dag=dag, trigger_rule=TriggerRule.ALL_DONE)
+end = EmptyOperator(task_id='end', dag=dag, trigger_rule='all_done')
 
 slack_bot_token = Variable.get('slack-bot_token')
 slack_chat_id = Variable.get('slack-chat_id')
@@ -154,7 +152,7 @@ with TaskGroup(group_id='warehouse_to_mart', dag=dag) as outer_group:
                         'tgt_table':tgt_table,
                         'status':'FAILURE'	
                     },
-                    trigger_rule=TriggerRule.ALL_FAILED
+                    trigger_rule='all_failed'
                 )
             
             dbt_run_dtm >> success_save_logs_task >> data_quality_task >> data_notification_task 

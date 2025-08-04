@@ -1,8 +1,6 @@
-from airflow.models import DAG, Variable
-from airflow.operators.python import PythonOperator
-from airflow.operators.empty import EmptyOperator
-from airflow.utils.task_group import TaskGroup
-from airflow.utils.trigger_rule import TriggerRule
+from airflow.sdk import DAG, Variable, TaskGroup
+from airflow.providers.standard.operators.python import PythonOperator
+from airflow.providers.standard.operators.empty import EmptyOperator
 from datetime import datetime, timedelta
 from utils.extract_data import extract_mongo_data, extract_sql_data
 from utils.data_quality import validate_dataframe
@@ -17,7 +15,8 @@ default_args = {
     'owner': 'huynnx',
     'start_date': datetime.today() - timedelta(days=1),
     'retries': 3,
-    'retry_delay': timedelta(minutes=1)
+    'retry_delay': timedelta(minutes=1),
+    'depends_on_past': False,
 }
 
 dag = DAG(
@@ -29,7 +28,7 @@ dag = DAG(
 
 start = EmptyOperator(task_id='start', dag=dag)
 
-end = EmptyOperator(task_id='end', dag=dag, trigger_rule=TriggerRule.ALL_DONE)
+end = EmptyOperator(task_id='end', dag=dag, trigger_rule='all_done')
 
 slack_bot_token = Variable.get('slack-bot_token')
 slack_chat_id = Variable.get('slack-chat_id')
@@ -232,7 +231,7 @@ with TaskGroup(group_id='create_to_staging', dag=dag) as outer_group:
                         'tgt_table':tgt_table,
                         'status':'FAILURE'	
                     },
-                    trigger_rule=TriggerRule.ALL_FAILED
+                    trigger_rule='all_failed'
                 )
             
             extract_load_task >> success_save_logs_task >> data_quality_task >> data_notification_task 
@@ -248,7 +247,7 @@ sync_fdw_tables_task = PythonOperator(
         'src_schema':'src_create',
         'server_name':'staging_server'
         },
-    trigger_rule=TriggerRule.ALL_DONE
+    trigger_rule='all_done'
     )
        
 

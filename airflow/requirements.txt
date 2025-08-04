@@ -9,3 +9,4 @@ pymongo
 cryptography
 python-telegram-bot
 slack-sdk
+apache-airflow-providers-ssh

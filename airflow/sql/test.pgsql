@@ -319,3 +319,6 @@ show shared_preload_libraries ;
         JOIN pg_catalog.pg_database d ON s.dbid = d.oid
         JOIN pg_catalog.pg_user u ON s.userid = u.usesysid
         LIMIT 1
+
+
+SELECT datname FROM pg_catalog.pg_database;

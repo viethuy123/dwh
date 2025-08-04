@@ -1,17 +1,16 @@
 from datetime import timedelta
-from airflow.models import DAG, Variable
-from airflow.operators.bash import BashOperator
-from airflow.operators.empty import EmptyOperator
-from airflow.utils.dates import days_ago
-from airflow.utils.trigger_rule import TriggerRule
+from airflow.sdk import DAG, Variable
+from airflow.providers.standard.operators.bash import BashOperator
+from airflow.providers.standard.operators.empty import EmptyOperator
+from datetime import datetime, timedelta
+
  
 default_args = {
     'owner': 'huynnx',
-    'start_date': days_ago(1),
+    'start_date': datetime.today() - timedelta(days=1),
     'retries': 3,
     'retry_delay': timedelta(minutes=1),
-    'email_on_failure': False,
-    'email_on_retry': False,
+    'depends_on_past': False,
 }
 
 with DAG(
@@ -23,7 +22,7 @@ with DAG(
     
     start = EmptyOperator(task_id='start', dag=dag)
 
-    end = EmptyOperator(task_id='end', dag=dag, trigger_rule=TriggerRule.ALL_DONE)
+    end = EmptyOperator(task_id='end', dag=dag, trigger_rule='all_done')
 
     warehouse_backup = BashOperator(
         task_id='warehouse_backup',

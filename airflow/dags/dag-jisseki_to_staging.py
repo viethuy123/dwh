@@ -111,7 +111,7 @@ def data_notification(src_table:str, tgt_table:str, **kwargs) -> None:
 
 def save_job_logs(src_table:str | list, tgt_table:str, status:str, **context) -> None:
 
-    execution_time = context['execution_date']
+    execution_time = context['logical_date']
 
     save_etl_job_logs(
         sql_uri=monitor_uri,

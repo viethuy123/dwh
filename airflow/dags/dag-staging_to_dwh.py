@@ -71,7 +71,7 @@ def data_notification(tgt_table:str, **kwargs) -> None:
         slack_bot_token=slack_bot_token,
         total_rows=total_rows, 
         new_rows_inserted=new_rows_inserted)
-    Variable.set(f"dwh-{tgt_table}_prev_rows",total_rows)
+    Variable.set(f"dwh-{tgt_table}_prev_rows",str(total_rows))
 
     return None
 

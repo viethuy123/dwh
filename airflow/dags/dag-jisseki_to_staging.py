@@ -104,7 +104,7 @@ def data_notification(src_table:str, tgt_table:str, **kwargs) -> None:
         slack_bot_token=slack_bot_token,
         total_rows=total_rows, 
         new_rows_inserted=new_rows_inserted)
-    Variable.set(f"src_jisseki-{tgt_table}_prev_rows",total_rows)
+    Variable.set(f"src_jisseki-{tgt_table}_prev_rows",str(total_rows))
 
     return None
 

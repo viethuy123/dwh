@@ -109,7 +109,7 @@ with TaskGroup(group_id='staging_to_warehouse', dag=dag) as outer_group:
 
     for tgt_table, src_table in warehouse_mapping.items():
 
-        with TaskGroup(group_id = f'dbt_dwh_{tgt_table}', dag=dag) as inner_group:
+        with TaskGroup(group_id = f'dwh_{tgt_table}', dag=dag) as inner_group:
 
             dbt_run_dwh = DbtRunOperator(
                 task_id=f"dbt_dwh_{tgt_table}",

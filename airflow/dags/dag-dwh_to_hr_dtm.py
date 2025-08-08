@@ -106,7 +106,8 @@ with TaskGroup(group_id='warehouse_to_mart', dag=dag) as outer_group:
                 profiles_dir = "/opt/airflow/dbt/.dbt/", 
                 select = [f"path:models/dtm/hr/{tgt_table}.sql"],
                 target = "dtm",
-                profile = "dwh_project"
+                profile = "dwh_project",
+                do_xcom_push_artifacts=["manifest.json", "run_results.json"]
             )
 
 

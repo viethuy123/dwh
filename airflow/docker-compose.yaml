@@ -63,6 +63,12 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__CORE__EXECUTION_API_SERVER_URL: 'http://airflow-apiserver:8080/execution/'
     AIRFLOW__CORE__COMPRESS_SERIALIZED_DAGS: 'true'
+    AIRFLOW__CORE__PARALLELISM: 64
+    AIRFLOW__CORE__MAX_ACTIVE_TASKS_PER_DAG: 128
+    AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG: 150
+    AIRFLOW__CORE__DAGBAG_IMPORT_TIMEOUT: 60.0
+    AIRFLOW__DAG_PROCESSOR__DAG_FILE_PROCESSOR_TIMEOUT: 100
+
     # yamllint disable rule:line-length
     # Use simple http server on scheduler for health checks
     # See https://airflow.apache.org/docs/apache-airflow/stable/administration-and-deployment/logging-monitoring/check-health.html#scheduler-health-check-server

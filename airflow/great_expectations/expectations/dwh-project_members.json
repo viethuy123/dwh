@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "958ef29b-d5fb-4453-9558-4d323e298360",
+      "id": "3195deef-d3f3-49a6-b2d1-fe6444931f73",
       "kwargs": {
         "column": "project_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ff2849b1-0df9-4700-a818-e250139c87d5",
+      "id": "02da4848-db40-431f-a6cc-3306861cacb9",
       "kwargs": {
         "column": "user_id"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "404eec54-4d85-44d1-9aa8-6648b1486fe0",
+      "id": "2d521758-bbfe-4a42-bda5-3d04c467ac7f",
       "kwargs": {
         "column": "joined_at"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "00c6fad0-ec1f-47af-8bc1-8603ca9397e2",
+      "id": "be7678c3-26c7-4f89-9041-56a242399e6b",
       "kwargs": {
         "column": "left_at"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "e2a6a78d-80d2-40f5-b475-1027ab438d98",
+      "id": "c9ab512f-4f4e-459b-a77c-98c49de877d7",
       "kwargs": {
         "column": "status"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "7d72c49f-d7ae-44ad-b775-3857f68c78d7",
+      "id": "486e9915-cb75-4c35-98db-e2de18517e0b",
       "kwargs": {
         "column": "is_deleted"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9ce82fee-a63f-4b8f-aad1-705b0c178b4f",
+      "id": "5991db16-5e72-4d40-b0c8-6bb69b9d08fb",
       "kwargs": {
         "column": "user_level"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "12dd89c0-2d1d-4cd8-856d-7611f9757be1",
+      "id": "057fb7c9-73e9-4342-af84-feca377245d7",
       "kwargs": {
         "column": "updated_time"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "80e6a951-4234-4671-983e-4f1d21b64f03",
+      "id": "fc916a8f-cf8c-4dda-a0c9-9067396ca6e8",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -73,7 +73,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "28edba62-9dd6-4c2b-a751-21b9337fcea0",
+      "id": "6ea50875-9fcf-4493-bf73-cee7d8bc8c76",
       "kwargs": {
         "column": "project_id"
       },
@@ -81,7 +81,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "ba3f3a19-821b-467d-a110-687e871e4b05",
+      "id": "78faad03-a10a-4975-a0f6-b332b0c6d530",
       "kwargs": {
         "column": "user_id"
       },
@@ -89,7 +89,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "553e2653-61c6-4880-a6a7-41546d0eb979",
+      "id": "b9d32522-c98d-4725-aeb8-c51d6e0ba63d",
       "kwargs": {
         "column": "project_id",
         "type_": "object"
@@ -98,7 +98,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4b688388-4fbf-411b-92fb-9c1a585256d8",
+      "id": "42aee0e4-48da-46a3-a014-08f6507a54d4",
       "kwargs": {
         "column": "user_id",
         "type_": "object"
@@ -107,7 +107,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "ea028daa-631e-4eb9-9d5f-420fd22ed595",
+      "id": "afe616c5-7ba6-40be-a123-1d5025978c97",
       "kwargs": {
         "column": "joined_at",
         "type_": "object"
@@ -116,7 +116,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "7873b191-c9b4-4efd-8c0e-cb5621649bc8",
+      "id": "888efd57-74e9-4b3d-aceb-1e26bcae443b",
       "kwargs": {
         "column": "left_at",
         "type_": "object"
@@ -125,7 +125,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "f3e69776-36bd-4337-9250-dc757312f2d2",
+      "id": "2b9a3883-c049-4275-8a6c-4598b81fb20a",
       "kwargs": {
         "column": "status",
         "type_": "object"
@@ -134,7 +134,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "e00a1ea0-d2f1-4f10-a322-d39d43245c06",
+      "id": "1136ac7d-9651-4016-8eb6-e5260cab9dd1",
       "kwargs": {
         "column": "is_deleted",
         "type_": "object"
@@ -143,7 +143,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "b30bbccd-d524-4652-b1d5-71535072accb",
+      "id": "d8234d45-e3df-4504-b4e2-de31dee82042",
       "kwargs": {
         "column": "user_level",
         "type_": "object"
@@ -152,7 +152,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "0dd228c0-706e-4c43-8c27-c1d4d58dd56a",
+      "id": "5be980d0-84ea-4ee7-a299-ab910359db19",
       "kwargs": {
         "column": "updated_time",
         "type_": "datetime64[ns, UTC]"
@@ -161,7 +161,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "1a51c60d-6e15-487a-8c3b-a88fe38b41e5",
+      "id": "dc23a389-f769-4a56-8964-4836487ff5eb",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns, UTC]"

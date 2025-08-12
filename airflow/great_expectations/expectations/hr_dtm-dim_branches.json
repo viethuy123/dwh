@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "0eb97528-8e66-4b19-9c29-dff919c485e6",
+      "id": "f0c63800-24af-49cb-be43-59f984856be1",
       "kwargs": {
         "column": "branch_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9d8b0a81-dcc9-4c71-af13-6f18fec80774",
+      "id": "7d8a509b-f6d4-4375-affb-b53dcd61f26f",
       "kwargs": {
         "column": "branch_name"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ab968a3b-d5bc-415f-8d03-4aa85b8924c0",
+      "id": "cbad4916-2119-48b3-ab82-9bdcdb49488c",
       "kwargs": {
         "column": "branch_id"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "10a33e7a-bd6d-4a1a-8db0-ea5fdc2c36e9",
+      "id": "01f110da-79bb-43e3-b044-611e6408e749",
       "kwargs": {
         "column": "branch_id",
         "type_": "object"
@@ -34,7 +34,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "c9edb62f-c547-414d-b8c3-710e7ff0f355",
+      "id": "95813a37-579a-460d-881d-246ef1f65940",
       "kwargs": {
         "column": "branch_name",
         "type_": "object"

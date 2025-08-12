@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "b01f228a-b5c3-44a8-a1dd-2f8ab4565427",
+      "id": "883f31f8-1021-430c-812e-e354730c91ac",
       "kwargs": {
         "column": "salary_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "cef76343-dbf1-49f1-bfe4-df0750958d17",
+      "id": "52b724c0-3b88-4f99-bec7-82f36142b01c",
       "kwargs": {
         "column": "user_id"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "4b48d66d-f841-4090-aee6-e5acfca697c7",
+      "id": "c9629fca-b3c6-498b-8bb1-ff67c7bb353f",
       "kwargs": {
         "column": "insurance"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "36408bc3-6375-4673-aea2-2f034eb540bd",
+      "id": "736f283d-e196-4cf7-a06a-8275e14f0779",
       "kwargs": {
         "column": "basic_salary"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ec3146ed-aec0-4288-8d35-96cc8a7bfa36",
+      "id": "a79eebef-df49-4d24-890c-644829aac834",
       "kwargs": {
         "column": "total_salary"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d5913def-edac-4345-aede-e667e8d1a672",
+      "id": "40ed3bcb-d477-4623-80e0-5307e148d018",
       "kwargs": {
         "column": "is_deleted"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "a016f71a-43dd-4030-965b-58cf3079907b",
+      "id": "2d5cc6de-317b-4ca5-9599-9c16fea9dc42",
       "kwargs": {
         "column": "status"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c4087864-fb03-42ec-a4e0-d930190ad72c",
+      "id": "3af515e7-cd46-420f-a285-5da152f19a15",
       "kwargs": {
         "column": "user_info_block"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "38dc495c-f9ea-423e-912f-859bdd765ce5",
+      "id": "35a7b653-92d4-461a-9c14-9c96ab85efa5",
       "kwargs": {
         "column": "created_time"
       },
@@ -73,7 +73,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "6a06c499-0fa6-487f-8cad-8edb133b33f0",
+      "id": "fc1f02d9-2051-4714-8848-fae809280d04",
       "kwargs": {
         "column": "updated_time"
       },
@@ -81,7 +81,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c5d8cead-4ffe-463d-b944-ca5765941f78",
+      "id": "dbde583e-30d4-402d-a56d-6a00e63c907d",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -89,7 +89,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "10bc40c1-7d73-4e59-93bb-4cd12d2913d3",
+      "id": "d6396504-cb4b-401c-83c1-9c6f7973c5e2",
       "kwargs": {
         "column": "salary_id"
       },
@@ -97,7 +97,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "44dbfd99-0c99-4d9a-8cd4-e2e4a2dd4550",
+      "id": "6d766120-8e6f-4818-92bb-3af02c71346a",
       "kwargs": {
         "column": "user_id"
       },
@@ -105,7 +105,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "ef48f6b1-2b79-4578-878a-ddf0622966d8",
+      "id": "aef40c2f-467a-4946-9dda-a37eb0e800e5",
       "kwargs": {
         "column": "salary_id",
         "type_": "object"
@@ -114,7 +114,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "2e48ad70-93d5-439e-90c4-4e12c2fccef6",
+      "id": "b9af53b8-25c7-4499-9426-31af9ee22a26",
       "kwargs": {
         "column": "user_id",
         "type_": "object"
@@ -123,7 +123,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "941f2cc1-b2cc-4014-9824-1ff34684cef7",
+      "id": "97c794e4-a5cd-485f-8cd4-9d4a57c951db",
       "kwargs": {
         "column": "insurance",
         "type_": "object"
@@ -132,7 +132,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "a52419f0-3a55-45ff-bdc5-b0f72aee9771",
+      "id": "0239e7d6-6182-4fb9-8b11-29791a2575b5",
       "kwargs": {
         "column": "basic_salary",
         "type_": "object"
@@ -141,7 +141,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "904d7f55-d90a-4438-b1fe-eb74c7e179fd",
+      "id": "d63b6661-1e3f-43af-815c-76add3100ee9",
       "kwargs": {
         "column": "total_salary",
         "type_": "object"
@@ -150,7 +150,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "77919ea9-6cf7-4027-a41b-2e2c9d702b84",
+      "id": "1b499289-0729-4169-ab53-38c4352a7552",
       "kwargs": {
         "column": "is_deleted",
         "type_": "object"
@@ -159,7 +159,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "adcd6731-d0ef-41fd-9c78-0a8cb471962a",
+      "id": "9be31499-2819-4cc2-86ed-0e2ea81718ee",
       "kwargs": {
         "column": "status",
         "type_": "object"
@@ -168,7 +168,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "5ccd26e4-c326-4b03-b96a-5f67d9c3e0e0",
+      "id": "c07e84b0-4925-4800-8e7b-cb1813488672",
       "kwargs": {
         "column": "user_info_block",
         "type_": "object"
@@ -177,7 +177,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "bafa488d-24dd-4c58-b77a-515ebee0d3bc",
+      "id": "cc114835-0451-4386-910d-f9d1a7ff9acd",
       "kwargs": {
         "column": "created_time",
         "type_": "datetime64[ns, UTC]"
@@ -186,7 +186,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "b82bbcb0-84f7-4eb5-8f66-2173855e6015",
+      "id": "5eca345a-875f-4ce2-bb72-52d9a6416332",
       "kwargs": {
         "column": "updated_time",
         "type_": "datetime64[ns, UTC]"
@@ -195,7 +195,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "e9dbd2ed-2dfa-482b-a4d1-e57af167c96e",
+      "id": "9377b945-c0ed-4a91-afd3-460194797953",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns, UTC]"

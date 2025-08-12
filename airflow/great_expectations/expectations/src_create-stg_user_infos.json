@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "59c07d9c-8749-4e26-aaad-ab0a748f9d08",
+      "id": "d7e70e04-53a1-45a0-8577-59b28258c750",
       "kwargs": {
         "column": "_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "147f8838-7f3e-49b9-bd1f-92eb52edbfd6",
+      "id": "5a46708a-ee41-464f-b8a8-d5404bc4f5ba",
       "kwargs": {
         "column": "staffCode"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "8a5e682d-1c88-40e0-b111-ebb28027d6b2",
+      "id": "74532175-8cf1-40ab-97e8-f8e8dbb4c2df",
       "kwargs": {
         "column": "firstName"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9d72e3a0-751e-4a8b-99f0-4ff40ec9d8aa",
+      "id": "c9af5e1c-72b7-49fb-9d3e-5a3bf914fb4d",
       "kwargs": {
         "column": "middleName"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "773f85dc-add2-4a1e-9e24-a03568137354",
+      "id": "24427c09-2a11-471d-879c-549454b6d3d4",
       "kwargs": {
         "column": "lastName"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "749b4bcd-ba3a-4caf-8199-79dc814a53fa",
+      "id": "ea492eaf-6f99-4272-b047-bf56333f7f8a",
       "kwargs": {
         "column": "emailCompany"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "674c0273-5cca-43cf-bd5e-34d5a445b59f",
+      "id": "262e65e6-4633-4f54-a834-cc3961b3613e",
       "kwargs": {
         "column": "emailPersonal"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "89008f42-8270-4b94-a458-8169d351dfc1",
+      "id": "1d3656ff-7dfb-4e9a-bc16-ec01e61b48e1",
       "kwargs": {
         "column": "birthDay"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "fde81199-a677-4758-8203-4d3f860489be",
+      "id": "38f4e9ae-688e-429b-bb15-8beef8872446",
       "kwargs": {
         "column": "welcomeDay"
       },
@@ -73,7 +73,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "787fa25e-adc1-4333-81bc-2569ce6277fe",
+      "id": "bfc26515-d853-435c-aaba-52fdeb89a575",
       "kwargs": {
         "column": "gender"
       },
@@ -81,7 +81,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "59a067b5-aee7-43c9-b7cb-e16b8d7d6fa6",
+      "id": "4e80a991-3215-496d-9f59-60da3239d209",
       "kwargs": {
         "column": "mobileCountryCode"
       },
@@ -89,7 +89,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "3afe5e91-4dcc-4521-ae96-316893885ca6",
+      "id": "9b581bbb-33d2-4abd-afec-080bda77e207",
       "kwargs": {
         "column": "mobile"
       },
@@ -97,7 +97,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "513f4d0f-0d4c-486e-9a11-83dd7226b653",
+      "id": "968e4830-fad7-46a7-a9b0-4d696e91f746",
       "kwargs": {
         "column": "officeTel"
       },
@@ -105,7 +105,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "00b02041-2475-42ef-99a9-a8bfd4e8d335",
+      "id": "2386f680-7392-4925-8a56-21180d4092fe",
       "kwargs": {
         "column": "address"
       },
@@ -113,7 +113,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "37a1bcbf-ea77-48fb-876f-380567155ac8",
+      "id": "26894774-81d9-4da5-adc3-3953a72a4172",
       "kwargs": {
         "column": "note"
       },
@@ -121,7 +121,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "5fe434ec-3139-4775-9f73-d2633b546685",
+      "id": "5890cb19-abc2-4cb8-b3dd-aa5f95753be8",
       "kwargs": {
         "column": "userJobStatus"
       },
@@ -129,7 +129,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "aea800b2-3976-4da5-ad84-6f15aa3df364",
+      "id": "7aea16ee-2355-4779-8f9f-005a067d650a",
       "kwargs": {
         "column": "status"
       },
@@ -137,7 +137,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "b7778225-466d-4117-85db-222984409553",
+      "id": "cf7f1d00-d4fb-4d4c-a4dd-69ad6d72867a",
       "kwargs": {
         "column": "order"
       },
@@ -145,7 +145,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9c528edc-2d8b-4c2c-b575-ac38dfa9f8a0",
+      "id": "9222a703-303b-4c9f-abc9-357539523ad7",
       "kwargs": {
         "column": "isDeleted"
       },
@@ -153,7 +153,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9cf65f38-c40a-4ecb-917a-ebaa3aa30e50",
+      "id": "6478591e-bd11-4034-9ae9-70392e414476",
       "kwargs": {
         "column": "userObjId"
       },
@@ -161,7 +161,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "b4bca39d-b56c-4cef-ad48-8cc16a07f857",
+      "id": "42e4665f-7f79-49e0-b90c-c664538bde05",
       "kwargs": {
         "column": "createdAt"
       },
@@ -169,7 +169,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "db17f93c-e895-4d7a-af64-9eee22fad99d",
+      "id": "3b26ae5d-af86-4650-82a6-8ffeeb0a4d76",
       "kwargs": {
         "column": "createdBy"
       },
@@ -177,7 +177,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d158a955-bf8a-4fda-827f-475ea287b375",
+      "id": "c6bacdbb-cf7f-4a39-9266-23a1cb6a0ec5",
       "kwargs": {
         "column": "updatedAt"
       },
@@ -185,7 +185,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "fc7d7391-f5a2-455f-a39c-011520d3fcfb",
+      "id": "1a46b1ed-bdef-4c6e-9e55-9c40eb1ea9e2",
       "kwargs": {
         "column": "updatedBy"
       },
@@ -193,7 +193,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9987563e-3017-473f-a90a-23007ede03f7",
+      "id": "da3f2e7e-20cb-4a96-a500-666e6ba4a69e",
       "kwargs": {
         "column": "employeeID"
       },
@@ -201,7 +201,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ca056fbc-6bb7-4db9-b35c-ddeefc7d395c",
+      "id": "62e7811f-c202-43a8-b72b-40b3ee0754c6",
       "kwargs": {
         "column": "flagCron"
       },
@@ -209,7 +209,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "0ee54ff2-554f-446b-a088-cd707f5f05f1",
+      "id": "dcb5bab4-968e-493a-a894-eba0924be5d2",
       "kwargs": {
         "column": "officialDate"
       },
@@ -217,7 +217,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "25f71a15-a0b4-4c59-b6ef-0cc54e495809",
+      "id": "44832933-4e4e-4e15-8c67-a24ec4b06f24",
       "kwargs": {
         "column": "probationDate"
       },
@@ -225,7 +225,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9fe42b9e-702c-4e45-adfb-1b93fa489baa",
+      "id": "1881af71-15d0-49b4-9542-d1944dc9800a",
       "kwargs": {
         "column": "organizationUnitID"
       },
@@ -233,7 +233,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "b4083564-ce42-4caf-90cc-d7d8d6f6c8ee",
+      "id": "01f22118-1bc2-4477-a01e-167606816065",
       "kwargs": {
         "column": "organizationUnitName"
       },
@@ -241,7 +241,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "5241bf39-681e-4f03-86f0-a196be435600",
+      "id": "266a4970-657b-4c35-b16a-f622dfde445c",
       "kwargs": {
         "column": "internDate"
       },
@@ -249,7 +249,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "037d785a-8e40-4b31-87e6-8084e4c48ba0",
+      "id": "96350ea4-1048-4cb6-a31e-bad2c430857a",
       "kwargs": {
         "column": "dataType"
       },
@@ -257,7 +257,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f8f5497d-9e0d-4282-a971-0d9a25955c91",
+      "id": "35eb5f4d-0e53-4281-9503-c86eeae01d67",
       "kwargs": {
         "column": "MISACode"
       },
@@ -265,7 +265,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "4f330e89-527b-43db-86d6-06bc78f93896",
+      "id": "ee2a7f38-27a4-47d6-be59-e64a810d8491",
       "kwargs": {
         "column": "quitDate"
       },
@@ -273,7 +273,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2ee40253-a8bc-4b98-bb4e-098985562573",
+      "id": "ba41abd0-3be0-47aa-a108-136433aafd4f",
       "kwargs": {
         "column": "timekeepingDate"
       },
@@ -281,7 +281,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d937d1a5-769e-4c79-8e50-0d353f4b4b1b",
+      "id": "6406cf13-111a-4791-9bde-fbb9243b0ccb",
       "kwargs": {
         "column": "welcomeDate"
       },
@@ -289,7 +289,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "585efd3c-ae85-4106-934b-47b0e0efd2d0",
+      "id": "bad8659e-ac92-4147-8230-4dcf0bd7f360",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -297,7 +297,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "b766bbe9-34ad-4965-a577-0342804e600f",
+      "id": "e51430b3-a032-4909-9563-1a1879570d12",
       "kwargs": {
         "column": "_id"
       },
@@ -305,7 +305,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "498372e7-ee91-4b3e-809c-274524428dea",
+      "id": "7499edf2-47b4-43bd-8792-c98103332d8c",
       "kwargs": {
         "column": "middleName"
       },
@@ -313,7 +313,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "0c7b91ac-7cdb-4920-a230-68b3e203079a",
+      "id": "3869b7ba-0a1a-4eb7-9d77-ebb62e939f8f",
       "kwargs": {
         "column": "userObjId"
       },
@@ -321,7 +321,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "8c126dd0-d3ce-450b-8515-2ce684a60af2",
+      "id": "6e7c8ecd-4749-476a-b6a0-2799772e8035",
       "kwargs": {
         "column": "employeeID"
       },
@@ -329,7 +329,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "3f4f3a57-caad-46ae-8683-cca2a71df5d5",
+      "id": "9869c2a7-28d1-45d1-8468-ebd6041accba",
       "kwargs": {
         "column": "organizationUnitID"
       },
@@ -337,18 +337,18 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "03cea6b2-42f5-4c87-8d97-fb5446a63935",
+      "id": "da783a7b-b57f-4712-8664-d9f2b14d62c4",
       "kwargs": {
         "column": "staffCode",
-        "max_value": 4308.5,
-        "min_value": 1631.25,
+        "max_value": 4303.3,
+        "min_value": 1659.05,
         "mostly": 0.95
       },
       "meta": {},
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "43f5107d-9913-47ee-8f58-51126f156b17",
+      "id": "fc3c47a3-1a72-45e2-a1be-60eeea625344",
       "kwargs": {
         "column": "order",
         "max_value": 255.0,
@@ -359,7 +359,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "26e33d28-4060-4dc6-9ebe-a5104d4450e0",
+      "id": "74f0e7e7-f2cf-4e04-bed7-0e8a2a83f4a8",
       "kwargs": {
         "column": "_id",
         "type_": "object"
@@ -368,7 +368,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "0174bdab-73f6-4650-9811-0fd5aaca06ff",
+      "id": "21754246-925a-4b7b-89d1-f33efde24d7f",
       "kwargs": {
         "column": "staffCode",
         "type_": "float64"
@@ -377,7 +377,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "9be6e7e3-d112-4f2f-9c34-71f9944622d0",
+      "id": "6eb12824-7c87-4614-a4f0-190951f7a30b",
       "kwargs": {
         "column": "firstName",
         "type_": "object"
@@ -386,7 +386,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "e515f317-4268-431c-9c49-0c377ba94e7c",
+      "id": "551c9d4b-15c3-4693-898c-af3e8e245ccd",
       "kwargs": {
         "column": "middleName",
         "type_": "object"
@@ -395,7 +395,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "5396a2bd-6e35-41ec-bd5e-928ea3bb1a6d",
+      "id": "b7d8c17a-85f2-416a-bac3-cdb9fdc6c74e",
       "kwargs": {
         "column": "lastName",
         "type_": "object"
@@ -404,7 +404,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "43170d0d-5edb-4f43-83cb-488e1d288e5f",
+      "id": "2a94f68a-79a8-44a6-a807-8c5a5af6199a",
       "kwargs": {
         "column": "emailCompany",
         "type_": "object"
@@ -413,7 +413,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "bf9ae63d-5242-471c-b701-712e7e20223f",
+      "id": "9318885b-868b-42d8-91e1-29e3e83a42a9",
       "kwargs": {
         "column": "emailPersonal",
         "type_": "object"
@@ -422,7 +422,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "9b0588e0-4854-4341-8320-8f278873b74b",
+      "id": "a33e0f7f-a548-43fa-ad14-8a6e4df6502c",
       "kwargs": {
         "column": "birthDay",
         "type_": "object"
@@ -431,7 +431,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "169f8501-7ad4-433e-b5de-4abe23e407cd",
+      "id": "783d9fda-6d7f-4c8e-9f65-dfb324471346",
       "kwargs": {
         "column": "welcomeDay",
         "type_": "object"
@@ -440,7 +440,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "958c302a-5af9-41fa-95c8-59cf253fbd02",
+      "id": "6ad3806f-e1c1-4973-98b0-c14ec375b5c3",
       "kwargs": {
         "column": "gender",
         "type_": "object"
@@ -449,7 +449,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "02904fd2-98cc-46b9-851c-7eccdd250b33",
+      "id": "80a17f34-a6d7-4b35-8f78-f3798643d174",
       "kwargs": {
         "column": "mobileCountryCode",
         "type_": "object"
@@ -458,7 +458,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "13c93300-c962-4d0d-b6a1-3c0395135d4e",
+      "id": "fa81399a-8ee5-4a66-bb40-25db853d5a91",
       "kwargs": {
         "column": "mobile",
         "type_": "object"
@@ -467,7 +467,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "10fe8bf0-d7a7-4cb3-876a-e9286911bbfd",
+      "id": "80bd8dc3-7a27-4eef-9374-50fe9cb7d080",
       "kwargs": {
         "column": "officeTel",
         "type_": "object"
@@ -476,7 +476,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "c0b95d82-0c67-43d5-9544-aeba2aa44ab9",
+      "id": "c37a8b85-2e9b-4079-bff5-159e340e0ddb",
       "kwargs": {
         "column": "address",
         "type_": "object"
@@ -485,7 +485,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "e450695d-b1cf-4f62-a683-d1e69dd47e62",
+      "id": "657f8feb-57c8-40cc-a31d-c852d511616b",
       "kwargs": {
         "column": "note",
         "type_": "object"
@@ -494,7 +494,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "5a75f1bd-a5e7-4d30-83ba-e79635df2848",
+      "id": "1bc280f2-6390-4eae-8032-884d6460dcd6",
       "kwargs": {
         "column": "userJobStatus",
         "type_": "object"
@@ -503,7 +503,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "9caf2bd8-6813-4b94-8f02-81560028a930",
+      "id": "ee68dd50-8419-43a3-8e1e-8421af1f6847",
       "kwargs": {
         "column": "status",
         "type_": "object"
@@ -512,7 +512,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "43b96437-7660-44e2-aea4-65492e7889b0",
+      "id": "08dac51b-c862-434a-af22-c40f5b1b0006",
       "kwargs": {
         "column": "order",
         "type_": "int64"
@@ -521,7 +521,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "bf9f64fc-a69d-4a04-bc03-642e670ccf18",
+      "id": "b6e5f3f2-6553-4dc5-beeb-a332db6a678c",
       "kwargs": {
         "column": "isDeleted",
         "type_": "object"
@@ -530,7 +530,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "0a3998ff-213a-4772-9441-d14e03356442",
+      "id": "99d9da8b-a46f-45a1-95b1-3c235a88a0f6",
       "kwargs": {
         "column": "userObjId",
         "type_": "object"
@@ -539,7 +539,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "780611a7-287b-4063-80c9-80bbd662b3c1",
+      "id": "5806e23f-7696-483c-9ed4-6f72f75ecbce",
       "kwargs": {
         "column": "createdAt",
         "type_": "object"
@@ -548,7 +548,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4ad8cae4-2730-43d6-a5a0-f6f59e19d33e",
+      "id": "7cf3c9fd-9101-4a22-bd14-3c82f807f194",
       "kwargs": {
         "column": "createdBy",
         "type_": "object"
@@ -557,7 +557,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "55c2bf40-03c6-4295-a500-f1a09682743a",
+      "id": "463a06fe-9877-45e3-b443-e94a54ea14ba",
       "kwargs": {
         "column": "updatedAt",
         "type_": "object"
@@ -566,7 +566,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "41efc2f0-899b-480f-931c-18c24a299329",
+      "id": "662d31d8-6a91-425c-b385-ef1509c036b5",
       "kwargs": {
         "column": "updatedBy",
         "type_": "object"
@@ -575,7 +575,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "3cfba4c6-1f4f-44eb-be3a-6df3f9460015",
+      "id": "722249da-1ff2-464f-b2d1-0cc8cc8ba32c",
       "kwargs": {
         "column": "employeeID",
         "type_": "object"
@@ -584,7 +584,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "c52a82fc-3582-4c86-aa2e-fb53f9570969",
+      "id": "50f79f8c-11dc-4b46-b5dc-36de6f2ac7d1",
       "kwargs": {
         "column": "flagCron",
         "type_": "object"
@@ -593,7 +593,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "c138313f-66b2-4e58-8679-24cb39ff4e21",
+      "id": "6e7a815b-dc88-4d05-aa38-84ed2dcfaaaa",
       "kwargs": {
         "column": "officialDate",
         "type_": "object"
@@ -602,7 +602,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4c886a8e-e575-4611-bd5a-f253abb3cb3a",
+      "id": "4e094991-a238-4694-83e2-d25f9ffe5c67",
       "kwargs": {
         "column": "probationDate",
         "type_": "object"
@@ -611,7 +611,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "86e84bdb-0d37-4974-9b3e-7fe015f90d0a",
+      "id": "1b90c545-462b-473b-9388-41d2b1e658f1",
       "kwargs": {
         "column": "organizationUnitID",
         "type_": "object"
@@ -620,7 +620,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "95866b69-93c5-4440-9e22-4a96e8952603",
+      "id": "7ed5a639-411a-4537-b82c-b42055b5b89d",
       "kwargs": {
         "column": "organizationUnitName",
         "type_": "object"
@@ -629,7 +629,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "e3d4a14f-640e-4c82-adaf-43442e2a7ca3",
+      "id": "5a1c43f8-d30a-4190-bd17-69ee5eda0237",
       "kwargs": {
         "column": "internDate",
         "type_": "object"
@@ -638,7 +638,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "215f008d-4a4a-4c7a-9737-40fba334cf32",
+      "id": "fb7f5ebf-cc3f-4867-ab03-3027868a2efc",
       "kwargs": {
         "column": "dataType",
         "type_": "object"
@@ -647,7 +647,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "75bb8134-6dec-45ad-b69a-287bee8799f1",
+      "id": "670d2116-c707-4019-a9e1-223134266353",
       "kwargs": {
         "column": "MISACode",
         "type_": "object"
@@ -656,7 +656,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "75434d9c-ccad-4807-9e7c-19b9372410c9",
+      "id": "19356196-da1c-42bc-ac8e-ef348b132df6",
       "kwargs": {
         "column": "quitDate",
         "type_": "object"
@@ -665,7 +665,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "e7ac6469-cb8f-4977-ab52-ade1c4a3ed89",
+      "id": "2c0ae1c3-b537-4c4b-a750-7aa791a59f17",
       "kwargs": {
         "column": "timekeepingDate",
         "type_": "object"
@@ -674,7 +674,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "214e9edf-2edb-4817-a652-d44854fe9391",
+      "id": "1618410e-92f4-48ba-b6f1-e46edb6144bc",
       "kwargs": {
         "column": "welcomeDate",
         "type_": "object"
@@ -683,7 +683,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "0e21ae48-898f-4384-b19a-7fa8a5fd0fb6",
+      "id": "ce140b63-43c2-4a16-9292-f3da6ae3794b",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns]"
@@ -692,7 +692,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "cf9ee1df-5333-4b64-a7d3-19c0b947aa69",
+      "id": "ad2bfb93-4aff-4f6e-9aa8-c0c6eb23f88c",
       "kwargs": {
         "column": "staffCode",
         "mostly": 0.99,
@@ -702,7 +702,7 @@
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "d4afe3a0-eb66-483b-b513-308c8caf768b",
+      "id": "6e4b7029-aba4-4fa0-86fc-9901294eef23",
       "kwargs": {
         "column": "order",
         "mostly": 0.99,
@@ -714,7 +714,7 @@
   ],
   "id": "c78616a4-ca4c-4c9b-9c70-c51b3252b7ef",
   "meta": {
-    "great_expectations_version": "1.5.4"
+    "great_expectations_version": "1.5.8"
   },
   "name": "src_create-stg_user_infos",
   "notes": null

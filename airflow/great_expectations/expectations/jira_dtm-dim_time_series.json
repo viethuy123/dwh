@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "c1187a2a-3a53-49c3-a2e8-146b8ae33976",
+      "id": "ad7838ee-000d-4134-b1e4-266943dc306b",
       "kwargs": {
         "column": "date"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "519656b1-52e3-4d75-93e4-81cf32499bd0",
+      "id": "2f98704e-631a-4750-a442-9c0d8aa39ab6",
       "kwargs": {
         "column": "week_year"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "b20f916a-7938-4c3d-8262-031a0d67da40",
+      "id": "c9044900-a30a-488a-8d57-223cc5defdc3",
       "kwargs": {
         "column": "year"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "bdafb939-c330-4cd9-aac0-7ba82b14dd33",
+      "id": "7cd91df9-8ed1-4c83-9d67-e35e386adef8",
       "kwargs": {
         "column": "month_name"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "52795104-fe8f-402d-b19d-31458bd2b526",
+      "id": "b436ed24-e109-4294-a7bb-d5cda350d601",
       "kwargs": {
         "column": "month_year"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "e81ee97e-9691-4125-a076-4eafe2d1a8a4",
+      "id": "03446fb6-cd81-4bcb-bf53-babf0ab49165",
       "kwargs": {
         "column": "is_month_end"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9073b1c3-3195-491f-b716-a6d30a837ecb",
+      "id": "62d8557e-1c2c-4d4b-81a0-ab2a2b78bfaa",
       "kwargs": {
         "column": "year",
         "max_value": 2023.0,
@@ -60,7 +60,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "5281ed3b-557a-4b72-ab60-0b11595f92e4",
+      "id": "c246a00b-40b2-4f7c-9b60-4413a59d6593",
       "kwargs": {
         "column": "date",
         "type_": "object"
@@ -69,7 +69,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4010c608-2063-41e1-8691-12a5a23660f2",
+      "id": "fe694f3e-147b-4a7c-8b5c-e42b73dde279",
       "kwargs": {
         "column": "week_year",
         "type_": "object"
@@ -78,7 +78,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4f421f87-f19a-486a-af3d-29bfacf843cf",
+      "id": "0d3b2c27-9aad-41bf-98f2-1627bd75a0ab",
       "kwargs": {
         "column": "year",
         "type_": "int64"
@@ -87,7 +87,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "40209781-c48d-4dfa-b66f-1106a4b9bcc4",
+      "id": "56fc59fa-8eaa-4fe1-9628-7cfdd9c19c22",
       "kwargs": {
         "column": "month_name",
         "type_": "object"
@@ -96,7 +96,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "9cb44ba6-7640-4499-9fb0-ff83b4fbd256",
+      "id": "17c751da-e6c3-4377-9373-d30c38c199ee",
       "kwargs": {
         "column": "month_year",
         "type_": "object"
@@ -105,7 +105,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "12ccce44-c9ad-4a20-bf12-07313365176a",
+      "id": "8838e57f-bef4-4cb5-9fe3-3f585034a4e6",
       "kwargs": {
         "column": "is_month_end",
         "type_": "bool"
@@ -114,7 +114,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "302de407-2e15-4b66-bd8d-9975ce3b5f48",
+      "id": "87c58413-199f-4349-9c43-e45c9d0489e5",
       "kwargs": {
         "column": "year",
         "mostly": 0.99,

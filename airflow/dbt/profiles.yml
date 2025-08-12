@@ -1,0 +1,20 @@
+dwh_project:
+  outputs:
+    dwh:
+      type: postgres           
+      host: postgre-dwh_postgres-1 
+      port: 5432              
+      user: dev_user  
+      password: dev_password  
+      dbname: dwh
+      schema: public                    
+      threads: 4
+    dtm:
+      type: postgres           
+      host: postgre-dwh_postgres-1 
+      port: 5432              
+      user: dev_user  
+      password: dev_password  
+      dbname: dtm
+      schema: public                       
+      threads: 4

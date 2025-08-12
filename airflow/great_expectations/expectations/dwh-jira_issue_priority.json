@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "b8849591-11e6-43e6-acdf-e176bccf9818",
+      "id": "551df783-7409-4bac-b487-6ea579ce010d",
       "kwargs": {
         "column": "priority_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "3e1cdbc3-6e19-40af-9b08-508035b7b02a",
+      "id": "0e6e7cd6-20a8-4e42-be0d-1ea42175ea99",
       "kwargs": {
         "column": "priority_name"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "dd0212e5-a2f6-437c-bddb-506d7e2836c8",
+      "id": "a526e793-59ec-4286-8e5b-2af92f311b52",
       "kwargs": {
         "column": "priority_description"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d2fcfd91-9bd8-4fa2-9c64-ca2b93503881",
+      "id": "142cfd00-3023-4d59-b31b-b59370bb51d4",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "4979f4ac-ea39-4ae6-bac0-92c062b1becc",
+      "id": "e6fc1165-784d-4bae-b762-ee14d0a0ca09",
       "kwargs": {
         "column": "priority_id"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "d1949bf4-ccb3-47c5-8b5d-20abb6ca8c17",
+      "id": "a846c7db-293e-40be-9d31-461d8ef86212",
       "kwargs": {
         "column": "priority_id",
         "type_": "object"
@@ -50,7 +50,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "99962255-bc0c-493b-930d-31567ac22bcc",
+      "id": "fae1ea33-7ee7-4008-97fc-111b5b4c03ba",
       "kwargs": {
         "column": "priority_name",
         "type_": "object"
@@ -59,7 +59,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "d4f76baf-72a5-42ed-91d0-c8002dfc2660",
+      "id": "f529ad3b-e74b-4bab-9a8f-fe9c18eebb47",
       "kwargs": {
         "column": "priority_description",
         "type_": "object"
@@ -68,7 +68,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "5370251f-f456-4552-b87f-8e381f2b8445",
+      "id": "7fdaac8a-c75c-40d2-995b-d1a9b88696a4",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns, UTC]"

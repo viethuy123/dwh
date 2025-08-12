@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "0f073d09-a7df-4b4f-a3a2-a6a6fce21702",
+      "id": "3f684770-c7ba-4a73-9188-84bd2c1db021",
       "kwargs": {
         "column": "worklog_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ff917473-e6b0-4ca3-ace2-96e91d5e88de",
+      "id": "d99bbd4a-854d-40e5-9265-36878cc64054",
       "kwargs": {
         "column": "issue_id"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "dfe42259-7084-4ea9-8f2c-67bf328be568",
+      "id": "9b163d78-70fd-4c8c-8c57-09aa50c90896",
       "kwargs": {
         "column": "worklog_author"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "5e5a475e-3f0f-4743-9636-8ebb858f47ec",
+      "id": "239039c5-5d85-4802-bc23-fad258e379a7",
       "kwargs": {
         "column": "worklog_description"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "0b648f13-8db0-4120-8e25-ef12dad67d86",
+      "id": "df0e84a1-87d3-4c8a-9e2c-20a940549fe9",
       "kwargs": {
         "column": "start_time"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2fd5d003-ff3d-45ae-b2af-af91fc65e7cb",
+      "id": "0913056f-281e-4114-9d02-6a9a4cff1426",
       "kwargs": {
         "column": "time_worked"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "86b67d4c-9c62-4686-ace1-f30ff53cbf80",
+      "id": "9fdc8654-ea40-4e61-a31f-89562986e288",
       "kwargs": {
         "column": "update_author"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "aee98277-53d6-4522-b7b5-ef0ed9a04cc1",
+      "id": "ffae2d74-dbe6-44be-91e0-7510eeaac49f",
       "kwargs": {
         "column": "created_time"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "07520389-5d86-476c-a3c0-4874db4db0e2",
+      "id": "51664f26-535e-4f88-b868-5393a3e5a9d2",
       "kwargs": {
         "column": "updated_time"
       },
@@ -73,7 +73,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9ea24044-5cb0-4e95-9e65-0b3be07da22d",
+      "id": "63559a69-15fe-46c9-b272-9f5098540ef3",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -81,7 +81,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "a70cd066-45ec-4b11-9373-54d6e7c18624",
+      "id": "3eaa361b-1582-44ee-8fd3-aeee12b030da",
       "kwargs": {
         "column": "worklog_id"
       },
@@ -89,7 +89,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "24bfa34c-15c3-4819-81bd-958ae9d65295",
+      "id": "dbfc4b21-909f-406c-857c-ddccdcfca557",
       "kwargs": {
         "column": "issue_id"
       },
@@ -97,7 +97,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "af863920-6b5f-4530-9101-3f3e7eeebfbc",
+      "id": "cd94e295-eca9-49fb-a0c6-2f16d99481ed",
       "kwargs": {
         "column": "worklog_id",
         "max_value": 11224.05,
@@ -108,7 +108,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "c47301c4-1c42-43a8-b7a8-4b852061aca9",
+      "id": "48cc0a7a-9dfe-49ab-a232-37e9a4b9820c",
       "kwargs": {
         "column": "issue_id",
         "max_value": 11154.05,
@@ -119,7 +119,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "10b3b5e0-7082-4ed7-b366-0c734f035e5f",
+      "id": "46228259-4aea-4c03-bdb6-21619ac52e40",
       "kwargs": {
         "column": "time_worked",
         "max_value": 28800.0,
@@ -130,7 +130,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "b0e72170-d00c-41c2-a7fc-fb3f487b0a90",
+      "id": "46dd4ba1-e9bc-4608-ab50-f989f7be3402",
       "kwargs": {
         "column": "worklog_id",
         "type_": "float64"
@@ -139,7 +139,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "5218023b-a74a-475f-8de2-0e2bfc2d4e60",
+      "id": "8c28ca3a-9032-4bde-b6f9-1ec82ff78609",
       "kwargs": {
         "column": "issue_id",
         "type_": "float64"
@@ -148,7 +148,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "0df86df8-5ada-4cef-86f0-95c54062a44d",
+      "id": "b6fab060-7895-44ec-b3ee-d2eda1635194",
       "kwargs": {
         "column": "worklog_author",
         "type_": "object"
@@ -157,7 +157,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "a9cc6baa-cf31-4da4-895d-5e4c917ddaa4",
+      "id": "4dcb946e-1122-4fca-983f-5b6ea41858b5",
       "kwargs": {
         "column": "worklog_description",
         "type_": "object"
@@ -166,7 +166,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "89347138-7838-4bf6-bfcf-30d73dafb637",
+      "id": "baf99ccc-53ed-48fc-b120-45ba9f929d9e",
       "kwargs": {
         "column": "start_time",
         "type_": "datetime64[ns]"
@@ -175,7 +175,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "9045ad63-f1f6-4896-91ac-0c5e48d3b25b",
+      "id": "d4955759-d963-4720-af14-738106ab1596",
       "kwargs": {
         "column": "time_worked",
         "type_": "float64"
@@ -184,7 +184,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "52c2ab74-bb28-48dc-89ee-d9e46614c7b6",
+      "id": "060f7b80-fc04-4411-bd1d-ab3b93f72882",
       "kwargs": {
         "column": "update_author",
         "type_": "object"
@@ -193,7 +193,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "1543c669-3c6b-4c66-9124-73aaf60dc23f",
+      "id": "d812e034-ce81-40bf-8509-6b106c01762a",
       "kwargs": {
         "column": "created_time",
         "type_": "datetime64[ns]"
@@ -202,7 +202,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "dff0ef80-a210-47e8-88ed-429afdcfe28d",
+      "id": "a658b28d-58c3-4b70-bbfb-0facef730b2c",
       "kwargs": {
         "column": "updated_time",
         "type_": "datetime64[ns]"
@@ -211,7 +211,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "b1fea278-d1d5-428c-8896-c93da7ad1a21",
+      "id": "28c10d3a-3ddd-4628-8bcc-3c1428ff08cf",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns, UTC]"
@@ -220,7 +220,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "c1c6a457-9184-4ac3-8977-6cbf2afb52a4",
+      "id": "e0c1752a-eca6-4ec3-87e1-72d6a5126e39",
       "kwargs": {
         "column": "worklog_id",
         "mostly": 0.99,
@@ -233,7 +233,7 @@
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "754e1e72-25ee-47e7-989d-a62eaee7558f",
+      "id": "2bc4c5b1-2194-4bbe-baa2-8495e5fc4ade",
       "kwargs": {
         "column": "issue_id",
         "mostly": 0.99,
@@ -245,7 +245,7 @@
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "06a53990-130d-4d6b-aa71-08b59f5eb2b4",
+      "id": "a80003f0-938f-4ae8-a6a1-1484e664f0e3",
       "kwargs": {
         "column": "time_worked",
         "mostly": 0.99,
@@ -257,7 +257,7 @@
   ],
   "id": "69ae989e-49ba-4633-8872-c82f1c0b0ce1",
   "meta": {
-    "great_expectations_version": "1.5.4"
+    "great_expectations_version": "1.5.8"
   },
   "name": "dwh-jira_worklog",
   "notes": null

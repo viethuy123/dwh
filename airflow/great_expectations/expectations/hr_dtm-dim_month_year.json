@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "162df979-9450-4f02-83fe-370a66354004",
+      "id": "03426e22-35de-4cc2-9bdf-648e2005b6c1",
       "kwargs": {
         "column": "date"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "e4f2a444-cf8f-4677-a66b-a065b23f27cc",
+      "id": "1e55fce3-54f9-446b-8044-823ba50414cb",
       "kwargs": {
         "column": "freq_code"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "49075553-907b-403c-831e-0d1fb568b5d3",
+      "id": "55844830-18e1-492f-a3e7-2f97efcc3991",
       "kwargs": {
         "column": "year"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "a42292f4-eec0-42eb-9ab6-359211df9977",
+      "id": "35da0fc0-af3d-40a2-9377-add215e64167",
       "kwargs": {
         "column": "month_name"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "fbc8dbe0-22b9-4343-882a-39649cd1229e",
+      "id": "0b8d42db-b1e5-4e9a-ae1f-edaec633d332",
       "kwargs": {
         "column": "month_year"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "e0d91ebb-8ea8-402d-93e7-49f8b380444b",
+      "id": "54e9a3fa-1fab-4c76-a997-2a66cbd2ab7c",
       "kwargs": {
         "column": "date",
         "type_": "object"
@@ -50,7 +50,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "3875a611-6550-4e30-8f48-f7eb80ac9c0f",
+      "id": "ae920d36-4c21-4dc3-be70-43eb6fc0fe8a",
       "kwargs": {
         "column": "freq_code",
         "type_": "object"
@@ -59,7 +59,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "783e0cf1-ace6-4532-b1c9-22b52916a350",
+      "id": "090c3f2f-38d0-459b-b914-d3a34eb3c18d",
       "kwargs": {
         "column": "year",
         "type_": "object"
@@ -68,7 +68,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4441e609-3727-44d3-ba8b-9bfe23ca6ffd",
+      "id": "8aa77b6b-ecf1-43cf-a47d-94a01177e960",
       "kwargs": {
         "column": "month_name",
         "type_": "object"
@@ -77,7 +77,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "25cc7c21-596a-4634-8900-2d3ac9b2288e",
+      "id": "2638d536-435b-4fc5-abbe-ddb99f0aa65a",
       "kwargs": {
         "column": "month_year",
         "type_": "object"

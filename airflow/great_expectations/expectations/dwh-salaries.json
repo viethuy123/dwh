@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "8c87f7a3-71d5-49c6-b313-0c1e320b6647",
+      "id": "c8bc2d22-b7a2-422d-9168-56fdd28af8c3",
       "kwargs": {
         "column": "salary_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "51b85ccb-0973-48b0-ad80-c5880ffae296",
+      "id": "5c508505-0613-4c56-8332-8c00c5dbc154",
       "kwargs": {
         "column": "user_id"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d9d7b31d-4d0c-41c4-9975-d688c5e84e32",
+      "id": "b2ae2201-f854-47cc-abe5-e3eac23a6fa6",
       "kwargs": {
         "column": "insurance"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "73bc385c-e317-4163-a7f1-04e7209f03e5",
+      "id": "ad6ca662-7e0f-4bf7-b9e0-692bb4da5d19",
       "kwargs": {
         "column": "basic_salary"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "0bfb5dbb-eb4d-4ce6-a25d-1c2bdb0e9198",
+      "id": "dcd3dfdb-85c1-4602-9363-76c60bf73548",
       "kwargs": {
         "column": "total_salary"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "1876389e-d617-4e71-b246-3ed4d5df914a",
+      "id": "815a939d-949b-45ba-b12f-11c01b5a4872",
       "kwargs": {
         "column": "is_deleted"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "a4979219-ccc0-46e3-a1f5-753b27744068",
+      "id": "5e6a61e2-6a6a-4b88-90d5-5f2d6a215955",
       "kwargs": {
         "column": "status"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "bf8d6c93-d14e-4425-869e-30570fa66b98",
+      "id": "5eef89a4-637c-4513-94d1-f33e4f9ba28d",
       "kwargs": {
         "column": "user_info_block"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f101c351-6685-4dc7-975e-8c720fae0b79",
+      "id": "ed07b0b4-b247-4eb3-9527-f46d7094e862",
       "kwargs": {
         "column": "created_time"
       },
@@ -73,7 +73,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2f6fb835-1255-47b7-9ac9-ed5a7138a61f",
+      "id": "50b5326c-f25a-4108-8f33-27a21fc7a802",
       "kwargs": {
         "column": "updated_time"
       },
@@ -81,7 +81,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c0c02866-e0b4-4e92-b939-0e96ce27989d",
+      "id": "054cf4a7-7724-44a5-a18b-9a9f8e702f4b",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -89,7 +89,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "430d2a20-10fe-4bed-a990-7bdef645abf6",
+      "id": "404057a7-4fb1-4ec8-8b00-15d39c24a379",
       "kwargs": {
         "column": "salary_id"
       },
@@ -97,7 +97,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "617a1e4e-d973-4609-abec-b130e6443777",
+      "id": "2d77e28e-d836-432d-81c4-8427cb91befc",
       "kwargs": {
         "column": "user_id"
       },
@@ -105,7 +105,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "a66f5cc1-72c7-408f-85fd-a2c009a1d7ff",
+      "id": "49a85897-2bef-4128-98a2-8e3fd40baeff",
       "kwargs": {
         "column": "salary_id",
         "type_": "object"
@@ -114,7 +114,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "a16e03ee-19d5-4c65-bb9b-5e4edf932465",
+      "id": "558ed5f7-b9a0-4f53-a30d-5bdb4879ccf1",
       "kwargs": {
         "column": "user_id",
         "type_": "object"
@@ -123,7 +123,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "5fd02896-26e0-4782-b6f8-ae3f3147b9e8",
+      "id": "87b6b97a-3971-411e-90c5-0b1f597e7e20",
       "kwargs": {
         "column": "insurance",
         "type_": "object"
@@ -132,7 +132,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4fe8d413-da2a-4ff7-9a4c-8f78ef39fb09",
+      "id": "ab07544e-3c70-495c-964d-14e765b0a943",
       "kwargs": {
         "column": "basic_salary",
         "type_": "object"
@@ -141,7 +141,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "14696e51-0c14-478c-9806-ab6269d4d47e",
+      "id": "ecc724d2-7569-4ecf-a866-47eac01d66d9",
       "kwargs": {
         "column": "total_salary",
         "type_": "object"
@@ -150,7 +150,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "caa9dbda-b93b-467d-b4a3-87b3e31fbd62",
+      "id": "b3b8570c-205b-4712-8e93-2d9dceaeb162",
       "kwargs": {
         "column": "is_deleted",
         "type_": "object"
@@ -159,7 +159,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "482b7353-44ee-4bd7-96ab-e54192ebd746",
+      "id": "0a9ad2b7-2e15-4ce2-a6eb-64819767ad02",
       "kwargs": {
         "column": "status",
         "type_": "object"
@@ -168,7 +168,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "ab05e941-6cc2-4a12-9008-30b733e3d2a6",
+      "id": "4fcc9ceb-16dd-4e0f-9ff9-e01d93ddf2ab",
       "kwargs": {
         "column": "user_info_block",
         "type_": "object"
@@ -177,7 +177,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "7168d7b7-7ecf-47a1-aba6-f73104ef1110",
+      "id": "6b28ef84-eace-49c2-a6c7-d452d1885c96",
       "kwargs": {
         "column": "created_time",
         "type_": "datetime64[ns, UTC]"
@@ -186,7 +186,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "f16569f7-ecb0-42ca-8830-0e90ca7d4812",
+      "id": "18190e8f-04c7-48c4-9cc9-4a5c328d963d",
       "kwargs": {
         "column": "updated_time",
         "type_": "datetime64[ns, UTC]"
@@ -195,7 +195,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "2a408c10-9b1f-475b-a0d5-5900596cd886",
+      "id": "0acd76f6-47cf-4e4b-be87-67eda5f698e4",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns, UTC]"
@@ -206,7 +206,7 @@
   ],
   "id": "502443a6-0f13-4385-af9c-49f58c9c2e88",
   "meta": {
-    "great_expectations_version": "1.5.4"
+    "great_expectations_version": "1.5.8"
   },
   "name": "dwh-salaries",
   "notes": null

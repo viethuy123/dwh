@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "f5fa02e3-b7de-41ff-8bfd-186f61c8dd27",
+      "id": "29342d46-4df2-4261-947b-e9734abb9575",
       "kwargs": {
         "column": "position_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "4c91d706-94bf-496c-ab3a-b66dcb3f623e",
+      "id": "ac54b762-fabb-466c-9da6-265551654d4c",
       "kwargs": {
         "column": "position_name"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "e062d8a6-e846-4f8c-8c61-802fcb04a68b",
+      "id": "2d3abbc3-8da1-4590-9aba-9d4ae4acf0e9",
       "kwargs": {
         "column": "position_id"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "d78de98f-7883-464d-a65d-3755c0e2e8ec",
+      "id": "157c7be7-ca26-4866-977b-9a33019c01da",
       "kwargs": {
         "column": "position_id",
         "type_": "object"
@@ -34,7 +34,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "c5001a33-2e86-4953-b6f6-f96705b79b05",
+      "id": "1f237867-91b6-4907-b9f2-d52f7f751f2d",
       "kwargs": {
         "column": "position_name",
         "type_": "object"

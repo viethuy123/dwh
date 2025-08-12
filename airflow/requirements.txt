@@ -1,6 +1,6 @@
 pandas==2.1.4
-airflow-dbt-python[postgres]
 dbt-core==1.8.6
+airflow-dbt-python[postgres]
 psycopg2-binary
 great_expectations
 openpyxl

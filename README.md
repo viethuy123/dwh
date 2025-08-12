@@ -14,7 +14,7 @@ Dự án này sử dụng Docker Compose để triển khai các services cho DW
 ```bash
 ## Triển khai docker compose
 
-cd airflow && docker compose up airflow-init && docker compose up -d --build --scale airflow-worker=2 # airflow with scale
+cd airflow && docker compose up airflow-init && docker compose up -d --build --scale airflow-worker=3 # airflow with scale
 
 cd ../postgre && docker compose up -d # psql warehouse storage
 

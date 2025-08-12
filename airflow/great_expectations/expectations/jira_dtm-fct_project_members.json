@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "c9aa0463-ad45-499b-9f91-55d7b66adbfe",
+      "id": "98a25bd4-ca86-44e4-9959-1ac3c40c5b6a",
       "kwargs": {
         "column": "project_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "3b03a637-a695-451b-9bec-e2ef1306d265",
+      "id": "25dd4820-cf01-4856-afca-dd64d21dbfd6",
       "kwargs": {
         "column": "user_id"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "a0bef3d7-a88e-41ec-8b42-009aa3b3b423",
+      "id": "b5fc8948-8011-4629-96e1-53c4f7059d85",
       "kwargs": {
         "column": "joined_at"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "a799824f-973a-472e-bcc8-0b63be9fb3e6",
+      "id": "170a9809-c25c-4166-8fe4-5f65f4e01f14",
       "kwargs": {
         "column": "left_at"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "7041fddb-4165-4afa-9489-49c323d67ec9",
+      "id": "1b12b537-e833-47e4-9668-1d61b09ec06f",
       "kwargs": {
         "column": "project_id"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "1b4840ea-5661-4a1a-b202-4f125e420653",
+      "id": "b791af34-71e3-4b15-8123-7d81e3c974e0",
       "kwargs": {
         "column": "user_id"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "70f7261c-dda3-45dd-a5ef-2ff6c6ecb5f6",
+      "id": "e186dda0-831b-4ad3-84f1-32f24721b1ce",
       "kwargs": {
         "column": "project_id",
         "type_": "object"
@@ -58,7 +58,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "745fec7c-a98d-476d-8f01-fa5be8bd1b16",
+      "id": "005f2752-9999-4333-872d-e33bce179d13",
       "kwargs": {
         "column": "user_id",
         "type_": "object"
@@ -67,7 +67,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "fe1b923d-9864-4aa4-ada7-48e80e508088",
+      "id": "c45a38a0-78cb-4195-a9fe-9e160f88d6c4",
       "kwargs": {
         "column": "joined_at",
         "type_": "object"
@@ -76,7 +76,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "6a28fa09-3fa2-4ec5-856d-812dae0a62dc",
+      "id": "37ac9e9b-2040-4cbe-80a2-899103974191",
       "kwargs": {
         "column": "left_at",
         "type_": "object"
@@ -87,7 +87,7 @@
   ],
   "id": "065adeab-2cc6-413b-8fdd-381c647628b7",
   "meta": {
-    "great_expectations_version": "1.5.4"
+    "great_expectations_version": "1.5.8"
   },
   "name": "jira_dtm-fct_project_members",
   "notes": null

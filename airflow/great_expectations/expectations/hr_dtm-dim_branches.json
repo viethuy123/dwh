@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "e082713d-4901-4e94-b4dc-826a094f1c5c",
+      "id": "0eb97528-8e66-4b19-9c29-dff919c485e6",
       "kwargs": {
         "column": "branch_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "1d993659-0aef-48e9-811a-e8ee37bcb7d4",
+      "id": "9d8b0a81-dcc9-4c71-af13-6f18fec80774",
       "kwargs": {
         "column": "branch_name"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "85518917-1d49-4e5b-9c58-c8cff4f03b8c",
+      "id": "ab968a3b-d5bc-415f-8d03-4aa85b8924c0",
       "kwargs": {
         "column": "branch_id"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "9969e448-4b63-4167-ad86-ee0485b895df",
+      "id": "10a33e7a-bd6d-4a1a-8db0-ea5fdc2c36e9",
       "kwargs": {
         "column": "branch_id",
         "type_": "object"
@@ -34,7 +34,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4fce87e1-f19b-4e61-bb90-ea8b22ac5594",
+      "id": "c9edb62f-c547-414d-b8c3-710e7ff0f355",
       "kwargs": {
         "column": "branch_name",
         "type_": "object"

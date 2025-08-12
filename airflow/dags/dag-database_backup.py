@@ -49,6 +49,13 @@ with DAG(
         python3 /opt/airflow/py/backup_upload.py
         """,
     )
+    
+    s3_delete = BashOperator(
+        task_id='s3_delete',
+        bash_command="""
+        echo "Deleting old backups from S3..."
+        python3 /opt/airflow/py/prev_backup_delete.py
+        """,
+    )
 
-
-    start >> [warehouse_backup, metabase_backup] >> s3_upload >> end
+    start >> [warehouse_backup, metabase_backup] >> s3_upload >> s3_delete >>end

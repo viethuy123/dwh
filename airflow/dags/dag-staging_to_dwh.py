@@ -112,12 +112,14 @@ with TaskGroup(group_id='staging_to_warehouse', dag=dag) as outer_group:
         with TaskGroup(group_id = f'dwh_{tgt_table}', dag=dag) as inner_group:
 
             dbt_run_dwh = DbtRunOperator(
+                dag=dag,
                 task_id=f"dbt_dwh_{tgt_table}",
                 project_dir = "/opt/airflow/dbt", 
                 profiles_dir = "/opt/airflow/dbt/.dbt/", 
                 select = [f"path:models/dwh/{tgt_table}.sql"],
                 target = "dwh",  
-                profile = "dwh_project"
+                profile = "dwh_project",
+                upload_dbt_project=True
             )
 
 

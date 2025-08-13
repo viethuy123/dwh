@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "9caa4a40-1d78-4967-a5dd-5b800de862f4",
+      "id": "21d8a217-a53c-4086-8f43-c64048fd4fc7",
       "kwargs": {
         "column": "user_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "6c998ee4-62f8-4913-82c5-c3214556d3cc",
+      "id": "689805d0-ac43-4858-a5c3-b15ca85a0bde",
       "kwargs": {
         "column": "user_name"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "dcedbf83-32ce-4150-b373-31bbbac63b84",
+      "id": "e9351025-26b5-4cd4-8831-f841ec8a8253",
       "kwargs": {
         "column": "birthday"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f680985c-cdc3-4e96-bd02-2a5013d7fdb9",
+      "id": "44945555-bb24-4aab-9b9f-781784681c1e",
       "kwargs": {
         "column": "address"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "7b5b940e-58bd-4ac2-8c19-cf047a8d197e",
+      "id": "054af955-d34e-4a9f-981c-0c3cf266215f",
       "kwargs": {
         "column": "gender"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d3f26f9e-9ff2-4b65-9798-c2fe8bdd004f",
+      "id": "b69bb3ed-263b-447b-86cd-0e4fef74b1e6",
       "kwargs": {
         "column": "personal_email"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "5dbbb85a-d24d-4f3d-9884-6a3c1efb9274",
+      "id": "ef2a07ca-1c33-401d-b0a7-53840ae42578",
       "kwargs": {
         "column": "mobile"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "02ee5a10-ae21-4b20-a2f1-79b9193e4649",
+      "id": "365b7aa6-5d5c-4be5-a945-5742279c4ca6",
       "kwargs": {
         "column": "username"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "605e6bb7-3187-4494-bb50-36c9f9ccedca",
+      "id": "6d962fcf-f583-462c-8f79-362ca6f7d6c5",
       "kwargs": {
         "column": "password"
       },
@@ -73,7 +73,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "6b8c5084-fdc7-4883-9904-54284a9a21e9",
+      "id": "d2a0a80c-1790-47cc-825f-a4fd6ed3b77b",
       "kwargs": {
         "column": "company_email"
       },
@@ -81,7 +81,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "8f11c145-b49d-47ca-baa0-fc151de241a5",
+      "id": "ff791034-9261-41a5-8bff-c6f0d9b25736",
       "kwargs": {
         "column": "staff_code"
       },
@@ -89,7 +89,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "daa1bc9b-b269-4d85-bf63-691e28c1c4ea",
+      "id": "38ad9f8d-c9a0-4a4f-bc08-df71d61b7b05",
       "kwargs": {
         "column": "branch_id"
       },
@@ -97,7 +97,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "cc4a7da3-1b8e-4acf-a9ca-a081ef7aa6dd",
+      "id": "b88f886d-0400-4b12-aded-dacfc08ba140",
       "kwargs": {
         "column": "department_id"
       },
@@ -105,7 +105,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "184a7b18-eba4-41d6-b4f6-e23d26559d5c",
+      "id": "ff509e73-8121-4590-9a9a-a07e0a326f79",
       "kwargs": {
         "column": "position_id"
       },
@@ -113,7 +113,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "7c52022f-01a7-463e-b03d-5daa9a192891",
+      "id": "f5103f86-b9c5-4678-b621-c4430dd7968d",
       "kwargs": {
         "column": "welcome_day"
       },
@@ -121,7 +121,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "30e6a59b-962b-40bf-bcfa-1fd56223122b",
+      "id": "9342d7b6-a19a-49ff-8536-a130d207e66d",
       "kwargs": {
         "column": "probation_date"
       },
@@ -129,7 +129,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "17c66cd9-aa78-4851-88dc-48b08cdbbf0a",
+      "id": "7a5ef287-0d46-4935-b0f5-6a29ff8c79c1",
       "kwargs": {
         "column": "quit_date"
       },
@@ -137,7 +137,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "1aeb354c-5679-46ca-a1e9-9f00910b9731",
+      "id": "be939d5b-6522-4428-ae6a-077332d2c778",
       "kwargs": {
         "column": "user_level"
       },
@@ -145,7 +145,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "54e3b2a7-d361-46c7-8525-2df43d888b94",
+      "id": "ffa7b585-8bac-409a-a366-b47edebae48a",
       "kwargs": {
         "column": "user_status"
       },
@@ -153,7 +153,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "555352ef-0d30-4be1-8b36-1e6db8ac83cf",
+      "id": "75a5624b-a57f-494e-9508-da511ac00c71",
       "kwargs": {
         "column": "is_deleted"
       },
@@ -161,7 +161,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c3ffce67-9554-4bd1-8e1f-c8e8f3704029",
+      "id": "a5f5aac1-ea96-4eb8-b557-b0f0796d372b",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -169,7 +169,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c1413022-2163-4877-9ced-386902a90795",
+      "id": "cf034c1e-d5c9-489d-a2ed-71ff55ab9c63",
       "kwargs": {
         "column": "user_id"
       },
@@ -177,7 +177,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "027931e4-6658-4475-baa1-8ee46b2b3664",
+      "id": "0658f7b4-ff5d-4ff9-bf3e-b0d05b9a0972",
       "kwargs": {
         "column": "branch_id"
       },
@@ -185,7 +185,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "86c12ccf-d8f0-4f20-8b3c-22c7e68ed948",
+      "id": "3eba04e2-5284-4d2a-b756-4461ec41a1fd",
       "kwargs": {
         "column": "department_id"
       },
@@ -193,7 +193,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "46ee27fd-05b2-459a-9bee-3addb1cfd51a",
+      "id": "702bee0f-b95d-4911-bd45-1375b2b7c68a",
       "kwargs": {
         "column": "position_id"
       },
@@ -201,7 +201,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "05810977-357e-4d16-9d8a-74bb543a30a5",
+      "id": "57fa0f0d-b264-437b-b59b-59dc8adc3c60",
       "kwargs": {
         "column": "staff_code",
         "max_value": 4371.05,
@@ -212,7 +212,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "e868a00d-f329-495e-afba-8f738724b7f4",
+      "id": "8d6c9501-8660-4e5d-9851-47f5e42d8d59",
       "kwargs": {
         "column": "user_id",
         "type_": "object"
@@ -221,7 +221,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "d2dc1c80-88d7-42e9-933d-a0afdf75145f",
+      "id": "ac45e322-b3f1-4af2-b27e-932881437b94",
       "kwargs": {
         "column": "user_name",
         "type_": "object"
@@ -230,7 +230,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "87f336cf-c97f-43e4-9d68-90475e2240ee",
+      "id": "4dfdfabe-0560-4b06-b6f7-374058119612",
       "kwargs": {
         "column": "birthday",
         "type_": "object"
@@ -239,7 +239,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "25c2e6cf-d255-470c-b870-5165cc878a38",
+      "id": "2362a126-dd4b-4aa3-aa36-ae2a5c875881",
       "kwargs": {
         "column": "address",
         "type_": "object"
@@ -248,7 +248,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "ff0dd58b-9998-4d68-b4b2-127cf1c94eca",
+      "id": "c89cf732-f58a-4778-a439-6effb4a42041",
       "kwargs": {
         "column": "gender",
         "type_": "object"
@@ -257,7 +257,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "cd2f1180-ae87-4221-abe4-c11ecd338c58",
+      "id": "710428d2-7636-4fc9-816a-2f5c5a048ae5",
       "kwargs": {
         "column": "personal_email",
         "type_": "object"
@@ -266,7 +266,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "f2ae6d18-e261-400b-a30a-0de9a9aa1f71",
+      "id": "5e562c6a-7eb3-49b3-a45e-0166b56981f9",
       "kwargs": {
         "column": "mobile",
         "type_": "object"
@@ -275,7 +275,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "bdc71edc-240d-438f-a54b-0b63cfe41fba",
+      "id": "9d4ecd7c-ed23-4824-897d-8fb9a9a796c2",
       "kwargs": {
         "column": "username",
         "type_": "object"
@@ -284,7 +284,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "7013d14c-8900-42cb-804d-d62e8a9b197c",
+      "id": "d08a8315-5602-427c-93f3-a9771bbe6f84",
       "kwargs": {
         "column": "password",
         "type_": "object"
@@ -293,7 +293,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "d78bb88c-0c1d-432c-96a9-908e6a81da99",
+      "id": "2740fed2-a586-402d-bf5e-a003f6ffbf33",
       "kwargs": {
         "column": "company_email",
         "type_": "object"
@@ -302,7 +302,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "e6a699cb-46a9-441e-bc97-df2d79635c5e",
+      "id": "08fe7d3d-0c84-44cf-b58e-138cc570f94c",
       "kwargs": {
         "column": "staff_code",
         "type_": "float64"
@@ -311,7 +311,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "8e0b56a9-da66-4a71-ad98-e7d14a3dd0c0",
+      "id": "f4a4c242-662b-4197-839d-1f3a6419ba38",
       "kwargs": {
         "column": "branch_id",
         "type_": "object"
@@ -320,7 +320,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4b9184bd-f912-498f-b5c1-09121a2781b0",
+      "id": "9352480c-e16a-4142-a9b3-95062102035f",
       "kwargs": {
         "column": "department_id",
         "type_": "object"
@@ -329,7 +329,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "6a384704-cbfa-4f06-bb25-737681872cf8",
+      "id": "5b5bee0c-aafb-4703-a37f-55546021b3f5",
       "kwargs": {
         "column": "position_id",
         "type_": "object"
@@ -338,7 +338,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "03955ef2-3851-4481-aa58-1f410391bdc8",
+      "id": "17313732-f596-4ea4-8859-9d349cfa4696",
       "kwargs": {
         "column": "welcome_day",
         "type_": "object"
@@ -347,7 +347,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "d56b42e5-dcc7-420d-82ad-302e4be6d434",
+      "id": "70fec506-2c5c-43aa-a496-ec9c418cf399",
       "kwargs": {
         "column": "probation_date",
         "type_": "object"
@@ -356,7 +356,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "29e90caa-552f-4d10-928a-cc1c78e8080c",
+      "id": "a12fdd45-fc90-49d8-828f-57b3ecf0fe06",
       "kwargs": {
         "column": "quit_date",
         "type_": "object"
@@ -365,7 +365,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "b1fa12b5-3b0d-45ff-818e-44c837f9a5cf",
+      "id": "008dc6cc-9542-48d2-bfb9-8061df232287",
       "kwargs": {
         "column": "user_level",
         "type_": "object"
@@ -374,7 +374,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "a90b1499-c80c-492e-ab64-f673a1e0f9b4",
+      "id": "fb84342e-336c-4f4a-8743-5caa8c74f99d",
       "kwargs": {
         "column": "user_status",
         "type_": "object"
@@ -383,7 +383,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4a33e716-8708-4a52-82eb-b3da1ad25564",
+      "id": "c36a4327-09f2-4fb3-af72-97a0d23ce64f",
       "kwargs": {
         "column": "is_deleted",
         "type_": "object"
@@ -392,7 +392,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "bdc06498-7f21-4f30-9db8-bbb730f88a70",
+      "id": "8667aac6-12d5-4285-a404-5a8e3337260e",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns, UTC]"
@@ -401,7 +401,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4fc2d127-ee15-4c6d-828c-11b4d711ac9b",
+      "id": "4b4519a2-a5bf-4c59-b2f6-bbfb19c8582d",
       "kwargs": {
         "column": "staff_code",
         "mostly": 0.99,

@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "5697228a-fc28-4684-a89d-92cf23bc035f",
+      "id": "824c7c37-bedd-46ae-a5b6-aaa450cbc13b",
       "kwargs": {
         "column": "position_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c95a2090-6f31-4c74-bc5a-1b5abaa17e45",
+      "id": "4846eed7-8faa-44dd-a9f1-6ace7e3bb597",
       "kwargs": {
         "column": "position_name"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "40dc57c4-b67e-48f7-a938-cb06073f7c57",
+      "id": "5234c47a-e50b-4c63-8afd-59d831cf12d6",
       "kwargs": {
         "column": "position_id"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "9cc76f32-82ee-40a8-a27c-3ae593305eda",
+      "id": "fd2333e7-7af8-43d3-8c09-517d12875394",
       "kwargs": {
         "column": "position_id",
         "type_": "object"
@@ -34,7 +34,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "d037ae8b-47c2-4eb9-87a6-dca73da4f045",
+      "id": "1a4463d0-919b-49be-b6c6-de9a999c6829",
       "kwargs": {
         "column": "position_name",
         "type_": "object"

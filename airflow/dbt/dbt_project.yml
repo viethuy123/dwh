@@ -11,9 +11,9 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
-target-path: "target"
+target-path: "target/{{ target.name }}"
 clean-targets:
-  - "target"
+  - "target/{{ target.name }}"
   - "dbt_packages"
 
 models:

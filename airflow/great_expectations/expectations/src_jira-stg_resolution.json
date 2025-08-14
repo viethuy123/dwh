@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "5894de88-73dc-4af1-ab7e-68c842a61f97",
+      "id": "28807d39-3da3-4d9d-ab97-dd4ef6ca6779",
       "kwargs": {
         "column": "ID"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "b789c5f4-fa12-4ffa-a791-8303632cb4d8",
+      "id": "b714fe2e-fd1b-438d-8e49-f09aa78418fb",
       "kwargs": {
         "column": "SEQUENCE"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2b2c1a1b-58d1-4ef7-b4ec-1e9897b6de8d",
+      "id": "74aec0c3-3fe7-457f-b9de-f552bcf6ff16",
       "kwargs": {
         "column": "pname"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "4cc32c25-9b10-4bfc-9fa8-a2cf519a5f56",
+      "id": "781ca419-b43a-46b2-97a4-84d89e494bc8",
       "kwargs": {
         "column": "DESCRIPTION"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d2657d6e-55d0-452a-8dc9-ca5a5400b4cb",
+      "id": "4bb694f5-2b9a-49f0-b61a-b4420482548d",
       "kwargs": {
         "column": "ICONURL"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "fdaa2335-02bb-4ead-a084-3b1869f30e44",
+      "id": "8d552406-4d9d-4ce2-89ae-c1d7868f3298",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f2f3644b-884b-4221-a4e0-b26c86224d59",
+      "id": "8305a645-2ea3-4828-a6b4-f395deccbefd",
       "kwargs": {
         "column": "ID"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "76f83bc8-8e97-4f83-a85f-53d575ab2ef6",
+      "id": "ec0ab7d6-dade-44ca-b5ee-6fed36f9b439",
       "kwargs": {
         "column": "SEQUENCE",
         "max_value": 13.35,
@@ -68,7 +68,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "c18b878a-1d54-4ec5-b59a-924dffa11fcf",
+      "id": "7a3fe21b-7edc-4cd7-8364-8f12d65da08c",
       "kwargs": {
         "column": "ID",
         "type_": "object"
@@ -77,7 +77,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "218927b6-0f33-41a2-b4aa-3f0a338a0a6a",
+      "id": "e1705709-b669-4697-8657-9dae4d1757b3",
       "kwargs": {
         "column": "SEQUENCE",
         "type_": "float64"
@@ -86,7 +86,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "ed110dbc-24b0-4879-9824-b76a796202cb",
+      "id": "17246563-5c33-4086-b048-0c03de735317",
       "kwargs": {
         "column": "pname",
         "type_": "object"
@@ -95,7 +95,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "75e7a0c9-c9a4-4f88-980b-faace30ce1c1",
+      "id": "a4e8d446-18a5-4396-84d8-7b4d289b4a42",
       "kwargs": {
         "column": "DESCRIPTION",
         "type_": "object"
@@ -104,7 +104,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "987fd6d7-b144-40f1-8413-6feb44cc7106",
+      "id": "9770fc91-a7fc-487f-ba44-85d70112f3d8",
       "kwargs": {
         "column": "ICONURL",
         "type_": "object"
@@ -113,7 +113,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "42d29cb2-f443-4afb-bd45-214d2065b2e0",
+      "id": "0c9d0624-e55a-49b3-a2ec-fe65a0cbd4fc",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns]"
@@ -122,7 +122,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "ffb7d3dd-5190-40b8-8db5-7cc564127a9f",
+      "id": "5bc589ad-64a6-49a2-8b90-d63a3a2ed773",
       "kwargs": {
         "column": "SEQUENCE",
         "mostly": 0.99,
@@ -134,7 +134,7 @@
   ],
   "id": "597f88f6-38cf-4c3b-bf32-a243c2607f8d",
   "meta": {
-    "great_expectations_version": "1.5.4"
+    "great_expectations_version": "1.5.8"
   },
   "name": "src_jira-stg_resolution",
   "notes": null

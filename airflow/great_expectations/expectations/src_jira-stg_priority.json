@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "762472af-66d5-4737-a5a4-4ca32750ccef",
+      "id": "d41f96d3-fb6a-4a57-b4d4-bfbf34a572fd",
       "kwargs": {
         "column": "ID"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2dc10d55-8208-487d-89bb-bbc0810c6e42",
+      "id": "8ae90452-30a5-437d-af72-2e8cf0a66713",
       "kwargs": {
         "column": "SEQUENCE"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f08f8664-f0fc-4a09-b03f-9dbff1c88173",
+      "id": "0ede3678-3ec2-4784-9f5d-2a5ac4c9cbef",
       "kwargs": {
         "column": "pname"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ef508d43-4338-4678-89fd-96cc8ec62450",
+      "id": "73393011-495a-49e8-a93b-96625f958fcb",
       "kwargs": {
         "column": "DESCRIPTION"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c1c2b4ea-e637-42ea-b997-d3252700dabd",
+      "id": "03419295-aaef-4a28-974a-5561a03534d1",
       "kwargs": {
         "column": "ICONURL"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "3818c26b-222f-402c-a6cb-28e6a71dc6e0",
+      "id": "26b2f678-e064-4813-8b45-c40e3dcce0b8",
       "kwargs": {
         "column": "STATUS_COLOR"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d67900f2-8782-43d1-b189-c513eea53b39",
+      "id": "b4fd151d-03c1-4f85-b854-bffed1e06304",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "6ea8ef73-d492-449e-bb81-c2e43f41a00a",
+      "id": "21d07064-69b9-4a04-a0a6-6325bbcd9061",
       "kwargs": {
         "column": "ID"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "a097a898-85c2-429b-91ab-9bd0cc45ac42",
+      "id": "813e6f25-3cda-4c18-96d9-020b5e337a13",
       "kwargs": {
         "column": "SEQUENCE",
         "max_value": 6.699999999999999,
@@ -76,7 +76,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "0c7b0ee0-6810-47b4-8f3e-6ae193df94a9",
+      "id": "f42942fe-8384-40a2-946c-82a0cffd3f3a",
       "kwargs": {
         "column": "ID",
         "type_": "object"
@@ -85,7 +85,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "df2dc3b8-fd3f-486d-b2b6-52b3ca6a3687",
+      "id": "0244dec1-0fa0-4e15-8ce0-4b0eca9eba42",
       "kwargs": {
         "column": "SEQUENCE",
         "type_": "float64"
@@ -94,7 +94,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "88b158a3-5412-4df3-b403-bdca529a4b4e",
+      "id": "0cac7744-37e4-4688-8e1a-c61fdcfa551f",
       "kwargs": {
         "column": "pname",
         "type_": "object"
@@ -103,7 +103,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "1031c788-6999-4789-9a2e-05fd8f722ae5",
+      "id": "fecb1a9f-6f81-44bf-b4b1-cdf9cde270d0",
       "kwargs": {
         "column": "DESCRIPTION",
         "type_": "object"
@@ -112,7 +112,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "76d15c40-23d4-4a59-beb7-1e54a9dc3084",
+      "id": "e68a936e-d796-4cfc-a734-40c76fde859e",
       "kwargs": {
         "column": "ICONURL",
         "type_": "object"
@@ -121,7 +121,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "e6ff5b40-3c0c-4068-98ca-45da4edb9383",
+      "id": "ee4bb227-ecef-4a5e-8c7f-b65d9a0f57f4",
       "kwargs": {
         "column": "STATUS_COLOR",
         "type_": "object"
@@ -130,7 +130,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "3462ae7f-0316-4904-9e3a-919a21416aa4",
+      "id": "a8370a5e-17e0-4cd9-81df-a7af00e72d76",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns]"
@@ -139,7 +139,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "772cde41-4f6b-48d5-9cfc-afefe9c91674",
+      "id": "41118d22-b969-423d-a840-ed77e4092637",
       "kwargs": {
         "column": "SEQUENCE",
         "mostly": 0.99,
@@ -151,7 +151,7 @@
   ],
   "id": "aadc8815-338d-4a9b-9a28-23b78daf2cd2",
   "meta": {
-    "great_expectations_version": "1.5.4"
+    "great_expectations_version": "1.5.8"
   },
   "name": "src_jira-stg_priority",
   "notes": null

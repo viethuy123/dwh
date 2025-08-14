@@ -52,7 +52,8 @@ src_tables = ['projects','project_categories', 'pods',
               'users','branches','user_positions',
               'company_departments','user_infos',
               'profit_loss_expenses','profit_loss_project_expenses',
-              'staff_attendances', 'staff_attendance_types','salaries']
+              'staff_attendances', 'staff_attendance_types','salaries',
+              'project_bill_costs']
 tgt_tables = [f"stg_{table}" for table in src_tables]
 
 

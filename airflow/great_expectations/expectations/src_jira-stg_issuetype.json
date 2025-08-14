@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "b6f8343d-a5eb-4f9f-bbca-a6ed7d9cdaf2",
+      "id": "a2106f8f-f211-476a-afbc-ac3f467a19aa",
       "kwargs": {
         "column": "ID"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "675cbc5c-aadb-40fa-85d3-85be8f741c16",
+      "id": "9c2d02d4-b369-4222-9036-e1e38b077654",
       "kwargs": {
         "column": "SEQUENCE"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "4ef58635-a273-4364-ac0e-827a0678ef8a",
+      "id": "0acf1725-6983-49ce-9001-302ba2464521",
       "kwargs": {
         "column": "pname"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "30304dc4-e03b-4355-a9a0-fc896173bd72",
+      "id": "76cffc2c-b05f-4485-bdc0-e6ee057347ab",
       "kwargs": {
         "column": "pstyle"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "50f66bfa-1f0d-4a8f-a633-ae31a6afaa5c",
+      "id": "9505a246-b30c-404a-a2c9-18a0afb1a146",
       "kwargs": {
         "column": "DESCRIPTION"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2daaaaea-9ae0-4ea6-9d66-04a7f7e74a9e",
+      "id": "198b2505-0dad-46fd-89e8-166347729b11",
       "kwargs": {
         "column": "ICONURL"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "0b92c674-8d4a-47df-b6e3-72822b9c393c",
+      "id": "f5adde40-2a66-4821-912a-307b7d78f523",
       "kwargs": {
         "column": "AVATAR"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "15d2a3c2-64ff-42ac-9c84-30fd2cc78a37",
+      "id": "053c0cbf-ead6-4303-9f75-b11805208a4a",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f116bd74-42f8-4fca-8633-7f8b99dbeb9a",
+      "id": "04f099f1-d40d-4adc-a5df-9b7f01c1c402",
       "kwargs": {
         "column": "ID"
       },
@@ -73,7 +73,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "2572bca8-fb6e-4bd3-b310-d7ffa98281ed",
+      "id": "df4efd49-f1c9-4c94-8790-bf060f383fde",
       "kwargs": {
         "column": "SEQUENCE",
         "max_value": 0.0,
@@ -84,10 +84,10 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "e81a2af5-a307-46e6-9981-198ed75e9826",
+      "id": "30790b1d-3b9b-4e41-9d0d-216059b456b3",
       "kwargs": {
         "column": "AVATAR",
-        "max_value": 13121.65,
+        "max_value": 13563.05,
         "min_value": 10300.0,
         "mostly": 0.95
       },
@@ -95,7 +95,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "21daa042-1dd2-46d4-a9f6-369a8e808bfb",
+      "id": "cd65a906-24f6-40ba-8456-c447c9af52af",
       "kwargs": {
         "column": "ID",
         "type_": "object"
@@ -104,7 +104,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "c3172b67-620b-4f7d-983b-e12c9cedcf0e",
+      "id": "27601f48-27b3-4825-85a5-def70e4da533",
       "kwargs": {
         "column": "SEQUENCE",
         "type_": "float64"
@@ -113,7 +113,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "f4ef87ed-564d-470b-8109-a375f66fdbd1",
+      "id": "111c6631-d9b6-4efe-bc43-689ed5b82a4e",
       "kwargs": {
         "column": "pname",
         "type_": "object"
@@ -122,7 +122,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "5e091b22-9a47-4c19-b9ab-eac38c74415e",
+      "id": "3df5f631-4acd-49f3-a244-d8737631107b",
       "kwargs": {
         "column": "pstyle",
         "type_": "object"
@@ -131,7 +131,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4779bbba-df43-4640-a3c9-0c107ffe46d3",
+      "id": "fc55c8f4-6442-481c-b83d-d876e53862d1",
       "kwargs": {
         "column": "DESCRIPTION",
         "type_": "object"
@@ -140,7 +140,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "ec955784-d92f-4cde-ba0a-2a718d8966c5",
+      "id": "11c602cb-18e0-4ff1-a7b1-d6883aa40b58",
       "kwargs": {
         "column": "ICONURL",
         "type_": "object"
@@ -149,7 +149,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "0d7867b6-4ab2-449a-97e2-0243b6d98bd9",
+      "id": "fda98f7d-f2cc-4e4c-820d-33b464604597",
       "kwargs": {
         "column": "AVATAR",
         "type_": "float64"
@@ -158,7 +158,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "665d4cbe-c8ac-45e9-adbe-172d8a7ebe1c",
+      "id": "0336a170-61d1-4d3f-a083-4d7cd9feb3bc",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns]"
@@ -167,7 +167,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "d59e7587-6e5e-4473-8b4b-54d018e649b4",
+      "id": "08f0053e-aecc-47f3-b447-84d877d6480b",
       "kwargs": {
         "column": "SEQUENCE",
         "mostly": 0.99,
@@ -177,7 +177,7 @@
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "37d4330a-c140-47c5-af82-582e9abfd5a7",
+      "id": "56e2aba6-fe49-421e-88c3-0b1feea5a1ea",
       "kwargs": {
         "column": "AVATAR",
         "mostly": 0.99,
@@ -189,7 +189,7 @@
   ],
   "id": "c982daf5-673c-49d6-bd79-96f718d6d845",
   "meta": {
-    "great_expectations_version": "1.5.4"
+    "great_expectations_version": "1.5.8"
   },
   "name": "src_jira-stg_issuetype",
   "notes": null

@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "c9ff427d-7828-4977-9821-387e446d03d5",
+      "id": "b8579537-5f8f-4e3e-b2fc-1ccd90752e08",
       "kwargs": {
         "column": "type_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "e584a713-67f3-4383-b7d1-df556b1697b5",
+      "id": "414e942d-5ca8-4ea1-a7e3-91268fab56c8",
       "kwargs": {
         "column": "type_name"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "cdbe0164-0737-42a6-a6e0-78619342e111",
+      "id": "fbdbd7e9-7729-4fbe-8a4e-f02337b93266",
       "kwargs": {
         "column": "type_description"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f2d5816e-00b7-4848-8026-ca8e1e273e88",
+      "id": "30960fbb-657f-4021-b55e-fafbec46ab1c",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "334e05d7-80b3-4021-a67e-eac0ba584d55",
+      "id": "dbbfe23c-d030-49c9-bd9c-ba0e972228c8",
       "kwargs": {
         "column": "type_id"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "ba63ff64-ead7-42a6-b6dd-a7b2fc6a1b00",
+      "id": "cfd1770e-246d-4db4-b744-ec81b0d1410d",
       "kwargs": {
         "column": "type_id",
         "type_": "object"
@@ -50,7 +50,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "7bd1924c-76ea-4c7d-9fa7-bf29e3b6c3c7",
+      "id": "6e1c3942-131c-482a-9795-59df8dfe2b29",
       "kwargs": {
         "column": "type_name",
         "type_": "object"
@@ -59,7 +59,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "cda010ce-4cf6-4f04-8696-32899b34cd9f",
+      "id": "9cd784b7-271c-4d3f-8dc6-9b34c600b1db",
       "kwargs": {
         "column": "type_description",
         "type_": "object"
@@ -68,7 +68,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "62a4b2fe-12cb-47e8-a297-ff31f4fb7542",
+      "id": "e35c88d7-3fe7-42d5-8b1d-f7cf3ec3fa56",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns, UTC]"

@@ -37,3 +37,4 @@ sources:
       - name: stg_salaries
       - name: stg_pods
       - name: stg_billable_efforts_approveds
+      - name: stg_project_bill_costs

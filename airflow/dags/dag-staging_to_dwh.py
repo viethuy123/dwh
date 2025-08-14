@@ -59,7 +59,7 @@ def data_quality_check(tgt_table:str,**kwargs) -> None:
 def data_notification(tgt_table:str, **kwargs) -> None:
 
     result = kwargs['ti'].xcom_pull(
-        task_ids=f'staging_to_warehouse.dbt_dwh_{tgt_table}.dwh-{tgt_table}_quality_check', 
+        task_ids=f'staging_to_warehouse.dwh_{tgt_table}.dwh-{tgt_table}_quality_check', 
         key=f'dwh-{tgt_table}_validation_results')
     total_rows = extract_sql_data(pg_uri, f"SELECT count(*) as total_rows FROM {tgt_table}")['total_rows'][0]
     prev_rows = int(Variable.get(f"dwh-{tgt_table}_prev_rows",0))

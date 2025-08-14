@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "1d64b965-56f5-4457-9ba6-6176835b99f6",
+      "id": "96f3c583-f2a7-4d4d-a0fa-4432dd617141",
       "kwargs": {
         "column": "issue_id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "7a7b1efd-7923-475d-8d44-85fc93e7f376",
+      "id": "cb1ff7c9-3fab-4d79-a6f5-e29017a942f2",
       "kwargs": {
         "column": "issue_number"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ce948516-1818-405e-99bc-d1e874ac42b5",
+      "id": "ce716e72-dd06-4321-bd26-bade76a44ba0",
       "kwargs": {
         "column": "jira_project_id"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "3d0a754b-b807-46fb-93be-3d74d2d0136e",
+      "id": "443602ac-817d-434e-b0c0-e940f1926dbb",
       "kwargs": {
         "column": "issue_type"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "bec5c4a9-bfd0-4de1-acb9-0314c1fa20d9",
+      "id": "9d86a8d9-ebec-4b4a-a617-862d2417c11b",
       "kwargs": {
         "column": "issue_reporter"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "8b5689ae-b26c-48fe-9f01-a341b16b2dc8",
+      "id": "eedc6827-6b27-463f-8b98-86655aa4c9e1",
       "kwargs": {
         "column": "issue_assignee"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "b6ba058d-410a-437c-ae87-1c4f279945ce",
+      "id": "25c36022-5d56-4377-a743-c30a419f2af3",
       "kwargs": {
         "column": "issue_creator"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "4e6bcb1e-bcc4-47cf-b29f-5bd33a6e6851",
+      "id": "025342a4-62c9-4426-ad34-267df6509d39",
       "kwargs": {
         "column": "issue_summary"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "0f5bddb9-d3c2-47ec-96c2-5562c6f52808",
+      "id": "9612141e-f35b-43b3-bbf0-60b9cb9804fd",
       "kwargs": {
         "column": "issue_description"
       },
@@ -73,7 +73,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "3985e683-5e98-419a-922d-c33535cc3e2d",
+      "id": "5463e047-6726-4e1a-a072-a58a4761f6a8",
       "kwargs": {
         "column": "issue_priority"
       },
@@ -81,7 +81,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "957c6eec-44b8-49ab-a615-8d01895f2176",
+      "id": "804650a1-bb54-415e-ad96-6d243be8463f",
       "kwargs": {
         "column": "issue_resolution"
       },
@@ -89,7 +89,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "a9351d34-99ca-4071-9c94-8ce35b1f70c5",
+      "id": "0ba82e56-9e64-407d-a959-f6cada36dd1e",
       "kwargs": {
         "column": "resolution_date"
       },
@@ -97,7 +97,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "1cd01425-50cf-4c3f-bdca-1a156f5ea505",
+      "id": "79a39bb5-f461-4f33-933e-0f171daf610e",
       "kwargs": {
         "column": "issue_status"
       },
@@ -105,7 +105,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "35de48a4-9354-4feb-bc89-755b11864779",
+      "id": "06940e8d-6260-4571-b617-38cd039e7d13",
       "kwargs": {
         "column": "due_date"
       },
@@ -113,7 +113,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "3e5b1c1d-fe38-4459-bf35-c0b5c2494a41",
+      "id": "1fe1abd1-94c2-4b34-a98b-df6a2eae7602",
       "kwargs": {
         "column": "time_original_estimate"
       },
@@ -121,7 +121,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2af0dd2a-5a42-49c4-8fe9-e7efd596f64a",
+      "id": "eb25a916-96c3-4914-b29b-127d97e164a3",
       "kwargs": {
         "column": "time_estimate"
       },
@@ -129,7 +129,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f870c169-cd28-4eff-841f-9dab51113eb8",
+      "id": "6d5187e4-171d-4381-a225-abd76d98c7f6",
       "kwargs": {
         "column": "time_spent"
       },
@@ -137,7 +137,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "32a0dffd-0206-4e18-818d-506672c1366c",
+      "id": "6cfa4ee6-0efb-4e40-8c5e-92c0266f0bbc",
       "kwargs": {
         "column": "environment"
       },
@@ -145,7 +145,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "680df676-bb03-4a79-aacd-6b43da93c769",
+      "id": "df97a0b5-4b88-47c7-911b-afdba14d5f32",
       "kwargs": {
         "column": "created_time"
       },
@@ -153,7 +153,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "085bb2a4-9801-4700-ab9d-190d47fde245",
+      "id": "470f2be9-ce4b-4e53-88c2-e6c635158969",
       "kwargs": {
         "column": "updated_time"
       },
@@ -161,7 +161,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "206b3466-e40d-4adc-bf30-ee85c58c6168",
+      "id": "7c0fa16c-5f23-4068-bc81-8cb7bd5bc0bd",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -169,7 +169,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ae200828-8d09-4d87-9e13-4c3e96e17978",
+      "id": "33cbb9d9-816f-4dd9-81b5-9879c0d06666",
       "kwargs": {
         "column": "issue_id"
       },
@@ -177,7 +177,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "dd0657dd-b192-4bce-861a-fecafaf5c2b8",
+      "id": "93e81fd1-970a-48c5-b45a-994a50f3d2c3",
       "kwargs": {
         "column": "jira_project_id"
       },
@@ -185,43 +185,43 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "38ee11bd-b2cc-4a41-9c4d-b448f238143c",
+      "id": "f611b59f-d738-4827-bf13-5060cdd0907f",
       "kwargs": {
         "column": "issue_id",
-        "max_value": 20086.05,
-        "min_value": 18597.95,
+        "max_value": 11362.05,
+        "min_value": 10268.95,
         "mostly": 0.95
       },
       "meta": {},
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "1944b419-45f5-4b44-96a6-42b50ab881c6",
+      "id": "f19052fc-b988-4503-9c9e-275cd7c88fc6",
       "kwargs": {
         "column": "issue_number",
-        "max_value": 1010.1999999999998,
-        "min_value": 8.0,
+        "max_value": 415.04999999999995,
+        "min_value": 5.0,
         "mostly": 0.95
       },
       "meta": {},
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "c228c59b-6e37-4877-b535-3bdc320bca16",
+      "id": "42ac53f2-ce6e-4ec6-ab9b-0e4e36b9df59",
       "kwargs": {
         "column": "jira_project_id",
-        "max_value": 10422.0,
-        "min_value": 10105.0,
+        "max_value": 10320.0,
+        "min_value": 10200.0,
         "mostly": 0.95
       },
       "meta": {},
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "ce817f10-d56e-444d-89d4-11d271ed86d8",
+      "id": "4a5f4f17-c977-4f30-92e5-1b0c9c87e99d",
       "kwargs": {
         "column": "time_original_estimate",
-        "max_value": 85909.49999999988,
+        "max_value": 64800.0,
         "min_value": 0.0,
         "mostly": 0.95
       },
@@ -229,10 +229,10 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "c72d7754-63b3-4bd6-9406-df423684c004",
+      "id": "47c8f485-af23-4b04-8e9e-64f369a9da26",
       "kwargs": {
         "column": "time_estimate",
-        "max_value": 26819.99999999996,
+        "max_value": 16200.0,
         "min_value": 0.0,
         "mostly": 0.95
       },
@@ -240,10 +240,10 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "eef2203f-5dc2-4523-b80a-90d953b014f5",
+      "id": "a07a31bd-4c5c-4b72-a049-c35827622314",
       "kwargs": {
         "column": "time_spent",
-        "max_value": 536400.0,
+        "max_value": 406799.9999999988,
         "min_value": 3600.0,
         "mostly": 0.95
       },
@@ -251,7 +251,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "6c690f2a-fa1e-491a-9c19-e25b78a1a7fa",
+      "id": "75a73aa0-40d6-428a-b613-bcdb4eb63317",
       "kwargs": {
         "column": "issue_id",
         "type_": "float64"
@@ -260,7 +260,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "be4a3f6b-d642-477d-a08d-0709c2993080",
+      "id": "dc989a6a-f498-4da8-b9e0-2613ee74089b",
       "kwargs": {
         "column": "issue_number",
         "type_": "float64"
@@ -269,7 +269,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "8e6a3f5c-87a1-414c-bac3-da6bfb282b9d",
+      "id": "94cf2ae4-f92e-487d-b754-f7ea47d4e19d",
       "kwargs": {
         "column": "jira_project_id",
         "type_": "float64"
@@ -278,7 +278,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "fcaf1805-0d43-43c4-913a-f8bcca6e07ff",
+      "id": "5ddfd98c-ab36-430f-bef1-0d089589010f",
       "kwargs": {
         "column": "issue_type",
         "type_": "object"
@@ -287,7 +287,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "d29e1b64-4d70-455c-91f1-7f8cbf437a17",
+      "id": "ced689e0-d202-4d3d-997f-279d8673a0db",
       "kwargs": {
         "column": "issue_reporter",
         "type_": "object"
@@ -296,7 +296,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "99a68524-54e3-438a-bc42-75c3910a8daf",
+      "id": "db9b67d2-d4d7-4495-ae89-2be9717a88ea",
       "kwargs": {
         "column": "issue_assignee",
         "type_": "object"
@@ -305,7 +305,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "3e7e60d2-cdaa-41d9-bb88-49c9acf03af0",
+      "id": "64a8142e-c2b1-41da-8ff5-2c6f92b95aee",
       "kwargs": {
         "column": "issue_creator",
         "type_": "object"
@@ -314,7 +314,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "67d226c3-d9b3-41fc-b97d-58b711cfa296",
+      "id": "6ea66f38-b74c-4879-b792-eb4888089ef4",
       "kwargs": {
         "column": "issue_summary",
         "type_": "object"
@@ -323,7 +323,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "332b97a1-651c-4a6f-b70b-4b6df123b8ba",
+      "id": "35428a4e-4977-4452-aee8-621fb3140f59",
       "kwargs": {
         "column": "issue_description",
         "type_": "object"
@@ -332,7 +332,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "ce35d336-81cb-4f78-b152-799b7640d397",
+      "id": "c636c6e1-4b34-40d8-a060-cb2bc6b61019",
       "kwargs": {
         "column": "issue_priority",
         "type_": "object"
@@ -341,7 +341,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "f3ae7dcb-b67d-40cf-b807-00afdbd6d3fd",
+      "id": "93dba84c-6eb4-43af-a0c7-3467ac5771a3",
       "kwargs": {
         "column": "issue_resolution",
         "type_": "object"
@@ -350,7 +350,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "940dd000-00d0-4b52-ac4a-09dc9e62d2a2",
+      "id": "1f9fde54-f1c5-4fd0-9845-a2f8ba9ed54c",
       "kwargs": {
         "column": "resolution_date",
         "type_": "datetime64[ns]"
@@ -359,7 +359,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "31e31fa6-6da2-4bf9-8cb6-3fa048027dca",
+      "id": "316bff25-b020-4d79-b197-cb7c367c53f2",
       "kwargs": {
         "column": "issue_status",
         "type_": "object"
@@ -368,7 +368,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "3f2b4e73-ef7f-4d7a-84fa-7f171f47d19b",
+      "id": "585af14f-dbc8-4cdf-81df-957a036b9355",
       "kwargs": {
         "column": "due_date",
         "type_": "datetime64[ns]"
@@ -377,7 +377,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "8a70daea-8ada-4cbc-a921-e1ef0cabd5fa",
+      "id": "62194c09-cd2d-41ef-9dc6-e4114ef2e5fb",
       "kwargs": {
         "column": "time_original_estimate",
         "type_": "float64"
@@ -386,7 +386,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "f98bab20-901e-4345-bd2e-5bd93989500f",
+      "id": "f2b560fa-8e9b-443b-bcf5-eed71f843960",
       "kwargs": {
         "column": "time_estimate",
         "type_": "float64"
@@ -395,7 +395,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "48b58f06-4dad-4c52-b383-a6c47ace8903",
+      "id": "0b760ee3-284b-4d29-afc8-f70624a391bf",
       "kwargs": {
         "column": "time_spent",
         "type_": "float64"
@@ -404,7 +404,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "c5990409-9966-4f8a-bf4d-acf0cfa0d656",
+      "id": "7c4b385f-a882-421d-b05a-6bbf0e6d4229",
       "kwargs": {
         "column": "environment",
         "type_": "object"
@@ -413,7 +413,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "dcc80c3a-c628-4041-9dc2-f75afb82760e",
+      "id": "f5f89aab-4a37-4633-bca9-7dfcfbd5f180",
       "kwargs": {
         "column": "created_time",
         "type_": "datetime64[ns]"
@@ -422,7 +422,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "9ec556a6-59ce-4592-bc45-90a8ed53a090",
+      "id": "d9d77ca6-1ce7-495d-abfd-78f2debdf5f7",
       "kwargs": {
         "column": "updated_time",
         "type_": "datetime64[ns]"
@@ -431,7 +431,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "637592d6-3139-42a3-acc0-8dff6c6a7163",
+      "id": "6f5ad377-5711-40de-a375-0287cd895fba",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns, UTC]"
@@ -440,82 +440,33 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "98308c49-87c4-47c1-8f2f-45196095f2a7",
+      "id": "82588a3e-badd-4ebb-a93c-a53f27062c44",
       "kwargs": {
         "column": "issue_id",
         "mostly": 0.99,
         "value_set": [
-          23629.0,
-          23630.0,
-          29564.0,
-          23644.0,
-          29565.0,
-          32703.0,
-          32704.0,
-          23645.0,
-          32705.0
+          12477.0,
+          12478.0,
+          12479.0,
+          12399.0,
+          12480.0
         ]
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "77ede09c-6331-4211-bf04-fbfe91129bf0",
+      "id": "d5abebb3-d036-490f-9e98-e002b158352c",
       "kwargs": {
         "column": "issue_number",
         "mostly": 0.99,
-        "value_set": [
-          2759.0,
-          2760.0,
-          2761.0,
-          2762.0,
-          2763.0,
-          2764.0,
-          2765.0,
-          2766.0,
-          2767.0,
-          2768.0,
-          2769.0,
-          2770.0,
-          2771.0,
-          2772.0,
-          2773.0,
-          2774.0,
-          2775.0,
-          2776.0,
-          2777.0,
-          2778.0,
-          2779.0,
-          2780.0,
-          2781.0,
-          2782.0,
-          2783.0,
-          2784.0,
-          2785.0,
-          2786.0,
-          1998.0,
-          2787.0,
-          2788.0,
-          2789.0,
-          2790.0,
-          2791.0,
-          2792.0,
-          2793.0,
-          2794.0,
-          2795.0,
-          2796.0,
-          1997.0,
-          1969.0,
-          2803.0,
-          2804.0,
-          1968.0
-        ]
+        "value_set": []
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "16d02cd2-edb5-415e-9cf5-b65e911c1bb0",
+      "id": "8556a537-5a5e-4353-8364-be98f797fe04",
       "kwargs": {
         "column": "jira_project_id",
         "mostly": 0.99,
@@ -525,53 +476,54 @@
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "70976a91-2af6-4276-8481-7fac1d3316e2",
+      "id": "b97600c5-2a92-43ef-82e0-cc5c0e3d0849",
       "kwargs": {
         "column": "time_original_estimate",
         "mostly": 0.99,
         "value_set": [
-          286200.0,
-          144000.0,
-          259200.0,
-          298800.0,
-          203400.0,
-          196200.0,
-          144000.0,
-          144000.0,
-          144000.0
+          324000.0,
+          165600.0,
+          165600.0,
+          165600.0,
+          165600.0,
+          576000.0
         ]
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "dbbfdd43-e865-42ec-9113-27658f3edaae",
+      "id": "fe15e4fe-fc2f-45ab-80c3-643948620f13",
       "kwargs": {
         "column": "time_estimate",
         "mostly": 0.99,
         "value_set": [
-          57600.0,
-          115200.0,
-          57600.0,
-          72000.0,
-          144000.0,
-          144000.0,
-          144000.0,
-          144000.0,
-          89100.0,
-          89100.0
+          181800.0,
+          79200.0,
+          46800.0,
+          36000.0,
+          52200.0
         ]
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "3cfe1258-bb41-40e5-955c-657767ceb61d",
+      "id": "e09c1c8d-319f-42c2-bda7-71d28ebd1e97",
       "kwargs": {
         "column": "time_spent",
         "mostly": 0.99,
         "value_set": [
-          33506100.0
+          14796900.0,
+          9239400.0,
+          7687260.0,
+          10486800.0,
+          6016140.0,
+          9768960.0,
+          10483921.0,
+          4261680.0,
+          12273120.0,
+          12495600.0
         ]
       },
       "meta": {},

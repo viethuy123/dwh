@@ -1,197 +1,218 @@
 {
   "expectations": [
     {
-      "id": "cf146076-2b3a-44ee-998e-5b57c446cbd1",
+      "id": "591401b7-3205-446b-b5b1-a03dc171a5e6",
       "kwargs": {
-        "column": "project_id"
+        "column": "_id"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "54a8b88d-34a2-4ae1-81d7-79656724f865",
+      "id": "b0945994-471d-41b5-9816-ffe2f35c076c",
       "kwargs": {
-        "column": "jira_project_id"
+        "column": "departmentObjId"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "0c384622-4959-467a-be12-ff537f59fe85",
+      "id": "8b14a994-b87e-4522-a09e-412435f2ac22",
       "kwargs": {
-        "column": "project_name"
+        "column": "billEffortMenDay"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "7ff803d1-4cb3-4272-a3f6-d43a1f253a63",
+      "id": "ee5ab08e-4a43-44bb-8eac-e43008bea4ec",
       "kwargs": {
-        "column": "project_jira_url"
+        "column": "billEffortMenMonth"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "7c15f3d5-8089-4868-ac8d-d30557038004",
+      "id": "d09e1a5b-dce6-4caf-b5dd-43b0644c3808",
       "kwargs": {
-        "column": "project_description"
+        "column": "status"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "419a841c-f64c-4004-a2a5-b4728e8ef7cc",
+      "id": "44c71202-4bbd-494b-b707-fbabf9df6b6e",
       "kwargs": {
-        "column": "project_bill"
+        "column": "order"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c53c53a4-15d2-45c6-92ce-986238a77212",
+      "id": "2ef05a40-156a-4c45-a0bc-bebbefe1a219",
       "kwargs": {
-        "column": "project_category"
+        "column": "isDeleted"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "41b36b1f-8a6b-421e-a13b-138b0d86da61",
+      "id": "26528171-b3e9-40a4-b35d-c43c612d8eca",
       "kwargs": {
-        "column": "project_type"
+        "column": "closingMonthObjId"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2da2888a-6272-452b-8cbd-2fb45472d0aa",
+      "id": "8357851a-1b49-4321-bda1-56c29e082393",
       "kwargs": {
-        "column": "project_status"
+        "column": "projectObjId"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "ecb672a6-7e54-4499-8d1d-1263139b9bef",
+      "id": "6ff22923-33ce-4966-8be7-47105f230a29",
       "kwargs": {
-        "column": "location"
+        "column": "editUserObjId"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "63044312-96e8-40cb-aad4-51b91862c9fa",
+      "id": "ec36a3f9-2940-41f3-bd74-e376cce5bf4c",
       "kwargs": {
-        "column": "scope"
+        "column": "editDescription"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "0c11cdfb-2e1d-4934-87d0-61ded03f22e8",
+      "id": "0407ba2f-78f1-4587-b66a-16c3bba6b240",
       "kwargs": {
-        "column": "type"
+        "column": "createdAt"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d9d78eb6-8ccc-438b-af18-6f2e5caf0344",
+      "id": "b4966aba-731d-4bb0-aca9-bc204bb6bdbf",
       "kwargs": {
-        "column": "point_css"
+        "column": "createdBy"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "2efb31bb-5174-4e68-8f9b-b4f31a01c890",
+      "id": "a0ba9c46-ad9f-42eb-b295-c2c02f3eab33",
       "kwargs": {
-        "column": "summary"
+        "column": "updatedAt"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "0cdb2df4-6a0e-4efd-a9bd-54e9d6ed4ad0",
+      "id": "f6d85a7e-791b-47a4-b053-5cf2191cc432",
       "kwargs": {
-        "column": "size"
+        "column": "updatedBy"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "b46a85a6-31e3-489c-a70a-49436ca7718d",
+      "id": "02fe26e4-596a-4190-a257-4cf0034e07b1",
       "kwargs": {
-        "column": "period"
+        "column": "billInternal"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "7a6a8bc1-30f9-4937-a16d-a278b73994d2",
+      "id": "5079aca6-a4a9-439a-b0cc-d3df6f3378cc",
       "kwargs": {
-        "column": "team_size"
+        "column": "feedback"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "e289f784-e568-4ce4-b648-05c6119ce07b",
+      "id": "de2e46dd-ff82-4a7b-9d5b-813946927f9e",
       "kwargs": {
-        "column": "start_date"
+        "column": "reason"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "f6d74d17-0ac7-48f9-8fd5-1ba3a55c841c",
+      "id": "4c1b4da5-2be5-435d-9f1d-f32ac21938e5",
       "kwargs": {
-        "column": "end_date"
+        "column": "billKPI"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "d6d67f2c-658e-4b5a-acdf-9f16a2bad7b2",
+      "id": "5115fa69-b68e-4066-81f8-cc7a2a656184",
       "kwargs": {
-        "column": "project_value"
+        "column": "projectType"
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9c3ed8c5-e141-4dc8-ba7c-890026292e2f",
+      "id": "58789d62-8aea-4b5b-ab35-c051be2591cc",
       "kwargs": {
-        "column": "project_id"
+        "column": "etl_datetime"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_not_be_null"
+    },
+    {
+      "id": "b4281c14-e46f-4071-b1ec-c1e7bdce0741",
+      "kwargs": {
+        "column": "_id"
       },
       "meta": {},
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "0cc67c9d-5de2-4fa7-bee2-b94b1bf84c13",
+      "id": "95a96f7b-655c-4f68-89ca-43bfaed249d8",
       "kwargs": {
-        "column": "jira_project_id"
+        "column": "departmentObjId"
       },
       "meta": {},
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "c3df8071-5946-4c30-a8e8-49fe3d0a9fae",
+      "id": "e6683b0f-d86d-4266-b8d4-6e8f029d7175",
       "kwargs": {
-        "column": "jira_project_id",
-        "max_value": 15050.05,
-        "min_value": 10363.95,
-        "mostly": 0.95
+        "column": "closingMonthObjId"
       },
       "meta": {},
-      "type": "expect_column_values_to_be_between"
+      "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "aa8259ea-3c8d-4fab-8025-6bf77264d7ac",
+      "id": "63cc0166-8e3a-4bd7-a79e-3378b12de922",
       "kwargs": {
-        "column": "project_bill",
-        "max_value": 48.29999999999998,
+        "column": "projectObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "42f4fad6-fb83-4d2c-b4c3-9e34219e5311",
+      "kwargs": {
+        "column": "editUserObjId"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_unique"
+    },
+    {
+      "id": "2653fbab-3d0d-458c-a5a6-282f16bc9fa1",
+      "kwargs": {
+        "column": "billEffortMenDay",
+        "max_value": 220.0,
         "min_value": 0.0,
         "mostly": 0.95
       },
@@ -199,9 +220,31 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "76debb0e-72fa-47ac-bc56-a5efea63325c",
+      "id": "ec5345a4-6db2-4097-964a-7f4087fe01df",
       "kwargs": {
-        "column": "point_css",
+        "column": "billEffortMenMonth",
+        "max_value": 10.0,
+        "min_value": 0.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "fc64fa22-dda6-4ffd-aebb-053195753332",
+      "kwargs": {
+        "column": "order",
+        "max_value": 255.0,
+        "min_value": 255.0,
+        "mostly": 0.95
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_between"
+    },
+    {
+      "id": "82f76d06-cc3f-41ab-824c-17ecbaa2d300",
+      "kwargs": {
+        "column": "billInternal",
         "max_value": 0.0,
         "min_value": 0.0,
         "mostly": 0.95
@@ -210,10 +253,10 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "ddf09997-259e-433e-849e-247120be68b4",
+      "id": "2dbe389a-6759-41f2-b5ca-902e9f93bc37",
       "kwargs": {
-        "column": "size",
-        "max_value": 20.049999999999983,
+        "column": "billKPI",
+        "max_value": 0.0,
         "min_value": 0.0,
         "mostly": 0.95
       },
@@ -221,240 +264,224 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "1512ddf9-ff74-4cf5-91b1-7ec61900a47f",
+      "id": "d8898151-98d6-4a78-ba72-e893b3dfef31",
       "kwargs": {
-        "column": "period",
-        "max_value": 12.0,
-        "min_value": 0.0,
-        "mostly": 0.95
-      },
-      "meta": {},
-      "type": "expect_column_values_to_be_between"
-    },
-    {
-      "id": "33650b92-e00a-4409-a3ef-6deaaedda096",
-      "kwargs": {
-        "column": "project_value",
-        "max_value": 2191388887.331837,
-        "min_value": 500990.05030387227,
-        "mostly": 0.95
-      },
-      "meta": {},
-      "type": "expect_column_values_to_be_between"
-    },
-    {
-      "id": "10660a2e-d80e-4a08-9391-82b16b9b5b4b",
-      "kwargs": {
-        "column": "project_id",
+        "column": "_id",
         "type_": "object"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "fe6668c4-38b1-4ff7-ab23-376b37506e62",
+      "id": "60680d1b-965a-4be5-afc2-fdcabee63d8f",
       "kwargs": {
-        "column": "jira_project_id",
+        "column": "departmentObjId",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "b0d0b678-4c3a-4752-aa83-a7df83f7267f",
+      "kwargs": {
+        "column": "billEffortMenDay",
         "type_": "float64"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "cdb8621f-c134-4a49-9bb8-d68c43ddc310",
+      "id": "2159a3b7-96d1-4926-ba2f-c8675819622b",
       "kwargs": {
-        "column": "project_name",
-        "type_": "object"
-      },
-      "meta": {},
-      "type": "expect_column_values_to_be_of_type"
-    },
-    {
-      "id": "8a648590-3c15-410f-89f9-6c6f98e20004",
-      "kwargs": {
-        "column": "project_jira_url",
-        "type_": "object"
-      },
-      "meta": {},
-      "type": "expect_column_values_to_be_of_type"
-    },
-    {
-      "id": "3cfa8bbc-a327-4e08-a281-8097ab88156e",
-      "kwargs": {
-        "column": "project_description",
-        "type_": "object"
-      },
-      "meta": {},
-      "type": "expect_column_values_to_be_of_type"
-    },
-    {
-      "id": "4d5ca32e-cd87-4b64-9182-3d2dae1232cd",
-      "kwargs": {
-        "column": "project_bill",
+        "column": "billEffortMenMonth",
         "type_": "float64"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "733d5fc8-b816-4d4f-96b9-902aa6e3d73e",
+      "id": "b7c6be94-7791-464c-9f52-8bf8a718b02b",
       "kwargs": {
-        "column": "project_category",
+        "column": "status",
         "type_": "object"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "2e927571-eb9d-431c-9adc-0fdddd1029d6",
+      "id": "387db65c-6dee-41a8-b72f-b3adf7463a37",
       "kwargs": {
-        "column": "project_type",
+        "column": "order",
+        "type_": "int64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "61eec8e5-e0e5-4119-82b6-59360ce5e901",
+      "kwargs": {
+        "column": "isDeleted",
         "type_": "object"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "e1db1623-1ef4-4fa7-90c0-6ffd265918c9",
+      "id": "1b164fe6-ceeb-4229-a11a-219f9abb0129",
       "kwargs": {
-        "column": "project_status",
+        "column": "closingMonthObjId",
         "type_": "object"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "085f3417-0b52-409c-8360-22455af64bf7",
+      "id": "bcb694e7-30fd-4321-aa14-fa6debe2f33d",
       "kwargs": {
-        "column": "location",
+        "column": "projectObjId",
         "type_": "object"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "40db4d96-c8b0-4b34-8c1c-0727ef9d97a3",
+      "id": "9d4b0dcc-8830-490e-a20f-9630bae6b3a2",
       "kwargs": {
-        "column": "scope",
+        "column": "editUserObjId",
         "type_": "object"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "72462c12-3350-4f05-b69b-addaabbc5910",
+      "id": "3895ccb0-8e01-45bf-b64b-2cdecf7b2ae6",
       "kwargs": {
-        "column": "type",
+        "column": "editDescription",
         "type_": "object"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "8c326bea-af20-4c88-94c4-4458d17ab257",
+      "id": "98c4d0b6-49f4-4b3d-87e6-eb1c457d6fb5",
       "kwargs": {
-        "column": "point_css",
+        "column": "createdAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "81f802e6-8b47-425a-87cd-417ae6bddb1f",
+      "kwargs": {
+        "column": "createdBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "df37be3d-93cf-4094-afd4-485cd5191ed6",
+      "kwargs": {
+        "column": "updatedAt",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "65750fe8-dadd-4906-bcc5-e33ba4e6f774",
+      "kwargs": {
+        "column": "updatedBy",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "45963290-c55f-4ef5-8bba-9b54ac976647",
+      "kwargs": {
+        "column": "billInternal",
         "type_": "float64"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "194ba477-fe74-4d36-9645-9cda02fda0ff",
+      "id": "1c738697-cf83-423c-85a5-5ba18f2586bf",
       "kwargs": {
-        "column": "summary",
+        "column": "feedback",
         "type_": "object"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "e2dac5b6-10f0-4c09-b99f-41635f333f27",
+      "id": "d5040556-ac18-493d-b1c7-61e04b3209e8",
       "kwargs": {
-        "column": "size",
-        "type_": "float64"
-      },
-      "meta": {},
-      "type": "expect_column_values_to_be_of_type"
-    },
-    {
-      "id": "180c9f33-ef24-4efd-aa9a-dd67e248101d",
-      "kwargs": {
-        "column": "period",
-        "type_": "float64"
-      },
-      "meta": {},
-      "type": "expect_column_values_to_be_of_type"
-    },
-    {
-      "id": "b9b6e0e7-b275-4be7-9362-9a6d59864780",
-      "kwargs": {
-        "column": "team_size",
+        "column": "reason",
         "type_": "object"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "d5a20402-dc1b-479d-8307-871dab55619b",
+      "id": "c4e748e8-1fd8-46f1-b278-71b77d5cdedd",
       "kwargs": {
-        "column": "start_date",
+        "column": "billKPI",
+        "type_": "float64"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2cbcb346-12be-46fc-b6c9-79afa2f0756e",
+      "kwargs": {
+        "column": "projectType",
+        "type_": "object"
+      },
+      "meta": {},
+      "type": "expect_column_values_to_be_of_type"
+    },
+    {
+      "id": "2da36052-6d3e-48d2-b273-6425c9fe9605",
+      "kwargs": {
+        "column": "etl_datetime",
         "type_": "datetime64[ns]"
       },
       "meta": {},
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "53f511bf-e316-4c6e-9d41-568959c382ca",
+      "id": "c71f2295-c451-4870-adf5-c162462db333",
       "kwargs": {
-        "column": "end_date",
-        "type_": "datetime64[ns]"
-      },
-      "meta": {},
-      "type": "expect_column_values_to_be_of_type"
-    },
-    {
-      "id": "19339bec-f8ee-4f56-9813-67c808b2d47a",
-      "kwargs": {
-        "column": "project_value",
-        "type_": "float64"
-      },
-      "meta": {},
-      "type": "expect_column_values_to_be_of_type"
-    },
-    {
-      "id": "e99a7869-b263-4a6f-94e5-26d7e1129030",
-      "kwargs": {
-        "column": "jira_project_id",
+        "column": "billEffortMenDay",
         "mostly": 0.99,
         "value_set": [
-          16363499701670.0,
-          1660902924453.0,
-          1665474553684.0
+          1600.0,
+          1760.0
         ]
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "8633eca2-97fd-447e-aa52-8e415d47b38d",
+      "id": "70410c1b-eaef-4c20-bfb8-42ae966a1c01",
       "kwargs": {
-        "column": "project_bill",
+        "column": "billEffortMenMonth",
         "mostly": 0.99,
         "value_set": [
-          158.43,
-          231.6,
-          286.5,
-          184.2
+          80.0,
+          80.0
         ]
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "5f93eab9-40c0-4cf8-b7cc-636d3bc78533",
+      "id": "aab088e2-51c2-4585-a640-a1c38a44854f",
       "kwargs": {
-        "column": "point_css",
+        "column": "order",
         "mostly": 0.99,
         "value_set": []
       },
@@ -462,53 +489,30 @@
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "b809d27a-af44-4602-9ba6-812bdfd2d1ee",
+      "id": "8a66bd02-e097-4849-82c1-f80ea9e07b64",
       "kwargs": {
-        "column": "size",
+        "column": "billInternal",
         "mostly": 0.99,
-        "value_set": [
-          190.0
-        ]
+        "value_set": []
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "ca12cb2a-ea17-438b-ae0d-3b5054731681",
+      "id": "eaa331be-a90c-4212-a028-8fbce9fdef22",
       "kwargs": {
-        "column": "period",
+        "column": "billKPI",
         "mostly": 0.99,
-        "value_set": [
-          30.0,
-          24.0,
-          30.0,
-          36.0,
-          30.0,
-          25.0,
-          30.0,
-          36.0
-        ]
-      },
-      "meta": {},
-      "type": "expect_column_values_to_not_be_in_set"
-    },
-    {
-      "id": "7ee4a952-00dd-45ac-9226-a52678600a6f",
-      "kwargs": {
-        "column": "project_value",
-        "mostly": 0.99,
-        "value_set": [
-          49388832319.68262
-        ]
+        "value_set": []
       },
       "meta": {},
       "type": "expect_column_values_to_not_be_in_set"
     }
   ],
-  "id": "c7552182-ddc3-4a39-957d-69e1ae5e58c2",
+  "id": "11909ba8-abb6-45d5-910b-0a8d7c736ec4",
   "meta": {
     "great_expectations_version": "1.5.8"
   },
-  "name": "jira_dtm-dim_projects",
+  "name": "src_create-stg_project_bill_costs",
   "notes": null
 }

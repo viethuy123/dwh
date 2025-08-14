@@ -83,4 +83,14 @@ with dag:
         dag=dag,
     )
     
-    start >> push_dropbox_access_token_task >> download_dropbox_file_task >> unzip_file_task >> end
+    restore_backup_db = BashOperator(
+        task_id='restore_jira8db',
+        bash_command="""
+            echo "Restoring database..."
+            /opt/airflow/scripts/restore_jira8db.sh
+        """,
+        env={"MYSQL_PWD": Variable.get("jira_password")},
+        dag=dag,
+    )
+    
+    start >> push_dropbox_access_token_task >> download_dropbox_file_task >> unzip_file_task >> restore_backup_db >> end

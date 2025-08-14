@@ -322,3 +322,5 @@ show shared_preload_libraries ;
 
 
 SELECT datname FROM pg_catalog.pg_database;
+
+drop foreign table dwh_fdw.projects;

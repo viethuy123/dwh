@@ -1,4 +1,15 @@
-CREATE MATERIALIZED VIEW jira.mview_member_free_effort AS
+{{ config(
+    materialized="materialized_view",
+    on_configuration_change="apply",
+    indexes=[
+        {
+            "columns": ["member_email", "month_year"],
+            "unique": true,
+            "type": "btree",
+        }
+    ]
+) }}
+
 WITH
   _time_series AS (
     SELECT
@@ -16,7 +27,7 @@ WITH
   ),
   _jira_efforts AS (
     SELECT
-      jira.dim_members.member_email,
+      m.member_email,
       to_char(start_time, 'YYYY-MM') AS month_year,
       (sum(time_worked) / 3600) / 160 AS actual_efforts,
       avg((sum(time_worked) / 3600) / 160) OVER (
@@ -24,25 +35,25 @@ WITH
           to_char(start_time, 'YYYY-MM') ROWS BETWEEN 3 PRECEDING
           AND CURRENT ROW
       ) AS ma4,
-      count(DISTINCT jira.dim_members.member_id) AS normal_efforts
+      count(DISTINCT m.member_id) AS normal_efforts
     FROM
-      jira.fct_worklog w
-      JOIN jira.dim_members ON jira.dim_members.member_email = w.worklog_author
+      {{ ref('fct_worklog') }} w
+      JOIN {{ref('dim_members')}} m ON m.member_email = w.worklog_author
     GROUP BY
-      jira.dim_members.member_email,
+      m.member_email,
       to_char(start_time, 'YYYY-MM')
   ),
   _pod_efforts AS (
     SELECT
-      jira.dim_members.member_email,
+      m.member_email,
       month_year,
       sum(effort) AS pod_efforts,
-      count(DISTINCT jira.dim_members.member_id) AS normal_efforts
+      count(DISTINCT m.member_id) AS normal_efforts
     FROM
-      jira.fct_pod_member_efforts pme
-      JOIN jira.dim_members ON jira.dim_members.member_id = pme.user_id
+      {{ref('fct_pod_member_efforts')}} pme
+      JOIN {{ref('dim_members')}} m ON m.member_id = pme.user_id
     GROUP BY
-      jira.dim_members.member_email,
+      m.member_email,
       month_year
   ),
   _efforts AS (
@@ -114,14 +125,3 @@ SELECT
 FROM
   _final
 WHERE member_email is not null
-WITH DATA;
-
-CREATE UNIQUE INDEX m2fe_unique_idx on jira.mview_member_free_effort(member_email, month_year);
-
-REFRESH MATERIALIZED VIEW CONCURRENTLY jira.mview_member_free_effort;
-
--- DROP INDEX jira.m2fe_unique_idx;
--- DROP MATERIALIZED VIEW jira.mview_member_free_effort;
-
--- break --
-

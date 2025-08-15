@@ -44,3 +44,5 @@ jira_dtm_mapping = {
     "dim_pods": "pods",
     "fct_pod_member_efforts": "billable_efforts_approveds"
 }
+
+jira_mviews = ["mview_member_free_effort"]

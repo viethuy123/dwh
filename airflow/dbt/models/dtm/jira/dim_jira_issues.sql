@@ -3,7 +3,6 @@
 
 SELECT
     a.issue_id,
-    a.jira_project_id,
     a.issue_assignee,
     e.priority_name as priority,
     b.type_name as type,

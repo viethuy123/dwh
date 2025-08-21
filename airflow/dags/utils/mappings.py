@@ -38,7 +38,7 @@ jira_dtm_mapping = {
     "dim_members": ["users", "branches", "departments", "user_positions"],
     "dim_projects": "projects",
     "dim_time_series": "time_series",
-    "fct_issues":["jira_issues", "jira_issue_types", "jira_issue_resolution", "jira_issue_status", "jira_issue_priority"],
+    "dim_jira_issues":["jira_issues", "jira_issue_types", "jira_issue_resolution", "jira_issue_status", "jira_issue_priority"],
     "fct_worklog": ["jira_worklog","jira_issues"],
     "fct_project_members": "project_members",
     "dim_pods": "pods",

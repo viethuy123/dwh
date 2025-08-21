@@ -2,7 +2,7 @@
 
 SELECT
     pod_id,
-    user_id,
+    user_id as member_id,
     department_id,
     user_role,
     effort,

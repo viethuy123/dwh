@@ -51,7 +51,7 @@ WITH
       count(DISTINCT m.member_id) AS normal_efforts
     FROM
       {{ref('fct_pod_member_efforts')}} pme
-      JOIN {{ref('dim_members')}} m ON m.member_id = pme.user_id
+      JOIN {{ref('dim_members')}} m ON m.member_id = pme.member_id
     GROUP BY
       m.member_email,
       month_year

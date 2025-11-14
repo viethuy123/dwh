@@ -1,0 +1,32 @@
+# dwh_mysql/docker-compose.yml
+
+version: '3.8'
+
+services:
+  dwh_mysql:
+    image: mysql:8.0
+    restart: always
+    container_name: dwh_mysql_container
+    
+    ports:
+      - 3307:3306
+      
+    environment:
+      MYSQL_DATABASE: jira8db
+      MYSQL_USER: dev_user
+      MYSQL_PASSWORD: dev_password
+      MYSQL_ROOT_PASSWORD: dev_password
+      
+    volumes:
+      - dwh_mysql_data:/var/lib/mysql
+      - ./mysql_custom.cnf:/etc/mysql/conf.d/mysql_custom.cnf
+      
+    networks:
+      - dev-network
+
+networks:
+  dev-network:
+    external: true
+
+volumes:
+  dwh_mysql_data:

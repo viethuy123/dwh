@@ -1,7 +1,7 @@
 {
   "expectations": [
     {
-      "id": "61747bd1-2d59-4b24-a092-397cf41164fd",
+      "id": "a65437fb-f10c-4744-98d6-8025acf783ed",
       "kwargs": {
         "column": "id"
       },
@@ -9,7 +9,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "788c2541-7b15-4e76-8403-57978020d2e3",
+      "id": "01095c11-8fb4-45e6-b987-eb5d888273a8",
       "kwargs": {
         "column": "project_id"
       },
@@ -17,7 +17,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "cf369e52-ed8e-4bce-842e-3e62b89abf2a",
+      "id": "abaccdd2-0303-4d76-9417-9e2a7842e7fd",
       "kwargs": {
         "column": "customer_id"
       },
@@ -25,7 +25,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "c093268a-3681-4b8b-9046-0a0418582864",
+      "id": "a7168dd9-484b-4c0b-b42f-ed34fbbd231d",
       "kwargs": {
         "column": "created_at"
       },
@@ -33,7 +33,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "4ab7012a-4582-4cf7-828f-14256177cd56",
+      "id": "3084caf3-3116-4d8b-bac7-a237dcfeb860",
       "kwargs": {
         "column": "updated_at"
       },
@@ -41,7 +41,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "9bb691e5-13b5-4710-96f6-2542f62d8b3a",
+      "id": "12d81298-2134-4929-bffd-7ea579fe9bd2",
       "kwargs": {
         "column": "etl_datetime"
       },
@@ -49,7 +49,7 @@
       "type": "expect_column_values_to_not_be_null"
     },
     {
-      "id": "04673e7c-9c2c-47ea-acb4-566e38a75125",
+      "id": "26b158ba-4df9-46c3-873b-9b18381a3a4c",
       "kwargs": {
         "column": "id"
       },
@@ -57,7 +57,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "68f62ec3-3d1e-4951-b733-592bb0dc78d4",
+      "id": "8969d7d9-f136-4daf-9ddb-eeed811b50f9",
       "kwargs": {
         "column": "project_id"
       },
@@ -65,7 +65,7 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "11753bf0-e834-4e83-aead-33239be9419e",
+      "id": "048ac63c-7f49-4dbc-b3c2-5d8dc9d79190",
       "kwargs": {
         "column": "customer_id"
       },
@@ -73,32 +73,32 @@
       "type": "expect_column_values_to_be_unique"
     },
     {
-      "id": "6cfecfbe-488c-4c71-84ef-057842cbc7d6",
+      "id": "d232b940-bd5f-42ec-b039-1f5d6dfa6ff6",
       "kwargs": {
         "column": "id",
-        "max_value": 1362.0,
-        "min_value": 494.0,
+        "max_value": 1392.1,
+        "min_value": 496.75,
         "mostly": 0.95
       },
       "meta": {},
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "6c115612-16f8-4434-ba14-4c549e786b0f",
+      "id": "1fb8644d-da68-4717-8801-cfe62106cd1b",
       "kwargs": {
         "column": "project_id",
-        "max_value": 273.6,
-        "min_value": 27.4,
+        "max_value": 284.04999999999995,
+        "min_value": 27.950000000000003,
         "mostly": 0.95
       },
       "meta": {},
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "cef6d753-0145-43cb-8fe8-298b20acfef7",
+      "id": "93e97cea-293e-42a4-a412-eaf8a4ee0259",
       "kwargs": {
         "column": "customer_id",
-        "max_value": 105.0,
+        "max_value": 106.04999999999998,
         "min_value": 2.0,
         "mostly": 0.95
       },
@@ -106,7 +106,7 @@
       "type": "expect_column_values_to_be_between"
     },
     {
-      "id": "a8f89ded-1b5e-4f86-a652-f6c4c35bc285",
+      "id": "1bc6a2ad-d6a8-463f-ab27-8eee707ef099",
       "kwargs": {
         "column": "id",
         "type_": "int64"
@@ -115,7 +115,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "e7574ad7-cf87-45a9-bb40-80b91f1389f2",
+      "id": "134790e6-23b6-4e01-90ca-6ef5ffd61663",
       "kwargs": {
         "column": "project_id",
         "type_": "int64"
@@ -124,7 +124,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "27b1fc34-d913-4f39-87dd-95040e09003f",
+      "id": "9a8b69df-3f48-4d05-bb7b-e5018b3d7475",
       "kwargs": {
         "column": "customer_id",
         "type_": "int64"
@@ -133,7 +133,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "4f08c411-72cf-41b0-a7ef-0906888a07d8",
+      "id": "9a7a9222-633c-411a-8237-86d397ef517c",
       "kwargs": {
         "column": "created_at",
         "type_": "datetime64[ns]"
@@ -142,7 +142,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "c6356028-31d4-4948-8994-f264d5520844",
+      "id": "cb42eafb-daf5-4319-9040-3ba471b1a4e7",
       "kwargs": {
         "column": "updated_at",
         "type_": "datetime64[ns]"
@@ -151,7 +151,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "91bab7b7-a7e5-420f-a066-2b4eec2bdb3f",
+      "id": "8ec37f3f-5d73-45f2-931d-961d48d4b79f",
       "kwargs": {
         "column": "etl_datetime",
         "type_": "datetime64[ns]"
@@ -160,7 +160,7 @@
       "type": "expect_column_values_to_be_of_type"
     },
     {
-      "id": "8ff8fdf4-018f-4211-9bb2-d652d8600180",
+      "id": "a674c03a-10b2-4872-99aa-f9b1fed668f7",
       "kwargs": {
         "column": "id",
         "mostly": 0.99,
@@ -170,7 +170,7 @@
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "9ac726cd-c949-463c-9cd8-7c33cd63f7a7",
+      "id": "39b91b11-3922-4a4c-b96a-e949c24e329b",
       "kwargs": {
         "column": "project_id",
         "mostly": 0.99,
@@ -180,7 +180,7 @@
       "type": "expect_column_values_to_not_be_in_set"
     },
     {
-      "id": "572510a7-5f40-4058-bdef-71ce6d272e17",
+      "id": "5d5cd9d6-8da2-466e-ac39-c0b2d4aa2c48",
       "kwargs": {
         "column": "customer_id",
         "mostly": 0.99,

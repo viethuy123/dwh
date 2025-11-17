@@ -15,7 +15,7 @@ default_args = {
 dag = DAG(
     dag_id="dag-jira_dtm_mviews",
     default_args=default_args,
-    schedule="@once",
+    schedule='0 4 * * *',
     start_date=datetime.today() - timedelta(days=1),
     catchup=False,
     dagrun_timeout=timedelta(minutes=60),

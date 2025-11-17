@@ -21,7 +21,7 @@ default_args = {
 dag = DAG(
     dag_id="dag-dwh_to_hr_dtm",
     default_args=default_args,
-    schedule="@once",
+    schedule='50 3 * * *',
     start_date=datetime.today() - timedelta(days=1),
     catchup=False,
     dagrun_timeout=timedelta(minutes=60),

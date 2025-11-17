@@ -3,8 +3,8 @@ set -euo pipefail
 
 YESTERDAY_STR=$(date -d "yesterday" +"%Y%m%d")
 BACKUP_FILE="/opt/airflow/database_backup/jira8db_bk_${YESTERDAY_STR}_22/hdd2/jiradb/backup/jira8db_bk_${YESTERDAY_STR}_22.sql"
-REMOTE_HOST="103.18.6.157"
-REMOTE_PORT=7014
+REMOTE_HOST="dwh_mysql"
+REMOTE_PORT=3306
 REMOTE_MYSQL_USER="root"
 REMOTE_DB="jira8db"
 

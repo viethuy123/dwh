@@ -22,7 +22,7 @@ default_args = {
 dag = DAG(
     dag_id="dag-staging_to_dwh",
     default_args=default_args,
-    schedule="@once",
+    schedule='30 3 * * *',
     start_date=datetime.today() - timedelta(days=1),
     catchup=False,
     dagrun_timeout=timedelta(minutes=60),

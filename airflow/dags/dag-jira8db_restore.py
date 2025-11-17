@@ -18,7 +18,7 @@ default_args = {
 dag = DAG(
     dag_id="dag-jira8db_restore",
     default_args=default_args,
-    schedule="@once",
+    schedule='0 2 * * *',
     start_date=datetime.today() - timedelta(days=1),
     catchup=False,
     dagrun_timeout=timedelta(minutes=60),

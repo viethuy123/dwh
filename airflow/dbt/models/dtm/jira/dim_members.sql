@@ -7,6 +7,11 @@ SELECT
     a.company_email as member_email,
     a.staff_code,
     b.branch_name,
+    CASE
+    WHEN lower(b.branch_name) LIKE '%trụ%' THEN 'HN'
+    WHEN lower(b.branch_name) LIKE '%tp%' THEN 'HCM'
+    ELSE 'DN'
+    END AS branch_code,
     c.department_name,
     d.position_name,
     a.user_level,

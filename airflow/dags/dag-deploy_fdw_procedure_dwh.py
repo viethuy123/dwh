@@ -64,7 +64,7 @@ default_args = {
 }
 
 dag = DAG(
-    dag_id='dag-deploy_fdw_procedure',
+    dag_id='dag-deploy_fdw_procedure_dwh',
     default_args=default_args,
     schedule='@once',
     catchup=False
@@ -89,7 +89,7 @@ def deploy_procedure_logic():
 
 # --- 4. TASK DEPLOY ---
 deploy_task = PythonOperator(
-    task_id='deploy_fdw_sync_procedure',
+    task_id='deploy_fdw_sync_procedure_dwh',
     python_callable=deploy_procedure_logic,
     dag=dag
 )

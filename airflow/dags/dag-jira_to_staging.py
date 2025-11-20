@@ -48,8 +48,8 @@ jira_port = Variable.get("jira_port")
 jira_uri = "mysql+pymysql://{}:{}@{}:{}/{}".format(jira_user, jira_pwd, jira_host, jira_port, "jira8db")
 
 TABLE_CONFIGS = [
-    {'name': 'worklog',       'type': 'heavy', 'chunksize': 50000},
-    {'name': 'jiraissue',     'type': 'heavy', 'chunksize': 50000},
+    {'name': 'worklog',       'type': 'heavy', 'chunksize': 100000},
+    {'name': 'jiraissue',     'type': 'heavy', 'chunksize': 100000},
     {'name': 'customfieldvalue', 'type': 'heavy', 'chunksize': 100000},
     {'name': 'project',       'type': 'light', 'chunksize': None}, # None = Load all
     {'name': 'issuestatus',   'type': 'light', 'chunksize': None},

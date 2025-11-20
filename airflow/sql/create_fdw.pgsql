@@ -37,24 +37,20 @@ LANGUAGE plpgsql
 AS $$
 DECLARE
     foreign_table TEXT;
-    existing_tables TEXT[];
+    remote_tables TEXT[];
 BEGIN
+    
+    EXECUTE format(
+        'SELECT array_agg(table_name) FROM %I.tables WHERE table_schema = %L AND table_type = %L',
+        metadata_schema, remote_schema, 'BASE TABLE'
+    ) INTO remote_tables;
 
-    SELECT array_agg(ft.relname)
-    INTO existing_tables
-    FROM pg_foreign_table f
-    JOIN pg_class ft ON f.ftrelid = ft.oid
-    JOIN pg_namespace ns ON ft.relnamespace = ns.oid
-    WHERE ns.nspname = local_schema;
+    IF remote_tables IS NOT NULL THEN
+        FOREACH foreign_table IN ARRAY remote_tables
+        LOOP
+            RAISE NOTICE 'Syncing table: %', foreign_table;
 
-    FOR foreign_table IN
-        EXECUTE format(
-            'SELECT table_name FROM %I.tables WHERE table_schema = %L AND table_type = %L',
-            metadata_schema, remote_schema, 'BASE TABLE'
-        )
-    LOOP
-        IF existing_tables IS NULL OR NOT foreign_table = ANY(existing_tables) THEN
-            RAISE NOTICE 'Importing new table: %', foreign_table;
+            EXECUTE format('DROP FOREIGN TABLE IF EXISTS %I.%I CASCADE', local_schema, foreign_table);
 
             EXECUTE format($f$
                 IMPORT FOREIGN SCHEMA %I
@@ -62,7 +58,22 @@ BEGIN
                 FROM SERVER %I
                 INTO %I;
             $f$, remote_schema, foreign_table, server_name, local_schema);
+            
+        END LOOP;
+    END IF;
+
+    FOR foreign_table IN
+        SELECT ft.relname
+        FROM pg_foreign_table f
+        JOIN pg_class ft ON f.ftrelid = ft.oid
+        JOIN pg_namespace ns ON ft.relnamespace = ns.oid
+        WHERE ns.nspname = local_schema
+    LOOP
+        IF NOT (foreign_table = ANY(remote_tables)) THEN
+            RAISE NOTICE 'Removing orphaned table: %', foreign_table;
+            EXECUTE format('DROP FOREIGN TABLE IF EXISTS %I.%I CASCADE', local_schema, foreign_table);
         END IF;
     END LOOP;
+
 END;
 $$;

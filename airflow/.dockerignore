@@ -2,3 +2,6 @@ __pycache__/
 *.pyc
 .DS_Store
 .gitignore
+dbt/dbt_packages/
+dbt/target/
+dbt/logs/

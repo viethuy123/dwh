@@ -12,6 +12,8 @@ sources:
       - name: stg_worklog
       - name: stg_issuetype
       - name: stg_priority
+      - name: stg_customfieldoption
+      - name: stg_customfieldvalue
   - name: jisseki
     database: dwh
     schema: jisseki_fdw

@@ -7,7 +7,8 @@ from utils.data_quality import validate_dataframe
 from utils.data_quality_notification import send_validation_results
 from utils.etl_job_logs import save_etl_job_logs
 from sqlalchemy import create_engine, text
-
+import pandas as pd
+import gc # Import thư viện Garbage Collector
 
 default_args = {
     'owner': 'huynnx',
@@ -21,6 +22,7 @@ dag = DAG(
     dag_id='dag-jira_to_staging',
     default_args=default_args,
     schedule='0 3 * * *',
+    max_active_runs=4,
     catchup=False
 )
 
@@ -45,10 +47,18 @@ jira_host = Variable.get("jira_host")
 jira_port = Variable.get("jira_port")
 jira_uri = "mysql+pymysql://{}:{}@{}:{}/{}".format(jira_user, jira_pwd, jira_host, jira_port, "jira8db")
 
-src_tables = ['project','worklog',
-              'issuestatus','issuetype',
-              'jiraissue','resolution', 'priority']
-tgt_tables = [f"stg_{table}" for table in src_tables]
+TABLE_CONFIGS = [
+    {'name': 'worklog',       'type': 'heavy', 'chunksize': 50000},
+    {'name': 'jiraissue',     'type': 'heavy', 'chunksize': 50000},
+    {'name': 'customfieldvalue', 'type': 'heavy', 'chunksize': 100000},
+    {'name': 'project',       'type': 'light', 'chunksize': None}, # None = Load all
+    {'name': 'issuestatus',   'type': 'light', 'chunksize': None},
+    {'name': 'resolution',    'type': 'light', 'chunksize': None},
+    {'name': 'priority',      'type': 'light', 'chunksize': None},
+    {'name': 'issuetype',     'type': 'light', 'chunksize': None},
+    {'name': 'customfieldoption', 'type': 'light', 'chunksize': None},
+    {'name': 'app_user', 'type': 'light', 'chunksize': None},
+]
 
 
 def convert_all(val):
@@ -56,39 +66,67 @@ def convert_all(val):
         val = val.replace('\x00', '')
     return val
 
-def extract_load_jira_data(src_table:str, tgt_table:str) -> None:
-
-    df = extract_sql_data(jira_uri, f"SELECT * FROM {src_table}")
-
-    df = df.map(convert_all)
-
-    df['etl_datetime'] = datetime.now()
-
+def extract_load_jira_data(src_table:str, tgt_table:str, chunk_size: int | None) -> None:
+    src_engine = create_engine(jira_uri, pool_pre_ping=True)
     pg_engine = create_engine(pg_uri)
-    
-    with pg_engine.connect() as conn: # type: ignore
-        result = conn.execute(
-        text(
-            f"""SELECT EXISTS (
-            SELECT FROM information_schema.tables 
-            WHERE table_schema = 'src_jira' 
-            AND table_name = '{tgt_table}'
-            )"""
-        )
-    )
-        table_exists = result.scalar()
-        if table_exists:
-            conn.execute(text(f"TRUNCATE TABLE src_jira.{tgt_table};commit;"))
-            df.to_sql(tgt_table, con=conn, if_exists='append', index=False, chunksize=5000,schema='src_jira')
+
+    # 1. Đảm bảo SCHEMA tồn tại
+    with pg_engine.begin() as conn:
+        conn.execute(text(f"CREATE SCHEMA IF NOT EXISTS src_jira"))
+
+    print(f"Start loading {src_table}. Mode: {'Chunking ' + str(chunk_size) if chunk_size else 'Full Load'}")
+
+    # ---  CHUNKING ---
+    if chunk_size:
+        is_first_chunk = True 
+        
+        with src_engine.connect().execution_options(stream_results=True) as src_conn:
+            df_iterator = pd.read_sql(f"SELECT * FROM {src_table}", src_conn, chunksize=chunk_size)
+            
+            for i, df_chunk in enumerate(df_iterator):
+                df_chunk = df_chunk.map(convert_all)
+                df_chunk['etl_datetime'] = datetime.now()
+                
+                if is_first_chunk:
+                    load_mode = 'replace' 
+                    is_first_chunk = False 
+                else:
+                    load_mode = 'append' 
+                
+                with pg_engine.begin() as pg_conn:
+                    df_chunk.to_sql(
+                        tgt_table, 
+                        con=pg_conn, 
+                        if_exists=load_mode, 
+                        index=False, 
+                        schema='src_jira', 
+                        method='multi', 
+                        chunksize=1000
+                    )
+                
+                print(f"Loaded chunk {i+1} ({len(df_chunk)} rows) into src_jira.{tgt_table}. Mode: {load_mode}")
+                
+                del df_chunk 
+                gc.collect()
+        
+    # --- FULL LOAD ---
+    else:
+        df = pd.read_sql(f"SELECT * FROM {src_table}", src_engine)
+        if not df.empty:
+            df = df.map(convert_all)
+            df['etl_datetime'] = datetime.now()
+            with pg_engine.begin() as pg_conn:
+                # Full Load dùng luôn 'replace'
+                df.to_sql(tgt_table, con=pg_conn, if_exists='replace', index=False, 
+                              schema='src_jira', method='multi')
+            print(f"Loaded full table {src_table}: {len(df)} rows. Mode: replace")
         else:
-            df.to_sql(tgt_table, con=conn, if_exists='replace', index=False, chunksize=5000,schema='src_jira')
+            print(f"Source table {src_table} is empty. No data loaded.")
 
     return None
-
-
 def data_quality_check(tgt_table:str,**kwargs) -> None:
 
-    target_data = extract_sql_data(pg_uri, f"SELECT * FROM src_jira.{tgt_table}")
+    target_data = extract_sql_data(pg_uri, f"SELECT * FROM src_jira.{tgt_table} limit 1000")
  
     result = validate_dataframe(df=target_data, suite_name=f"src_jira-{tgt_table}")
 
@@ -151,19 +189,26 @@ def sync_fdw_tables(tgt_schema:str, src_schema:str, server_name:str) -> None:
 
 with TaskGroup(group_id='jira_to_staging', dag=dag) as outer_group:
 
-    for src_table, tgt_table in zip(src_tables,tgt_tables):
+    for config in TABLE_CONFIGS:
+        src_table = config['name']
+        tgt_table = f"stg_{src_table}"
+        table_type = config['type']
+        chunk_size = config['chunksize']
+        assigned_pool = 'heavy_task_pool' if table_type == 'heavy' else 'default_pool'
 
         with TaskGroup(group_id = f'{src_table}_to_{tgt_table}', dag=dag) as inner_group:
 
             extract_load_task = PythonOperator(
-                    dag=dag,
-                    task_id=f'extract_load_src_jira-{tgt_table}',
-                    python_callable=extract_load_jira_data,
-                    op_kwargs ={
-                        'src_table':src_table,
-                        'tgt_table':tgt_table
-                    }
-                )
+                dag=dag,
+                task_id=f'extract_load_src_jira-{tgt_table}',
+                python_callable=extract_load_jira_data,
+                op_kwargs={
+                    'src_table': src_table,
+                    'tgt_table': tgt_table,
+                    'chunk_size': chunk_size
+                },
+                pool=assigned_pool, 
+            )
 
 
             data_quality_task = PythonOperator(

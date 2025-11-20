@@ -7,6 +7,8 @@ warehouse_mapping ={
     'jira_issues': 'src_jira.stg_jiraissue',
     'jira_worklog': 'src_jira.stg_worklog',
     'jira_issue_priority': 'src_jira.stg_priority',
+    'jira_customfield_option': 'src_jira.stg_customfieldoption',
+    'jira_customfield_value': 'src_jira.stg_customfieldvalue',
     'project_members': 'src_create.stg_project_members',
     'project_profit_loss': 'src_create.stg_profit_loss_project_expenses',
     'projects': [
@@ -43,6 +45,20 @@ jira_dtm_mapping = {
     "fct_project_members": "project_members",
     "dim_pods": "pods",
     "fct_pod_member_efforts": "billable_efforts_approveds"
+}
+
+public_dtm_mapping = {
+    "dim_users_public": ["users", "branches", "departments", "user_positions"],
+    # "dim_projects": "projects",
+    # "dim_time_series": "time_series",
+    "dim_branches_public": "branches",
+    "dim_departments_public": "departments",
+    "dim_positions_public": "user_positions",
+    "dim_jira_issues_public":["jira_issues", "jira_issue_types", "jira_issue_resolution", "jira_issue_status", "jira_issue_priority"],
+}
+
+bi_dtm = {
+    "user_join_project": "user_join_project",
 }
 
 jira_mviews = ["mview_member_free_effort"]

@@ -42,3 +42,4 @@ LEFT JOIN {{ source('jisseki', 'stg_projects') }} c
 ON a."projectCode" = c.code
 LEFT JOIN _total_bill d
 ON a._id = d.project_id
+where a."jiraType" = 'JIRA8'

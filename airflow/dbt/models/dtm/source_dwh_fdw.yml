@@ -13,6 +13,8 @@ sources:
       - name: jira_issues
       - name: jira_issue_priority
       - name: jira_worklog
+      - name: jira_customfield_option
+      - name: jira_customfield_value
       - name: project_members
       - name: project_profit_loss
       - name: projects

@@ -29,3 +29,11 @@ models:
         schema: jira
         +generate_schema_name: false
         materialized: table
+      public:
+        schema: public
+        +generate_schema_name: false
+        materialized: table
+      bi:
+        schema: bi
+        +generate_schema_name: false
+        materialized: table

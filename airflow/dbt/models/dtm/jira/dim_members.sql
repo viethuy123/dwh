@@ -25,3 +25,14 @@ and a.position_id is not NULL
 and a.user_level is not NULL and a.user_level != 'null'
 and d.position_status = 'Yes'
 and c.is_deleted = 'No'
+GROUP BY
+    member_id,
+    member_name,
+    member_email,
+    staff_code,
+    b.branch_name,
+    b.branch_code,
+    c.department_name,
+    d.position_name,
+    a.user_level,
+    a.user_status

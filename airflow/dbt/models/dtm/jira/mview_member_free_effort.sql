@@ -120,8 +120,17 @@ WITH
       ) t
   )
 SELECT
-  *,
+  f.*,
+  m.member_name,
+  m.staff_code,
+  m.branch_name,
+  m.branch_code,
+  m.department_name,
+  m.position_name,
+  m.user_level,
+  m.user_status,
   normal_efforts - COALESCE(actual_efforts, pod_efforts, predicting_efforts) AS free_efforts
 FROM
-  _final
-WHERE member_email is not null
+  _final as f
+JOIN {{ ref('dim_members') }} m ON m.member_email = f.member_email
+WHERE f.member_email is not null

@@ -7,11 +7,7 @@ SELECT
     a.company_email as member_email,
     a.staff_code,
     b.branch_name,
-    CASE
-    WHEN lower(b.branch_name) LIKE '%trụ%' THEN 'HN'
-    WHEN lower(b.branch_name) LIKE '%tp%' THEN 'HCM'
-    ELSE 'DN'
-    END AS branch_code,
+    b.branch_code,
     c.department_name,
     d.position_name,
     a.user_level,
@@ -25,6 +21,7 @@ LEFT JOIN {{ source('dwh', 'user_positions') }} d
 ON a.position_id = d.position_id
 WHERE a.company_email is not NULL AND a.company_email != 'null' AND a.company_email NOT LIKE 'Inactive%'
 AND b.branch_name is not NULL AND b.branch_name != 'null'
-AND c.department_name in ({{ quote_list(department_filter_list()) }})
-AND d.position_name in ({{ quote_list(position_filter_list()) }})
-AND a.user_level in ({{ quote_list(level_filter_list()) }})
+and a.position_id is not NULL
+and a.user_level is not NULL and a.user_level != 'null'
+and d.position_status = 'Yes'
+and c.is_deleted = 'No'

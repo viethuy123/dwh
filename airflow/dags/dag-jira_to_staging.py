@@ -55,8 +55,8 @@ TABLE_CONFIGS = [
     {'name': 'issuetype',     'type': 'light', 'chunksize': None},
     {'name': 'customfieldoption', 'type': 'light', 'chunksize': None},
     {'name': 'app_user', 'type': 'light', 'chunksize': None},
-    {'name': 'worklog',       'type': 'heavy', 'chunksize': 100000},
-    {'name': 'jiraissue',     'type': 'heavy', 'chunksize': 100000},
+    {'name': 'worklog',       'type': 'heavy', 'chunksize': 500000},
+    {'name': 'jiraissue',     'type': 'heavy', 'chunksize': 500000},
     {'name': 'customfieldvalue', 'type': 'heavy', 'chunksize': 100000},
 ]
 
@@ -101,7 +101,7 @@ def extract_load_jira_data(src_table:str, tgt_table:str, chunk_size: int | None)
                         index=False, 
                         schema='src_jira', 
                         method='multi', 
-                        chunksize=50000
+                        chunksize=10000
                     )
                 
                 print(f"Loaded chunk {i+1} ({len(df_chunk)} rows) into src_jira.{tgt_table}. Mode: {load_mode}")

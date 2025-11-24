@@ -21,8 +21,8 @@ default_args = {
 dag = DAG(
     dag_id='dag-jira_to_staging',
     default_args=default_args,
-    schedule='0 3 * * *',
-    max_active_runs=10,
+    schedule='0 20 * * *',
+    max_active_runs=5,
     catchup=False
 )
 
@@ -55,8 +55,8 @@ TABLE_CONFIGS = [
     {'name': 'issuetype',     'type': 'light', 'chunksize': None},
     {'name': 'customfieldoption', 'type': 'light', 'chunksize': None},
     {'name': 'app_user', 'type': 'light', 'chunksize': None},
-    {'name': 'worklog',       'type': 'light', 'chunksize': None},
-    {'name': 'jiraissue',     'type': 'light', 'chunksize': None},
+    {'name': 'worklog',       'type': 'heavy', 'chunksize': 100000},
+    {'name': 'jiraissue',     'type': 'heavy', 'chunksize': 100000},
     {'name': 'customfieldvalue', 'type': 'heavy', 'chunksize': 100000},
 ]
 

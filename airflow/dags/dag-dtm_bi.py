@@ -15,7 +15,7 @@ default_args = {
 dag = DAG(
     dag_id="dag-bi_dtm",
     default_args=default_args,
-    schedule='0 4 * * *',
+    schedule='0 21 * * *',
     start_date=datetime.today() - timedelta(days=1),
     catchup=False,
     dagrun_timeout=timedelta(minutes=60),

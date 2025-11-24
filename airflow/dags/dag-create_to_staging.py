@@ -22,7 +22,7 @@ default_args = {
 dag = DAG(
     dag_id='dag-create_to_staging',
     default_args=default_args,
-    schedule='0 3 * * *',
+    schedule='0 20 * * *',
     catchup=False
 )
 

@@ -21,7 +21,7 @@ default_args = {
 dag = DAG(
     dag_id="dag-dwh_to_jira_dtm",
     default_args=default_args,
-    schedule='50 3 * * *',
+    schedule='50 20 * * *',
     start_date=datetime.today() - timedelta(days=1),
     catchup=False,
     dagrun_timeout=timedelta(minutes=60),

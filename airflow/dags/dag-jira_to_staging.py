@@ -81,7 +81,7 @@ def extract_load_jira_data(src_table:str, tgt_table:str, chunk_size: int | None)
         is_first_chunk = True 
         
         with src_engine.connect().execution_options(stream_results=True) as src_conn:
-            df_iterator = pd.read_sql(f"SELECT * FROM {src_table}", src_conn, chunksize=chunk_size)
+            df_iterator = pd.read_sql(f"SELECT * FROM {src_table} ORDER BY ID ASC", src_conn, chunksize=chunk_size)
             
             for i, df_chunk in enumerate(df_iterator):
                 df_chunk = df_chunk.map(convert_all)

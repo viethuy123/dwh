@@ -88,23 +88,15 @@ def extract_load_create_data(src_table:str, tgt_table:str) -> None:
 
     pg_engine = create_engine(pg_uri)
     
-    with pg_engine.connect() as conn: # type: ignore
-        result = conn.execute(
-        text(
-            f"""SELECT EXISTS (
-            SELECT FROM information_schema.tables 
-            WHERE table_schema = 'src_create' 
-            AND table_name = '{tgt_table}'
-            )"""
-        )
-    )
-        table_exists = result.scalar()
-        if table_exists:
-            conn.execute(text(f"TRUNCATE TABLE src_create.{tgt_table};commit;"))
-            df.to_sql(tgt_table, con=conn, if_exists='append', index=False, chunksize=5000,schema='src_create')
-        else:
-            df.to_sql(tgt_table, con=conn, if_exists='replace', index=False, chunksize=5000,schema='src_create')
-
+    with pg_engine.connect() as conn: 
+        df.to_sql(
+        tgt_table, 
+        con=conn, 
+        if_exists='replace', 
+        index=False, 
+        chunksize=5000,
+        schema='src_create'
+   )
     return None
 
 

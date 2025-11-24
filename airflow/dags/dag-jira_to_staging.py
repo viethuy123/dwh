@@ -22,7 +22,7 @@ dag = DAG(
     dag_id='dag-jira_to_staging',
     default_args=default_args,
     schedule='0 3 * * *',
-    max_active_runs=4,
+    max_active_runs=10,
     catchup=False
 )
 
@@ -48,9 +48,6 @@ jira_port = Variable.get("jira_port")
 jira_uri = "mysql+pymysql://{}:{}@{}:{}/{}".format(jira_user, jira_pwd, jira_host, jira_port, "jira8db")
 
 TABLE_CONFIGS = [
-    {'name': 'worklog',       'type': 'heavy', 'chunksize': 100000},
-    {'name': 'jiraissue',     'type': 'heavy', 'chunksize': 100000},
-    {'name': 'customfieldvalue', 'type': 'heavy', 'chunksize': 100000},
     {'name': 'project',       'type': 'light', 'chunksize': None}, # None = Load all
     {'name': 'issuestatus',   'type': 'light', 'chunksize': None},
     {'name': 'resolution',    'type': 'light', 'chunksize': None},
@@ -58,6 +55,9 @@ TABLE_CONFIGS = [
     {'name': 'issuetype',     'type': 'light', 'chunksize': None},
     {'name': 'customfieldoption', 'type': 'light', 'chunksize': None},
     {'name': 'app_user', 'type': 'light', 'chunksize': None},
+    {'name': 'worklog',       'type': 'light', 'chunksize': None},
+    {'name': 'jiraissue',     'type': 'light', 'chunksize': None},
+    {'name': 'customfieldvalue', 'type': 'heavy', 'chunksize': 100000},
 ]
 
 
@@ -101,7 +101,7 @@ def extract_load_jira_data(src_table:str, tgt_table:str, chunk_size: int | None)
                         index=False, 
                         schema='src_jira', 
                         method='multi', 
-                        chunksize=1000
+                        chunksize=50000
                     )
                 
                 print(f"Loaded chunk {i+1} ({len(df_chunk)} rows) into src_jira.{tgt_table}. Mode: {load_mode}")

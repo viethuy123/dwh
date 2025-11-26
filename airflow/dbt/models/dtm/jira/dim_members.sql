@@ -1,6 +1,18 @@
 {{ config(materialized='table') }}
 
+with cleaned_users as (
+    select * ,
+    LEAD(date(create_time), 1, '2999-12-31') OVER (
+            PARTITION BY company_email
+            ORDER BY date(create_time)
+        ) AS end_date
+    from {{ source('dwh', 'users') }} a
 
+
+
+
+
+)
 SELECT
     a.user_id as member_id,
     a.user_name as member_name,
@@ -11,8 +23,10 @@ SELECT
     c.department_name,
     d.position_name,
     a.user_level,
-    a.user_status
-FROM {{ source('dwh', 'users') }} a
+    a.user_status,
+    date(a.create_time) as create_date,
+    a.end_date
+FROM cleaned_users a
 LEFT JOIN {{ source('dwh', 'branches') }} b
 ON a.branch_id = b.branch_id
 LEFT JOIN {{ source('dwh', 'departments') }} c
@@ -36,4 +50,6 @@ GROUP BY
     c.department_name,
     d.position_name,
     a.user_level,
-    a.user_status
+    a.user_status,
+    date(a.create_time),
+    a.end_date

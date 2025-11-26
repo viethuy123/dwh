@@ -1,7 +1,5 @@
 {{ config(
-    materialized='table', 
-    -- unique_key=['issue_id', 'assignee_email'], 
-    -- on_schema_change='append_new_columns' 
+    materialized='table'
 ) }}
 
 with get_level_task as (
@@ -104,7 +102,7 @@ SELECT
     pr.role_name,
     pr.total_roles_per_user_project,
     COALESCE(pr.weight_factor, 1) as weight_factor,
-    wlt.total_time_worked
+    wlt.total_time_worked * COALESCE(pr.weight_factor, 1) as weighted_time_worked
 
 FROM issue_data as iss
 left join worklog_time as wlt

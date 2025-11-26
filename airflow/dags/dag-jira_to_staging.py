@@ -50,6 +50,8 @@ jira_uri = "mysql+pymysql://{}:{}@{}:{}/{}".format(jira_user, jira_pwd, jira_hos
 TABLE_CONFIGS = [
     {'name': 'project',       'type': 'light', 'chunksize': None}, # None = Load all
     {'name': 'issuestatus',   'type': 'light', 'chunksize': None},
+    {'name': 'projectrole',   'type': 'light', 'chunksize': None},
+    {'name': 'projectroleactor',   'type': 'light', 'chunksize': None},
     {'name': 'resolution',    'type': 'light', 'chunksize': None},
     {'name': 'priority',      'type': 'light', 'chunksize': None},
     {'name': 'issuetype',     'type': 'light', 'chunksize': None},
@@ -57,7 +59,7 @@ TABLE_CONFIGS = [
     {'name': 'app_user', 'type': 'light', 'chunksize': None},
     {'name': 'worklog',       'type': 'heavy', 'chunksize': 500000},
     {'name': 'jiraissue',     'type': 'heavy', 'chunksize': 500000},
-    {'name': 'customfieldvalue', 'type': 'heavy', 'chunksize': 100000},
+    # {'name': 'customfieldvalue', 'type': 'heavy', 'chunksize': 100000},
 ]
 
 

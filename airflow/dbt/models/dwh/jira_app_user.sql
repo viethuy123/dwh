@@ -3,12 +3,7 @@
 
 SELECT
     "ID" as id,
-    "CUSTOMFIELD" as custom_field,
-    "CUSTOMFIELDCONFIG" as custom_field_config,
-    "PARENTOPTIONID" as parent_option_id,
-    "SEQUENCE" as sequence,
-    "customvalue" as custom_value,
-    "optiontype" as option_type,
-    "disabled" as disabled,
+    "user_key" as user_key,
+    "lower_user_name" as lower_user_name,
     CURRENT_TIMESTAMP as etl_datetime
-FROM {{ source('jira', 'stg_customfieldoption') }}
+FROM {{ source('jira', 'stg_app_user') }}

@@ -15,6 +15,10 @@ sources:
       - name: jira_worklog
       - name: jira_customfield_option
       - name: jira_customfield_value
+      - name: jira_app_user
+      - name: jira_project_role_actor
+      - name: jira_project_role
+      - name: jira_project
       - name: project_members
       - name: project_profit_loss
       - name: projects

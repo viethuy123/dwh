@@ -14,6 +14,9 @@ sources:
       - name: stg_priority
       - name: stg_customfieldoption
       - name: stg_customfieldvalue
+      - name: stg_app_user
+      - name: stg_projectrole
+      - name: stg_projectroleactor
   - name: jisseki
     database: dwh
     schema: jisseki_fdw

@@ -57,8 +57,8 @@ TABLE_CONFIGS = [
     {'name': 'issuetype',     'type': 'light', 'chunksize': None},
     {'name': 'customfieldoption', 'type': 'light', 'chunksize': None},
     {'name': 'app_user', 'type': 'light', 'chunksize': None},
-    {'name': 'worklog',       'type': 'heavy', 'chunksize': 500000},
-    {'name': 'jiraissue',     'type': 'heavy', 'chunksize': 500000},
+    {'name': 'worklog',       'type': 'heavy', 'chunksize': 50000},
+    {'name': 'jiraissue',     'type': 'heavy', 'chunksize': 50000},
     # {'name': 'customfieldvalue', 'type': 'heavy', 'chunksize': 100000},
 ]
 

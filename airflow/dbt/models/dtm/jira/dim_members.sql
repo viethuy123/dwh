@@ -1,17 +1,23 @@
 {{ config(materialized='table') }}
 
-with cleaned_users as (
+with cleaned as (
     select * ,
     LEAD(date(create_time), 1, '2999-12-31') OVER (
             PARTITION BY company_email
-            ORDER BY date(create_time)
-        ) AS end_date
+            ORDER BY (create_time)
+        ) AS end_date,
+    ROW_NUMBER() OVER (
+            PARTITION BY company_email
+            ORDER BY (create_time)
+        ) AS rn
     from {{ source('dwh', 'users') }} a
 
+),
 
-
-
-
+cleaned_users as (
+    select * ,
+    case when rn = 1 then '1999-12-31' else date(create_time) end as create_date_used
+    from cleaned c
 )
 SELECT
     a.user_id as member_id,
@@ -25,6 +31,7 @@ SELECT
     a.user_level,
     a.user_status,
     date(a.create_time) as create_date,
+    a.create_date_used,
     a.end_date
 FROM cleaned_users a
 LEFT JOIN {{ source('dwh', 'branches') }} b
@@ -34,12 +41,8 @@ ON a.department_id = c.department_id
 LEFT JOIN {{ source('dwh', 'user_positions') }} d
 ON a.position_id = d.position_id
 WHERE a.company_email is not NULL AND a.company_email != 'null' AND a.company_email NOT LIKE 'Inactive%'
-and a.user_status not IN ('Inactivity', 'null')
-AND b.branch_name is not NULL AND b.branch_name != 'null'
-and a.position_id is not NULL
-and a.user_level is not NULL and a.user_level != 'null'
-and d.position_status = 'Yes'
-and c.is_deleted = 'No'
+-- and a.user_status not IN ('Inactivity', 'null')
+
 GROUP BY
     member_id,
     member_name,
@@ -52,4 +55,5 @@ GROUP BY
     a.user_level,
     a.user_status,
     date(a.create_time),
+    a.create_date_used,
     a.end_date

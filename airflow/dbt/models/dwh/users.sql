@@ -18,5 +18,5 @@ SELECT
     a."isDeleted" as is_deleted,
     CURRENT_TIMESTAMP as etl_datetime
 FROM {{ source('create', 'stg_users') }} a
-WHERE a."staffCode" is not NULL
+WHERE a."isDeleted" = 'No'
 

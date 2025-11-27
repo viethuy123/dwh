@@ -110,12 +110,12 @@ left join worklog_time as wlt
 
 left JOIN {{ ref('dim_users_public') }} as u_ass
     on COALESCE(wlt.worklog_author, iss.assignee_email) = u_ass.member_email
-    AND date(iss.created_time) >= u_ass.create_date
-    and date(iss.created_time) < u_ass.end_date
+    AND date(iss.updated_time) >= u_ass.create_date_used
+    and date(iss.updated_time) < u_ass.end_date
 left JOIN {{ ref('dim_users_public') }} as u_re
     on iss.reporter_email = u_re.member_email
-    AND date(iss.created_time) >= u_re.create_date
-    and date(iss.created_time) < u_re.end_date
+    AND date(iss.updated_time) >= u_re.create_date_used
+    and date(iss.updated_time) < u_re.end_date
 LEFT JOIN project_name as p
   ON iss.jira_project_id = p.project_id
 LEFT JOIN project_role_with_weight as pr

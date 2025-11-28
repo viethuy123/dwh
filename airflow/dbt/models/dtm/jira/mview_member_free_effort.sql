@@ -11,6 +11,8 @@
 ) }}
 
 WITH
+
+
   _time_series AS (
     SELECT
       TO_CHAR(
@@ -25,9 +27,10 @@ WITH
         'YYYY-MM'
       ) AS month_year
   ),
+
   _jira_efforts AS (
     SELECT
-      m.member_email,
+      w.worklog_author as member_email,
       to_char(start_time, 'YYYY-MM') AS month_year,
       (sum(time_worked) / 3600) / 160 AS actual_efforts,
       avg((sum(time_worked) / 3600) / 160) OVER (
@@ -40,7 +43,7 @@ WITH
       {{ ref('fct_worklog') }} w
       JOIN {{ref('dim_members')}} m ON m.member_email = w.worklog_author
     GROUP BY
-      m.member_email,
+      w.worklog_author,
       to_char(start_time, 'YYYY-MM')
   ),
   _pod_efforts AS (
@@ -50,7 +53,7 @@ WITH
       sum(effort) AS pod_efforts,
       count(DISTINCT m.member_id) AS normal_efforts
     FROM
-      {{ref('fct_pod_member_efforts')}} pme
+      {{ ref('fct_pod_member_efforts') }} pme
       JOIN {{ref('dim_members')}} m ON m.member_id = pme.member_id
     GROUP BY
       m.member_email,
@@ -69,6 +72,7 @@ WITH
       FULL OUTER JOIN _pod_efforts pe ON pe.month_year = ts.month_year
       FULL OUTER JOIN _jira_efforts je ON je.month_year = ts.month_year
       AND je.member_email = pe.member_email
+        
   ),
   _predicting_efforts AS (
     SELECT
@@ -120,8 +124,9 @@ WITH
       ) t
   )
 SELECT
-  f.*,
+
   m.member_name,
+  m.member_email as member_email_full,
   m.staff_code,
   m.branch_name,
   m.branch_code,
@@ -129,8 +134,13 @@ SELECT
   m.position_name,
   m.user_level,
   m.user_status,
+  f.*,
   normal_efforts - COALESCE(actual_efforts, pod_efforts, predicting_efforts) AS free_efforts
 FROM
-  _final as f
-JOIN {{ ref('dim_members') }} m ON m.member_email = f.member_email
-WHERE f.member_email is not null
+  {{ ref('dim_members') }} m
+  LEFT JOIN  _final as f
+  ON m.member_email = f.member_email
+  AND TO_DATE(f.month_year, 'YYYY-MM') >= DATE_TRUNC('month', m.create_date_used) 
+  AND TO_DATE(f.month_year, 'YYYY-MM') < DATE_TRUNC('month', m.end_date)
+
+  

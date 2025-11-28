@@ -32,16 +32,16 @@ dag = DAG(
 
 start = EmptyOperator(task_id='start', dag=dag)
 
-wait_for_external_dag = ExternalTaskSensor(
-    task_id="wait_for_jira_db_restore_dag",
-    external_dag_id=DAG_TO_WAIT_FOR,
-    external_task_id=None,
-    execution_date_fn="latest_success_dag_run",
-    poke_interval=1000,
-    timeout=60 * 60 * 1,
-    deferrable=True, 
-    dag=dag,
-)
+# wait_for_external_dag = ExternalTaskSensor(
+#     task_id="wait_for_jira_db_restore_dag",
+#     external_dag_id=DAG_TO_WAIT_FOR,
+#     external_task_id=None,
+#     execution_date_fn="latest_success_dag_run",
+#     poke_interval=1000,
+#     timeout=60 * 60 * 1,
+#     deferrable=True, 
+#     dag=dag,
+# )
 
 end = EmptyOperator(task_id='end', dag=dag, trigger_rule='all_done')
 
@@ -66,7 +66,7 @@ TABLE_CONFIGS = [
     {'name': 'app_user', 'type': 'light', 'chunksize': None},
     {'name': 'worklog',       'type': 'heavy', 'chunksize': 50000},
     {'name': 'jiraissue',     'type': 'heavy', 'chunksize': 50000},
-    {'name': 'customfieldvalue', 'type': 'heavy', 'chunksize': 100000},
+    # {'name': 'customfieldvalue', 'type': 'heavy', 'chunksize': 100000},
 ]
 
 
@@ -280,5 +280,5 @@ sync_fdw_tables_task = PythonOperator(
     )
        
 
-start >> wait_for_external_dag >> outer_group >> sync_fdw_tables_task >> end
+start >> outer_group >> sync_fdw_tables_task >> end
             

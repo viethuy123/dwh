@@ -1,12 +1,6 @@
 {{ config(
     materialized="table",
-    indexes=[
-        {
-            "columns": ["member_email", "month_year"],
-            "unique": true,
-            "type": "btree",
-        }
-    ]
+
 ) }}
 
 WITH
@@ -27,13 +21,6 @@ WITH
       ) AS month_year
   ),
 
-  email_unique AS (
-    SELECT DISTINCT
-      m.member_email
-    FROM
-      {{ ref('dim_members') }} m
-    group by m.member_email
-  ),
   _jira_efforts AS (
     SELECT
       w.worklog_author as member_email,
@@ -59,9 +46,8 @@ WITH
       sum(effort) AS pod_efforts,
       count(DISTINCT m.member_id) AS normal_efforts
     FROM
-      {{ref('fct_pod_member_efforts')}} pme
-      JOIN email_unique m 
-      ON m.member_email = pme.member_email
+      {{ ref('fct_pod_member_efforts') }} pme
+      JOIN {{ref('dim_members')}} m ON m.member_id = pme.member_id
     GROUP BY
       m.member_email,
       month_year
@@ -133,6 +119,7 @@ WITH
 SELECT
 
   m.member_name,
+  m.member_email as member_email_full,
   m.staff_code,
   m.branch_name,
   m.branch_code,
@@ -148,4 +135,5 @@ FROM
   ON m.member_email = f.member_email
   AND TO_DATE(f.month_year, 'YYYY-MM') >= DATE_TRUNC('month', m.create_date_used) 
   AND TO_DATE(f.month_year, 'YYYY-MM') < DATE_TRUNC('month', m.end_date)
-WHERE f.member_email is not null
+
+  

@@ -63,6 +63,7 @@ public_dtm_mapping = {
 
 bi_dtm = {
     "user_join_project": "user_join_project",
+    "detect_resource": "detect_resource"
 }
 
 jira_mviews = ["mview_member_free_effort"]

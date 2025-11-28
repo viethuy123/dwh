@@ -1,13 +1,6 @@
 {{ config(
-    materialized="materialized_view",
-    on_configuration_change="apply",
-    indexes=[
-        {
-            "columns": ["member_email", "month_year"],
-            "unique": true,
-            "type": "btree",
-        }
-    ]
+    materialized="table",
+
 ) }}
 
 WITH

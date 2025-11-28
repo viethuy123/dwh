@@ -2,13 +2,17 @@ from airflow.sdk import DAG, Variable, TaskGroup
 from airflow.providers.standard.operators.python import PythonOperator
 from airflow.providers.standard.operators.empty import EmptyOperator
 from datetime import datetime, timedelta
+from airflow.sensors.external_task import ExternalTaskSensor
 from utils.extract_data import extract_sql_data
 from utils.data_quality import validate_dataframe
 from utils.data_quality_notification import send_validation_results
 from utils.etl_job_logs import save_etl_job_logs
+from include.config import connect_pg_db, connect_jira_db
 from sqlalchemy import create_engine, text
 import pandas as pd
 import gc # Import thư viện Garbage Collector
+
+DAG_TO_WAIT_FOR = "dag-jira8db_restore"
 
 default_args = {
     'owner': 'huynnx',
@@ -28,24 +32,27 @@ dag = DAG(
 
 start = EmptyOperator(task_id='start', dag=dag)
 
+# wait_for_external_dag = ExternalTaskSensor(
+#     task_id="wait_for_jira_db_restore_dag",
+#     external_dag_id=DAG_TO_WAIT_FOR,
+#     external_task_id=None,
+#     execution_date_fn="latest_success_dag_run",
+#     poke_interval=1000,
+#     timeout=60 * 60 * 1,
+#     deferrable=True, 
+#     dag=dag,
+# )
+
 end = EmptyOperator(task_id='end', dag=dag, trigger_rule='all_done')
 
 slack_bot_token = Variable.get('slack-bot_token')
 slack_chat_id = Variable.get('slack-chat_id')
 
-pg_user = Variable.get("pg_user")
-pg_pwd = Variable.get("pg_password")
-pg_host = Variable.get("pg_host")
-pg_port = Variable.get("pg_port")
-pg_uri = "postgresql+psycopg2://{}:{}@{}:{}/{}".format(pg_user, pg_pwd, pg_host, pg_port, "stg")  
-wh_uri = "postgresql+psycopg2://{}:{}@{}:{}/{}".format(pg_user, pg_pwd, pg_host, pg_port, "dwh")  
-monitor_uri = "postgresql+psycopg2://{}:{}@{}:{}/{}".format(pg_user, pg_pwd, pg_host, pg_port, "monitoring")  
+pg_uri = connect_pg_db("stg")
+wh_uri = connect_pg_db("dwh")
+monitor_uri = connect_pg_db("monitoring")
 
-jira_user = Variable.get("jira_user")
-jira_pwd = Variable.get("jira_password")    
-jira_host = Variable.get("jira_host")
-jira_port = Variable.get("jira_port")
-jira_uri = "mysql+pymysql://{}:{}@{}:{}/{}".format(jira_user, jira_pwd, jira_host, jira_port, "jira8db")
+jira_uri = connect_jira_db("jira8db")
 
 TABLE_CONFIGS = [
     {'name': 'project',       'type': 'light', 'chunksize': None}, # None = Load all
@@ -71,8 +78,6 @@ def convert_all(val):
 def extract_load_jira_data(src_table:str, tgt_table:str, chunk_size: int | None) -> None:
     src_engine = create_engine(jira_uri, pool_pre_ping=True)
     pg_engine = create_engine(pg_uri)
-
-    # 1. Đảm bảo SCHEMA tồn tại
     with pg_engine.begin() as conn:
         conn.execute(text(f"CREATE SCHEMA IF NOT EXISTS src_jira"))
 

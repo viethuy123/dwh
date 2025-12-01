@@ -134,8 +134,13 @@ SELECT
   m.position_name,
   m.user_level,
   m.user_status,
-  f.*,
-  normal_efforts - COALESCE(actual_efforts, pod_efforts, predicting_efforts) AS free_efforts
+  f.member_email,
+  COALESCE(f.month_year, TO_CHAR(NOW(), 'YYYY-MM')) as month_year,
+  f.actual_efforts,
+  f.pod_efforts,
+  f.predicting_efforts,
+  f.normal_efforts,
+  f.normal_efforts - COALESCE(f.actual_efforts, f.pod_efforts, f.predicting_efforts) AS free_efforts
 FROM
   {{ ref('dim_members') }} m
   LEFT JOIN  _final as f

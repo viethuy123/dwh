@@ -1,23 +1,57 @@
 {{ config(materialized='table') }}
 
-with cleaned as (
-    select * ,
-    LEAD(date(create_time), 1, '2999-12-31') OVER (
+
+
+WITH priority_status AS (
+    SELECT 
+        u.*,
+        CASE 
+            WHEN u.user_status IS NOT NULL AND u.user_status != '' 
+            AND u.user_status NOT ILIKE '%Inac%' 
+            THEN 1
+            ELSE 0  -- Inactive/Null/Empty Status
+        END AS sort_priority -- Cột ưu tiên
+
+    FROM {{ source('dwh', 'users') }} u
+),
+
+get_end_date AS (
+    SELECT 
+        a.*,
+        -- SẮP XẾP: Các bản ghi sort_priority=0 (Inactive) được xếp trước theo thời gian, 
+        -- Bản ghi sort_priority=1 (Active) được đẩy xuống cuối.
+        LEAD(date(create_time), 1, DATE('2999-12-31')) OVER (
             PARTITION BY company_email
-            ORDER BY (create_time)
-        ) AS end_date,
-    ROW_NUMBER() OVER (
-            PARTITION BY company_email
-            ORDER BY (create_time)
-        ) AS rn
-    from {{ source('dwh', 'users') }} a
+            ORDER BY sort_priority ASC, (create_time) ASC 
+        ) AS end_date
+
+    FROM priority_status a
 
 ),
+cleaned_data AS (
+    SELECT
+        *
+    FROM get_end_date
+    WHERE 
+        date(create_time) < end_date 
+        OR end_date = DATE('2999-12-31')
+),
+
+sort_data AS (
+    SELECT 
+        g.*,
+        ROW_NUMBER() OVER (
+            PARTITION BY company_email
+            ORDER BY end_date ASC 
+        ) AS rn
+    FROM cleaned_data g
+),
+
 
 cleaned_users as (
     select * ,
     case when rn = 1 then '1999-12-31' else date(create_time) end as create_date_used
-    from cleaned c
+    from sort_data
 )
 SELECT
     a.user_id as member_id,

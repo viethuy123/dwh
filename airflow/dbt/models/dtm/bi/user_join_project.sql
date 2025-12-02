@@ -107,7 +107,7 @@ SELECT
 FROM issue_data as iss
 left join worklog_time as wlt
     on iss.issue_id = wlt.issue_id
-
+-- ưu tiên lấy data của worklog_author nếu có, nếu không thì lấy assignee_email
 left JOIN {{ ref('dim_users_public') }} as u_ass
     on COALESCE(wlt.worklog_author, iss.assignee_email) = u_ass.member_email
     AND date(iss.updated_time) >= u_ass.create_date_used

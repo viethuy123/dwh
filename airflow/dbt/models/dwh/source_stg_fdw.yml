@@ -22,6 +22,11 @@ sources:
     schema: jisseki_fdw
     tables:
       - name: stg_projects
+      - name: stg_project_customer
+      - name: stg_customers
+      - name: stg_countries
+      - name: stg_project_categories
+      - name: stg_categories
   - name: create
     database: dwh
     schema: create_fdw

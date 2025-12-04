@@ -29,7 +29,15 @@ warehouse_mapping ={
     'staff_attendances': 'src_create.stg_staff_attendances',
     'staff_attendances_types': 'src_create.stg_staff_attendance_types',
     'pods': 'src_create.stg_pods',
-    'billable_efforts_approveds': 'src_create.stg_billable_efforts_approveds'
+    'billable_efforts_approveds': 'src_create.stg_billable_efforts_approveds',
+    'jisseki_customers': 'src_jisseki.stg_customers',
+    'jisseki_countries': 'src_jisseki.stg_countries',
+    'jisseki_categories': 'src_jisseki.stg_categories',
+    'jisseki_project_customers': 'src_jisseki.stg_project_customers',
+    'jisseki_project_categories': 'src_jisseki.stg_project_categories',
+    'jisseki_projects': 'src_jisseki.stg_projects'
+
+    
 }
 
 hr_dtm_mapping = {
@@ -67,3 +75,36 @@ bi_dtm = {
 }
 
 jira_mviews = ["mview_member_free_effort"]
+
+dimension_dtm_mapping = {
+    'dim_jisseki_customers': [
+        'customer_snapshot',
+        'dwh.jisseki_countries'
+    ],
+    'dim_jisseki_categories': [
+        'dwh.jisseki_categories'
+    ],
+}
+
+fact_dtm_mapping = {
+    'fct_jisseki_projects': [
+        'dwh.jisseki_projects'
+    ],
+}
+
+bridge_dtm_mapping = {
+    'bridge_jisseki_project_cate': [
+        'dtm.fct_jisseki_projects',
+        'dtm.dim_jisseki_categories',
+        'dwh.jisseki_project_categories'
+    ],
+    'bridge_jisseki_project_cus': [
+        'dwh.jisseki_project_customers',
+        'dtm.fct_jisseki_projects',
+        'dtm.dim_jisseki_customers'
+    ],
+}
+
+snapshot_dtm_mapping = {
+        'customer_snapshot' : None,
+    }

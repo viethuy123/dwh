@@ -21,6 +21,7 @@ dag = DAG(
     dag_id='dag-jisseki_to_staging',
     default_args=default_args,
     schedule='0 20 * * *',
+    max_active_runs=2,
     catchup=False
 )
 
@@ -45,7 +46,7 @@ jisseki_host = Variable.get("jisseki_host")
 jisseki_port = Variable.get("jisseki_port")
 jisseki_uri = "mysql+pymysql://{}:{}@{}:{}/{}".format(jisseki_user, jisseki_pwd, jisseki_host, jisseki_port, "go_jisseki")
 
-src_tables = ['projects','project_customer']
+src_tables = ['projects','project_customer', 'customers', 'countries',  'project_categories', 'categories']
 tgt_tables = [f"stg_{table}" for table in src_tables]
 
 def extract_load_jisseki_data(src_table:str, tgt_table:str) -> None:

@@ -30,3 +30,10 @@ sources:
       - name: salaries
       - name: pods
       - name: billable_efforts_approveds
+      - name: jisseki_customers
+      - name: jisseki_countries
+      - name: jisseki_project_categories
+      - name: jisseki_project_customers
+      - name: jisseki_categories
+      - name: jisseki_projects
+      

@@ -26,6 +26,7 @@ dag = DAG(
     start_date=datetime.today() - timedelta(days=1),
     catchup=False,
     dagrun_timeout=timedelta(minutes=60),
+    # max_active_runs=4,
 )
 
 start = EmptyOperator(task_id='start', dag=dag)

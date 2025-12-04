@@ -37,3 +37,22 @@ models:
         schema: bi
         +generate_schema_name: false
         materialized: table
+      dimension:
+        schema: dimension
+        +generate_schema_name: false
+        materialized: table
+      fact:
+        schema: fact
+        +generate_schema_name: false
+        materialized: table
+      bridge:
+        schema: bridge
+        +generate_schema_name: false
+        materialized: table
+
+snapshots:
+  dwh_project:
+    target_schema: snapshots_dwh 
+    post-hook: 
+      - "COMMIT"
+      - "VACUUM ANALYZE {{ this }}"

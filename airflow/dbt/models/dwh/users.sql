@@ -13,10 +13,12 @@ SELECT
     a."userPositionObjId" as position_id,
     {{ safe_parse_timestamp('a."createdAt"') }} as create_time,
     {{ safe_parse_timestamp('a."userUpdatedAt"') }} as update_time,
+    {{ safe_parse_timestamp('a."expiresDate"') }} as expired_time,
     a."userLevel" as user_level,
     a."userStatus" as user_status,
     a."isDeleted" as is_deleted,
     CURRENT_TIMESTAMP as etl_datetime
 FROM {{ source('create', 'stg_users') }} a
 WHERE a."isDeleted" = 'No'
+and a."departmentObjId" != '60c0889f1b7b381078ad66ee'
 

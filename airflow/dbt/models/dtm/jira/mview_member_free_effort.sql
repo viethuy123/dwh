@@ -1,6 +1,13 @@
 {{ config(
-    materialized="table",
-    on_configuration_change="apply"
+    materialized="materialized_view",
+    on_configuration_change="apply",
+      indexes=[
+      {
+          "columns": ["member_email", "month_year"],
+          "unique": true,
+          "type": "btree",
+      }
+  ]
 ) }}
 
 WITH
@@ -77,7 +84,7 @@ WITH
 
   _efforts AS (
     SELECT
-      ts.member_email as member_email_full,
+      COALESCE(ts.member_email,je.member_email, pe.member_email) as member_email_full,
       COALESCE(je.member_email, pe.member_email) AS member_email,
       COALESCE(ts.month_year, je.month_year, pe.month_year) AS month_year,
       COALESCE(je.normal_efforts, pe.normal_efforts,1) AS normal_efforts,
@@ -272,3 +279,5 @@ SELECT
   WHERE COALESCE(f.month_year, DATE_TRUNC('month', NOW())::DATE) <= DATE_TRUNC('month', NOW()) + INTERVAL '3 months'
   and m.member_name is not null
   and m.member_name not in ('null', 'Admin')
+  and f.member_email_full is not null
+  and f.member_email_full like '%@runsystem%'

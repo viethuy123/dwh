@@ -20,39 +20,103 @@ get_end_date AS (
         a.*,
         -- SẮP XẾP: Các bản ghi sort_priority=0 (Inactive) được xếp trước theo thời gian, 
         -- Bản ghi sort_priority=1 (Active) được đẩy xuống cuối.
-        LEAD(date(create_time), 1, DATE('2999-12-31')) OVER (
-            PARTITION BY company_email
-            ORDER BY sort_priority ASC, (create_time) ASC 
-        ) AS end_date
+        CASE 
+            WHEN LEAD(create_time, 1, TIMESTAMP '2999-12-31') OVER (
+                PARTITION BY company_email
+                ORDER BY sort_priority ASC, create_time ASC 
+            ) = TIMESTAMP '2999-12-31' 
+            THEN DATE '2999-12-31'
+            ELSE (DATE_TRUNC('month', 
+                LEAD(create_time, 1, TIMESTAMP '2999-12-31') OVER (
+                    PARTITION BY company_email
+                    ORDER BY sort_priority ASC, create_time ASC 
+                )
+            ) - INTERVAL '1 day')::DATE
+        END AS end_date_1
 
     FROM priority_status a
 
 ),
+--  dùng cho case 1 email có 2 người dùng
 cleaned_data AS (
     SELECT
         *
     FROM get_end_date
     WHERE 
-        date(create_time) < end_date 
-        OR end_date = DATE('2999-12-31')
+        date(create_time) < end_date_1
+        OR end_date_1 = DATE('2999-12-31')
 ),
 
-sort_data AS (
-    SELECT 
-        g.*,
-        ROW_NUMBER() OVER (
-            PARTITION BY company_email
-            ORDER BY end_date ASC 
-        ) AS rn
-    FROM cleaned_data g
-),
-
-
+-- user sẽ có ngày tạo và kết thúc , nhưng trạng thái inactive vẫn cần chỉnh lại để biết nghỉ thời gian nào
 cleaned_users as (
     select * ,
-    case when rn = 1 then '1999-12-31' else date(create_time) end as create_date_used
-    from sort_data
+    date(create_time) as create_date_used
+    from cleaned_data
+),
+
+user_log AS (
+    SELECT 
+        u.lower_user_name as email,
+        max(DATE_TRUNC('month',w.start_time)::DATE) as date
+    FROM {{ source('dwh', 'jira_worklog') }} w
+    LEFT JOIN {{ source('dwh', 'jira_app_user') }} u
+    on w.worklog_author = u.user_key
+    LEFT JOIN {{ source('dwh', 'users') }} du
+    on u.lower_user_name = du.company_email
+    where du.user_status IN ('Inactivity', 'null')
+    group by u.lower_user_name
+),
+user_pod AS (
+    SELECT 
+        u.company_email as email,
+        max((p.month_year || '-01')::DATE) AS date
+    FROM {{ source('dwh', 'billable_efforts_approveds') }} p
+    LEFT JOIN {{ source('dwh', 'users') }} u
+    on p.user_id = u.user_id
+    where u.user_status IN ('Inactivity', 'null')
+    and effort != 0
+    and p."is_deleted" = 'No'
+    group by u.company_email
+),
+all_data_log as (
+    select * from user_log
+    union
+    select * from user_pod
+),
+-- lấy ngày cuối cùng user có ghi nhận trong hệ thống , chỉ lấy user inactive, null
+max_date_user as (
+    select 
+        email,
+        max(date) as max_date
+    from all_data_log
+    group by email
+),
+
+change_end_date_inactive_user as (
+    select 
+        cu.*,
+        case 
+            when (cu.expired_time is NULL and mu.max_date is NULL)
+                AND date(cu.end_date_1) = '2999-12-31' and (cu.user_status IN ('Inactivity', 'null') or cu.user_status IS NULL)
+                then cu.create_time::DATE
+            when (mu.max_date > DATE_TRUNC('MONTH', cu.expired_time)::DATE or cu.expired_time is NULL)
+                AND date(cu.end_date_1) = '2999-12-31' and (cu.user_status IN ('Inactivity', 'null') or cu.user_status IS NULL)
+                then mu.max_date
+            when (mu.max_date <= DATE_TRUNC('MONTH', cu.expired_time)::DATE or mu.max_date is NULL)
+                AND date(cu.end_date_1) = '2999-12-31' and (cu.user_status IN ('Inactivity', 'null') or cu.user_status IS NULL)
+                then cu.expired_time::DATE
+        end as end_date_2
+    from cleaned_users cu
+    left join max_date_user mu
+    on cu.company_email = mu.email
+),
+_final as (
+    select 
+        *,
+        COALESCE(end_date_2, end_date_1) as end_date
+    from change_end_date_inactive_user
 )
+
 SELECT
     a.user_id as member_id,
     a.user_name as member_name,
@@ -67,7 +131,7 @@ SELECT
     date(a.create_time) as create_date,
     a.create_date_used,
     a.end_date
-FROM cleaned_users a
+FROM _final a
 LEFT JOIN {{ source('dwh', 'branches') }} b
 ON a.branch_id = b.branch_id
 LEFT JOIN {{ source('dwh', 'departments') }} c
@@ -75,6 +139,7 @@ ON a.department_id = c.department_id
 LEFT JOIN {{ source('dwh', 'user_positions') }} d
 ON a.position_id = d.position_id
 WHERE a.company_email is not NULL AND a.company_email != 'null' AND a.company_email NOT LIKE 'Inactive%'
+and a.staff_code is not NULL 
 -- and a.user_status not IN ('Inactivity', 'null')
 
 GROUP BY

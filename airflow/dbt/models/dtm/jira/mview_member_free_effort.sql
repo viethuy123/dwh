@@ -44,8 +44,7 @@ WITH
         PARTITION BY w.worklog_author
         ORDER BY DATE_TRUNC('month', start_time)
         ROWS BETWEEN 3 PRECEDING AND CURRENT ROW
-      ) AS ma4,
-      count(DISTINCT m.member_id) AS normal_efforts
+      ) AS ma4
     FROM
       {{ ref('fct_worklog') }} w
       JOIN {{ ref('dim_members') }} m ON m.member_email = w.worklog_author
@@ -58,8 +57,7 @@ WITH
     SELECT
       m.member_email,
       pme.month_year as month_year_text,
-      SUM(CASE WHEN effort != 0 THEN effort ELSE NULL END) AS pod_efforts,
-      count(DISTINCT m.member_id) AS normal_efforts
+      SUM(CASE WHEN effort != 0 THEN effort ELSE NULL END) AS pod_efforts
     FROM
       {{ ref('fct_pod_member_efforts') }} pme
       JOIN {{ref('dim_members')}} m ON m.member_id = pme.member_id
@@ -77,8 +75,7 @@ WITH
         ELSE 
           month_year_text::DATE
       END AS month_year,
-      pod_efforts,
-      normal_efforts
+      pod_efforts
     FROM _pod_efforts_raw
   ),
 
@@ -87,7 +84,6 @@ WITH
       COALESCE(ts.member_email,je.member_email, pe.member_email) as member_email_full,
       COALESCE(je.member_email, pe.member_email) AS member_email,
       COALESCE(ts.month_year, je.month_year, pe.month_year) AS month_year,
-      COALESCE(je.normal_efforts, pe.normal_efforts,1) AS normal_efforts,
       je.actual_efforts,
       je.ma4,
       pe.pod_efforts
@@ -105,7 +101,6 @@ WITH
       member_email_full,
       member_email,
       month_year,
-      normal_efforts,
       actual_efforts,
       ma4,
       pod_efforts,
@@ -132,7 +127,6 @@ WITH
       actual_efforts,
       actual_pod_efforts,
       pod_efforts,
-      normal_efforts,
       ma4,
       avg_actual_last4,
       CASE
@@ -153,7 +147,6 @@ WITH
       actual_efforts,
       actual_pod_efforts,
       pod_efforts,
-      normal_efforts,
       ma4,
       COALESCE(
         new_predicting_efforts,
@@ -177,7 +170,6 @@ WITH
       actual_efforts,
       actual_pod_efforts,
       pod_efforts,
-      normal_efforts,
       ma4,
       COALESCE(
         new_predicting_efforts,
@@ -201,7 +193,6 @@ WITH
       actual_efforts,
       actual_pod_efforts,
       pod_efforts,
-      normal_efforts,
       ma4,
       COALESCE(
         new_predicting_efforts,
@@ -225,7 +216,6 @@ WITH
       actual_efforts,
       actual_pod_efforts,
       pod_efforts,
-      normal_efforts,
       LAG(ma4) OVER (
         PARTITION BY member_email_full
         ORDER BY month_year
@@ -245,7 +235,7 @@ WITH
       new_predicting_efforts,
       predicting_efforts,
       pod_efforts,
-      normal_efforts
+      1 as normal_efforts
     FROM _predicting_efforts
   )
 

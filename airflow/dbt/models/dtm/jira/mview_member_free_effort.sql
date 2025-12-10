@@ -281,3 +281,4 @@ SELECT
   and m.member_name not in ('null', 'Admin')
   and f.member_email_full is not null
   and f.member_email_full like '%@runsystem%'
+  AND branch_code != 'CNTO'

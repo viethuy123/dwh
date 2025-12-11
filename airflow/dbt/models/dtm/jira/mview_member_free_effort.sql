@@ -277,7 +277,7 @@ SELECT
   * , 
   CASE 
     WHEN free_efforts <0 THEN 'Overloaded'
-		WHEN free_efforts > 0 and free_efforts <= 0.2  THEN 'Normal'
+		WHEN free_efforts >= 0 and free_efforts <= 0.2  THEN 'Normal'
 		WHEN free_efforts > 0.6 THEN 'Free'
 		WHEN free_efforts > 0.2 THEN 'Unoverload'
   END AS efforts_status

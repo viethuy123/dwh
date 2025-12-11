@@ -280,6 +280,11 @@ SELECT
 		WHEN free_efforts >= 0 and free_efforts <= 0.2  THEN 'Normal'
 		WHEN free_efforts > 0.6 THEN 'Free'
 		WHEN free_efforts > 0.2 THEN 'Unoverload'
-  END AS efforts_status
+  END AS efforts_status,
+  CASE
+    WHEN predicting_efforts IS NULL THEN 'No'
+    ELSE 'Yes'
+  END AS has_history_efforts_4_months
+
 FROM
   all_data

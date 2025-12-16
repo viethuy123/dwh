@@ -3,43 +3,43 @@ version: 2
 sources:
   - name: jira
     database: dwh
-    schema: jira_fdw
+    schema: stg
     tables:
-      - name: stg_jiraissue
-      - name: stg_issuestatus
-      - name: stg_project
-      - name: stg_resolution
-      - name: stg_worklog
-      - name: stg_issuetype
-      - name: stg_priority
-      - name: stg_customfieldoption
-      - name: stg_customfieldvalue
-      - name: stg_app_user
-      - name: stg_projectrole
-      - name: stg_projectroleactor
+      - name: stg_jira_jiraissue
+      - name: stg_jira_issuestatus
+      - name: stg_jira_project
+      - name: stg_jira_resolution
+      - name: stg_jira_worklog
+      - name: stg_jira_issuetype
+      - name: stg_jira_priority
+      - name: stg_jira_customfieldoption
+      - name: stg_jira_customfieldvalue
+      - name: stg_jira_app_user
+      - name: stg_jira_projectrole
+      - name: stg_jira_projectroleactor
   - name: jisseki
     database: dwh
-    schema: jisseki_fdw
+    schema: stg
     tables:
-      - name: stg_projects
+      - name: stg_jisseki_projects
   - name: create
     database: dwh
-    schema: create_fdw
+    schema: stg
     tables:
-      - name: stg_branches
-      - name: stg_company_departments
-      - name: stg_projects
-      - name: stg_users
-      - name: stg_user_infos
-      - name: stg_profit_loss_expenses
-      - name: stg_profit_loss_project_expenses
-      - name: stg_project_categories
-      - name: stg_project_members
-      - name: stg_user_positions
-      - name: stg_user_skills
-      - name: stg_staff_attendances
-      - name: stg_staff_attendance_types
-      - name: stg_salaries
-      - name: stg_pods
-      - name: stg_billable_efforts_approveds
-      - name: stg_project_bill_costs
+      - name: stg_create_branches
+      - name: stg_create_company_departments
+      - name: stg_create_projects
+      - name: stg_create_users
+      - name: stg_create_user_infos
+      - name: stg_create_profit_loss_expenses
+      - name: stg_create_profit_loss_project_expenses
+      - name: stg_create_project_categories
+      - name: stg_create_project_members
+      - name: stg_create_user_positions
+      - name: stg_create_user_skills
+      - name: stg_create_staff_attendances
+      - name: stg_create_staff_attendance_types
+      - name: stg_create_salaries
+      - name: stg_create_pods
+      - name: stg_create_billable_efforts_approveds
+      - name: stg_create_project_bill_costs

@@ -51,15 +51,6 @@ jira_dtm_mapping = {
     "fct_pod_member_efforts": "billable_efforts_approveds"
 }
 
-public_dtm_mapping = {
-    "dim_users_public": ["users", "branches", "departments", "user_positions"],
-    # "dim_projects": "projects",
-    # "dim_time_series": "time_series",
-    "dim_branches_public": "branches",
-    "dim_departments_public": "departments",
-    "dim_positions_public": "user_positions",
-    "dim_jira_issues_public":["jira_issues", "jira_issue_types", "jira_issue_resolution", "jira_issue_status", "jira_issue_priority"],
-}
 
 bi_dtm = {
     "user_join_project": "user_join_project",
@@ -67,3 +58,21 @@ bi_dtm = {
 }
 
 jira_mviews = ["mview_member_free_effort"]
+
+report_mapping = {
+    "detect_resources": ["dim_members", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members", "dim_pods", "fct_pod_member_efforts"],
+    "mview_member_free_efforts": ["dim_members", "dim_time_series", "fct_worklog"],
+    "user_join_projects": ["dim_jira_issues", "dim_members"]
+}
+dim_mapping = {
+    "dim_jira_issues": "jira_issues",
+    "dim_members": "",
+    "dim_pods": "",
+    "dim_projects": "",
+}
+
+fct_mapping = {
+    "fct_worklogs": "jira_worklog",
+    "fct_project_members": "project_members",
+    "fct_pod_member_efforts": "billable_efforts_approveds",
+}

@@ -21,7 +21,7 @@ WITH
       m.member_email,
       ts.month_year
     FROM
-      {{ ref('dim_memberss') }} m
+      {{ ref('dim_members') }} m
       CROSS JOIN _time_series ts
     WHERE
       ts.month_year >= DATE_TRUNC('month', m.create_date_used) 
@@ -41,7 +41,7 @@ WITH
       count(DISTINCT m.member_id) AS normal_efforts
     FROM
       {{ ref('fct_worklogs') }} w
-      JOIN {{ ref('dim_memberss') }} m ON m.member_email = w.worklog_author
+      JOIN {{ ref('dim_members') }} m ON m.member_email = w.worklog_author
     GROUP BY
       w.worklog_author,
       DATE_TRUNC('month', start_time)
@@ -54,8 +54,8 @@ WITH
       SUM(CASE WHEN effort != 0 THEN effort ELSE NULL END) AS pod_efforts,
       count(DISTINCT m.member_id) AS normal_efforts
     FROM
-      {{ ref('fct_pod_member_effortss') }} pme
-      JOIN {{ref('dim_memberss') }} m ON m.member_id = pme.member_id
+      {{ ref('fct_pod_member_efforts') }} pme
+      JOIN {{ref('dim_members') }} m ON m.member_id = pme.member_id
     GROUP BY
       m.member_email,
       pme.month_year
@@ -264,7 +264,7 @@ SELECT
     ELSE f.normal_efforts - COALESCE(f.actual_efforts, f.pod_efforts, f.new_predicting_efforts, 0)
   END AS free_efforts
   FROM
-  {{ ref('dim_memberss') }} m
+  {{ ref('dim_members') }} m
   LEFT JOIN  _final as f
   ON m.member_email = f.member_email_full
   AND f.month_year >= DATE_TRUNC('month', m.create_date_used) 

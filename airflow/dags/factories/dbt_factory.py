@@ -23,7 +23,6 @@ def _get_table_mapping(mapping_var: str) -> dict:
     """
     mappings = {
         'warehouse_mapping': warehouse_mapping,
-        'jira_dtm_mapping': jira_dtm_mapping,
         'report_mapping': report_mapping,
         'dim_mapping': dim_mapping,
         'fct_mapping': fct_mapping,

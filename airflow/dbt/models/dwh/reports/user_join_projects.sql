@@ -6,8 +6,8 @@ with get_level_task as (
     select cv.issue_id,
         co.id as option_id,
         co.custom_value
-        from {{ source('dwh', 'jira_customfield_value') }} as cv
-            left join {{ source('dwh', 'jira_customfield_option') }} as co
+        from {{ ref('jira_customfield_value') }} as cv
+            left join {{ ref('jira_customfield_option') }} as co
             on cv.custom_field = co.custom_field and cv.string_value::DOUBLE PRECISION = co.id
         where cv.custom_field in (12100,12632)
 ),
@@ -17,7 +17,7 @@ with get_level_task as (
     glt.option_id as issue_level_id,
     glt.custom_value as issue_level
 
-    from {{ ref('dim_jira_issues_public') }} as iss 
+    from {{ ref('dim_jira_issues') }} as iss 
     left join get_level_task as glt
     on iss.issue_id = glt.issue_id
     -- {% if is_incremental() %}
@@ -30,10 +30,10 @@ project_role as (
         r.role_name as role_name,
         ru.project_id,
         COALESCE(u.lower_user_name, ru.user_email) as user_email
-    from {{ source('dwh', 'jira_project_role_actor') }} as ru
-    join {{ source('dwh', 'jira_project_role') }} as r
+    from {{ ref('jira_project_role_actor') }} as ru
+    join {{ ref('jira_project_role') }} as r
         on ru.project_role_id = r.id
-    left join {{ source('dwh', 'jira_app_user') }} as u
+    left join {{ ref('jira_app_user') }} as u
         on ru.user_email = u.user_key
 
 ),
@@ -41,7 +41,7 @@ project_name as (
     select 
         p.project_name,
         p.id as project_id
-    from {{ source('dwh', 'jira_project') }} as p
+    from {{ ref('jira_project') }} as p
     group by 
         p.project_name,
         p.id
@@ -62,8 +62,8 @@ worklog_time as (
         issue_id,
         COALESCE(u.lower_user_name,worklog_author) as worklog_author,
         sum(time_worked) as total_time_worked
-    from {{ source('dwh', 'jira_worklog') }}
-    left join {{ source('dwh', 'jira_app_user') }} as u
+    from {{ ref('jira_worklog') }}
+    left join {{ ref('jira_app_user') }} as u
         on worklog_author = u.user_key
     group by issue_id, COALESCE(u.lower_user_name,worklog_author)
 )
@@ -108,11 +108,11 @@ FROM issue_data as iss
 left join worklog_time as wlt
     on iss.issue_id = wlt.issue_id
 -- ưu tiên lấy data của worklog_author nếu có, nếu không thì lấy assignee_email
-left JOIN {{ ref('dim_users_public') }} as u_ass
+left JOIN {{ ref('dim_members') }} as u_ass
     on COALESCE(wlt.worklog_author, iss.assignee_email) = u_ass.member_email
     AND date(iss.updated_time) >= u_ass.create_date_used
     and date(iss.updated_time) < u_ass.end_date
-left JOIN {{ ref('dim_users_public') }} as u_re
+left JOIN {{ ref('dim_members') }} as u_re
     on iss.reporter_email = u_re.member_email
     AND date(iss.updated_time) >= u_re.create_date_used
     and date(iss.updated_time) < u_re.end_date

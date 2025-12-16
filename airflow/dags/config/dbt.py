@@ -23,7 +23,7 @@ DBT_PIPELINES = {
     
     'reports': {
         'dag_id': 'dag_reports',
-        'schedule': '30 21 * * *',
+        'schedule': '15 21 * * *',
         'timeout_minutes': 60,
         'source_db': 'dwh',
         'target_db': 'dwh',
@@ -38,7 +38,7 @@ DBT_PIPELINES = {
     
     'dim_data': {
         'dag_id': 'dag_dim_data',
-        'schedule': '30 20 * * *',
+        'schedule': '50 20 * * *',
         'timeout_minutes': 60,
         'source_db': 'dwh',
         'target_db': 'dwh',
@@ -53,7 +53,7 @@ DBT_PIPELINES = {
 
     'fct_data': {
         'dag_id': 'dag_fct_data',
-        'schedule': '40 20 * * *',
+        'schedule': '0 21 * * *',
         'timeout_minutes': 60,
         'source_db': 'dwh',
         'target_db': 'dwh',

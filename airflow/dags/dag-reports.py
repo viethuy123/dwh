@@ -9,7 +9,7 @@ from config import DBT_PIPELINES, DEFAULT_ARGS
 from factories.dbt_factory import create_dbt_transformation_task_group
 
 # Lấy config
-pipeline_config = DBT_PIPELINES['staging_to_warehouse']
+pipeline_config = DBT_PIPELINES['reports']
 
 # Tạo DAG
 dag = DAG(
@@ -27,7 +27,7 @@ with dag:
     end = EmptyOperator(task_id='end', trigger_rule='all_done')
     
     # DBT transformation tasks
-    transformation_group = create_dbt_transformation_task_group(dag,'stg', pipeline_config)
+    transformation_group = create_dbt_transformation_task_group(dag,'dwh', pipeline_config)
     
     # Dependencies
 

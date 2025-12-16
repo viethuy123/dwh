@@ -67,3 +67,20 @@ bi_dtm = {
 }
 
 jira_mviews = ["mview_member_free_effort"]
+
+report_mapping = {
+    "detect_resources": ["dim_members", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members", "dim_pods", "fct_pod_member_efforts"],
+    "mview_member_free_efforts": ["dim_members", "dim_time_series", "fct_worklog"]
+}
+dim_mapping = {
+    "dim_jira_issuess": "jira_issues",
+    "dim_memberss": "",
+    "dim_podss": "",
+    "dim_projectss": "",
+}
+
+fct_mapping = {
+    "fct_worklogs": "jira_worklog",
+    "fct_project_memberss": "project_members",
+    "fct_pod_member_effortss": "billable_efforts_approveds",
+}

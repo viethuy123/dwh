@@ -19,7 +19,18 @@ clean-targets:
 models:
   dwh_project:
     dwh:
-      materialized: table
+      intermediates:
+        +schema: intermediates
+        +materialized: table
+      reports:
+        +schema: reports
+        +materialized: table
+      dim:
+        +schema: dim
+        +materialized: table 
+      fct:
+        +schema: fct
+        +materialized: table 
     dtm:
       hr:
         schema: hr 

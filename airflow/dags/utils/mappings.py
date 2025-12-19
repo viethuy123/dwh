@@ -29,7 +29,8 @@ warehouse_mapping ={
     'staff_attendances': 'src_create.stg_staff_attendances',
     'staff_attendances_types': 'src_create.stg_staff_attendance_types',
     'pods': 'src_create.stg_pods',
-    'billable_efforts_approveds': 'src_create.stg_billable_efforts_approveds'
+    'billable_efforts_approveds': 'src_create.stg_billable_efforts_approveds',
+
 }
 
 hr_dtm_mapping = {
@@ -69,10 +70,15 @@ dim_mapping = {
     "dim_members": "",
     "dim_pods": "",
     "dim_projects": "",
+    "dim_members_test": ""
 }
 
 fct_mapping = {
     "fct_worklogs": "jira_worklog",
     "fct_project_members": "project_members",
     "fct_pod_member_efforts": "billable_efforts_approveds",
+}
+
+snapshot_mapping = {
+    "members_snapshot": "users",
 }

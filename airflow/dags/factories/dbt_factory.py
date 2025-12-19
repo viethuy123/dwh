@@ -4,14 +4,15 @@ Factory để tạo DBT transformation tasks
 """
 from airflow.sdk import TaskGroup
 from airflow.providers.standard.operators.python import PythonOperator
-from airflow_dbt_python.operators.dbt import DbtRunOperator
+from airflow_dbt_python.operators.dbt import DbtRunOperator, DbtSnapshotOperator
 from utils.common_tasks import (
     create_data_quality_check_callable,
     create_data_notification_callable,
     create_save_job_logs_callable,
+    _create_dbt_operator
 )
 from utils.mappings import \
-warehouse_mapping, jira_dtm_mapping, report_mapping , dim_mapping , fct_mapping
+warehouse_mapping, report_mapping, dim_mapping, fct_mapping, snapshot_mapping
 
 
 def _get_table_mapping(mapping_var: str) -> dict:
@@ -26,6 +27,7 @@ def _get_table_mapping(mapping_var: str) -> dict:
         'report_mapping': report_mapping,
         'dim_mapping': dim_mapping,
         'fct_mapping': fct_mapping,
+        'snapshot_mapping': snapshot_mapping,
     }
     return mappings.get(mapping_var, {})
 
@@ -78,18 +80,18 @@ def create_dbt_transformation_task_group(dag, source_schema, pipeline_config: di
         for tgt_table, src_table in table_mapping.items():
             src_table = f'{source_schema}_{tgt_table}' if source_schema else src_table
             with TaskGroup(group_id=f'{src_table}_{tgt_table}', dag=dag) as inner_group:
-                
                 # DBT Run task
-                dbt_run = DbtRunOperator(
+                dbt_task = _create_dbt_operator(
                     task_id=f"dbt_{tgt_table}",
-                    project_dir=DBT_CONFIG['project_dir'],
-                    profiles_dir=DBT_CONFIG['profiles_dir'],
-                    select=[f"path:{models_path}/{target_schema}/{tgt_table}.sql"],
-                    target=dbt_target,
-                    profile=DBT_CONFIG['profile'],
-                    upload_dbt_project=True,
+                    mapping_var=pipeline_config["table_mapping_var"],
+                    models_path=models_path,
+                    target_schema=target_schema,
+                    tgt_table=tgt_table,
                     dag=dag,
+                    dbt_target=dbt_target,
+                    DBT_CONFIG=DBT_CONFIG,
                 )
+
                 
                 # Success logs
                 success_logs = PythonOperator(
@@ -137,7 +139,7 @@ def create_dbt_transformation_task_group(dag, source_schema, pipeline_config: di
                 )
                 
                 # Dependencies
-                dbt_run >> success_logs >> quality_check >> notification
-                dbt_run >> failure_logs
+                dbt_task >> success_logs >> quality_check >> notification
+                dbt_task >> failure_logs
 
     return outer_group

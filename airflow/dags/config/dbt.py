@@ -65,7 +65,21 @@ DBT_PIPELINES = {
             'enabled': False,
         }
     },
-    
+    'snapshots': {
+        'dag_id': 'dag_snapshots',  
+        'schedule': '0 22 * * *',
+        'timeout_minutes': 60,
+        'source_db': 'dwh',
+        'target_db': 'dwh',
+        'dbt_target': 'dwh',
+        'models_path': 'snapshots',
+        'tgt_schema': 'snapshots',
+        'method': 'snapshot',
+        'table_mapping_var': 'snapshot_mapping',
+        'fdw_sync': {
+            'enabled': False,
+        }
+    },
 
     'dwh_to_jira_dtm': {
         'dag_id': 'dag_dwh_to_jira_dtm',

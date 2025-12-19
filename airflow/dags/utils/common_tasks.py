@@ -8,6 +8,40 @@ from utils.data_quality import validate_dataframe
 from utils.data_quality_notification import send_validation_results
 from utils.etl_job_logs import save_etl_job_logs
 from sqlalchemy import create_engine, text
+from airflow_dbt_python.operators.dbt import DbtRunOperator, DbtSnapshotOperator
+
+def _create_dbt_operator(
+    *,
+    task_id: str,
+    mapping_var: str,
+    models_path: str,
+    target_schema: str,
+    tgt_table: str,
+    dag,
+    dbt_target: str,
+    DBT_CONFIG: dict,
+):
+    if mapping_var == "snapshot_mapping":
+        return DbtSnapshotOperator(
+            task_id=task_id,
+            project_dir=DBT_CONFIG["project_dir"],
+            profiles_dir=DBT_CONFIG["profiles_dir"],
+            target=dbt_target,
+            profile=DBT_CONFIG["profile"],
+            upload_dbt_project=True,
+            dag=dag,
+        )
+    else:
+        return DbtRunOperator(
+            task_id=task_id,
+            project_dir=DBT_CONFIG["project_dir"],
+            profiles_dir=DBT_CONFIG["profiles_dir"],
+            select=[f"path:{models_path}/{target_schema}/{tgt_table}.sql"],
+            target=dbt_target,
+            profile=DBT_CONFIG["profile"],
+            upload_dbt_project=True,
+            dag=dag,
+        )
 
 
 def create_data_quality_check_callable(schema: str, uri_fn):

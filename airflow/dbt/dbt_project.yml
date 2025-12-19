@@ -48,3 +48,8 @@ models:
         schema: bi
         +generate_schema_name: false
         materialized: table
+
+snapshots:
+  dwh_project:
+    snapshots:
+      +target_schema: snapshots

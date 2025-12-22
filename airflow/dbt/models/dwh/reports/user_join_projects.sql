@@ -61,20 +61,54 @@ worklog_time as (
     select 
         issue_id,
         COALESCE(u.lower_user_name,worklog_author) as worklog_author,
+        start_time,
         sum(time_worked) as total_time_worked
     from {{ ref('jira_worklog') }}
     left join {{ ref('jira_app_user') }} as u
         on worklog_author = u.user_key
-    group by issue_id, COALESCE(u.lower_user_name,worklog_author)
+    group by issue_id, COALESCE(u.lower_user_name,worklog_author), start_time
+),
+data_worklog as (
+    SELECT 
+        iss.issue_id,
+        iss.issue_number,
+        iss.jira_project_id,
+        iss.issue_level,
+        iss.issue_level_id,
+        COALESCE(wlt.worklog_author, iss.assignee_email) as assignee_email,
+        iss.reporter_email,
+        iss.issue_summary,
+        iss.priority,
+        iss.type,
+        iss.resolution,
+        iss.status,
+        iss.resolution_date,
+        iss.due_date,
+        iss.time_original_estimate,
+        iss.time_estimate,
+        iss.time_spent,
+        iss.created_time,
+        iss.updated_time,
+        wlt.start_time,
+        wlt.total_time_worked
+        -- pr.role_name,
+        -- pr.total_roles_per_user_project,
+        -- COALESCE(pr.weight_factor, 1) as weight_factor,
+        -- wlt.total_time_worked * COALESCE(pr.weight_factor, 1) as time_worked_s,
+        -- (wlt.total_time_worked * COALESCE(pr.weight_factor, 1))/3600 as time_worked_h
+
+    FROM issue_data as iss
+    left join worklog_time as wlt
+        on iss.issue_id = wlt.issue_id
 )
 
 SELECT 
-    iss.issue_id,
-    iss.issue_number,
-    iss.jira_project_id,
+    iss.issue_id::TEXT,
+    iss.issue_number::TEXT,
+    iss.jira_project_id::TEXT,
     iss.issue_level,
-    iss.issue_level_id,
-    COALESCE(wlt.worklog_author, iss.assignee_email) as assignee_email,
+    iss.issue_level_id::TEXT,
+    iss.assignee_email,
     iss.reporter_email,
     iss.issue_summary,
     iss.priority,
@@ -88,9 +122,10 @@ SELECT
     iss.time_spent,
     iss.created_time,
     iss.updated_time,
-    COALESCE(u_ass.member_name, wlt.worklog_author, iss.assignee_email) as assignee_name,
+    COALESCE(u_ass.member_name, iss.assignee_email) as assignee_name,
     COALESCE(u_re.member_name, iss.reporter_email) as reporter_name,
-    u_ass.staff_code as assignee_staff_code,
+    u_ass.member_name,
+    u_ass.staff_code::TEXT as assignee_staff_code,
     u_ass.branch_name,
     u_ass.branch_code,
     u_ass.department_name,
@@ -98,26 +133,27 @@ SELECT
     u_ass.user_level,
     u_ass.user_status,
     p.project_name,
-    p.project_id,
     pr.role_name,
     pr.total_roles_per_user_project,
     COALESCE(pr.weight_factor, 1) as weight_factor,
-    wlt.total_time_worked * COALESCE(pr.weight_factor, 1) as time_worked
+    iss.start_time,
+    iss.total_time_worked * COALESCE(pr.weight_factor, 1) as time_worked_s,
+    (iss.total_time_worked * COALESCE(pr.weight_factor, 1))/3600 as time_worked_h
 
-FROM issue_data as iss
-left join worklog_time as wlt
-    on iss.issue_id = wlt.issue_id
+FROM data_worklog as iss
+
+
 -- ưu tiên lấy data của worklog_author nếu có, nếu không thì lấy assignee_email
 left JOIN {{ ref('dim_members') }} as u_ass
-    on COALESCE(wlt.worklog_author, iss.assignee_email) = u_ass.member_email
-    AND date(iss.updated_time) >= u_ass.create_date_used
-    and date(iss.updated_time) < u_ass.end_date
+    on iss.assignee_email = u_ass.member_email
+    AND COALESCE(date(iss.start_time), date(iss.created_time)) >= u_ass.create_date_used
+    and COALESCE(date(iss.start_time), date(iss.created_time)) <= u_ass.end_date
 left JOIN {{ ref('dim_members') }} as u_re
     on iss.reporter_email = u_re.member_email
-    AND date(iss.updated_time) >= u_re.create_date_used
-    and date(iss.updated_time) < u_re.end_date
+    AND COALESCE(date(iss.start_time), date(iss.created_time)) >= u_re.create_date_used
+    and COALESCE(date(iss.start_time), date(iss.created_time)) <= u_re.end_date
 LEFT JOIN project_name as p
   ON iss.jira_project_id = p.project_id
 LEFT JOIN project_role_with_weight as pr
   ON iss.jira_project_id = pr.project_id
-  and COALESCE(wlt.worklog_author, iss.assignee_email) = pr.user_email
+  and iss.assignee_email = pr.user_email

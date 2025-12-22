@@ -47,7 +47,6 @@ WITH
       ) AS ma4
     FROM
       {{ ref('fct_worklogs') }} w
-      JOIN {{ ref('dim_members') }} m ON m.member_email = w.worklog_author
     GROUP BY
       w.worklog_author,
       DATE_TRUNC('month', start_time)
@@ -55,29 +54,36 @@ WITH
 
   _pod_efforts_raw AS (
     SELECT
-      m.member_email,
-      pme.month_year as month_year_text,
+      member_id,
+      CASE 
+        WHEN month_year ~ '^\d{4}-\d{2}$' THEN 
+          (month_year || '-01')::DATE
+        ELSE 
+          month_year::DATE
+      END AS month_year_date,
       SUM(CASE WHEN effort != 0 THEN effort ELSE NULL END) AS pod_efforts
+    FROM {{ ref('fct_pod_member_efforts') }}
+  GROUP BY
+      member_id,
+      month_year_date
+  ),
+
+  _pod_efforts AS (
+    SELECT
+      m.member_email,
+      pme.month_year_date as month_year,
     FROM
-      {{ ref('fct_pod_member_efforts') }} pme
-      JOIN {{ref('dim_members') }} m ON m.member_id = pme.member_id
+      _pod_efforts_raw pme
+      JOIN {{ref('dim_members') }} m 
+      ON m.member_id = pme.member_id
+      and pme.month_year_date >= m.create_date_used
+      and pme.month_year_date <= m.end_date
     GROUP BY
       m.member_email,
       pme.month_year
   ),
 
-  _pod_efforts AS (
-    SELECT
-      member_email,
-      CASE 
-        WHEN month_year_text ~ '^\d{4}-\d{2}$' THEN 
-          (month_year_text || '-01')::DATE
-        ELSE 
-          month_year_text::DATE
-      END AS month_year,
-      pod_efforts
-    FROM _pod_efforts_raw
-  ),
+
 
   _efforts AS (
     SELECT
@@ -108,14 +114,34 @@ WITH
     FROM _efforts
   ),
 
-  _efforts_with_past_avg AS (
+  -- _efforts_with_past_avg AS (
+  --   SELECT
+  --     *,
+  --     AVG(actual_pod_efforts) OVER (
+  --       PARTITION BY member_email_full
+  --       ORDER BY month_year
+  --       ROWS BETWEEN 4 PRECEDING AND 1 PRECEDING
+  --     ) AS avg_actual_last4
+  --   FROM _efforts_with_actual
+  -- ),
+
+_efforts_with_past_avg AS (
     SELECT
       *,
-      AVG(actual_pod_efforts) OVER (
-        PARTITION BY member_email_full
-        ORDER BY month_year
-        ROWS BETWEEN 4 PRECEDING AND 1 PRECEDING
-      ) AS avg_actual_last4
+      -- Chỉ tính trung bình nếu có ít nhất 1 dòng có dữ liệu thực tế (actual/pod) trong 4 tháng trước
+      CASE 
+        WHEN COUNT(actual_pod_efforts) OVER (
+          PARTITION BY member_email_full 
+          ORDER BY month_year 
+          ROWS BETWEEN 4 PRECEDING AND 1 PRECEDING
+        ) > 0 THEN
+          AVG(actual_pod_efforts) OVER (
+            PARTITION BY member_email_full
+            ORDER BY month_year
+            ROWS BETWEEN 4 PRECEDING AND 1 PRECEDING
+          ) 
+        ELSE NULL 
+      END AS avg_actual_last4
     FROM _efforts_with_actual
   ),
 
@@ -130,6 +156,7 @@ WITH
       ma4,
       avg_actual_last4,
       CASE
+        -- Tháng hiện tại hoặc quá khứ: Nếu 4 tháng trước toàn NULL thì kết quả là NULL
         WHEN month_year <= DATE_TRUNC('month', CURRENT_DATE) THEN
           avg_actual_last4
         ELSE
@@ -140,7 +167,6 @@ WITH
 
   _predicting_pass2 AS (
     SELECT
-    
       member_email_full,
       member_email,
       month_year,
@@ -151,7 +177,10 @@ WITH
       COALESCE(
         new_predicting_efforts,
         CASE 
-          WHEN month_year = DATE_TRUNC('month', CURRENT_DATE) + INTERVAL '1 month' THEN
+          WHEN month_year = DATE_TRUNC('month', CURRENT_DATE) + INTERVAL '1 month' 
+          -- Kiểm tra 4 tháng trước có dữ liệu thực tế hay không
+          AND COUNT(actual_pod_efforts) OVER (PARTITION BY member_email_full ORDER BY month_year ROWS BETWEEN 4 PRECEDING AND 1 PRECEDING) > 0 
+          THEN
             AVG(COALESCE(actual_pod_efforts, new_predicting_efforts)) OVER (
               PARTITION BY member_email_full
               ORDER BY month_year
@@ -174,7 +203,10 @@ WITH
       COALESCE(
         new_predicting_efforts,
         CASE 
-          WHEN month_year = DATE_TRUNC('month', CURRENT_DATE) + INTERVAL '2 months' THEN
+          WHEN month_year = DATE_TRUNC('month', CURRENT_DATE) + INTERVAL '2 months' 
+          -- Tiếp tục kiểm tra 4 tháng trước (bao gồm cả các tháng đã dự báo ở Pass trước) có dữ liệu thực tế hay không
+          AND COUNT(actual_pod_efforts) OVER (PARTITION BY member_email_full ORDER BY month_year ROWS BETWEEN 4 PRECEDING AND 1 PRECEDING) > 0 
+          THEN
             AVG(COALESCE(actual_pod_efforts, new_predicting_efforts)) OVER (
               PARTITION BY member_email_full
               ORDER BY month_year
@@ -197,7 +229,9 @@ WITH
       COALESCE(
         new_predicting_efforts,
         CASE 
-          WHEN month_year = DATE_TRUNC('month', CURRENT_DATE) + INTERVAL '3 months' THEN
+          WHEN month_year = DATE_TRUNC('month', CURRENT_DATE) + INTERVAL '3 months' 
+          AND COUNT(actual_pod_efforts) OVER (PARTITION BY member_email_full ORDER BY month_year ROWS BETWEEN 4 PRECEDING AND 1 PRECEDING) > 0 
+          THEN
             AVG(COALESCE(actual_pod_efforts, new_predicting_efforts)) OVER (
               PARTITION BY  member_email_full
               ORDER BY month_year
@@ -264,14 +298,16 @@ SELECT
   {{ ref('dim_members') }} m
   LEFT JOIN  _final as f
   ON m.member_email = f.member_email_full
-  AND f.month_year >= DATE_TRUNC('month', m.create_date_used) 
-  AND f.month_year <= DATE_TRUNC('month', m.end_date)
+  AND f.month_year >= m.create_date_used
+  AND f.month_year <= m.end_date
   WHERE COALESCE(f.month_year, DATE_TRUNC('month', NOW())::DATE) <= DATE_TRUNC('month', NOW()) + INTERVAL '3 months'
   and m.member_name is not null
   and m.member_name not in ('null', 'Admin')
   and f.member_email_full is not null
   and f.member_email_full like '%@runsystem%'
   AND branch_code != 'CNTO'
+  AND (department_id != '60c0889f1b7b381078ad66ee' OR department_id IS NULL)
+  AND staff_code is not null
 )
 SELECT
   * , 

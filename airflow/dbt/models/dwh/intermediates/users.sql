@@ -19,6 +19,5 @@ SELECT
     a."isDeleted" as is_deleted,
     CURRENT_TIMESTAMP as etl_datetime
 FROM {{ source('create', 'stg_create_users') }} a
-WHERE a."isDeleted" = 'No'
-and a."departmentObjId" != '60c0889f1b7b381078ad66ee'
+where a."isDeleted" = 'No'
 

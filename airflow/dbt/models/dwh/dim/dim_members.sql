@@ -20,6 +20,7 @@ get_end_date AS (
         a.*,
         -- SẮP XẾP: Các bản ghi sort_priority=0 (Inactive) được xếp trước theo thời gian, 
         -- Bản ghi sort_priority=1 (Active) được đẩy xuống cuối.
+        -- trừ 1 tháng cho case email có 2 dòng, vì email cũ có thể hết trong các tháng trước rất lâu 
         CASE 
             WHEN LEAD(create_time, 1, TIMESTAMP '2999-12-31') OVER (
                 PARTITION BY company_email
@@ -48,9 +49,10 @@ cleaned_data AS (
 ),
 
 -- user sẽ có ngày tạo và kết thúc , nhưng trạng thái inactive vẫn cần chỉnh lại để biết nghỉ thời gian nào
+-- sẽ chuyển create_time về đầu tháng vì case trên đã tạo cuối tháng , k sợ trùng
 cleaned_users as (
     select * ,
-    date(create_time) as create_date_used
+    date(DATE_TRUNC('month', create_time)) as create_date_used
     from cleaned_data
 ),
 
@@ -98,13 +100,13 @@ change_end_date_inactive_user as (
         case 
             when (cu.expired_time is NULL and mu.max_date is NULL)
                 AND date(cu.end_date_1) = '2999-12-31' and (cu.user_status IN ('Inactivity', 'null') or cu.user_status IS NULL)
-                then cu.create_time::DATE
+                then (date_trunc('month', cu.create_time) + interval '1 month - 1 day')::DATE
             when (mu.max_date > DATE_TRUNC('MONTH', cu.expired_time)::DATE or cu.expired_time is NULL)
                 AND date(cu.end_date_1) = '2999-12-31' and (cu.user_status IN ('Inactivity', 'null') or cu.user_status IS NULL)
-                then mu.max_date
+                then (date_trunc('month', mu.max_date) + interval '1 month - 1 day')::DATE
             when (mu.max_date <= DATE_TRUNC('MONTH', cu.expired_time)::DATE or mu.max_date is NULL)
                 AND date(cu.end_date_1) = '2999-12-31' and (cu.user_status IN ('Inactivity', 'null') or cu.user_status IS NULL)
-                then cu.expired_time::DATE
+                then (date_trunc('month', cu.expired_time) + interval '1 month - 1 day')::DATE
         end as end_date_2
     from cleaned_users cu
     left join max_date_user mu
@@ -139,7 +141,7 @@ ON a.department_id = c.department_id
 LEFT JOIN {{ ref('user_positions') }} d
 ON a.position_id = d.position_id
 WHERE a.company_email is not NULL AND a.company_email != 'null' AND a.company_email NOT LIKE 'Inactive%'
-and a.staff_code is not NULL 
+-- and a.staff_code is not NULL 
 -- and a.user_status not IN ('Inactivity', 'null')
 
 GROUP BY

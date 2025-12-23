@@ -4,4 +4,4 @@
 SELECT 
     department_id, 
     department_name 
-FROM {{ source('dwh', 'departments') }}
+FROM {{ ref('departments') }}

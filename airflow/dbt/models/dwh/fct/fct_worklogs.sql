@@ -5,7 +5,7 @@ SELECT
     a.worklog_id,
     a.issue_id,
     b.jira_project_id,
-    au.lower_user_name as worklog_author,
+    COALESCE(au.lower_user_name, a.worklog_author) as worklog_author,
     a.worklog_description,
     a.start_time,
     a.time_worked,

@@ -29,7 +29,9 @@ warehouse_mapping ={
     'staff_attendances': 'src_create.stg_staff_attendances',
     'staff_attendances_types': 'src_create.stg_staff_attendance_types',
     'pods': 'src_create.stg_pods',
-    'billable_efforts_approveds': 'src_create.stg_billable_efforts_approveds',
+    'billable_efforts_approveds': 'stg_create_billable_efforts_approveds',
+    'create_project': 'stg_create_projects',
+    'jisseki_project': 'stg_jisseki_projects',
 
 }
 
@@ -47,7 +49,6 @@ jira_dtm_mapping = {
     "dim_time_series": "time_series",
     "dim_jira_issues":["jira_issues", "jira_issue_types", "jira_issue_resolution", "jira_issue_status", "jira_issue_priority"],
     "fct_worklog": ["jira_worklog","jira_issues"],
-    "fct_project_members": "project_members",
     "dim_pods": "pods",
     "fct_pod_member_efforts": "billable_efforts_approveds"
 }
@@ -70,12 +71,15 @@ dim_mapping = {
     "dim_members": "",
     "dim_pods": "",
     "dim_projects": "",
-    "dim_members_test": ""
+    "dim_members_test": "",
+    "dim_branches": "branches",
+    "dim_departments": "departments",
+    "dim_positions": "positions",
+    "dim_project_members": "project_members",
 }
 
 fct_mapping = {
     "fct_worklogs": "jira_worklog",
-    "fct_project_members": "project_members",
     "fct_pod_member_efforts": "billable_efforts_approveds",
 }
 

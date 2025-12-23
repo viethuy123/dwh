@@ -60,13 +60,11 @@ project_role_with_weight as (
 worklog_time as (
     select 
         issue_id,
-        COALESCE(u.lower_user_name,worklog_author) as worklog_author,
+        worklog_author,
         start_time,
         sum(time_worked) as total_time_worked
-    from {{ ref('jira_worklog') }}
-    left join {{ ref('jira_app_user') }} as u
-        on worklog_author = u.user_key
-    group by issue_id, COALESCE(u.lower_user_name,worklog_author), start_time
+    from {{ ref('fct_worklogs') }}
+    group by issue_id, worklog_author, start_time
 ),
 data_worklog as (
     SELECT 
@@ -100,6 +98,13 @@ data_worklog as (
     FROM issue_data as iss
     left join worklog_time as wlt
         on iss.issue_id = wlt.issue_id
+),
+
+user_not_duplicate as ( 
+    SELECT 
+        *
+    FROM {{ ref('dim_members') }}
+    WHERE count_email_duplicates = 1
 )
 
 SELECT 
@@ -122,16 +127,16 @@ SELECT
     iss.time_spent,
     iss.created_time,
     iss.updated_time,
-    COALESCE(u_ass.member_name, iss.assignee_email) as assignee_name,
+    COALESCE(u_ass.member_name, u_nd.member_name, iss.assignee_email) as assignee_name,
     COALESCE(u_re.member_name, iss.reporter_email) as reporter_name,
-    u_ass.member_name,
-    u_ass.staff_code::TEXT as assignee_staff_code,
-    u_ass.branch_name,
-    u_ass.branch_code,
-    u_ass.department_name,
-    u_ass.position_name,
-    u_ass.user_level,
-    u_ass.user_status,
+    COALESCE(u_ass.member_name, u_nd.member_name) as member_name,
+    COALESCE(u_ass.staff_code, u_nd.staff_code) as assignee_staff_code,
+    COALESCE(u_ass.branch_name, u_nd.branch_name) as assignee_branch_name,
+    COALESCE(u_ass.branch_code, u_nd.branch_code) as assignee_branch_code,
+    COALESCE(u_ass.department_name, u_nd.department_name) as assignee_department_name,
+    COALESCE(u_ass.position_name, u_nd.position_name) as assignee_position_name,
+    COALESCE(u_ass.user_level, u_nd.user_level) as assignee_user_level,
+    COALESCE(u_ass.user_status, u_nd.user_status) as assignee_user_status,
     p.project_name,
     pr.role_name,
     pr.total_roles_per_user_project,
@@ -148,6 +153,9 @@ left JOIN {{ ref('dim_members') }} as u_ass
     on iss.assignee_email = u_ass.member_email
     AND COALESCE(date(iss.start_time), date(iss.created_time)) >= u_ass.create_date_used
     and COALESCE(date(iss.start_time), date(iss.created_time)) <= u_ass.end_date
+-- có thể user sẽ k thỏa với khoảng ngày nên sẽ dùng 1 join k điều kiện ngày cho chắc
+left join user_not_duplicate as u_nd
+    on iss.assignee_email  = u_nd.member_email
 left JOIN {{ ref('dim_members') }} as u_re
     on iss.reporter_email = u_re.member_email
     AND COALESCE(date(iss.start_time), date(iss.created_time)) >= u_re.create_date_used

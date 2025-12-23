@@ -72,6 +72,7 @@ WITH
     SELECT
       m.member_email,
       pme.month_year_date as month_year,
+      SUM(pme.pod_efforts) AS pod_efforts
     FROM
       _pod_efforts_raw pme
       JOIN {{ref('dim_members') }} m 
@@ -80,7 +81,7 @@ WITH
       and pme.month_year_date <= m.end_date
     GROUP BY
       m.member_email,
-      pme.month_year
+      pme.month_year_date
   ),
 
 
@@ -306,7 +307,7 @@ SELECT
   and f.member_email_full is not null
   and f.member_email_full like '%@runsystem%'
   AND branch_code != 'CNTO'
-  AND (department_id != '60c0889f1b7b381078ad66ee' OR department_id IS NULL)
+  AND (department_name != 'Nikko' OR department_name IS NULL)
   AND staff_code is not null
 )
 SELECT

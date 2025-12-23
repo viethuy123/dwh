@@ -4,4 +4,4 @@
 SELECT
     position_id,
     position_name
-FROM {{ source('dwh', 'user_positions') }}
+FROM {{ ref('user_positions') }}

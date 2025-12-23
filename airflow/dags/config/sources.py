@@ -78,6 +78,10 @@ SOURCES = {
                 {'name': 'staff_attendance_types', 'type': 'light', 'chunksize': None},
                 {'name': 'salaries', 'type': 'light', 'chunksize': None},
                 {'name': 'project_bill_costs', 'type': 'light', 'chunksize': None},
+                {'name': 'customers', 'type': 'light', 'chunksize': None},
+                {'name': 'markets', 'type': 'light', 'chunksize': None},
+                {'name': 'project_reports', 'type': 'light', 'chunksize': None},
+                {'name': 'project_report_details', 'type': 'light', 'chunksize': None},
             ],
 
         }

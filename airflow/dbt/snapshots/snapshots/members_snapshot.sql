@@ -4,7 +4,13 @@
     config(
       unique_key='user_id',
       strategy='check',
-      check_cols=['user_status'],
+      check_cols=[
+      'user_status',
+      'branch_id',
+      'department_id',
+      'position_id',
+      'user_level'
+    ],
       invalidate_hard_deletes=True
     )
 }}

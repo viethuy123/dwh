@@ -76,6 +76,7 @@ dim_mapping = {
     "dim_departments": "departments",
     "dim_positions": "positions",
     "dim_project_members": "project_members",
+    "dim_member_email_effective": "users"
 }
 
 fct_mapping = {

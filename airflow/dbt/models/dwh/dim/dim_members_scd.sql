@@ -4,10 +4,10 @@
 ) }}
 
 SELECT
-    {{ dbt_utils.generate_surrogate_key([
+   {# {{ dbt_utils.generate_surrogate_key([
         'user_id',
         'dbt_valid_from'
-    ]) }} AS member_sk,
+    ]) }} AS member_sk,#}
 
     user_id AS member_id,
     user_name,

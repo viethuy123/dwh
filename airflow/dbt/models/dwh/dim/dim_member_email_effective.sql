@@ -153,11 +153,10 @@ _final AS (
 )
 
 SELECT
-    {{ dbt_utils.generate_surrogate_key([
+{#  {{ dbt_utils.generate_surrogate_key([
         'company_email',
         'create_date_used'
-    ]) }}                           AS member_email_sk,
-
+    ]) }} AS member_email_sk, #}
     user_id                         AS member_id,
     user_name                       AS member_name,
     company_email                   AS member_email,

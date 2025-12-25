@@ -4,6 +4,7 @@ Restore Jira DB từ Dropbox backup (chạy 7 PM hàng ngày)
 """
 from airflow.sdk import DAG
 from airflow.providers.standard.operators.empty import EmptyOperator
+from airflow.datasets import Dataset
 from datetime import timedelta
 from config import SOURCES, DEFAULT_ARGS
 from factories.restore_factory import create_restore_task_group
@@ -25,10 +26,8 @@ dag = DAG(
 
 with dag:
     start = EmptyOperator(task_id='start')
-    end = EmptyOperator(task_id='end', trigger_rule='all_done')
-    
-    # Restore tasks
     restore_group = create_restore_task_group(dag, 'jira', restore_config)
+    end = EmptyOperator(task_id='end', outlets=[Dataset('jira_restore_completed')], trigger_rule='all_success')
     
     # Dependencies
     start >> restore_group >> end

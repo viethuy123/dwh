@@ -4,6 +4,7 @@ Extract & Load CREATE data từ MongoDB vào Staging PostgreSQL
 """
 from airflow.sdk import DAG
 from airflow.providers.standard.operators.empty import EmptyOperator
+from airflow.datasets import Dataset
 from datetime import timedelta
 from config import SOURCES , DEFAULT_ARGS
 from factories.ingestion_factory import create_ingestion_task_group
@@ -16,7 +17,7 @@ ingestion_config = create_config['ingestion']
 dag = DAG(
     dag_id=ingestion_config['dag_id'],
     default_args=DEFAULT_ARGS,
-    schedule=ingestion_config['schedule'],  # 8 PM
+    schedule=[Dataset('jira_staging_completed')],  # Trigger by datasets
     catchup=False,
     dagrun_timeout=timedelta(minutes=ingestion_config['timeout_minutes']),
     description='Extract CREATE data from MongoDB and load to Staging',
@@ -25,10 +26,8 @@ dag = DAG(
 
 with dag:
     start = EmptyOperator(task_id='start')
-    end = EmptyOperator(task_id='end', trigger_rule='all_done')
-    
-    # Ingestion tasks
     ingestion_group = create_ingestion_task_group(dag, 'create', ingestion_config)
+    end = EmptyOperator(task_id='end', outlets=[Dataset('create_staging_completed')], trigger_rule='all_success')
     
     # Dependencies
     start >> ingestion_group >> end

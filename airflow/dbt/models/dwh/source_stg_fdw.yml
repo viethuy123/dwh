@@ -22,6 +22,11 @@ sources:
     schema: stg
     tables:
       - name: stg_jisseki_projects
+      - name: stg_jisseki_project_customer
+      - name: stg_jisseki_project_categories
+      - name: stg_jisseki_countries
+      - name: stg_jisseki_customers
+      - name: stg_jisseki_categories
   - name: create
     database: dwh
     schema: stg

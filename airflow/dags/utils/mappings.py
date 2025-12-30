@@ -39,6 +39,7 @@ warehouse_mapping ={
     'jisseki_customers': 'src_jisseki.stg_project_customer',
     'jisseki_project_cate': 'src_jisseki.stg_project_categories',
     'jisseki_project_cus': 'src_jisseki.stg_project_customer',
+    'skill_members' : 'stg_skill_members',
 
 }
 
@@ -70,7 +71,7 @@ jira_mviews = ["mview_member_free_effort"]
 
 report_mapping = {
     "detect_resources": ["dim_members", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members", "dim_pods", "fct_pod_member_efforts"],
-    "mview_member_free_efforts": ["dim_members", "dim_time_series", "fct_worklog"],
+    "mview_member_free_efforts": ["dim_members", "dim_time_series", "fct_worklog","dim_skill_members"],
     "user_join_projects": ["dim_jira_issues", "dim_members"]
 }
 dim_mapping = {
@@ -88,7 +89,8 @@ dim_mapping = {
     "dim_jira_project_role": "jira_project_role",
     "dim_members_scd": "users",
     "dim_project_cate": "jisseki_categories",
-    "dim_project_cus": "jisseki_customers"
+    "dim_project_cus": "jisseki_customers",
+    "dim_skill_members" : "skill_members"
 }
 
 fct_mapping = {

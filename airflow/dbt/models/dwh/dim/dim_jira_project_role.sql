@@ -3,5 +3,5 @@
 select 
     id ,
     role_name ,
-    description ,
+    description
 from {{ ref('jira_project_role') }}

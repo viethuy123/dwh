@@ -43,7 +43,7 @@ jisseki_project as (
 create_pod as (
 SELECT 
     cp.id as create_pr_id,
-    pp.id as pod_pr_id,
+    pp.pod_id as pod_pr_id,
     pp.project_code as pod_project_code,
     coalesce(cp.project_name, pp.project_name) as project_name,
     coalesce(cp.project_code, pp.code_join) as project_code,

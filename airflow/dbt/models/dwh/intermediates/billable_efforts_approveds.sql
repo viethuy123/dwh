@@ -10,7 +10,7 @@ SELECT
     role as user_role,
     status,
     "isDeleted" as is_deleted,
-    TO_TIMESTAMP("createdAt",'YYYY-MM-DD HH24:MI:SS') as created_time,
-    TO_TIMESTAMP("updatedAt",'YYYY-MM-DD HH24:MI:SS') as updated_time,
+    {{ safe_parse_timestamp('"createdAt"') }} as created_time,
+    {{ safe_parse_timestamp('"updatedAt"') }} as updated_time,
     CURRENT_TIMESTAMP as etl_datetime
 FROM {{ source('create', 'stg_create_billable_efforts_approveds') }}

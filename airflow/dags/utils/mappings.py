@@ -32,6 +32,13 @@ warehouse_mapping ={
     'billable_efforts_approveds': 'stg_create_billable_efforts_approveds',
     'create_project': 'stg_create_projects',
     'jisseki_project': 'stg_jisseki_projects',
+    # New intermediates
+
+    'jisseki_categories': 'src_jisseki.stg_project_categories',
+    'jisseki_countries': 'src_jisseki.stg_countries',
+    'jisseki_customers': 'src_jisseki.stg_project_customer',
+    'jisseki_project_cate': 'src_jisseki.stg_project_categories',
+    'jisseki_project_cus': 'src_jisseki.stg_project_customer',
 
 }
 
@@ -76,6 +83,12 @@ dim_mapping = {
     "dim_departments": "departments",
     "dim_positions": "positions",
     "dim_project_members": "project_members",
+    "dim_member_email_effective": "users",
+    # New dims
+    "dim_jira_project_role": "jira_project_role",
+    "dim_members_scd": "users",
+    "dim_project_cate": "jisseki_categories",
+    "dim_project_cus": "jisseki_customers"
 }
 
 fct_mapping = {

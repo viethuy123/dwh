@@ -105,6 +105,10 @@ SOURCES = {
             'tables': [
                 {'name': 'projects', 'type': 'light', 'chunksize': None},
                 {'name': 'project_customer', 'type': 'light', 'chunksize': None},
+                {'name': 'project_categories', 'type': 'light', 'chunksize': None},
+                {'name': 'customers', 'type': 'light', 'chunksize': None},
+                {'name': 'countries', 'type': 'light', 'chunksize': None},
+                {'name': 'categories', 'type': 'light', 'chunksize': None},
             ],
         }
     }

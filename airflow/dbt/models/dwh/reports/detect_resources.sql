@@ -1,9 +1,9 @@
 {{ config(
-    materialized="materialized_view",
+    materialized="table",
     on_configuration_change="apply",
       indexes=[
       {
-          "columns": ["member_email", "month_year"],
+          "columns": ["member_email", "month_year", "skill_name"],
           "unique": true,
           "type": "btree",
       }
@@ -309,19 +309,44 @@ SELECT
   AND branch_code != 'CNTO'
   AND (department_name != 'Nikko' OR department_name IS NULL)
   AND staff_code is not null
-)
-SELECT
+),
+cacul_effort_type as
+(
+  SELECT
   * , 
   CASE 
     WHEN free_efforts <0 THEN 'Overloaded'
 		WHEN free_efforts >= 0 and free_efforts <= 0.2  THEN 'Normal'
 		WHEN free_efforts > 0.6 THEN 'Free'
-		WHEN free_efforts > 0.2 THEN 'Unoverload'
+		WHEN free_efforts > 0.2 THEN ' Underloaded'
   END AS efforts_status,
   CASE
     WHEN predicting_efforts IS NULL THEN 'No'
     ELSE 'Yes'
-  END AS has_history_efforts_4_months
+  END AS has_history_efforts_4_months 
 
-FROM
-  all_data
+  FROM
+    all_data
+),
+skill_members as (
+  select staff_code , skill_name from {{ ref('dim_skill_members') }}
+  group by 1,2
+),
+
+skill_member_with_weight as (
+  SELECT staff_code , skill_name, 
+  COUNT(*) OVER(PARTITION by staff_code)
+  
+  as weight_factor
+  from skill_members
+
+)
+
+select r.*, s.skill_name,
+  r.free_efforts/weight_factor as free_effort_unique
+ from
+cacul_effort_type as r
+left join
+skill_member_with_weight as s
+on r.staff_code = s.staff_code
+

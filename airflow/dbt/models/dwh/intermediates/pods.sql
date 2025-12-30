@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 SELECT
-    _id as id,
+    _id as pod_id,
     "projectCode" as project_code,
     "projectName" as project_name,
     "projectType" as project_type,

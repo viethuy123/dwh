@@ -69,7 +69,7 @@ on cp.project_code = pp.code_join
 
 all_project as (
     select 
-        coalesce(cp.create_pr_id, jp.id, cp.pod_pr_id) as project_id,
+        coalesce(cp.create_pr_id::TEXT, jp.id::TEXT, cp.pod_pr_id::TEXT) as project_id,
         cp.create_pr_id,
         cp.pod_pr_id,
         cp.pod_project_code,

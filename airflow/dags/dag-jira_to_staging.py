@@ -26,7 +26,7 @@ dag = DAG(
 
 with dag:
     start = EmptyOperator(task_id='start')
-    end = EmptyOperator(task_id='end', outlets=[Dataset('jira_staging_completed')], trigger_rule='all_success')
+    end = EmptyOperator(task_id='end', outlets=[Dataset('jira_staging_completed')], trigger_rule='none_failed')
     
     # Ingestion tasks
     ingestion_group = create_ingestion_task_group(dag, 'jira', ingestion_config)

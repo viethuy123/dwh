@@ -87,7 +87,7 @@ dim_mapping = {
     "dim_member_email_effective": "users",
     # New dims
     "dim_jira_project_role": "jira_project_role",
-    "dim_members_scd": "users",
+    # "dim_members_scd": "users",
     # "dim_project_cate": "jisseki_categories",
     # "dim_project_cus": "jisseki_customers",
     "dim_skill_members" : "skill_members"

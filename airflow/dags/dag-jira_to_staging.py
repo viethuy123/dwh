@@ -6,7 +6,7 @@ from airflow.sdk import DAG
 from airflow.providers.standard.operators.empty import EmptyOperator
 from airflow.datasets import Dataset
 from datetime import timedelta
-from config import SOURCES , DEFAULT_ARGS
+from config import SOURCES , DEFAULT_ARGS, DEFAULT_CHECK_DAG
 from factories.ingestion_factory import create_ingestion_task_group
 
 # Lấy config
@@ -26,7 +26,7 @@ dag = DAG(
 
 with dag:
     start = EmptyOperator(task_id='start')
-    end = EmptyOperator(task_id='end', outlets=[Dataset('jira_staging_completed')], trigger_rule='none_failed')
+    end = EmptyOperator(task_id='end', outlets=[Dataset('jira_staging_completed')], trigger_rule= DEFAULT_CHECK_DAG['trigger_rule'])
     
     # Ingestion tasks
     ingestion_group = create_ingestion_task_group(dag, 'jira', ingestion_config)

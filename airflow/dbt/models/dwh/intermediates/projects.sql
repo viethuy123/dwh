@@ -69,6 +69,7 @@ on cp.project_code = pp.code_join
 
 all_project as (
     select 
+        coalesce(cp.create_pr_id, jp.id, cp.pod_pr_id) as project_id,
         cp.create_pr_id,
         cp.pod_pr_id,
         cp.pod_project_code,
@@ -96,6 +97,6 @@ all_project as (
     on cp.project_code = jp.project_code
 )
 select * from all_project
-group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21
+group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21, 22
 
 

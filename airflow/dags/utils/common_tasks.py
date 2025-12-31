@@ -144,9 +144,12 @@ def create_save_job_logs_callable(source_db: str, target_db: str):
         execution_time = (
             context.get('logical_date') or 
             context.get('data_interval_start') or 
-            context.get('execution_date') or
-            context['ti'].execution_date  # fallback cuối cùng
+            context.get('execution_date')
         )
+        
+        # Nếu vẫn không có (dataset trigger case), dùng current time
+        if execution_time is None:
+            execution_time = datetime.utcnow()
         
         # Get monitoring URI tại runtime (lazy import)
         from config import DB_URIS

@@ -9,26 +9,5 @@ WITH project_values AS (
     GROUP BY project_id
 )
 SELECT 
-    a.project_id,
-    jira_project_id,
-    project_name,
-    project_jira_url,
-    project_description,
-    project_bill,
-    project_category,
-    project_type,
-    project_status,
-    location,
-    scope,
-    type,
-    point_css,
-    summary,
-    size,
-    period,
-    team_size,
-    start_date,
-    end_date,
-    b.project_value
+    a.*s
 FROM {{ ref('projects') }} a
-LEFT JOIN project_values b
-ON a.project_id = b.project_id

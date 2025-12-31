@@ -141,7 +141,12 @@ def create_save_job_logs_callable(source_db: str, target_db: str):
         target_db: Target database name
     """
     def save_job_logs(src_table: str | list, tgt_table: str, status: str, **context) -> None:
-        execution_time = context['logical_date']
+        execution_time = (
+            context.get('logical_date') or 
+            context.get('data_interval_start') or 
+            context.get('execution_date') or
+            context['ti'].execution_date  # fallback cuối cùng
+        )
         
         # Get monitoring URI tại runtime (lazy import)
         from config import DB_URIS

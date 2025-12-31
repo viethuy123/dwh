@@ -9,7 +9,7 @@ from utils.data_quality_notification import send_validation_results
 from utils.etl_job_logs import save_etl_job_logs
 from sqlalchemy import create_engine, text
 from airflow_dbt_python.operators.dbt import DbtRunOperator, DbtSnapshotOperator
-
+from datetime import datetime
 def _create_dbt_operator(
     *,
     task_id: str,

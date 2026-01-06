@@ -1,5 +1,6 @@
 pandas==2.1.4
 dbt-core==1.8.6
+dbt-postgres==1.8.6
 airflow-dbt-python[postgres]
 psycopg2-binary
 great_expectations
@@ -10,3 +11,4 @@ pymongo
 cryptography
 # python-telegram-bot
 slack-sdk
+astronomer-cosmos

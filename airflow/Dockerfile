@@ -20,3 +20,11 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 RUN pip install --no-cache-dir \
     "apache-airflow==${AIRFLOW_VERSION}" \
     -r requirements.txt
+
+COPY --chown=airflow:root dbt_project /opt/airflow/dbt_project
+# Chạy dbt deps để tải dbt-utils và dbt-expectations về
+WORKDIR /opt/airflow/dbt_project
+RUN dbt deps --profiles-dir . 
+
+# Chuyển lại WORKDIR mặc định của Airflow nếu cần
+WORKDIR /opt/airflow

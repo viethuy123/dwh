@@ -65,7 +65,7 @@ user_log AS (
     on w.worklog_author = u.user_key
     LEFT JOIN {{ ref('users') }} du
     on u.lower_user_name = du.company_email
-    where du.user_status IN ('Inactivity', 'null') or du.user_status is null
+    where (du.user_status IN ('Inactivity', 'null') or du.user_status is null)
     group by u.lower_user_name
 ),
 user_jira_issues AS (
@@ -75,7 +75,7 @@ user_jira_issues AS (
     FROM {{ ref('dim_jira_issues') }} i
     LEFT JOIN {{ ref('users') }} du
     on i.assignee_email = du.company_email
-    where du.user_status IN ('Inactivity', 'null') or du.user_status is null
+    where (du.user_status IN ('Inactivity', 'null') or du.user_status is null)
     group by i.assignee_email
 
 ),
@@ -86,7 +86,7 @@ user_pod AS (
     FROM {{ ref('billable_efforts_approveds') }} p
     LEFT JOIN {{ ref('users') }} u
     on p.user_id = u.user_id
-    where u.user_status IN ('Inactivity', 'null') or u.user_status IS NULL
+    where (u.user_status IN ('Inactivity', 'null') or u.user_status IS NULL)
     and effort != 0
     and p."is_deleted" = 'No'
     group by u.company_email

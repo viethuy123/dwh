@@ -307,6 +307,7 @@ SELECT
   and f.member_email_full is not null
   and f.member_email_full like '%@runsystem%'
   AND branch_code != 'CNTO'
+  AND branch_code is not null
   AND (department_name != 'Nikko' OR department_name IS NULL)
   AND staff_code is not null
 ),

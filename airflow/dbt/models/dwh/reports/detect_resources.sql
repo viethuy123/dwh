@@ -343,7 +343,7 @@ skill_member_with_weight as (
 )
 
 select r.*, s.skill_name,
-  r.free_efforts/weight_factor as free_effort_unique
+  r.free_efforts/COALESCE(s.weight_factor, 1) as free_effort_unique
  from
 cacul_effort_type as r
 left join

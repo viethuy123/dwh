@@ -82,6 +82,10 @@ SOURCES = {
                 {'name': 'markets', 'type': 'light', 'chunksize': None},
                 {'name': 'project_reports', 'type': 'light', 'chunksize': None},
                 {'name': 'project_report_details', 'type': 'light', 'chunksize': None},
+                {'name': 'skills', 'type': 'light', 'chunksize': None},
+                {'name': 'skill_categories', 'type': 'light', 'chunksize': None},
+                {'name': 'refer_pods', 'type': 'light', 'chunksize': None},
+                {'name': 'billable_efforts', 'type': 'light', 'chunksize': None},
             ],
 
         }

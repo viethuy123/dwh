@@ -8,4 +8,4 @@ SELECT
     effort,
     month_year,
     status
-FROM {{ ref('billable_efforts') }}
+FROM {{ ref('billable_efforts_approveds') }}

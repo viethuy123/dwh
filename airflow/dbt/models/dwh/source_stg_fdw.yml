@@ -48,6 +48,9 @@ sources:
       - name: stg_create_pods
       - name: stg_create_billable_efforts_approveds
       - name: stg_create_project_bill_costs
+      - name: stg_create_skills
+      - name: stg_create_skill_categories
+      - name: stg_create_billable_efforts
   - name: excel
     database: dwh
     schema: stg

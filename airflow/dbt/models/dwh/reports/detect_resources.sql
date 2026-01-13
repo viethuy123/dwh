@@ -51,8 +51,41 @@ WITH
       w.worklog_author,
       DATE_TRUNC('month', start_time)
   ),
+-- pod approved
+  _pod_efforts_approved_raw AS (
+    SELECT
+      member_id,
+      CASE 
+        WHEN month_year ~ '^\d{4}-\d{2}$' THEN 
+          (month_year || '-01')::DATE
+        ELSE 
+          month_year::DATE
+      END AS month_year_date,
+      SUM(CASE WHEN effort != 0 THEN effort ELSE NULL END) AS pod_efforts
+    FROM {{ ref('fct_pod_member_efforts_approved') }}
+  GROUP BY
+      member_id,
+      month_year_date
+  ),
 
-  _pod_efforts_raw AS (
+  _pod_efforts_approved AS (
+    SELECT
+      m.member_email,
+      pme.month_year_date as month_year,
+      SUM(pme.pod_efforts) AS pod_efforts
+    FROM
+      _pod_efforts_approved_raw pme
+      JOIN {{ref('dim_members') }} m 
+      ON m.member_id = pme.member_id
+      and pme.month_year_date >= m.create_date_used
+      and pme.month_year_date <= m.end_date
+    GROUP BY
+      m.member_email,
+      pme.month_year_date
+  ),
+
+  -- pod not appro
+  _pod_efforts_not_approved_raw AS (
     SELECT
       member_id,
       CASE 
@@ -68,17 +101,18 @@ WITH
       month_year_date
   ),
 
-  _pod_efforts AS (
+  _pod_efforts_not_approved AS (
     SELECT
       m.member_email,
       pme.month_year_date as month_year,
       SUM(pme.pod_efforts) AS pod_efforts
     FROM
-      _pod_efforts_raw pme
+      _pod_efforts_not_approved_raw pme
       JOIN {{ref('dim_members') }} m 
       ON m.member_id = pme.member_id
       and pme.month_year_date >= m.create_date_used
       and pme.month_year_date <= m.end_date
+    where pme.month_year_date >= DATE_TRUNC('month', CURRENT_DATE)
     GROUP BY
       m.member_email,
       pme.month_year_date
@@ -93,14 +127,17 @@ WITH
       COALESCE(ts.month_year, je.month_year, pe.month_year) AS month_year,
       je.actual_efforts,
       je.ma4,
-      pe.pod_efforts
+      pe.pod_efforts,
+      pena.pod_efforts as not_approved_efforts
     FROM 
       all_member_future_months ts
-      FULL OUTER JOIN _pod_efforts pe 
+      FULL OUTER JOIN _pod_efforts_approved pe 
         ON pe.month_year = ts.month_year AND pe.member_email = ts.member_email
       FULL OUTER JOIN _jira_efforts je 
         ON je.month_year = COALESCE(ts.month_year, pe.month_year) 
        AND je.member_email = COALESCE(ts.member_email, pe.member_email)
+      FULL OUTER JOIN _pod_efforts_not_approved pena 
+        ON pena.month_year = ts.month_year AND pena.member_email = ts.member_email
   ),
 
   _efforts_with_actual AS (
@@ -111,7 +148,8 @@ WITH
       actual_efforts,
       ma4,
       pod_efforts,
-      COALESCE(actual_efforts, pod_efforts) AS actual_pod_efforts
+      not_approved_efforts,
+      COALESCE(actual_efforts, pod_efforts, not_approved_efforts) AS actual_pod_efforts
     FROM _efforts
   ),
 
@@ -154,6 +192,7 @@ _efforts_with_past_avg AS (
       actual_efforts,
       actual_pod_efforts,
       pod_efforts,
+      not_approved_efforts,
       ma4,
       avg_actual_last4,
       CASE
@@ -174,6 +213,7 @@ _efforts_with_past_avg AS (
       actual_efforts,
       actual_pod_efforts,
       pod_efforts,
+      not_approved_efforts,
       ma4,
       COALESCE(
         new_predicting_efforts,
@@ -200,6 +240,7 @@ _efforts_with_past_avg AS (
       actual_efforts,
       actual_pod_efforts,
       pod_efforts,
+      not_approved_efforts,
       ma4,
       COALESCE(
         new_predicting_efforts,
@@ -226,6 +267,7 @@ _efforts_with_past_avg AS (
       actual_efforts,
       actual_pod_efforts,
       pod_efforts,
+      not_approved_efforts,
       ma4,
       COALESCE(
         new_predicting_efforts,
@@ -251,6 +293,7 @@ _efforts_with_past_avg AS (
       actual_efforts,
       actual_pod_efforts,
       pod_efforts,
+      not_approved_efforts,
       LAG(ma4) OVER (
         PARTITION BY member_email_full
         ORDER BY month_year
@@ -270,6 +313,7 @@ _efforts_with_past_avg AS (
       new_predicting_efforts,
       predicting_efforts,
       pod_efforts,
+      not_approved_efforts,
       1 as normal_efforts
     FROM _predicting_efforts
   ),
@@ -288,12 +332,13 @@ SELECT
   COALESCE(f.month_year, DATE_TRUNC('month', NOW())::DATE) as month_year,
   f.actual_efforts,
   f.pod_efforts,
+  f.not_approved_efforts,
   f.new_predicting_efforts as predicting_efforts,
   f.normal_efforts,
   CASE 
     WHEN COALESCE(f.month_year, DATE_TRUNC('month', NOW())::DATE) < DATE_TRUNC('month', NOW())::DATE 
-    THEN f.normal_efforts - COALESCE(f.actual_efforts, f.pod_efforts, 0)
-    ELSE f.normal_efforts - COALESCE(f.actual_efforts, f.pod_efforts, f.new_predicting_efforts, 0)
+    THEN f.normal_efforts - COALESCE(f.actual_efforts, f.pod_efforts, f.not_approved_efforts, 0)
+    ELSE f.normal_efforts - COALESCE(f.actual_efforts, f.pod_efforts, f.not_approved_efforts, f.new_predicting_efforts, 0)
   END AS free_efforts
   FROM
   {{ ref('dim_members') }} m

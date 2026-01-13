@@ -25,7 +25,7 @@ create_date_used AS (
             WHEN dbt_valid_from > (SELECT MIN(dbt_valid_from) FROM priority_status)
             THEN date(dbt_valid_from)
             ELSE date(create_time)
-        END AS create_date_used
+        END AS create_date_root
     FROM priority_status
 ),
 
@@ -35,15 +35,15 @@ get_end_date AS (
         -- SẮP XẾP: Các bản ghi sort_priority=0 (Inactive) được xếp trước theo thời gian, 
         -- Bản ghi sort_priority=1 (Active) được đẩy xuống cuối.
         CASE 
-            WHEN LEAD(create_date_used, 1, TIMESTAMP '2999-12-31') OVER (
+            WHEN LEAD(create_date_root, 1, TIMESTAMP '2999-12-31') OVER (
                 PARTITION BY company_email
-                ORDER BY sort_priority ASC, create_date_used ASC , dbt_valid_from ASC
+                ORDER BY sort_priority ASC, create_date_root ASC , dbt_valid_from ASC
             ) = TIMESTAMP '2999-12-31' 
             THEN DATE '2999-12-31'
             ELSE (DATE_TRUNC('month', 
-                LEAD(create_date_used, 1, TIMESTAMP '2999-12-31') OVER (
+                LEAD(create_date_root, 1, TIMESTAMP '2999-12-31') OVER (
                     PARTITION BY company_email
-                    ORDER BY sort_priority ASC, create_date_used ASC ,dbt_valid_from ASC
+                    ORDER BY sort_priority ASC, create_date_root ASC ,dbt_valid_from ASC
                 )
             ) - INTERVAL '1 day')::DATE
         END AS end_date_1
@@ -57,14 +57,14 @@ cleaned_data AS (
         *
     FROM get_end_date
     WHERE 
-        date(create_date_used) < end_date_1
+        date(create_date_root) < end_date_1
         OR end_date_1 = DATE('2999-12-31')
 ),
 
 -- user sẽ có ngày tạo và kết thúc , nhưng trạng thái inactive vẫn cần chỉnh lại để biết nghỉ thời gian nào
 cleaned_users as (
     select *,
-    date(DATE_TRUNC('month', create_date_used)) as create_date_used
+    date(DATE_TRUNC('month', create_date_root)) as create_date_used
     from cleaned_data
 ),
 

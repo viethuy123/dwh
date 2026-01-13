@@ -15,8 +15,8 @@ create_date_used AS (
         *,
         CASE 
             WHEN dbt_valid_from > (SELECT MIN(dbt_valid_from) FROM priority_status)
-            THEN date(dbt_valid_from)
-            ELSE date(create_time)
+            THEN dbt_valid_from
+            ELSE create_time
         END AS create_date_root
     FROM priority_status
 ),

@@ -3,6 +3,9 @@
 {{
     config(
       unique_key='user_id',
+      post_hook=[
+              "CREATE INDEX IF NOT EXISTS idx_email ON {{ this }} (email)"
+            ],
       strategy='check',
       check_cols=[
       'user_status',

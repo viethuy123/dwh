@@ -40,7 +40,7 @@ get_end_date AS (
                 ORDER BY sort_priority ASC, create_date_used ASC , dbt_valid_from ASC
             ) = TIMESTAMP '2999-12-31' 
             THEN DATE '2999-12-31'
-            ELSE (DATE_TRUNC('day', 
+            ELSE (DATE_TRUNC('month', 
                 LEAD(create_date_used, 1, TIMESTAMP '2999-12-31') OVER (
                     PARTITION BY company_email
                     ORDER BY sort_priority ASC, create_date_used ASC ,dbt_valid_from ASC
@@ -63,7 +63,8 @@ cleaned_data AS (
 
 -- user sẽ có ngày tạo và kết thúc , nhưng trạng thái inactive vẫn cần chỉnh lại để biết nghỉ thời gian nào
 cleaned_users as (
-    select *
+    select *,
+    date(DATE_TRUNC('month', create_date_used)) as create_date_used
     from cleaned_data
 ),
 
@@ -79,6 +80,17 @@ user_log AS (
     where du.user_status IN ('Inactivity', 'null')
     group by u.lower_user_name
 ),
+user_jira_issues AS (
+    SELECT 
+        i.assignee_email as email,
+        max(DATE_TRUNC('month',i.created_time)::DATE) as date
+    FROM {{ ref('dim_jira_issues') }} i
+    LEFT JOIN {{ ref('users') }} du
+    on i.assignee_email = du.company_email
+    where (du.user_status IN ('Inactivity', 'null') or du.user_status is null)
+    group by i.assignee_email
+
+),
 user_pod AS (
     SELECT 
         u.company_email as email,
@@ -86,7 +98,7 @@ user_pod AS (
     FROM {{ ref('billable_efforts_approveds') }} p
     LEFT JOIN {{ ref('users') }} u
     on p.user_id = u.user_id
-    where u.user_status IN ('Inactivity', 'null')
+    where (u.user_status IN ('Inactivity', 'null') or u.user_status IS NULL)
     and effort != 0
     and p."is_deleted" = 'No'
     group by u.company_email
@@ -95,6 +107,8 @@ all_data_log as (
     select * from user_log
     union
     select * from user_pod
+    union
+    select * from user_jira_issues
 ),
 -- lấy ngày cuối cùng user có ghi nhận trong hệ thống , chỉ lấy user inactive, null
 max_date_user as (
@@ -109,13 +123,13 @@ change_end_date_inactive_user as (
     select 
         cu.*,
         case 
-            
-            when (mu.max_date is NULL)
+           when (mu.max_date is NULL)
                 AND date(cu.end_date_1) = '2999-12-31' and (cu.user_status IN ('Inactivity', 'null') or cu.user_status IS NULL)
-                then cu.create_date_used::DATE
-            when (mu.max_date is not NULL)
+                then (date_trunc('month', cu.create_time) + interval '1 month - 1 day')::DATE
+           when (mu.max_date is NOT NULL)
                 AND date(cu.end_date_1) = '2999-12-31' and (cu.user_status IN ('Inactivity', 'null') or cu.user_status IS NULL)
-                then mu.max_date
+                then (date_trunc('month', mu.max_date) + interval '1 month - 1 day')::DATE
+
         end as end_date_2
     from cleaned_users cu
     left join max_date_user mu
@@ -141,7 +155,10 @@ SELECT
     a.user_status,
     date(a.create_time) as create_date,
     a.create_date_used,
-    a.end_date
+    a.end_date,
+    COUNT(*) OVER (
+        PARTITION BY a.company_email
+    ) AS count_email_duplicates
 FROM _final a
 LEFT JOIN {{ ref('branches') }} b
 ON a.branch_id = b.branch_id

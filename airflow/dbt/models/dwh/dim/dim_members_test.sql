@@ -7,17 +7,9 @@ WITH
 priority_status AS (
     SELECT 
         u.*,
-        CASE 
-            WHEN u.user_status IS NOT NULL AND u.user_status != '' 
-            AND u.user_status NOT ILIKE '%Inac%' 
-            THEN 1
-            ELSE 0  -- Inactive/Null/Empty Status
-        END AS sort_priority -- Cột ưu tiên
-
+        MIN(dbt_updated_at) OVER (PARTITION BY company_email) as min_dbt_updated_at
     FROM {{ ref('members_snapshot') }} u
-    WHERE 
-    NOT (user_status ILIKE '%Inac%' and u.dbt_updated_at > (SELECT MIN(dbt_updated_at) FROM {{ ref('members_snapshot') }}))
-),
+ ),
 create_date_used AS (
     SELECT 
         *,
@@ -37,13 +29,13 @@ get_end_date AS (
         CASE 
             WHEN LEAD(create_date_root, 1, TIMESTAMP '2999-12-31') OVER (
                 PARTITION BY company_email
-                ORDER BY sort_priority ASC, create_date_root ASC , dbt_valid_from ASC
+                ORDER BY  create_date_root ASC , dbt_valid_from ASC
             ) = TIMESTAMP '2999-12-31' 
             THEN DATE '2999-12-31'
             ELSE (DATE_TRUNC('month', 
                 LEAD(create_date_root, 1, TIMESTAMP '2999-12-31') OVER (
                     PARTITION BY company_email
-                    ORDER BY sort_priority ASC, create_date_root ASC ,dbt_valid_from ASC
+                    ORDER BY  create_date_root ASC ,dbt_valid_from ASC
                 )
             ) - INTERVAL '1 day')::DATE
         END AS end_date_1
@@ -52,13 +44,21 @@ get_end_date AS (
 
 ),
 --  dùng cho case 1 email có 2 người dùng
-cleaned_data AS (
+remove_data_with_date AS (
     SELECT
         *
     FROM get_end_date
     WHERE 
         date(create_date_root) < end_date_1
-        OR end_date_1 = DATE('2999-12-31')
+
+),
+cleaned_data AS (
+    SELECT
+        *
+    FROM remove_data_with_date
+    WHERE 
+        NOT (user_status = 'Inactivity' and dbt_updated_at > min_dbt_updated_at)
+
 ),
 
 -- user sẽ có ngày tạo và kết thúc , nhưng trạng thái inactive vẫn cần chỉnh lại để biết nghỉ thời gian nào
@@ -124,10 +124,10 @@ change_end_date_inactive_user as (
         cu.*,
         case 
            when (mu.max_date is NULL)
-                AND date(cu.end_date_1) = '2999-12-31' and (cu.user_status IN ('Inactivity', 'null') or cu.user_status IS NULL)
+                AND (cu.user_status IN ('Inactivity', 'null') or cu.user_status IS NULL)
                 then (date_trunc('month', cu.create_time) + interval '1 month - 1 day')::DATE
            when (mu.max_date is NOT NULL)
-                AND date(cu.end_date_1) = '2999-12-31' and (cu.user_status IN ('Inactivity', 'null') or cu.user_status IS NULL)
+                AND (cu.user_status IN ('Inactivity', 'null') or cu.user_status IS NULL)
                 then (date_trunc('month', mu.max_date) + interval '1 month - 1 day')::DATE
 
         end as end_date_2
@@ -138,7 +138,11 @@ change_end_date_inactive_user as (
 _final as (
     select 
         *,
-        COALESCE(end_date_2, end_date_1) as end_date
+        CASE 
+        WHEN (end_date_1 < end_date_2 ) OR (end_date_2 IS NULL)
+            THEN end_date_1
+        ELSE end_date_2
+        END as end_date
     from change_end_date_inactive_user
 )
 

@@ -13,7 +13,7 @@ SOURCES = {
             'backup_filename_template': 'jira8db_bk_{date}_22.zip',
             'restore_script': '/opt/airflow/scripts/restore_jira8db.sh',
             'unzip_script': '/opt/airflow/py/unzip_backup_file.py',
-            'schedule': '0 19 * * *',
+            'schedule': '0 2 * * *',
             'timeout_minutes': 60,
         },
         
@@ -24,7 +24,7 @@ SOURCES = {
             'source_db': 'jira8db',
             'source_uri_fn': get_mysql_uri_builder('jira8db', 'jira'),
             'target_schema': 'stg',
-            'schedule': '0 20 * * *',
+            'schedule': '0 3 * * *',
             'timeout_minutes': 120,
             'wait_for_dag': 'dag_restore_jira',
             'tables': [

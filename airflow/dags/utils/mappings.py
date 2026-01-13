@@ -79,7 +79,7 @@ dim_mapping = {
     "dim_members": "",
     "dim_pods": "",
     "dim_projects": "",
-    # "dim_members_test": "",
+    "dim_members_test": "",
     "dim_branches": "branches",
     "dim_departments": "departments",
     "dim_positions": "positions",

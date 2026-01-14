@@ -7,7 +7,6 @@ from airflow.providers.standard.operators.python import PythonOperator
 from airflow.providers.standard.operators.bash import BashOperator
 import os
 
-
 def _download_logic(backup_template, target_date, **kwargs):
     from config import get_dropbox_config
     from utils.dropbox_actions import generate_dropbox_access_token, file_exists, download_backup_file
@@ -16,6 +15,7 @@ def _download_logic(backup_template, target_date, **kwargs):
     # target_date nhận từ {{ ds_nodash }} của Airflow
     backup_filename = backup_template.format(date=target_date)
     download_path = os.path.join(dropbox_config['backup_local_dir'], backup_filename)
+    print(f"[INFO] Downloading file {backup_filename} to {download_path}")
 
     # TỐI ƯU: Kiểm tra file tồn tại ở local
     if os.path.exists(download_path) and os.path.getsize(download_path) > 0:
@@ -60,7 +60,7 @@ def create_restore_task_group(dag, source_key: str, restore_config: dict) -> Tas
             python_callable=_download_logic,
             op_kwargs={
                 'backup_template': restore_config['backup_filename_template'],
-                'target_date': "{{ (macros.ds_add(ds, -1)) | replace('-', '') }}"},
+                'target_date': "{{ data_interval_start | ds | replace('-', '') }}"},
         )
         
         # Task 2: Unzip file
@@ -77,7 +77,7 @@ def create_restore_task_group(dag, source_key: str, restore_config: dict) -> Tas
             env={
                 "MYSQL_PWD": Variable.get(restore_config['db_password_var']),
                 "DB_NAME": restore_config['db_name'],
-                "YESTERDAY_STR": "{{ (macros.ds_add(ds, -1)) | replace('-', '') }}"
+                "YESTERDAY_STR": "{{ data_interval_start | ds | replace('-', '') }}"
             },
         )
         

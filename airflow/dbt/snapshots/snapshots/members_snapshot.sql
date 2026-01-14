@@ -4,7 +4,7 @@
     config(
       unique_key='user_id',
       post_hook=[
-              "CREATE INDEX IF NOT EXISTS idx_email ON {{ this }} (email)"
+              "CREATE INDEX IF NOT EXISTS idx_email ON {{ this }} (company_email)"
             ],
       strategy='check',
       check_cols=[
@@ -21,6 +21,7 @@
 SELECT
     user_id,
     user_name,
+    is_deleted,
     company_email,
     staff_code,
     branch_id,

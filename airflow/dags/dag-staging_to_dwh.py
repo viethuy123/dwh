@@ -16,7 +16,7 @@ pipeline_config = DBT_PIPELINES['staging_to_warehouse']
 dag = DAG(
     dag_id=pipeline_config['dag_id'],
     default_args=DEFAULT_ARGS,
-    schedule=[Dataset('jira_staging_completed'), Dataset('create_staging_completed'), Dataset('jisseki_staging_completed')],  # Trigger by datasets
+    schedule=[Dataset('jisseki_staging_completed')],  # Trigger by datasets
     catchup=False,
     dagrun_timeout=timedelta(minutes=pipeline_config['timeout_minutes']),
     description='DBT transformation from Staging to Data Warehouse',

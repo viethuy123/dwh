@@ -65,6 +65,17 @@ DBT_PIPELINES = {
             'enabled': False,
         }
     },
+    'bridge_data': {
+        'dag_id': 'dag_bridge_data',
+        'schedule': '0 21 * * *',
+        'timeout_minutes': 60,
+        'source_db': 'dwh',
+        'target_db': 'dwh',
+        'dbt_target': 'dwh',
+        'models_path': 'models/dwh',
+        'tgt_schema': 'bridge',
+        'table_mapping_var': 'bridge_mapping',
+    },
     'snapshots': {
         'dag_id': 'dag_snapshots',  
         'schedule': '0 22 * * *',
@@ -81,19 +92,4 @@ DBT_PIPELINES = {
         }
     },
 
-    'dwh_to_jira_dtm': {
-        'dag_id': 'dag_dwh_to_jira_dtm',
-        'schedule': '50 20 * * *',
-        'timeout_minutes': 60,
-        'source_db': 'dtm',
-        'target_db': 'dtm',
-        'source_schema': 'dwh_fdw',
-        'target_schema': 'jira',
-        'dbt_target': 'dtm',
-        'models_path': 'models/dtm/jira',
-        'table_mapping_var': 'jira_dtm_mapping',
-        'fdw_sync': {
-            'enabled': False,
-        }
-    }
 }

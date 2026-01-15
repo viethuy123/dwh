@@ -12,7 +12,7 @@ from utils.common_tasks import (
     _create_dbt_operator
 )
 from utils.mappings import \
-warehouse_mapping, report_mapping, dim_mapping, fct_mapping, snapshot_mapping
+warehouse_mapping, report_mapping, dim_mapping, fct_mapping, snapshot_mapping, bridge_mapping
 
 
 def _get_table_mapping(mapping_var: str) -> dict:
@@ -28,6 +28,7 @@ def _get_table_mapping(mapping_var: str) -> dict:
         'dim_mapping': dim_mapping,
         'fct_mapping': fct_mapping,
         'snapshot_mapping': snapshot_mapping,
+        'bridge_mapping': bridge_mapping
     }
     return mappings.get(mapping_var, {})
 

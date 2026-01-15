@@ -28,7 +28,7 @@ WITH
       m.member_email,
       ts.month_year
     FROM
-      {{ ref('dim_members') }} m
+      {{ ref('dim_members_scd') }} m
       CROSS JOIN _time_series ts
     WHERE
       ts.month_year >= DATE_TRUNC('month', m.create_date_used) 
@@ -75,7 +75,7 @@ WITH
       SUM(pme.pod_efforts) AS pod_efforts
     FROM
       _pod_efforts_raw pme
-      JOIN {{ref('dim_members') }} m 
+      JOIN {{ref('dim_members_scd') }} m 
       ON m.member_id = pme.member_id
       and pme.month_year_date >= m.create_date_used
       and pme.month_year_date <= m.end_date
@@ -296,7 +296,7 @@ SELECT
     ELSE f.normal_efforts - COALESCE(f.actual_efforts, f.pod_efforts, f.new_predicting_efforts, 0)
   END AS free_efforts
   FROM
-  {{ ref('dim_members') }} m
+  {{ ref('dim_members_scd') }} m
   LEFT JOIN  _final as f
   ON m.member_email = f.member_email_full
   AND f.month_year >= m.create_date_used
@@ -343,7 +343,7 @@ skill_member_with_weight as (
 )
 
 select r.*, s.skill_name,
-  r.free_efforts/weight_factor as free_effort_unique
+  r.free_efforts/COALESCE(s.weight_factor, 1) as free_effort_unique
  from
 cacul_effort_type as r
 left join

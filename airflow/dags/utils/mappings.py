@@ -40,6 +40,8 @@ warehouse_mapping ={
     'jisseki_project_cate': 'src_jisseki.stg_project_categories',
     'jisseki_project_cus': 'src_jisseki.stg_project_customer',
     'skill_members' : 'stg_skill_members',
+    'create_project_customer' : 'stg_create_project_customer',
+    'create_project_cate' : 'stg_create_project_categories',
 
 }
 
@@ -79,7 +81,7 @@ dim_mapping = {
     "dim_members": "",
     "dim_pods": "",
     "dim_projects": "",
-    # "dim_members_test": "",
+    "dim_members_scd": "",
     "dim_branches": "branches",
     "dim_departments": "departments",
     "dim_positions": "positions",
@@ -88,14 +90,22 @@ dim_mapping = {
     # New dims
     "dim_jira_project_role": "jira_project_role",
     # "dim_members_scd": "users",
-    # "dim_project_cate": "jisseki_categories",
-    # "dim_project_cus": "jisseki_customers",
-    "dim_skill_members" : "skill_members"
+    "dim_project_cate": "create_project_cate, jisseki_project_cate",
+    "dim_project_cus": "create_project_customer, jisseki_project_cus",
+    "dim_skill_members" : "skill_members",
+    "dim_projects" : "create_projects, jisseki_projects, pods"
 }
 
 fct_mapping = {
     "fct_worklogs": "jira_worklog",
     "fct_pod_member_efforts": "billable_efforts_approveds",
+    "fct_project": "jisseki_projects, pods"
+}
+
+bridge_mapping = {
+    "bridge_project_customer": "create_project_customer, jisseki_project_cus",
+    "bridge_project_category": "create_project_cate, jisseki_project_cate",
+    "bridge_project_role": "create_project_role, jisseki_project_role"
 }
 
 snapshot_mapping = {

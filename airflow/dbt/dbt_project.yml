@@ -31,23 +31,10 @@ models:
       fct:
         +schema: fct
         +materialized: table 
-    dtm:
-      hr:
-        schema: hr 
-        +generate_schema_name: false
-        materialized: table
-      jira:
-        schema: jira
-        +generate_schema_name: false
-        materialized: table
-      public:
-        schema: public
-        +generate_schema_name: false
-        materialized: table
-      bi:
-        schema: bi
-        +generate_schema_name: false
-        materialized: table
+      bridge:
+        +schema: bridge
+        +materialized: table 
+
 
 snapshots:
   dwh_project:

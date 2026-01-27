@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    user: root
+    restart: unless-stopped
+
+    ports:
+      - "18080:8080"     # Jenkins UI
+      - "50000:50000"    # Jenkins agent
+
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+
+    networks:
+      - dev-network
+
+networks:
+  dev-network:
+    external: true
+
+volumes:
+  jenkins_home:

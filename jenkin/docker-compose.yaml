@@ -2,14 +2,16 @@ version: '3.8'
 
 services:
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: jenkins
     user: root
     restart: unless-stopped
 
     ports:
-      - "18080:8080"     # Jenkins UI
-      - "50000:50000"    # Jenkins agent
+      - "18080:8080"
+      - "50000:50000"
 
     volumes:
       - jenkins_home:/var/jenkins_home

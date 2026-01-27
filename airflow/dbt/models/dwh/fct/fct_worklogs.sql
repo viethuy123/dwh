@@ -1,0 +1,18 @@
+{{ config(materialized='table') }}
+
+
+SELECT
+    a.worklog_id,
+    a.issue_id,
+    b.jira_project_id,
+    COALESCE(au.lower_user_name, a.worklog_author) as worklog_author,
+    a.worklog_description,
+    a.start_time,
+    a.time_worked,
+    a.created_time,
+    a.updated_time
+FROM {{ ref('jira_worklog') }} a
+LEFT JOIN {{ ref('jira_issues') }} b
+ON a.issue_id = b.issue_id
+LEFT JOIN {{ ref('jira_app_user') }} au
+ON a.worklog_author = au.user_key

@@ -19,13 +19,24 @@ clean-targets:
 models:
   dwh_project:
     dwh:
-      materialized: table
-    dtm:
-      hr:
-        schema: hr 
-        +generate_schema_name: false
-        materialized: table
-      jira:
-        schema: jira
-        +generate_schema_name: false
-        materialized: table
+      intermediates:
+        +schema: intermediates
+        +materialized: table
+      reports:
+        +schema: reports
+        +materialized: table
+      dim:
+        +schema: dim
+        +materialized: table 
+      fct:
+        +schema: fct
+        +materialized: table 
+      bridge:
+        +schema: bridge
+        +materialized: table 
+
+
+snapshots:
+  dwh_project:
+    snapshots:
+      +target_schema: snapshots

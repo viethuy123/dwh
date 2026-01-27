@@ -71,7 +71,7 @@ def validate_dataframe(
     )
     
     # Run validation
-    validator = context.data_sources.add_pandas(name=f"pd_{datetime.now()}").read_dataframe(df)
-    results = validator.validate(expect=expectation_suite)
+    batch = context.data_sources.pandas_default.read_dataframe(df)
+    results = batch.validate(expectation_suite)
     
     return results.to_json_dict()

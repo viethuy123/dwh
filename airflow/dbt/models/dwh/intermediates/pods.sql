@@ -1,0 +1,32 @@
+{{ config(materialized='table') }}
+
+SELECT
+    _id as pod_id,
+    "projectCode" as project_code,
+    "projectName" as project_name,
+    "projectType" as project_type,
+    "projectSize" as project_size,
+    "projectRank" as project_rank,
+    "projectOverview" as project_overview,
+    "projectCategory" as project_category,
+    "warrantyCondition" as warranty_condition,
+    "developmentModel" as development_model,
+    "departmentObjId" as department_id,
+    "pmObjId" as pm_id,
+    "saleObjId" as sale_id,
+    "customerObjId" as customer_id,
+    domain,
+    "marketObjId" as market_id,
+    "subPmObjId" as sub_pm_id,
+    "jiraUrl" as jira_url,
+    {{ safe_parse_timestamp('"startDate"') }} as start_date,
+    {{ safe_parse_timestamp('"planUATDate"') }} as plan_uat_date,
+    {{ safe_parse_timestamp('"planReleaseDate"') }} as plan_release_date,
+    {{ safe_parse_timestamp('"finalReleaseDate"') }} as final_release_date,
+    "statusPOD" as pod_status,
+    status,
+    "isDeleted" as is_deleted,
+    {{ safe_parse_timestamp('"createdAt"') }} as created_time,
+    {{ safe_parse_timestamp('"updatedAt"') }} as updated_time,
+    CURRENT_TIMESTAMP as etl_datetime
+FROM {{ source('create', 'stg_create_pods') }}

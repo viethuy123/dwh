@@ -42,6 +42,9 @@ warehouse_mapping ={
     'skill_members' : 'stg_skill_members',
     'create_project_customer' : 'stg_create_project_customer',
     'create_project_cate' : 'stg_create_project_categories',
+    'staff_log_works' : 'stg_create_staff_log_works',
+    'staff_log_work_jira_deletes' : 'stg_create_staff_log_work_jira_deletes',
+    'staff_log_work_jira_updates' : 'stg_create_staff_log_work_jira_updates',
 
 }
 

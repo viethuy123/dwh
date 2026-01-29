@@ -49,6 +49,9 @@ sources:
       - name: stg_create_billable_efforts_approveds
       - name: stg_create_project_bill_costs
       - name: stg_create_customers
+      - name: stg_create_staff_log_works
+      - name: stg_create_staff_log_work_jira_deletes
+      - name: stg_create_staff_log_work_jira_updates
   - name: excel
     database: dwh
     schema: stg

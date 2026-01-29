@@ -1,28 +1,22 @@
 """
-Factory để tạo ingestion tasks (Source → Staging PostgreSQL)
-REFACTORED VERSION - Unified logic với chunking support cho tất cả sources
+Factory để tạo ingestion tasks - LAZY IMPORT VERSION
+Giảm RAM khi DAG processor parse bằng cách defer imports vào runtime
 """
 from airflow.sdk import TaskGroup
 from airflow.providers.standard.operators.python import PythonOperator
-from datetime import datetime
-from sqlalchemy import create_engine, text
-from utils.extract_data import extract_sql_data, extract_mongo_data
-from utils.data_transformers import get_transformer
-from utils.common_tasks import (
-    create_data_quality_check_callable,
-    create_data_notification_callable,
-    create_save_job_logs_callable
-)
-from config import get_pool_name, get_target_table_name
-import pandas as pd
-import gc
+
+# ✅ CHỈ import những thứ CẦN THIẾT cho DAG definition
+# KHÔNG import: sqlalchemy, pandas, gc, datetime ở đây
+# → Chúng sẽ được import BÊN TRONG callable functions
 
 import csv
 from io import StringIO
 
+
 def psql_insert_copy(table, conn, keys, data_iter):
     """
-    Hàm helper để dùng lệnh COPY của Postgres thay vì INSERT (Tăng tốc độ load)
+    Hàm helper để dùng lệnh COPY của Postgres
+    ✅ Hàm này nhẹ, không cần lazy import
     """
     dbapi_conn = conn.connection
     with dbapi_conn.cursor() as cur:
@@ -48,63 +42,79 @@ def _create_extract_load_callable(
     source_db: str = None
 ):
     """
-    Universal factory để tạo extract & load callable cho tất cả source types
-    TẤT CẢ đều hỗ trợ chunking và full load
+    Universal factory với LAZY IMPORTS
     
-    Args:
-        source_uri_fn: Function trả về source URI
-        target_schema: Schema đích trong staging
-        source_type: 'mysql', 'mongodb', 'postgresql'
-        source_db: Database name (bắt buộc cho MongoDB)
+    ✅ Closure này CHỈ giữ 4 tham số nhẹ:
+    - source_uri_fn (function reference)
+    - target_schema (string)
+    - source_type (string)  
+    - source_db (string hoặc None)
+    
+    ❌ KHÔNG giữ: modules, classes, heavy objects
     """
     def extract_load_data(src_table: str, tgt_table: str, chunk_size: int = None) -> None:
-        # 1. Lấy URIs
-        source_uri = source_uri_fn()
-        from config import DB_URIS
-        staging_uri = DB_URIS['staging']()
+        # ✅ LAZY IMPORTS - Chỉ load khi task CHẠY, không phải khi parse DAG
+        from datetime import datetime
+        from sqlalchemy import create_engine, text, pool
+        import gc
         
-        # 2. Setup PostgreSQL engine
-        pg_engine = create_engine(staging_uri)
-        transformer = get_transformer(source_type)
+        pg_engine = None
         
-        # 3. Create schema if not exists
-        with pg_engine.begin() as conn:
-            conn.execute(text(f"CREATE SCHEMA IF NOT EXISTS {target_schema}"))
-        
-        print(f"Start loading {src_table} from {source_type}. Mode: {'Chunking ' + str(chunk_size) if chunk_size else 'Full Load'}")
-        
-        # 4. UNIFIED Extract & Load logic
-        if chunk_size and source_type != 'mongodb':
-            # === CHUNKING MODE - Chỉ cho SQL sources (MySQL, PostgreSQL) ===
-            _load_with_chunking(
-                source_uri=source_uri,
-                source_type=source_type,
-                src_table=src_table,
-                pg_engine=pg_engine,
-                tgt_table=tgt_table,
-                target_schema=target_schema,
-                transformer=transformer,
-                chunk_size=chunk_size
+        try:
+            # Lấy URIs
+            source_uri = source_uri_fn()
+            from config import DB_URIS
+            staging_uri = DB_URIS['staging']()
+            
+            # Engine với NullPool
+            pg_engine = create_engine(
+                staging_uri,
+                poolclass=pool.NullPool,
+                echo=False
             )
-        else:
-            # === FULL LOAD MODE - Áp dụng cho MongoDB hoặc SQL không chunk ===
-            _load_full_table(
-                source_uri=source_uri,
-                source_type=source_type,
-                source_db=source_db,
-                src_table=src_table,
-                pg_engine=pg_engine,
-                tgt_table=tgt_table,
-                target_schema=target_schema,
-                transformer=transformer
-            )
+            
+            # ✅ Lazy import transformer
+            from utils.data_transformers import get_transformer
+            transformer = get_transformer(source_type)
+            
+            # Create schema
+            with pg_engine.begin() as conn:
+                conn.execute(text(f"CREATE SCHEMA IF NOT EXISTS {target_schema}"))
+            
+            print(f"Start loading {src_table} from {source_type}. Mode: {'Chunking ' + str(chunk_size) if chunk_size else 'Full Load'}")
+            
+            # Load logic - helper functions ở NGOÀI để tránh nested closures
+            if chunk_size and source_type != 'mongodb':
+                _load_with_chunking_internal(
+                    source_uri, source_type, src_table,
+                    pg_engine, tgt_table, target_schema,
+                    transformer, chunk_size
+                )
+            else:
+                _load_full_table_internal(
+                    source_uri, source_type, source_db,
+                    src_table, pg_engine, tgt_table,
+                    target_schema, transformer
+                )
+        
+        finally:
+            if pg_engine:
+                pg_engine.dispose()
+            
+            # Cleanup
+            del transformer, source_uri, staging_uri
+            for _ in range(3):
+                gc.collect()
         
         return None
     
     return extract_load_data
 
 
-def _load_with_chunking(
+# ✅ HELPER FUNCTIONS - Module level, KHÔNG phải nested closures
+# Điều này giảm memory footprint vì không tạo closure mới cho mỗi table
+
+def _load_with_chunking_internal(
     source_uri: str,
     source_type: str,
     src_table: str,
@@ -115,43 +125,72 @@ def _load_with_chunking(
     chunk_size: int
 ):
     """
-    Chunking logic chỉ cho SQL sources (MySQL, PostgreSQL)
-    MongoDB sẽ dùng full load
+    ✅ Helper function - KHÔNG phải closure
+    ✅ Lazy imports bên trong
     """
-    src_engine = create_engine(source_uri, pool_pre_ping=True)
-    is_first_chunk = True
+    # ✅ Lazy imports
+    from sqlalchemy import create_engine, pool
+    from datetime import datetime
+    import pandas as pd
+    import gc
     
-    with src_engine.connect().execution_options(stream_results=True) as src_conn:
-        df_iterator = pd.read_sql(
-            f"SELECT * FROM {src_table} ORDER BY ID ASC",
-            src_conn,
-            chunksize=chunk_size
-        )
+    src_engine = create_engine(
+        source_uri,
+        poolclass=pool.NullPool,
+        echo=False
+    )
+    
+    is_first_chunk = True
+    processed_rows = 0
+    
+    try:
+        with src_engine.connect().execution_options(
+            stream_results=True,
+            max_row_buffer=chunk_size
+        ) as src_conn:
+            
+            df_iterator = pd.read_sql(
+                f"SELECT * FROM {src_table} ORDER BY ID ASC",
+                src_conn,
+                chunksize=chunk_size
+            )
+            
+            for i, df_chunk in enumerate(df_iterator):
+                # ✅ Transform in-place thay vì .map()
+                for col in df_chunk.columns:
+                    if df_chunk[col].dtype == 'object':
+                        df_chunk[col] = df_chunk[col].apply(transformer)
+                
+                df_chunk['etl_datetime'] = datetime.now()
+                
+                load_mode = 'replace' if is_first_chunk else 'append'
+                is_first_chunk = False
+                
+                with pg_engine.begin() as pg_conn:
+                    df_chunk.to_sql(
+                        tgt_table,
+                        con=pg_conn,
+                        if_exists=load_mode,
+                        index=False,
+                        schema=target_schema,
+                        method=psql_insert_copy
+                    )
+                
+                processed_rows += len(df_chunk)
+                print(f"✓ Loaded SQL chunk {i+1} ({len(df_chunk)} rows). Total: {processed_rows}")
+                
+                del df_chunk
+                gc.collect()
         
-        for i, df_chunk in enumerate(df_iterator):
-            df_chunk = df_chunk.map(transformer)
-            df_chunk['etl_datetime'] = datetime.now()
-            
-            load_mode = 'replace' if is_first_chunk else 'append'
-            is_first_chunk = False
-            
-            with pg_engine.begin() as pg_conn:
-                df_chunk.to_sql(
-                    tgt_table,
-                    con=pg_conn,
-                    if_exists=load_mode,
-                    index=False,
-                    schema=target_schema,
-                    method=psql_insert_copy
-                )
-            
-            print(f"Loaded SQL chunk {i+1} ({len(df_chunk)} rows). Mode: {load_mode}")
-            
-            del df_chunk
-            gc.collect()
+        print(f"✓ Completed chunking: {processed_rows} rows")
+    
+    finally:
+        src_engine.dispose()
+        del src_engine
+        gc.collect()
 
 
-def _load_full_table(
+def _load_full_table_internal(
     source_uri: str,
     source_type: str,
     source_db: str,
@@ -162,49 +201,89 @@ def _load_full_table(
     transformer
 ):
     """
-    UNIFIED full load logic cho TẤT CẢ source types
+    ✅ Helper function - KHÔNG phải closure
+    ✅ Lazy imports + batch processing
     """
-    # Extract data dựa vào source type
-    if source_type == 'mongodb':
-        df = extract_mongo_data(source_uri, source_db, src_table)
-    else:
-        # SQL sources (MySQL, PostgreSQL)
-        df = extract_sql_data(source_uri, f"SELECT * FROM {src_table}")
+    # ✅ Lazy imports
+    from utils.extract_data import extract_sql_data, extract_mongo_data
+    from datetime import datetime
+    import pandas as pd
+    import gc
+    from sqlalchemy import TEXT
     
-    if df.empty:
-        print(f"Source table {src_table} is empty")
-        return
+    df = None
     
-    # Transform và add timestamp
-    df = df.map(transformer)
-    df['etl_datetime'] = datetime.now()
+    try:
+        # Extract
+        if source_type == 'mongodb':
+            df = extract_mongo_data(source_uri, source_db, src_table)
+        else:
+            df = extract_sql_data(source_uri, f"SELECT * FROM {src_table}")
+        
+        if df is None or df.empty:
+            print(f"Source table {src_table} is empty")
+            return
+        
+        total_rows = len(df)
+        print(f"Extracted {total_rows} rows from {src_table}")
+        for col in df.columns:
+            if df[col].isnull().all():
+                df[col] = df[col].astype(object)
+            
+            if df[col].dtype == 'object':
+                df[col] = df[col].apply(transformer)
+                
+            if any(key in col.lower() for key in ['date', 'time', 'at']) and df[col].dtype != 'object':
+                 df[col] = df[col].astype(object)
+
+        df['etl_datetime'] = datetime.now()
+        
+        # ✅ Batch processing
+        BATCH_SIZE = 5000
+        
+        for batch_num, start_idx in enumerate(range(0, total_rows, BATCH_SIZE)):
+            end_idx = min(start_idx + BATCH_SIZE, total_rows)
+            df_batch = df.iloc[start_idx:end_idx].copy()
+            
+            # Transform in-place
+            # for col in df_batch.columns:
+            #     if df_batch[col].dtype == 'object':
+            #         df_batch[col] = df_batch[col].apply(transformer)
+            
+            # df_batch['etl_datetime'] = datetime.now()
+            
+            load_mode = 'replace' if batch_num == 0 else 'append'
+            
+            with pg_engine.begin() as conn:
+                df_batch.to_sql(
+                    tgt_table,
+                    con=conn,
+                    if_exists=load_mode,
+                    index=False,
+                    schema=target_schema,
+                    method=psql_insert_copy
+                )
+            
+            print(f"✓ Loaded batch {batch_num + 1}: {len(df_batch)} rows ({end_idx}/{total_rows})")
+            
+            del df_batch
+            gc.collect()
+        
+        print(f"✓ Completed full load: {total_rows} rows")
     
-    # Load vào PostgreSQL
-    with pg_engine.begin() as conn:
-        df.to_sql(
-            tgt_table,
-            con=conn,
-            if_exists='replace',
-            index=False,
-            chunksize=5000,
-            schema=target_schema,
-            method='multi'
-        )
-    
-    print(f"Loaded full table {src_table}: {len(df)} rows")
+    finally:
+        if df is not None:
+            del df
+        for _ in range(3):
+            gc.collect()
 
 
 def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) -> tuple:
     """
-    Tạo TaskGroup cho ingestion tasks
+    Tạo TaskGroup với LAZY LOADING
     
-    Args:
-        dag: DAG object
-        source_key: Key của source trong PIPELINE_CONFIGS (vd: 'jira', 'create')
-        ingestion_config: Ingestion config từ PIPELINE_CONFIGS
-    
-    Returns:
-        tuple: (outer_group, sync_fdw_task)
+    ✅ Chỉ import config module ở đây
+    ✅ Không import heavy modules (sqlalchemy, pandas, etc)
     """
     source_type = ingestion_config['source_type']
     source_uri_fn = ingestion_config['source_uri_fn']
@@ -212,7 +291,7 @@ def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) ->
     target_schema = ingestion_config['target_schema']
     tables = ingestion_config['tables']
     
-    # Tạo UNIFIED extract_load callable
+    # ✅ Tạo callable - closure nhẹ
     extract_load_fn = _create_extract_load_callable(
         source_uri_fn=source_uri_fn,
         target_schema=target_schema,
@@ -220,10 +299,17 @@ def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) ->
         source_db=source_db
     )
     
-    # Import DB_URIS
-    from config import DB_URIS
+    # ✅ Import config CHỈ khi cần
+    from config import DB_URIS, get_pool_name, get_target_table_name
     
-    # Tạo callable functions
+    # ✅ Import common_tasks CHỈ khi cần
+    from utils.common_tasks import (
+        create_data_quality_check_callable,
+        create_data_notification_callable,
+        create_save_job_logs_callable
+    )
+    
+    # Tạo callables - REUSE cho tất cả tables
     data_quality_fn = create_data_quality_check_callable(target_schema, DB_URIS['staging'])
     data_notification_fn = create_data_notification_callable(
         target_schema,
@@ -234,17 +320,15 @@ def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) ->
     
     with TaskGroup(group_id=f'{source_key}_to_staging', dag=dag) as outer_group:
         
-        # Tạo inner task group cho từng table
         for table_config in tables:
             src_table = table_config['name']
             tgt_table = get_target_table_name(src_table, source_key)
             table_type = table_config['type']
-            chunk_size = table_config.get('chunksize')  # None = full load
+            chunk_size = table_config.get('chunksize')
             pool = get_pool_name(table_type)
             
             with TaskGroup(group_id=f'{src_table}_{tgt_table}', dag=dag) as inner_group:
                 
-                # Extract & Load task - UNIFIED cho tất cả sources
                 extract_load = PythonOperator(
                     task_id=f'extract_load_{target_schema}-{tgt_table}',
                     python_callable=extract_load_fn,
@@ -257,7 +341,6 @@ def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) ->
                     dag=dag,
                 )
                 
-                # Success logs
                 success_logs = PythonOperator(
                     task_id=f'success_save_logs_{target_schema}-{tgt_table}',
                     python_callable=save_logs_fn,
@@ -269,7 +352,6 @@ def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) ->
                     dag=dag,
                 )
                 
-                # Data quality check
                 quality_check = PythonOperator(
                     task_id=f'{target_schema}-{tgt_table}_quality_check',
                     python_callable=data_quality_fn,
@@ -277,7 +359,6 @@ def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) ->
                     dag=dag,
                 )
                 
-                # Data notification
                 notification = PythonOperator(
                     task_id=f'{target_schema}-{tgt_table}_notification',
                     python_callable=data_notification_fn,
@@ -288,7 +369,6 @@ def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) ->
                     dag=dag,
                 )
                 
-                # Failure logs
                 failure_logs = PythonOperator(
                     task_id=f'failure_save_logs_{target_schema}-{tgt_table}',
                     python_callable=save_logs_fn,
@@ -301,7 +381,6 @@ def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) ->
                     dag=dag,
                 )
                 
-                # Dependencies
                 extract_load >> success_logs >> quality_check >> notification
                 extract_load >> failure_logs
     

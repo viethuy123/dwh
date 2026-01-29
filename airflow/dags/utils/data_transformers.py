@@ -4,7 +4,7 @@ Chứa các functions để transform data trước khi load vào PostgreSQL
 """
 from bson import ObjectId
 import json
-
+import re
 
 def convert_null_bytes(val):
     """Remove null bytes từ strings (MySQL → PostgreSQL)"""
@@ -62,3 +62,35 @@ def get_transformer(source_type: str):
     }
     
     return transformers.get(source_type, lambda x: x)
+
+
+def normalize_column_name(col_name: str) -> str:
+    """Chuyển camelCase sang snake_case"""
+    s1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', col_name)
+    s2 = re.sub('([a-z0-9])([A-Z])', r'\1_\2', s1)
+    return s2.lower()
+
+
+def transform_dataframe(df, transformer):
+
+    from datetime import datetime
+    
+    for col in df.columns:
+        if df[col].dtype == 'object':
+            df[col] = df[col].apply(transformer) 
+    
+    df['etl_datetime'] = datetime.now()
+    return df
+
+
+
+
+def add_columns_to_table(pg_engine, tgt_table: str, target_schema: str, new_columns: set):
+    from sqlalchemy import text
+    
+    with pg_engine.begin() as conn:
+        for col in new_columns:
+            sql = f'ALTER TABLE {target_schema}.{tgt_table} ADD COLUMN IF NOT EXISTS "{col}" TEXT'
+            conn.execute(text(sql))
+            print(f"Added column: {col}")
+

@@ -21,7 +21,7 @@ jobs:
           port: 7001
           script: |
             set -e
-            cd ~/DWH
+            cd /home/user/warehouse
             
             BEFORE_SHA=$(git rev-parse HEAD)
             git pull origin main

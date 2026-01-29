@@ -209,6 +209,7 @@ def _load_full_table_internal(
     from datetime import datetime
     import pandas as pd
     import gc
+    from sqlalchemy import TEXT
     
     df = None
     
@@ -219,12 +220,23 @@ def _load_full_table_internal(
         else:
             df = extract_sql_data(source_uri, f"SELECT * FROM {src_table}")
         
-        if df.empty:
+        if df is None or df.empty:
             print(f"Source table {src_table} is empty")
             return
         
         total_rows = len(df)
         print(f"Extracted {total_rows} rows from {src_table}")
+        for col in df.columns:
+            if df[col].isnull().all():
+                df[col] = df[col].astype(object)
+            
+            if df[col].dtype == 'object':
+                df[col] = df[col].apply(transformer)
+                
+            if any(key in col.lower() for key in ['date', 'time', 'at']) and df[col].dtype != 'object':
+                 df[col] = df[col].astype(object)
+
+        df['etl_datetime'] = datetime.now()
         
         # ✅ Batch processing
         BATCH_SIZE = 5000
@@ -234,11 +246,11 @@ def _load_full_table_internal(
             df_batch = df.iloc[start_idx:end_idx].copy()
             
             # Transform in-place
-            for col in df_batch.columns:
-                if df_batch[col].dtype == 'object':
-                    df_batch[col] = df_batch[col].apply(transformer)
+            # for col in df_batch.columns:
+            #     if df_batch[col].dtype == 'object':
+            #         df_batch[col] = df_batch[col].apply(transformer)
             
-            df_batch['etl_datetime'] = datetime.now()
+            # df_batch['etl_datetime'] = datetime.now()
             
             load_mode = 'replace' if batch_num == 0 else 'append'
             

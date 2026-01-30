@@ -193,7 +193,16 @@ def _load_full_table_internal(
             df_batch = df.iloc[start_idx:end_idx].copy()
             
             load_mode = 'replace' if batch_num == 0 else 'append'
-            load_chunk_to_postgres(df_batch, pg_engine, tgt_table, target_schema, load_mode)
+            # load_chunk_to_postgres(df_batch, pg_engine, tgt_table, target_schema, load_mode)
+            with pg_engine.begin() as conn:
+                df_batch.to_sql(
+                    tgt_table,
+                    con=conn,
+                    if_exists=load_mode,
+                    index=False,
+                    schema=target_schema,
+                    method=psql_insert_copy
+                )
             
             print(f"✓ Batch {batch_num + 1}: {len(df_batch)} rows | Progress: {end_idx}/{total_rows}")
             

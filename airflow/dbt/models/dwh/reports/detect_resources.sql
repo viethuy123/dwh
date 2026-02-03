@@ -340,13 +340,22 @@ skill_member_with_weight as (
   as weight_factor
   from skill_members
 
+),
+get_etl as (
+  select 
+    MAX(etl_datetime) as etl_datetime
+  FROM
+      {{ ref('fct_worklogs') }}
 )
 
 select r.*, s.skill_name,
-  r.free_efforts/COALESCE(s.weight_factor, 1) as free_effort_unique
+  r.free_efforts/COALESCE(s.weight_factor, 1) as free_effort_unique,
+  g.etl_datetime
  from
 cacul_effort_type as r
 left join
 skill_member_with_weight as s
 on r.staff_code = s.staff_code
+cross join
+get_etl as g
 

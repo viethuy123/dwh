@@ -103,8 +103,14 @@ data_worklog as (
 user_not_duplicate as ( 
     SELECT 
         *
-    FROM {{ ref('dim_members') }}
+    FROM {{ ref('dim_members_scd') }}
     WHERE count_email_duplicates = 1
+),
+get_etl as (
+  select 
+    MAX(etl_datetime) as etl_datetime
+  FROM
+      {{ ref('fct_worklogs') }}
 )
 
 SELECT 
@@ -143,20 +149,21 @@ SELECT
     COALESCE(pr.weight_factor, 1) as weight_factor,
     iss.start_time,
     iss.total_time_worked * COALESCE(pr.weight_factor, 1) as time_worked_s,
-    (iss.total_time_worked * COALESCE(pr.weight_factor, 1))/3600 as time_worked_h
+    (iss.total_time_worked * COALESCE(pr.weight_factor, 1))/3600 as time_worked_h,
+    g.etl_datetime
 
 FROM data_worklog as iss
 
 
 -- ưu tiên lấy data của worklog_author nếu có, nếu không thì lấy assignee_email
-left JOIN {{ ref('dim_members') }} as u_ass
+left JOIN {{ ref('dim_members_scd') }} as u_ass
     on iss.assignee_email = u_ass.member_email
     AND COALESCE(date(iss.start_time), date(iss.created_time)) >= u_ass.create_date_used
     and COALESCE(date(iss.start_time), date(iss.created_time)) <= u_ass.end_date
 -- có thể user sẽ k thỏa với khoảng ngày nên sẽ dùng 1 join k điều kiện ngày cho chắc
 left join user_not_duplicate as u_nd
     on iss.assignee_email  = u_nd.member_email
-left JOIN {{ ref('dim_members') }} as u_re
+left JOIN {{ ref('dim_members_scd') }} as u_re
     on iss.reporter_email = u_re.member_email
     AND COALESCE(date(iss.start_time), date(iss.created_time)) >= u_re.create_date_used
     and COALESCE(date(iss.start_time), date(iss.created_time)) <= u_re.end_date
@@ -165,3 +172,5 @@ LEFT JOIN project_name as p
 LEFT JOIN project_role_with_weight as pr
   ON iss.jira_project_id = pr.project_id
   and iss.assignee_email = pr.user_email
+cross join
+get_etl as g

@@ -3,5 +3,6 @@
 
 SELECT 
     department_id, 
-    department_name 
+    department_name ,
+    etl_datetime
 FROM {{ ref('departments') }}

@@ -173,7 +173,8 @@ SELECT
 
     COUNT(*) OVER (
         PARTITION BY company_email
-    ) AS count_email_duplicates
+    ) AS count_email_duplicates,
+    etl_datetime
 
 FROM _final
 WHERE company_email IS NOT NULL

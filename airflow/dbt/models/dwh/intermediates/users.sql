@@ -17,7 +17,7 @@ SELECT
     a."userLevel" as user_level,
     a."userStatus" as user_status,
     a."isDeleted" as is_deleted,
-    CURRENT_TIMESTAMP as etl_datetime
+    etl_datetime
 FROM {{ source('create', 'stg_create_users') }} a
 where a."isDeleted" = 'No'
 

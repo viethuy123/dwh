@@ -10,7 +10,8 @@ SELECT
     a.start_time,
     a.time_worked,
     a.created_time,
-    a.updated_time
+    a.updated_time,
+    a.etl_datetime
 FROM {{ ref('jira_worklog') }} a
 LEFT JOIN {{ ref('jira_issues') }} b
 ON a.issue_id = b.issue_id

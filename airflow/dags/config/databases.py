@@ -80,7 +80,7 @@ def _get_mongo_uri(db_name: str, prefix: str) -> str:
 
 # ✅ Lazy evaluation - functions KHÔNG được call khi import module
 DB_URIS: Dict[str, Callable[[], str]] = {
-    'staging': lambda: _get_pg_uri("dwh"),
+    'dwh': lambda: _get_pg_uri("dwh"),
     'monitoring': lambda: _get_pg_uri("monitoring")
 }
 

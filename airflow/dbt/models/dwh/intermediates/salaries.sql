@@ -11,5 +11,5 @@ SELECT
     "userInfoBlock" as user_info_block,
     {{ safe_parse_timestamp('"createdAt"') }} as created_time,
     {{ safe_parse_timestamp('"updatedAt"') }} as updated_time,
-    CURRENT_TIMESTAMP as etl_datetime
+    etl_datetime
 FROM {{ source('create', 'stg_create_salaries') }}

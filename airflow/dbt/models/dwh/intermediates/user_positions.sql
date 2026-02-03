@@ -12,5 +12,5 @@ SELECT
     status as status,
     "isDeleted"as is_deleted,
     "updatedAt" as updated_time,
-    CURRENT_TIMESTAMP as etl_datetime
+    etl_datetime
 FROM {{ source('create', 'stg_create_user_positions') }}

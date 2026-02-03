@@ -9,9 +9,6 @@ import re
 
 
 # ===== HELPER FUNCTIONS =====
-
-
-
 def psql_insert_copy(table, conn, keys, data_iter):
     """Hàm helper để dùng lệnh COPY của Postgres"""
     dbapi_conn = conn.connection
@@ -135,6 +132,7 @@ def _load_with_chunking_smart(
         gc.collect()
     
     print(f"Completed chunking: {processed_rows} rows from {source_type}")
+    return processed_rows
 
 
 # ===== FULL LOAD =====
@@ -193,7 +191,16 @@ def _load_full_table_internal(
             df_batch = df.iloc[start_idx:end_idx].copy()
             
             load_mode = 'replace' if batch_num == 0 else 'append'
-            load_chunk_to_postgres(df_batch, pg_engine, tgt_table, target_schema, load_mode)
+            # load_chunk_to_postgres(df_batch, pg_engine, tgt_table, target_schema, load_mode)
+            with pg_engine.begin() as conn:
+                df_batch.to_sql(
+                    tgt_table,
+                    con=conn,
+                    if_exists=load_mode,
+                    index=False,
+                    schema=target_schema,
+                    method=psql_insert_copy
+                )
             
             print(f"✓ Batch {batch_num + 1}: {len(df_batch)} rows | Progress: {end_idx}/{total_rows}")
             
@@ -201,6 +208,7 @@ def _load_full_table_internal(
             gc.collect()
         
         print(f"Completed full load: {total_rows} rows")
+        return total_rows
     
     finally:
         if df is not None:
@@ -221,18 +229,19 @@ def _create_extract_load_callable(
         from datetime import datetime
         from sqlalchemy import create_engine, text, pool
         import gc
-        
+        from utils.monitoring import ETLMonitor
+        monitor = ETLMonitor()  
         pg_engine = None
         
         try:
             # Get URIs
             source_uri = source_uri_fn()
             from config import DB_URIS
-            staging_uri = DB_URIS['staging']()
+            dwh_uri = DB_URIS['dwh']()
             
             # Create engine
             pg_engine = create_engine(
-                staging_uri,
+                dwh_uri,
                 poolclass=pool.NullPool,
                 echo=False
             )
@@ -249,23 +258,38 @@ def _create_extract_load_callable(
             
             # Load logic
             if chunk_size:
-                _load_with_chunking_smart(  
+                total_rows = _load_with_chunking_smart(  
                     source_uri, source_type, src_table,
                     pg_engine, tgt_table, target_schema,
                     transformer, chunk_size, source_db
                 )
             else:
-                _load_full_table_internal(
+                total_rows =_load_full_table_internal(
                     source_uri, source_type, source_db,
                     src_table, pg_engine, tgt_table,
                     target_schema, transformer
                 )
+            monitor.record_load(total_rows)
+            
+            # Finalize and push to XCom
+            metrics = monitor.finalize()
+            
+            from airflow.operators.python import get_current_context
+            context = get_current_context()
+            context['ti'].xcom_push(key='metrics', value=metrics)
+            
+        except Exception as e:
+            # Push error to XCom
+            from airflow.operators.python import get_current_context
+            context = get_current_context()
+            context['ti'].xcom_push(key='error', value=str(e))
+            raise
         
         finally:
             if pg_engine:
                 pg_engine.dispose()
             
-            del transformer, source_uri, staging_uri
+            del transformer, source_uri, dwh_uri
             for _ in range(3):
                 gc.collect()
         
@@ -273,10 +297,10 @@ def _create_extract_load_callable(
     
     return extract_load_data
 
-def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) -> tuple:
+def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> tuple:
     source_type = ingestion_config['source_type']
     source_uri_fn = ingestion_config['source_uri_fn']
-    source_db = ingestion_config.get('source_db')
+    source_db = ingestion_config['source_db']
     target_schema = ingestion_config['target_schema']
     tables = ingestion_config['tables']
     
@@ -291,30 +315,32 @@ def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) ->
     from utils.common_tasks import (
         create_data_quality_check_callable,
         create_data_notification_callable,
-        create_save_job_logs_callable
+        create_save_job_logs_callable,
+        create_save_metrics_callable
     )
-    
-    data_quality_fn = create_data_quality_check_callable(target_schema, DB_URIS['staging'])
+    task_group_prefix = f'{source}_to_{target_schema}'
+    data_quality_fn = create_data_quality_check_callable(target_schema, DB_URIS['dwh'])
     data_notification_fn = create_data_notification_callable(
         target_schema,
-        DB_URIS['staging'],
-        f'{source_key}_to_staging'
+        DB_URIS['dwh'],
+        task_group_prefix
     )
-    save_logs_fn = create_save_job_logs_callable(source_key, 'staging')
+    save_logs_fn = create_save_job_logs_callable(source, 'dwh')
+    save_metrics_fn = create_save_metrics_callable(source, 'dwh')
     
-    with TaskGroup(group_id=f'{source_key}_to_staging', dag=dag) as outer_group:
+    with TaskGroup(group_id=task_group_prefix, dag=dag) as outer_group:
         
         for table_config in tables:
             src_table = table_config['name']
-            tgt_table = get_target_table_name(src_table, source_key)
+            tgt_table = get_target_table_name(src_table, source)
             table_type = table_config['type']
             chunk_size = table_config.get('chunksize')
             pool = get_pool_name(table_type)
             
-            with TaskGroup(group_id=f'{src_table}_{tgt_table}', dag=dag) as inner_group:
+            with TaskGroup(group_id=f'{source}_to_{tgt_table}', dag=dag) as inner_group:
                 
                 extract_load = PythonOperator(
-                    task_id=f'extract_load_{target_schema}-{tgt_table}',
+                    task_id=f'extract_load_{target_schema}_{tgt_table}',
                     python_callable=extract_load_fn,
                     op_kwargs={
                         'src_table': src_table, 
@@ -326,38 +352,49 @@ def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) ->
                 )
                 
                 success_logs = PythonOperator(
-                    task_id=f'success_save_logs_{target_schema}-{tgt_table}',
+                    task_id=f'success_save_logs_{target_schema}_{tgt_table}',
                     python_callable=save_logs_fn,
                     op_kwargs={
-                        'src_table': src_table,
+                        'src': source,
                         'tgt_table': tgt_table,
                         'status': 'SUCCESS'
                     },
                     dag=dag,
                 )
                 
+                save_metrics_task = PythonOperator(
+                    task_id=f'metrics_{target_schema}_{tgt_table}',
+                    python_callable=save_metrics_fn,
+                    op_kwargs={
+                        'src': source,
+                        'tgt_table': tgt_table,
+                        'src_type': 'ingestion',
+                    },
+                    dag=dag,
+                )
+                
                 quality_check = PythonOperator(
-                    task_id=f'{target_schema}-{tgt_table}_quality_check',
+                    task_id=f'{target_schema}_{tgt_table}_quality_check',
                     python_callable=data_quality_fn,
                     op_kwargs={'tgt_table': tgt_table},
                     dag=dag,
                 )
                 
                 notification = PythonOperator(
-                    task_id=f'{target_schema}-{tgt_table}_notification',
+                    task_id=f'{target_schema}_{tgt_table}_notification',
                     python_callable=data_notification_fn,
                     op_kwargs={
-                        'src_table': src_table,
+                        'src': source,
                         'tgt_table': tgt_table
                     },
                     dag=dag,
                 )
                 
                 failure_logs = PythonOperator(
-                    task_id=f'failure_save_logs_{target_schema}-{tgt_table}',
+                    task_id=f'failure_save_logs_{target_schema}_{tgt_table}',
                     python_callable=save_logs_fn,
                     op_kwargs={
-                        'src_table': src_table,
+                        'src': source,
                         'tgt_table': tgt_table,
                         'status': 'FAILURE'
                     },
@@ -365,7 +402,7 @@ def create_ingestion_task_group(dag, source_key: str, ingestion_config: dict) ->
                     dag=dag,
                 )
                 
-                extract_load >> success_logs >> quality_check >> notification
+                extract_load >> success_logs >> save_metrics_task >> quality_check >> notification
                 extract_load >> failure_logs
     
     return outer_group

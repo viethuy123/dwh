@@ -29,5 +29,6 @@ SELECT
     "startDate" as start_time,
     "endDate" as end_time,
     "created_at" as created_time,
-    "updated_at" as updated_time
+    "updated_at" as updated_time,
+    etl_datetime
 FROM {{ source('jisseki', 'stg_jisseki_projects') }}

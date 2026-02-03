@@ -5,21 +5,11 @@ Factory để tạo DBT transformation tasks - LAZY IMPORT VERSION
 from airflow.sdk import TaskGroup
 from airflow.providers.standard.operators.python import PythonOperator
 
-# ✅ CHỈ import airflow modules ở top level
-# KHÔNG import: sqlalchemy, pandas, dbt modules, utils ở đây
-
 
 def _get_table_mapping(mapping_var: str) -> dict:
-    """
-    Lấy table mapping từ utils.mappings
-    ✅ LAZY IMPORT - Chỉ load khi function được gọi
-    
-    Args:
-        mapping_var: Tên biến mapping ('warehouse_mapping', 'report_mapping', etc)
-    """
-    # ✅ Import BÊN TRONG function
+
     from utils.mappings import (
-        warehouse_mapping,
+        intermediate_mapping,
         report_mapping,
         dim_mapping,
         fct_mapping,
@@ -28,7 +18,7 @@ def _get_table_mapping(mapping_var: str) -> dict:
     )
     
     mappings = {
-        'warehouse_mapping': warehouse_mapping,
+        'intermediate_mapping': intermediate_mapping,
         'report_mapping': report_mapping,
         'dim_mapping': dim_mapping,
         'fct_mapping': fct_mapping,
@@ -38,50 +28,37 @@ def _get_table_mapping(mapping_var: str) -> dict:
     return mappings.get(mapping_var, {})
 
 
-def create_dbt_transformation_task_group(dag, source_schema, pipeline_config: dict) -> tuple:
-    """
-    Tạo TaskGroup cho DBT transformation tasks
-    ✅ LAZY IMPORTS để giảm memory khi parse DAG
-    
-    Args:
-        dag: DAG object
-        source_schema: Schema nguồn
-        pipeline_config: Config từ DBT_PIPELINES trong pipeline_config.py
-    
-    Returns:
-        tuple: (outer_group, sync_fdw_task hoặc None)
-    """
+def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict) -> tuple:
+
     source_db = pipeline_config['source_db']
     target_db = pipeline_config['target_db']
     target_schema = pipeline_config.get('tgt_schema', 'public') 
     dbt_target = pipeline_config['dbt_target']
     models_path = pipeline_config['models_path']
     
-    # ✅ Lấy mapping - lazy load bên trong function
     table_mapping = _get_table_mapping(pipeline_config['table_mapping_var'])
-    
-    # ✅ Import config CHỈ khi cần (trong function scope)
     from config import DB_URIS, DBT_CONFIG
-    
-    # ✅ Import common_tasks CHỈ khi cần
     from utils.common_tasks import (
         create_data_quality_check_callable,
         create_data_notification_callable,
         create_save_job_logs_callable,
+        create_save_metrics_callable,
         _create_dbt_operator
     )
     
     # Xác định DB URI
-    target_db_uri = DB_URIS['staging']
+    target_db_uri = DB_URIS['dwh']
     
     # Tạo callable functions - REUSE cho tất cả tables
     data_quality_fn = create_data_quality_check_callable(target_schema, target_db_uri)
     
     # Task group prefix
-    if target_schema == 'intermediates':
-        task_group_prefix = 'staging_to_warehouse'
-    else:
-        task_group_prefix = 'warehouse_to_mart'
+    # if target_schema == 'intermediates':
+    #     task_group_prefix = 'staging_to_warehouse'
+    # else:
+    #     task_group_prefix = 'warehouse_to_mart'
+    
+    task_group_prefix = f'{source}_to_{target_schema}'
     
     data_notification_fn = create_data_notification_callable(
         target_schema,
@@ -89,18 +66,19 @@ def create_dbt_transformation_task_group(dag, source_schema, pipeline_config: di
         task_group_prefix
     )
     save_logs_fn = create_save_job_logs_callable(source_db, target_db)
+    save_metrics_fn = create_save_metrics_callable(target_schema, task_group_prefix)
     
     with TaskGroup(group_id=task_group_prefix, dag=dag) as outer_group:
         
         # Tạo inner task group cho từng table
         for tgt_table, src_table in table_mapping.items():
-            src_table = f'{source_schema}_{tgt_table}' if source_schema else src_table
+            src_table = f'{source}_{tgt_table}' if source else src_table
             
-            with TaskGroup(group_id=f'{src_table}_{tgt_table}', dag=dag) as inner_group:
+            with TaskGroup(group_id=f'{source}_to_{tgt_table}', dag=dag) as inner_group:
                 
                 # DBT Run task
                 dbt_task = _create_dbt_operator(
-                    task_id=f"dbt_{tgt_table}",
+                    task_id=f"dbt_{target_schema}_{tgt_table}",
                     mapping_var=pipeline_config["table_mapping_var"],
                     models_path=models_path,
                     target_schema=target_schema,
@@ -112,19 +90,29 @@ def create_dbt_transformation_task_group(dag, source_schema, pipeline_config: di
                 
                 # Success logs
                 success_logs = PythonOperator(
-                    task_id=f'success_save_logs-{tgt_table}',
+                    task_id=f'success_save_logs_{target_schema}_{tgt_table}',
                     python_callable=save_logs_fn,
                     op_kwargs={
-                        'src_table': src_table,
+                        'src': source,
                         'tgt_table': tgt_table,
                         'status': 'SUCCESS'
+                    },
+                    dag=dag,
+                )
+                save_metrics_task = PythonOperator(
+                    task_id=f'metrics_{target_schema}_{tgt_table}',
+                    python_callable=save_metrics_fn,
+                    op_kwargs={
+                        'src': source,
+                        'tgt_table': tgt_table,
+                        'src_type': 'dbt',
                     },
                     dag=dag,
                 )
                 
                 # Data quality check
                 quality_check = PythonOperator(
-                    task_id=f'{target_schema}-{tgt_table}_quality_check',
+                    task_id=f'{target_schema}_{tgt_table}_quality_check',
                     python_callable=data_quality_fn,
                     op_kwargs={'tgt_table': tgt_table},
                     dag=dag,
@@ -132,10 +120,10 @@ def create_dbt_transformation_task_group(dag, source_schema, pipeline_config: di
                 
                 # Data notification
                 notification = PythonOperator(
-                    task_id=f'{target_schema}-{tgt_table}_notification',
+                    task_id=f'{target_schema}_{tgt_table}_notification',
                     python_callable=data_notification_fn,
                     op_kwargs={
-                        'src_table': src_table,
+                        'src': source,
                         'tgt_table': tgt_table
                     },
                     dag=dag,
@@ -143,10 +131,10 @@ def create_dbt_transformation_task_group(dag, source_schema, pipeline_config: di
                 
                 # Failure logs
                 failure_logs = PythonOperator(
-                    task_id=f'failure_save_logs-{tgt_table}',
+                    task_id=f'failure_save_logs_{target_schema}_{tgt_table}',
                     python_callable=save_logs_fn,
                     op_kwargs={
-                        'src_table': src_table,
+                        'src': source,
                         'tgt_table': tgt_table,
                         'status': 'FAILURE'
                     },
@@ -155,7 +143,7 @@ def create_dbt_transformation_task_group(dag, source_schema, pipeline_config: di
                 )
                 
                 # Dependencies
-                dbt_task >> success_logs >> quality_check >> notification
+                dbt_task >> success_logs >> save_metrics_task >> quality_check >> notification
                 dbt_task >> failure_logs
 
     return outer_group

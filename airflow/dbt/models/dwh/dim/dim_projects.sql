@@ -47,7 +47,8 @@ create_jira_project as (
     null as sub_pm_id,
 
     cp.start_time,
-    cp.end_time
+    cp.end_time,
+    cp.etl_datetime
     
     from {{ ref('create_project') }} cp
     left join {{ ref('jira_project') }} jp
@@ -88,7 +89,8 @@ jisseki_project as (
     null as sub_pm_id,
 
     start_time,
-    end_time
+    end_time,
+    etl_datetime
     
     from {{ ref('jisseki_project') }}
 ),
@@ -126,7 +128,8 @@ pod_project as (
     sub_pm_id,
 
     start_date as start_time,
-    null::TIMESTAMP WITH TIME ZONE as end_time
+    null::TIMESTAMP WITH TIME ZONE as end_time,
+    etl_datetime
     from {{ ref('pods') }}
 )
 

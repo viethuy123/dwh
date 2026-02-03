@@ -4,14 +4,15 @@ WITH
 create_jira_cus as (
     select 
     customer_id::TEXT as customer_id,
-    customer_name::TEXT as customer_name
-    
+    customer_name::TEXT as customer_name,
+    etl_datetime
     from {{ ref('create_project_customer') }}
 ),
 jisseki_cus as (
     select 
     id::TEXT as customer_id,
-    company_name::TEXT as customer_name
+    company_name::TEXT as customer_name,
+    etl_datetime
     from {{ ref('jisseki_customers') }}
 )
 select * from create_jira_cus

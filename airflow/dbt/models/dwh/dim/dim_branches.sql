@@ -3,5 +3,6 @@
 
 SELECT 
     branch_id, 
-    branch_name 
+    branch_name,
+    etl_datetime
 FROM {{ ref('branches') }}

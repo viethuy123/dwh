@@ -126,6 +126,7 @@ change_end_date_inactive_user as (
 _final as (
     select 
         *,
+
         COALESCE(end_date_2, end_date_1) as end_date
     from change_end_date_inactive_user
 )
@@ -146,7 +147,8 @@ SELECT
     a.end_date,
     COUNT(*) OVER (
         PARTITION BY a.company_email
-    ) AS count_email_duplicates
+    ) AS count_email_duplicates,
+    a.etl_datetime
 FROM _final a
 LEFT JOIN {{ ref('branches') }} b
 ON a.branch_id = b.branch_id
@@ -171,4 +173,5 @@ GROUP BY
     a.user_status,
     date(a.create_time),
     a.create_date_used,
-    a.end_date
+    a.end_date,
+    a.etl_datetime

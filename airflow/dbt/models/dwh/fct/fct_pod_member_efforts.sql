@@ -7,5 +7,6 @@ SELECT
     user_role,
     effort,
     month_year,
-    status
+    status,
+    etl_datetime
 FROM {{ ref('billable_efforts_approveds') }}

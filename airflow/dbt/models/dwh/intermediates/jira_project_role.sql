@@ -5,5 +5,5 @@ SELECT
     "ID" as id,
     "NAME" as role_name,
     "DESCRIPTION" as description,
-    CURRENT_TIMESTAMP as etl_datetime
+    etl_datetime
 FROM {{ source('jira', 'stg_jira_projectrole') }}

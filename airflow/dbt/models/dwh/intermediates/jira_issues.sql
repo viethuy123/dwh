@@ -22,5 +22,5 @@ SELECT
     "ENVIRONMENT" as environment,
     "CREATED" as created_time,
     "UPDATED" as updated_time,
-    CURRENT_TIMESTAMP as etl_datetime
+    etl_datetime
 FROM {{ source('jira', 'stg_jira_jiraissue') }}

@@ -10,5 +10,5 @@ SELECT
     "ASSIGNEETYPE" as assign_type,
     "ORIGINALKEY" as original_key,
     "PROJECTTYPE" as project_type,
-    CURRENT_TIMESTAMP as etl_datetime
+    etl_datetime
 FROM {{ source('jira', 'stg_jira_project') }}

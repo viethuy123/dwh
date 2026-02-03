@@ -16,5 +16,6 @@ SELECT
     category,
     start_date,
     "created_at" as create_time,
-    "updated_at" as update_time
+    "updated_at" as update_time,
+    etl_datetime
 FROM {{ source('jisseki', 'stg_jisseki_customers') }}

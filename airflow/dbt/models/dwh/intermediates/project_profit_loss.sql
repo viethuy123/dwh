@@ -12,5 +12,5 @@ SELECT
     "isDeleted" as is_deleted,
     "monthAt" as month_at,
     {{ safe_parse_timestamp('"updatedAt"') }} as updated_time,
-    CURRENT_TIMESTAMP as etl_datetime
+    etl_datetime
 FROM {{ source('create', 'stg_create_profit_loss_project_expenses') }}

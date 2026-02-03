@@ -1,4 +1,4 @@
-warehouse_mapping ={
+intermediate_mapping ={
     'branches': 'src_create.stg_branches',
     'departments': 'src_create.stg_company_departments',
     'jira_issue_resolution': 'src_jira.stg_resolution',
@@ -67,13 +67,6 @@ jira_dtm_mapping = {
 }
 
 
-bi_dtm = {
-    "user_join_project": "user_join_project",
-    "detect_resource": "detect_resource"
-}
-
-jira_mviews = ["mview_member_free_effort"]
-
 report_mapping = {
     "detect_resources": ["dim_members", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members", "dim_pods", "fct_pod_member_efforts"],
     "mview_member_free_efforts": ["dim_members", "dim_time_series", "fct_worklog","dim_skill_members"],
@@ -89,7 +82,7 @@ dim_mapping = {
     "dim_departments": "departments",
     "dim_positions": "positions",
     "dim_project_members": "project_members",
-    "dim_member_email_effective": "users",
+    # "dim_member_email_effective": "users",
     # New dims
     "dim_jira_project_role": "jira_project_role",
     # "dim_members_scd": "users",

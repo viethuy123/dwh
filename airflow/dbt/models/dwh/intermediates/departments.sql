@@ -11,5 +11,5 @@ SELECT
     status,
     "isDeleted" as is_deleted,
     {{ safe_parse_timestamp('"updatedAt"') }} as updated_time,
-    CURRENT_TIMESTAMP as etl_datetime
+    etl_datetime
 FROM {{ source('create', 'stg_create_company_departments') }}

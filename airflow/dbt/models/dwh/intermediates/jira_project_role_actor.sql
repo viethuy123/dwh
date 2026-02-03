@@ -6,5 +6,5 @@ SELECT
     "PID" as project_id,
     "PROJECTROLEID" as project_role_id,
     "ROLETYPEPARAMETER" as user_email,
-    CURRENT_TIMESTAMP as etl_datetime
+    etl_datetime
 FROM {{ source('jira', 'stg_jira_projectroleactor') }}

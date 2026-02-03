@@ -64,8 +64,10 @@ def create_data_quality_check_callable(schema: str, uri_fn):
         
         target_data = extract_sql_data(uri, f"SELECT * FROM {full_table_name} LIMIT 1000")
         
-        suite_name = f"{schema}-{tgt_table}" if schema else tgt_table
+        
+        suite_name = f"{schema}_{tgt_table}" if schema else tgt_table
         result = validate_dataframe(df=target_data, suite_name=suite_name)
+        # Push kết quả validation lên XCom để notify sau
         kwargs['ti'].xcom_push(
             key=f'{suite_name}_validation_results',
             value=result
@@ -86,14 +88,15 @@ def create_data_notification_callable(schema: str, uri_fn, task_group_prefix: st
         uri_fn: Function to get database URI
         task_group_prefix: Prefix của task group (vd: 'jira_to_staging', 'staging_to_warehouse')
     """
-    def data_notification(src_table: str, tgt_table: str, **kwargs) -> None:
+    def data_notification(src: str, tgt_table: str, **kwargs) -> None:
         # Gọi function để lấy URI tại runtime
         uri = uri_fn() if callable(uri_fn) else uri_fn
         
-        suite_name = f"{schema}-{tgt_table}" if schema else tgt_table
-        inner_group_id = f'{src_table}_{tgt_table}'
-        quality_check_task_id = f'{schema}-{tgt_table}_quality_check'
+        suite_name = f"{schema}_{tgt_table}" if schema else tgt_table
+        inner_group_id = f'{src}_to_{tgt_table}'
+        quality_check_task_id = f'{schema}_{tgt_table}_quality_check'
         full_task_id_to_pull = f'{task_group_prefix}.{inner_group_id}.{quality_check_task_id}'
+        print(f"Attempting to pull from task ID: {full_task_id_to_pull} , {suite_name}_validation_results")
         print(f"Pulling validation results from task ID: {full_task_id_to_pull}")
         # Pull validation result
         result = kwargs['ti'].xcom_pull(
@@ -140,38 +143,158 @@ def create_save_job_logs_callable(source_db: str, target_db: str):
         source_db: Source database name
         target_db: Target database name
     """
-    def save_job_logs(src_table: str | list, tgt_table: str, status: str, **context) -> None:
-        execution_time = (
-            context.get('logical_date') or 
-            context.get('data_interval_start') or 
-            context.get('execution_date')
-        )
-        
-        # Nếu vẫn không có (dataset trigger case), dùng current time
-        if execution_time is None:
-            execution_time = datetime.utcnow()
-        
-        # Get monitoring URI tại runtime (lazy import)
+    def save_logs(**kwargs):
+        import json
         from config import DB_URIS
-        monitoring_uri = DB_URIS['monitoring']()
-        
-        save_etl_job_logs(
-            sql_uri=monitoring_uri,
-            log_table='etl_job_logs',
-            job_name=context['task'].task_group.group_id if context['task'].task_group else 'No TaskGroup',
-            source_db=source_db,
-            target_db=target_db,
-            source_table=[src_table] if isinstance(src_table, str) else src_table,
-            target_table=tgt_table,
-            dag_id=context['dag'].dag_id,
-            task_id=context['task'].task_id,
-            execution_time=getattr(execution_time, '__wrapped__', execution_time),
-            status=status
+        from utils.monitoring import save_job_log
+        print(f"Saving job log for {kwargs.get('src')} to {kwargs.get('tgt_table')}")
+        # Airflow auto-injects these into kwargs
+        dag_id = kwargs['dag'].dag_id
+        task_id = kwargs['task'].task_id
+        execution_date = (
+            kwargs.get('logical_date') or 
+            kwargs.get('data_interval_start') or
+            kwargs.get('execution_date')
         )
+        if execution_date is None:
+            execution_date = datetime.utcnow()
+        ti = kwargs['ti']
         
-        return None
+        log_data = {
+            'job_name': f"to_{target_db}",
+            'source_db': source_db,
+            'target_db': target_db,
+            'source_table': json.dumps(kwargs.get('src')),
+            'target_table': (kwargs.get('tgt_table', '')),
+            'dag_id': dag_id,
+            'task_id': task_id,
+            'execution_time': execution_date,
+            'status': kwargs.get('status', 'SUCCESS'),
+        }
+        
+        log_uri = DB_URIS['monitoring']()
+        job_id = save_job_log(log_uri, log_data)
+        print(f"Saved job log with ID: {job_id}")
+        # Push job_id for metrics task
+        ti.xcom_push(key='job_id', value=job_id)
+        
+        return job_id
     
-    return save_job_logs
+    return save_logs
+
+def create_save_metrics_callable(schema: str, task_group_prefix: str):
+    """
+    Create callable for saving metrics
+    Support cả Ingestion và DBT tasks
+    """
+    def save_metrics_task(**kwargs):
+        from config import DB_URIS, DBT_CONFIG
+        from utils.monitoring import save_metrics
+        import os
+        import json
+        from sqlalchemy import create_engine, text
+        from datetime import datetime, timezone
+        
+        ti = kwargs['ti']
+        
+        # ----------- LẤY job_id -----------
+        tgt_table = kwargs.get('tgt_table')
+        source = kwargs.get('src')
+        source_type = kwargs.get('src_type')  # 'ingestion' hoặc 'dbt'
+        
+        log_task_id = f'success_save_logs_{schema}_{tgt_table}'
+        group_id = f'{source}_to_{tgt_table}'
+        
+        if task_group_prefix and group_id:
+            full_log_task_id = f"{task_group_prefix}.{group_id}.{log_task_id}"
+        else:
+            full_log_task_id = log_task_id
+        
+        job_id = ti.xcom_pull(task_ids=full_log_task_id, key='job_id')
+        if not job_id:
+            print(f"Warning: No job_id found from {full_log_task_id}")
+            return
+        
+        
+        # ================= DBT TASK =================
+        if source_type == 'dbt':
+            dbt_project_dir = DBT_CONFIG['project_dir']
+            target_name = DBT_CONFIG['target_name']
+            run_results_path = os.path.join(
+                dbt_project_dir, 'target', target_name, 'run_results.json'
+            )
+            
+            if not os.path.exists(run_results_path):
+                print(f"Warning: run_results.json not found")
+                return
+            
+            with open(run_results_path) as f:
+                run_results = json.load(f)
+                        
+            execution_time = 0
+            for r in run_results.get('results', []):
+                if r['unique_id'].endswith(tgt_table):
+                    execution_time = r.get('execution_time', 0)
+                    break
+            
+            # ----------- QUERY DATA METRIC -----------
+            engine = create_engine(DB_URIS['dwh']())
+            with engine.connect() as conn:
+                row_count_sql = text(
+                    f"SELECT COUNT(*) AS cnt FROM {schema}.{tgt_table}"
+                )
+                row_count = conn.execute(row_count_sql).scalar()
+                
+                max_ts_sql = text(
+                    f"""
+                    SELECT MAX(etl_datetime)
+                    FROM {schema}.{tgt_table}
+                    """
+                )
+                max_updated_at = conn.execute(max_ts_sql).scalar()
+            
+            data_delay_minutes = None
+            print(f"Max updated at: {max_updated_at}")
+            if max_updated_at:
+                max_updated_at_naive = max_updated_at.replace(tzinfo=None)
+                now = datetime.utcnow()
+                data_delay_minutes = int(
+                    (now - max_updated_at_naive).total_seconds() / 60
+                )
+            
+            metrics = {
+                'total_duration': execution_time,
+                'target_row_count': row_count,
+                'max_updated_at': max_updated_at,
+                'data_delay_minutes': data_delay_minutes,
+                'source_row_count': None,
+                'extract_duration': None,
+                'load_duration': None,
+                'peak_memory_mb': None
+            }
+        
+        # ================= INGESTION TASK =================
+        else:
+            if task_group_prefix and group_id:
+                log_task_id = f'success_save_logs_{schema}_{tgt_table}'
+                full_extract_task_id = f"{task_group_prefix}.{group_id}.{log_task_id}"
+            else:
+                full_extract_task_id = log_task_id
+            
+            metrics = ti.xcom_pull(
+                task_ids=full_extract_task_id,
+                key='metrics'
+            )
+            
+            if not metrics:
+                print(f"Warning: No metrics found from {full_extract_task_id}")
+                return
+        
+        # ----------- SAVE METRICS -----------
+        log_uri = DB_URIS['monitoring']()
+        save_metrics(log_uri, job_id, metrics)
+    
+    return save_metrics_task
 
 
 def sync_fdw_tables(tgt_schema: str, src_schema: str, server_name: str, db_uri_fn) -> None:

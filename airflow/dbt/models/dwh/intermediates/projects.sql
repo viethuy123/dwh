@@ -61,7 +61,8 @@ SELECT
     pp.sale_id,
     (coalesce(cp.end_time, pp.plan_release_date)) as end_time,
     (coalesce(cp.start_time, pp.start_date)) as start_time,
-    (coalesce(cp.created_time, pp.created_time)) as created_time
+    (coalesce(cp.created_time, pp.created_time)) as created_time,
+    cp.etl_datetime
 from create_project cp
 full join pod_project pp
 on cp.project_code = pp.code_join
@@ -90,13 +91,14 @@ all_project as (
         cp.sale_id,
         date(coalesce(cp.end_time, jp.end_time)) as end_date,
         date(coalesce(cp.start_time, jp.start_time)) as start_date,
-        date(coalesce(cp.created_time, jp.created_time)) as created_date
+        date(coalesce(cp.created_time, jp.created_time)) as created_date,
+        cp.etl_datetime
 
     from create_pod cp
     full join jisseki_project jp
     on cp.project_code = jp.project_code
 )
 select * from all_project
-group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21, 22
+group by 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21, 22,23
 
 

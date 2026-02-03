@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 with issue_data as (
-    select *,
+    select iss.*,
     COALESCE(u_ass.lower_user_name, iss.issue_assignee) as assignee_email,
     COALESCE(u_rep.lower_user_name, iss.issue_reporter) as reporter_email
     from {{ ref('jira_issues') }} iss
@@ -33,7 +33,8 @@ SELECT
     a.time_estimate,	  
     a.time_spent,
     a.created_time,
-    a.updated_time
+    a.updated_time,
+    a.etl_datetime
 FROM issue_data a
 LEFT JOIN {{ ref('jira_issue_types') }} b
 ON a.issue_type = b.type_id

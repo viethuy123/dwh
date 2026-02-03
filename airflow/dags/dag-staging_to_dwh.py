@@ -10,7 +10,7 @@ from config import DBT_PIPELINES, DEFAULT_ARGS, DEFAULT_CHECK_DAG
 from factories.dbt_factory import create_dbt_transformation_task_group
 
 # Lấy config
-pipeline_config = DBT_PIPELINES['staging_to_warehouse']
+pipeline_config = DBT_PIPELINES['intermediate_mapping']
 
 # Tạo DAG
 dag = DAG(

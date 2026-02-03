@@ -9,7 +9,8 @@ jisseki_pro as (
     amount,
     man_month,
     num_month,
-    null::TEXT as project_size
+    null::TEXT as project_size,
+    etl_datetime
 
     from {{ ref('jisseki_project') }}
 ),
@@ -21,7 +22,8 @@ pod_pro as (
     NULL as amount,
     0 as man_month,
     0 as num_month,
-    project_size
+    project_size,
+    etl_datetime
 
     
     from {{ ref('pods') }}

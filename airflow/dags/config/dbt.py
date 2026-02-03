@@ -3,10 +3,11 @@ from config.databases import _get_pg_uri
 DBT_CONFIG = {
     'project_dir': '/opt/airflow/dbt',
     'profiles_dir': '/opt/airflow/dbt/.dbt/',
-    'profile': 'dwh_project'
+    'profile': 'dwh_project',
+    'target_name': 'dwh',
 }
 DBT_PIPELINES = {
-    'staging_to_warehouse': {
+    'intermediate_mapping': {
         'dag_id': 'dag_transform_to_dwh',
         'schedule': '30 20 * * *',
         'timeout_minutes': 60,
@@ -15,7 +16,7 @@ DBT_PIPELINES = {
         'dbt_target': 'dwh',
         'models_path': 'models/dwh',
         'tgt_schema': 'intermediates',
-        'table_mapping_var': 'warehouse_mapping',
+        'table_mapping_var': 'intermediate_mapping',
         'fdw_sync': {
             'enabled': False,
         }

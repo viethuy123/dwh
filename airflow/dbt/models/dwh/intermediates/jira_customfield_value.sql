@@ -12,5 +12,5 @@ SELECT
     "TEXTVALUE" as text_value,
     "DATEVALUE" as date_value,
     "VALUETYPE" as value_type,
-    CURRENT_TIMESTAMP as etl_datetime
+    etl_datetime
 FROM {{ source('jira', 'stg_jira_customfieldvalue') }}

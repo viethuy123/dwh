@@ -10,5 +10,5 @@ SELECT
     "customvalue" as custom_value,
     "optiontype" as option_type,
     "disabled" as disabled,
-    CURRENT_TIMESTAMP as etl_datetime
+    etl_datetime
 FROM {{ source('jira', 'stg_jira_customfieldoption') }}

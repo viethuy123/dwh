@@ -24,5 +24,6 @@ SELECT
     final_release_date,
     pod_status,
     status,
-    is_deleted
+    is_deleted,
+    etl_datetime
 FROM {{ ref('pods') }}

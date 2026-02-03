@@ -31,7 +31,8 @@ SELECT
     user_status,
     create_time,
     update_time,
-    expired_time
+    expired_time,
+    etl_datetime
 
 
 FROM {{ ref('users') }}

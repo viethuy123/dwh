@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
-select * from {{ ref('dim_pods') }}
+select *, etl_datetime from {{ ref('dim_pods') }}
 where is_deleted != 'Yes'

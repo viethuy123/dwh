@@ -7,6 +7,30 @@
           "unique": true,
           "type": "btree",
       }
+      ,
+      {
+          "columns": ["month_year"],
+          "unique": false,
+          "type": "btree",
+      },
+      
+      {
+          "columns": ["branch_code", "department_name", "month_year"],
+          "unique": false,
+          "type": "btree",
+      },
+      
+      {
+          "columns": ["member_name", "skill_name", "free_efforts"],
+          "unique": false,
+          "type": "btree",
+      },
+      
+      {
+          "columns": ["skill_name", "skill_level", "month_year"],
+          "unique": false,
+          "type": "btree",
+      }
   ]
 ) }}
 

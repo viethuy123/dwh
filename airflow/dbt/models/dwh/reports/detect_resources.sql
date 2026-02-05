@@ -3,7 +3,7 @@
     on_configuration_change="apply",
       indexes=[
       {
-          "columns": ["member_email", "month_year", "skill_name"],
+          "columns": ["member_email_full", "month_year", "skill_name"],
           "unique": true,
           "type": "btree",
       }
@@ -329,12 +329,28 @@ cacul_effort_type as
     all_data
 ),
 skill_members as (
-  select staff_code , skill_name from {{ ref('dim_skill_members') }}
-  group by 1,2
+  select 
+    a.staff_code, 
+    a.skill_name, 
+    a.skill_parent, 
+    a.skill_level
+  from (
+    select 
+      staff_code, 
+      skill_name, 
+      skill_total as skill_parent, 
+      level_sub_skill as skill_level,
+      row_number() over (
+        partition by staff_code, skill_name 
+        order by (select null)
+      ) as rn
+    from {{ ref('dim_skill_members') }}
+  ) as a
+  where rn = 1
 ),
 
 skill_member_with_weight as (
-  SELECT staff_code , skill_name, 
+  SELECT staff_code , skill_name, skill_parent, skill_level,
   COUNT(*) OVER(PARTITION by staff_code)
   
   as weight_factor
@@ -348,7 +364,7 @@ get_etl as (
       {{ ref('fct_worklogs') }}
 )
 
-select r.*, s.skill_name,
+select r.*, s.skill_name, s.skill_parent, s.skill_level,
   r.free_efforts/COALESCE(s.weight_factor, 1) as free_effort_unique,
   g.etl_datetime
  from

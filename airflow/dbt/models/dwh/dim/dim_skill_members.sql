@@ -1,5 +1,5 @@
 {{ config(materialized='table') }}
 
-SELECT staff_code , skill_name, etl_datetime
+SELECT *
 
 from {{ ref('skill_members') }}

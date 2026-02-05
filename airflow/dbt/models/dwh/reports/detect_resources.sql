@@ -389,6 +389,11 @@ get_etl as (
 )
 
 select r.*, s.skill_name, s.skill_parent, s.skill_level,
+case 
+        when max(r.member_email) over(partition by r.member_email_full) is not null 
+        then '1' 
+        else '0'  
+    end as log_work_status,
   r.free_efforts/COALESCE(s.weight_factor, 1) as free_effort_unique,
   g.etl_datetime
  from

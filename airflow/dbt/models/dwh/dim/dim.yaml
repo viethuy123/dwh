@@ -1,0 +1,8 @@
+models:
+  - name: dim_test
+    description: "Dim test table for user positions"
+    tests:
+      - not_null:
+          column_name: position_id
+      - unique:
+          column_name: position_id

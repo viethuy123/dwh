@@ -3,7 +3,7 @@ version: '1.0.0'
 config-version: 2
 
 profile: 'dwh_project'
-
+packages-install-path: /opt/airflow/dbt_packages
 model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]
@@ -14,7 +14,7 @@ snapshot-paths: ["snapshots"]
 target-path: "target/{{ target.name }}"
 clean-targets:
   - "target/{{ target.name }}"
-  - "dbt_packages"
+  # - "dbt_packages"
 
 models:
   dwh_project:

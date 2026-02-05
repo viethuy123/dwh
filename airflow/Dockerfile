@@ -19,3 +19,8 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel \
  && pip install --no-cache-dir -r requirements.txt
+ # ===== dbt deps =====
+COPY dbt /opt/airflow/dbt
+
+RUN cd /opt/airflow/dbt \
+ && dbt deps

@@ -25,6 +25,8 @@ intermediate_mapping ={
         'src_create.stg_users',
         'src_create.stg_user_infos'
     ],
+    'users_infos': 'src_create.stg_user_infos',
+    'users_infos_tranforms': 'dwh.intermediates.users_infos_tranforms',
     'salaries': 'src_create.stg_salaries',
     'staff_attendances': 'src_create.stg_staff_attendances',
     'staff_attendances_types': 'src_create.stg_staff_attendance_types',
@@ -70,7 +72,8 @@ jira_dtm_mapping = {
 report_mapping = {
     "detect_resources": ["dim_members", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members", "dim_pods", "fct_pod_member_efforts"],
     "mview_member_free_efforts": ["dim_members", "dim_time_series", "fct_worklog","dim_skill_members"],
-    "user_join_projects": ["dim_jira_issues", "dim_members"]
+    "user_join_projects": ["dim_jira_issues", "dim_members"],
+    "hr_data_user": ["dim_members_new"]
 }
 dim_mapping = {
     "dim_jira_issues": "jira_issues",
@@ -78,6 +81,7 @@ dim_mapping = {
     "dim_pods": "",
     "dim_projects": "",
     "dim_members_scd": "",
+    "dim_members_new": "",
     "dim_branches": "branches",
     "dim_departments": "departments",
     "dim_positions": "positions",

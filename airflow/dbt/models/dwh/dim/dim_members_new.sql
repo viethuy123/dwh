@@ -157,6 +157,8 @@ ON a.department_id = c.department_id
 LEFT JOIN {{ ref('user_positions') }} d
 ON a.position_id = d.position_id
 WHERE a.company_email is not NULL AND a.company_email != 'null' AND a.company_email NOT LIKE 'Inactive%'
+and a.branch_code != 'CNTO'
+and a.department_id != '60c0889f1b7b381078ad66ee'
 -- and a.staff_code is not NULL 
 -- and a.user_status not IN ('Inactivity', 'null')
 

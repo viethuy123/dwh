@@ -85,6 +85,8 @@ SOURCES = {
                 {'name': 'staff_log_works', 'type': 'heavy', 'chunksize': 50000},
                 {'name': 'staff_log_work_jira_deletes', 'type': 'light', 'chunksize': None},
                 {'name': 'staff_log_work_jira_updates', 'type': 'light', 'chunksize': None},
+                {'name': 'staff_seniorities', 'type': 'light', 'chunksize': None},
+                {'name': 'staff_seniorities_years', 'type': 'light', 'chunksize': None},
             ],
 
         }

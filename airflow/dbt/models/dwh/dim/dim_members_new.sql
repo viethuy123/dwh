@@ -17,6 +17,7 @@ user_all as (
     COALESCE(ui.official_date_use,ui.probation_date_use,ui.intern_date_use,ui.created_at) as official_date_use,
     ui.probation_date_use,
     ui.intern_date_use,
+    ui.birth_day,
     ui.created_at,
     ui.quit_date_use,
     ui.end_date as period_end_date_two_user
@@ -143,6 +144,12 @@ SELECT
     a.user_status,
     date(a.create_time) as create_date,
     a.official_date,
+    a.birth_day,
+    COALESCE(
+        EXTRACT(YEAR FROM a.official_date) - EXTRACT(YEAR FROM a.birth_day), 
+        0
+    ) AS age,
+
     date(DATE_TRUNC('month', a.create_time)) as create_date_used,
     a.end_date,
     COUNT(*) OVER (
@@ -177,4 +184,6 @@ GROUP BY
     date(DATE_TRUNC('month', a.create_time)),
     a.end_date,
     a.official_date,
+    a.birth_day,
+    age,
     a.etl_datetime

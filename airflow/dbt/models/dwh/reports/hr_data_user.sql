@@ -72,6 +72,8 @@ SELECT
     user_status,
     create_date,
     official_date,
+    birth_day,
+    age,
     create_date_used,
     end_date,
     count_email_duplicates,

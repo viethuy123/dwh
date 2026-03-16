@@ -14,7 +14,7 @@ with end_date as (
                     ORDER BY created_at ASC 
                 )
             ) - INTERVAL '1 day')::DATE
-        END AS end_date
+        END AS end_date_1
     from {{ ref('users_infos') }}
     where staff_code is not null
 ),
@@ -44,7 +44,8 @@ add_quite_date as (
     from end_date
 ),
 get_latest_record as (
-    select *
+    select *,
+    coalesce(end_date_1,quit_date_use) as end_date
     from add_quite_date
     where row_num = 1
 )

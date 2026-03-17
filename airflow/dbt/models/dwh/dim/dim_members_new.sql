@@ -14,7 +14,7 @@ user_info_data AS (
 ),
 user_all as (
     select u.*,
-    COALESCE(ui.official_date_use,ui.probation_date_use,ui.intern_date_use,ui.created_at) as official_date_use,
+    COALESCE(ui.official_date_use,ui.probation_date_use,ui.intern_date_use,ui.created_at) as official_date,
     ui.probation_date_use,
     ui.intern_date_use,
     ui.birth_day,
@@ -29,20 +29,16 @@ user_all as (
 tranform_date as (
     select * ,
     CASE 
-        WHEN (user_status IN ('Inactivity', 'null') OR user_status IS NULL) AND official_date_use is null and quit_date_use is null
+        WHEN (user_status IN ('Inactivity', 'null') OR user_status IS NULL) AND official_date is null and quit_date_use is null
             THEN coalesce(probation_date_use, intern_date_use, created_at)
         
         ELSE quit_date_use
-    END as quit_date_new
+    END as quit_date_original
     from user_all
 ),
 
--- user sẽ có ngày tạo và kết thúc , nhưng trạng thái inactive vẫn cần chỉnh lại để biết nghỉ thời gian nào
--- sẽ chuyển create_time về đầu tháng vì case trên đã tạo cuối tháng , k sợ trùng
 cleaned_date as (
-    select * ,
-    date(DATE_TRUNC('month', official_date_use)) as official_date,
-    date(DATE_TRUNC('month', quit_date_new)) as quit_date_original
+    select * 
     from tranform_date
 ),
 
@@ -126,7 +122,11 @@ _final as (
         CASE
             when end_date_raw is not null and end_date_raw < official_date then official_date
             else end_date_raw
-        END as end_date
+        END as end_date,
+        CASE 
+            WHEN create_time < official_date THEN date_trunc('month', create_time)::date
+            ELSE date_trunc('month', official_date)::date
+        END as create_date_used
     from logic_date
 )
 
@@ -143,15 +143,17 @@ SELECT
     a.user_level,
     a.user_status,
     date(a.create_time) as create_date,
-    a.official_date,
+    a.official_date::date as official_date,
+    a.probation_date_use::date as probation_date,
+    a.intern_date_use::date as intern_date,
+    a.welcome_day::date as welcome_day,
     a.birth_day,
     COALESCE(
         EXTRACT(YEAR FROM a.official_date) - EXTRACT(YEAR FROM a.birth_day), 
         0
-    ) AS age,
-
-    date(DATE_TRUNC('month', a.create_time)) as create_date_used,
-    a.end_date,
+    ) AS age_at_hire,
+    a.create_date_used,
+    a.end_date::date as end_date,
     COUNT(*) OVER (
         PARTITION BY a.company_email
     ) AS count_email_duplicates,
@@ -163,9 +165,9 @@ LEFT JOIN {{ ref('departments') }} c
 ON a.department_id = c.department_id
 LEFT JOIN {{ ref('user_positions') }} d
 ON a.position_id = d.position_id
-WHERE a.company_email is not NULL AND a.company_email != 'null' AND a.company_email NOT LIKE 'Inactive%'
-and a.branch_id != '607ce230e7fbdb31ac5ed2d0'
-and a.department_id != '60c0889f1b7b381078ad66ee'
+WHERE a.company_email is not NULL AND a.company_email != 'null'
+-- and a.branch_id != '607ce230e7fbdb31ac5ed2d0'
+-- and a.department_id != '60c0889f1b7b381078ad66ee'
 -- and a.staff_code is not NULL 
 -- and a.user_status not IN ('Inactivity', 'null')
 
@@ -181,9 +183,13 @@ GROUP BY
     a.user_level,
     a.user_status,
     date(a.create_time),
-    date(DATE_TRUNC('month', a.create_time)),
+    -- date(DATE_TRUNC('month', a.create_time)),
+    a.create_date_used,
     a.end_date,
     a.official_date,
+    a.probation_date_use,
+    a.intern_date_use,
+    a.welcome_day,
     a.birth_day,
-    age,
+    age_at_hire,
     a.etl_datetime

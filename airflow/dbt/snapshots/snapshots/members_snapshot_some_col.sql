@@ -1,4 +1,4 @@
-{% snapshot members_snapshot %}
+{% snapshot members_snapshot_some_col %}
 
 {{
     config(
@@ -31,6 +31,10 @@ SELECT
     create_time,
     update_time,
     expired_time,
+    welcome_day,
+    job_id,
+    performance_factor,
+    sub_position_id,
     etl_datetime
 
 

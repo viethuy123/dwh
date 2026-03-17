@@ -41,11 +41,11 @@ final_transformation as (
 
         -- Bước 4: Chia nhóm thâm niên
         CASE 
-            WHEN total_months < 12 THEN '< 12 tháng'
-            WHEN total_months < 24 THEN '1–2 năm'
-            WHEN total_months < 36 THEN '2–3 năm'
-            WHEN total_months < 72 THEN '3–6 năm'
-            ELSE '> 6 năm'
+            WHEN total_months < 12 THEN '< 1 năm'
+            WHEN total_months < 24 THEN '1 – < 2 năm'
+            WHEN total_months < 36 THEN '2 – < 3 năm'
+            WHEN total_months < 72 THEN '3 – < 6 năm'
+            ELSE '>= 6 năm'
         END as seniority_group,
 
         -- Bước 5: Tạo cột sắp xếp (Quan trọng để lên biểu đồ đúng thứ tự)
@@ -73,7 +73,7 @@ SELECT
     create_date,
     official_date,
     birth_day,
-    age,
+    age_at_hire as age,
     create_date_used,
     end_date,
     count_email_duplicates,

@@ -36,6 +36,12 @@
 
 WITH
 
+  dim_members as (
+    select *,
+    coalesce(end_date, '2999-12-31'::DATE) as end_date_used
+     from {{ ref('dim_members_new') }}
+  ),
+
   _time_series AS (
     SELECT
       DATE_TRUNC('month',
@@ -52,11 +58,11 @@ WITH
       m.member_email,
       ts.month_year
     FROM
-      {{ ref('dim_members_new') }} m
+      dim_members m
       CROSS JOIN _time_series ts
     WHERE
       ts.month_year >= DATE_TRUNC('month', m.create_date_used) 
-      AND ts.month_year <= DATE_TRUNC('month', m.end_date)
+      AND ts.month_year <= DATE_TRUNC('month', m.end_date_used)
   ),
 
   _jira_efforts AS (
@@ -99,10 +105,10 @@ WITH
       SUM(pme.pod_efforts) AS pod_efforts
     FROM
       _pod_efforts_raw pme
-      JOIN {{ref('dim_members_scd') }} m 
+      JOIN dim_members m 
       ON m.member_id = pme.member_id
       and pme.month_year_date >= m.create_date_used
-      and pme.month_year_date <= m.end_date
+      and pme.month_year_date <= m.end_date_used
     GROUP BY
       m.member_email,
       pme.month_year_date
@@ -320,11 +326,11 @@ SELECT
     ELSE f.normal_efforts - COALESCE(f.actual_efforts, f.pod_efforts, f.new_predicting_efforts, 0)
   END AS free_efforts
   FROM
-  {{ ref('dim_members_scd') }} m
+  dim_members m
   LEFT JOIN  _final as f
   ON m.member_email = f.member_email_full
   AND f.month_year >= m.create_date_used
-  AND f.month_year <= m.end_date
+  AND f.month_year <= m.end_date_used
   WHERE COALESCE(f.month_year, DATE_TRUNC('month', NOW())::DATE) <= DATE_TRUNC('month', NOW()) + INTERVAL '3 months'
   and m.member_name is not null
   and m.member_name not in ('null', 'Admin')

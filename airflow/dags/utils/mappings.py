@@ -58,21 +58,21 @@ hr_dtm_mapping = {
     "fct_hrm_employees": ["time_series", "users", "staff_attendances"]
 }
 
-jira_dtm_mapping = {
-    "dim_members": ["users", "branches", "departments", "user_positions"],
-    "dim_projects": "projects",
-    "dim_time_series": "time_series",
-    "dim_jira_issues":["jira_issues", "jira_issue_types", "jira_issue_resolution", "jira_issue_status", "jira_issue_priority"],
-    "fct_worklog": ["jira_worklog","jira_issues"],
-    "dim_pods": "pods",
-    "fct_pod_member_efforts": "billable_efforts_approveds"
-}
+# jira_dtm_mapping = {
+#     "dim_members": ["users", "branches", "departments", "user_positions"],
+#     "dim_projects": "projects",
+#     "dim_time_series": "time_series",
+#     "dim_jira_issues":["jira_issues", "jira_issue_types", "jira_issue_resolution", "jira_issue_status", "jira_issue_priority"],
+#     "fct_worklog": ["jira_worklog","jira_issues"],
+#     "dim_pods": "pods",
+#     "fct_pod_member_efforts": "billable_efforts_approveds"
+# }
 
 
 report_mapping = {
-    "detect_resources": ["dim_members", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members", "dim_pods", "fct_pod_member_efforts"],
-    "mview_member_free_efforts": ["dim_members", "dim_time_series", "fct_worklog","dim_skill_members"],
-    "user_join_projects": ["dim_jira_issues", "dim_members"],
+    "detect_resources": ["dim_members_scd", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members", "dim_pods", "fct_pod_member_efforts"],
+    # "mview_member_free_efforts": ["dim_members", "dim_time_series", "fct_worklog","dim_skill_members"],
+    "user_join_projects": ["dim_jira_issues", "dim_members_scd", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members"],
     "hr_data_user": ["dim_members_new"]
 }
 dim_mapping = {
@@ -110,4 +110,6 @@ bridge_mapping = {
 
 snapshot_mapping = {
     "members_snapshot": "users",
+    "members_snapshot_full": "users",
+    "members_snapshot_some_col": "users"
 }

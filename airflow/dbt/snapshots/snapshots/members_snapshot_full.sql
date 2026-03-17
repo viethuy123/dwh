@@ -1,4 +1,4 @@
-{% snapshot members_snapshot %}
+{% snapshot members_snapshot_full %}
 
 {{
     config(
@@ -6,13 +6,8 @@
       post_hook=[
               "CREATE INDEX IF NOT EXISTS idx_email ON {{ this }} (company_email)"
             ],
-      strategy='check',
-      check_cols=[
-      'branch_id',
-      'department_id',
-      'position_id',
-      'user_level'
-    ],
+      strategy='timestamp',
+      updated_at='update_time',
       invalidate_hard_deletes=True
     )
 }}
@@ -31,6 +26,10 @@ SELECT
     create_time,
     update_time,
     expired_time,
+    welcome_day,
+    job_id,
+    performance_factor,
+    sub_position_id,
     etl_datetime
 
 

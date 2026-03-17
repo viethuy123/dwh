@@ -52,7 +52,7 @@ WITH
       m.member_email,
       ts.month_year
     FROM
-      {{ ref('dim_members_scd') }} m
+      {{ ref('dim_members_new') }} m
       CROSS JOIN _time_series ts
     WHERE
       ts.month_year >= DATE_TRUNC('month', m.create_date_used) 

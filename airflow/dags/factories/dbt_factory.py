@@ -4,7 +4,7 @@ Factory để tạo DBT transformation tasks - LAZY IMPORT VERSION
 """
 from airflow.sdk import TaskGroup
 from airflow.providers.standard.operators.python import PythonOperator
-
+SKIP_QC_TABLES = ['dim_date','fct_member_monthly_snapshot']  # Danh sách các bảng sẽ skip data quality check
 
 def _get_table_mapping(mapping_var: str) -> dict:
 
@@ -143,7 +143,13 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                 )
                 
                 # Dependencies
-                dbt_task >> success_logs >> save_metrics_task >> quality_check >> notification
+                if tgt_table in SKIP_QC_TABLES:
+                    dbt_task >> success_logs
+                    
+                else:
+                    dbt_task >> success_logs >> save_metrics_task >> quality_check >> notification
+                    
                 dbt_task >> failure_logs
+
 
     return outer_group

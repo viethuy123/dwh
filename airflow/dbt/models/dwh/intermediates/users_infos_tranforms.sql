@@ -6,7 +6,7 @@ WITH processed AS (
         -- CASE 1: Xử lý email trùng (end_date_1)
         (DATE_TRUNC('month', 
             LEAD(created_at) OVER (PARTITION BY email_company ORDER BY created_at ASC)
-        ) - INTERVAL '1 day')::DATE AS email_end_date        
+        ) - INTERVAL '1 day')::DATE AS email_end_date,        
         -- CASE 2: Xử lý nhập liệu sai (Gom ngày nghỉ lớn nhất theo staff_code)
         MAX(quit_date) OVER (PARTITION BY staff_code) AS quit_date_use,
         MAX(official_date) OVER (PARTITION BY staff_code) AS official_date_use,

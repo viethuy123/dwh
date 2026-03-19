@@ -93,13 +93,15 @@ dim_mapping = {
     "dim_project_cate": "create_project_cate, jisseki_project_cate",
     "dim_project_cus": "create_project_customer, jisseki_project_cus",
     "dim_skill_members" : "skill_members",
-    "dim_projects" : "create_projects, jisseki_projects, pods"
+    "dim_projects" : "create_projects, jisseki_projects, pods",
+    "dim_date":""
 }
 
 fct_mapping = {
     "fct_worklogs": "jira_worklog",
     "fct_pod_member_efforts": "billable_efforts_approveds",
-    "fct_project": "jisseki_projects, pods"
+    "fct_project": "jisseki_projects, pods",
+    "fct_member_monthly_snapshot": "dim_members_new"
 }
 
 bridge_mapping = {

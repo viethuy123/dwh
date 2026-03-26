@@ -116,7 +116,7 @@ logic_date as (
     from change_end_date_inactive_user
 ),
 
-_final as (
+change_date as (
     select 
         *,
         CASE
@@ -128,9 +128,9 @@ _final as (
             ELSE date_trunc('month', official_date)::date
         END as create_date_used
     from logic_date
-)
+),
 
-
+_final as (
 SELECT
     a.user_id as member_id,
     a.user_name as member_name,
@@ -158,7 +158,7 @@ SELECT
         PARTITION BY a.company_email
     ) AS count_email_duplicates,
     a.etl_datetime
-FROM _final a
+FROM change_date a
 LEFT JOIN {{ ref('branches') }} b
 ON a.branch_id = b.branch_id
 LEFT JOIN {{ ref('departments') }} c
@@ -193,3 +193,96 @@ GROUP BY
     a.birth_day,
     age_at_hire,
     a.etl_datetime
+
+)
+select 
+    member_id,
+    member_name,
+    member_email,
+    staff_code,
+    COALESCE(NULLIF(branch_name, 'NO'), 'Unknown') AS branch_name,
+    COALESCE(NULLIF(branch_code, 'NO'), 'Unknown') AS branch_code,
+    COALESCE(NULLIF(department_name, 'NO'), 'Unknown') AS department_name,
+    COALESCE(NULLIF(position_name, 'NO'), 'Unknown') AS position_name,
+    COALESCE(NULLIF(user_level, 'NO'), 'FRESHER') AS user_level,
+    COALESCE(NULLIF(user_status, 'NO'), 'Unknown') AS user_status,
+    CASE 
+        -- INTERN / TRAINEE
+        WHEN position_name ILIKE '%intern%' 
+        OR position_name ILIKE '%thử việc%' 
+        OR position_name ILIKE '%học việc%' 
+        OR position_name ILIKE '%fresher%' 
+        THEN 'INTERN_TRAINEE'
+
+        -- MANAGEMENT
+        WHEN position_name ILIKE '%manager%' 
+        OR position_name ILIKE '%director%' 
+        OR position_name ILIKE '%head%' 
+        OR position_name ILIKE '%leader%' 
+        OR position_name ILIKE '%ceo%' 
+        OR position_name ILIKE '%cto%' 
+        THEN 'MANAGEMENT'
+
+        -- ENGINEERING
+        WHEN position_name ILIKE '%developer%' 
+        OR position_name ILIKE '%engineer%' 
+        OR position_name ILIKE '%data%' 
+        OR position_name ILIKE '%ai%' 
+        OR position_name ILIKE '%machine learning%' 
+        OR position_name ILIKE '%tester%' 
+        OR position_name ILIKE '%qa%' 
+        OR position_name ILIKE '%devops%' 
+        OR position_name ILIKE '%infra%' 
+        OR position_name ILIKE '%cloud%' 
+        THEN 'ENGINEERING'
+
+        -- PRODUCT / BA
+        WHEN position_name ILIKE '%ba%' 
+        OR position_name ILIKE '%business analyst%' 
+        OR position_name ILIKE '%product%' 
+        THEN 'PRODUCT_BA'
+
+        -- SALES
+        WHEN position_name ILIKE '%sale%' 
+        OR position_name ILIKE '%account%' 
+        OR position_name ILIKE '%business development%' 
+        OR position_name ILIKE '%pre-sales%' 
+        THEN 'SALES'
+
+        -- MARKETING
+        WHEN position_name ILIKE '%marketing%' 
+        OR position_name ILIKE '%mkt%' 
+        OR position_name ILIKE '%content%' 
+        OR position_name ILIKE '%seo%' 
+        THEN 'MARKETING'
+
+        -- HR / ADMIN
+        WHEN position_name ILIKE '%hr%' 
+        OR position_name ILIKE '%admin%' 
+        OR position_name ILIKE '%accountant%' 
+        OR position_name ILIKE '%ta%' 
+        OR position_name ILIKE '%ga%' 
+        THEN 'HR_ADMIN'
+
+        -- OPERATION
+        WHEN position_name ILIKE '%project%' 
+        OR position_name ILIKE '%delivery%' 
+        OR position_name ILIKE '%operation%' 
+        OR position_name ILIKE '%support%' 
+        THEN 'OPERATION'
+
+        ELSE 'OTHER'
+        END as position_group,
+    create_date,
+    official_date,
+    probation_date,
+    intern_date,
+    welcome_day,
+    birth_day,
+    age_at_hire,
+    create_date_used,
+    end_date,
+    count_email_duplicates,
+    etl_datetime
+ from _final
+

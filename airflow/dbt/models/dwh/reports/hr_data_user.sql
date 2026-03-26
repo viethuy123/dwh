@@ -64,12 +64,12 @@ SELECT
     member_name,
     member_email,
     staff_code,
-    coalesce(branch_name, 'Unknown') as branch_name,
-    coalesce(branch_code, 'Unknown') as branch_code,
-    coalesce(department_name, 'Unknown') as department_name,
-    coalesce(position_name, 'Unknown') as position_name,
-    coalesce(user_level, 'Unknown') as user_level,
-    coalesce(user_status, 'Unknown') as user_status,
+    COALESCE(NULLIF(branch_name, 'NO'), 'Unknown') AS branch_name,
+    COALESCE(NULLIF(branch_code, 'NO'), 'Unknown') AS branch_code,
+    COALESCE(NULLIF(department_name, 'NO'), 'Unknown') AS department_name,
+    COALESCE(NULLIF(position_name, 'NO'), 'Unknown') AS position_name,
+    COALESCE(NULLIF(user_level, 'NO'), 'Unknown') AS user_level,
+    COALESCE(NULLIF(user_status, 'NO'), 'Unknown') AS user_status,
     CASE 
         -- INTERN / TRAINEE
         WHEN position_name ILIKE '%intern%' 

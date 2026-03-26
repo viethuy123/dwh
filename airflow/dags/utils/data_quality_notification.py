@@ -33,19 +33,24 @@ def send_validation_results(
         success_percent = stats["success_percent"]
 
         # Summarize failed expectations
-        failed_results = [
-            r for r in validation_result["results"] if not r["success"]
+        failed_results = validation_result.get("failed_expectations") or [
+            r for r in validation_result.get("results", []) if not r["success"]
         ]
         failed_summary = ""
         if failed_results:
             failed_summary = "\n*Failed Expectations:*\n"
             for r in failed_results:
-                config = r["expectation_config"]
-                expectation_type = config["type"]
-                kwargs = config["kwargs"]
-                observed = r["result"].get("unexpected_count", "N/A")
-                failed_summary += f"- {expectation_type} (Column: {kwargs.get('column', 'N/A')}, Unexpected: {observed})\n"
+                # trimmed format: {'type', 'column', 'result'}
+                # full format:    {'expectation_config': {...}, 'result': {...}}
+                if "expectation_config" in r:
+                    exp_type = r["expectation_config"]["type"]
+                    column = r["expectation_config"]["kwargs"].get("column", "N/A")
+                else:
+                    exp_type = r.get("type", "N/A")
+                    column = r.get("column", "N/A")
 
+                observed = r.get("result", {}).get("unexpected_count", "N/A")
+                failed_summary += f"- {exp_type} (Column: {column}, Unexpected: {observed})\n"
         # Create message (Slack uses mrkdwn for formatting)
         message = (
             f":rocket: *ELT Process Completed* :rocket:\n"

@@ -335,9 +335,9 @@ SELECT
   and m.member_name is not null
   and m.member_name not in ('null', 'Admin')
   and f.member_email_full is not null
-  and f.member_email_full like '%@runsystem%'
-  AND branch_code != 'CNTO'
-  AND (department_name != 'Nikko' OR department_name IS NULL)
+  -- and f.member_email_full like '%@runsystem%'
+  -- AND branch_code != 'CNTO'
+  -- AND (department_name != 'Nikko' OR department_name IS NULL)
   AND staff_code is not null
 ),
 cacul_effort_type as

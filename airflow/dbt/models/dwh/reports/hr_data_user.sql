@@ -64,12 +64,80 @@ SELECT
     member_name,
     member_email,
     staff_code,
-    branch_name,
-    branch_code,
-    department_name,
-    position_name,
-    user_level,
-    user_status,
+    coalesce(branch_name, 'Unknown') as branch_name,
+    coalesce(branch_code, 'Unknown') as branch_code,
+    coalesce(department_name, 'Unknown') as department_name,
+    coalesce(position_name, 'Unknown') as position_name,
+    coalesce(user_level, 'Unknown') as user_level,
+    coalesce(user_status, 'Unknown') as user_status,
+    CASE 
+        -- INTERN / TRAINEE
+        WHEN position_name ILIKE '%intern%' 
+        OR position_name ILIKE '%thử việc%' 
+        OR position_name ILIKE '%học việc%' 
+        OR position_name ILIKE '%fresher%' 
+        THEN 'INTERN_TRAINEE'
+
+        -- MANAGEMENT
+        WHEN position_name ILIKE '%manager%' 
+        OR position_name ILIKE '%director%' 
+        OR position_name ILIKE '%head%' 
+        OR position_name ILIKE '%leader%' 
+        OR position_name ILIKE '%ceo%' 
+        OR position_name ILIKE '%cto%' 
+        THEN 'MANAGEMENT'
+
+        -- ENGINEERING
+        WHEN position_name ILIKE '%developer%' 
+        OR position_name ILIKE '%engineer%' 
+        OR position_name ILIKE '%data%' 
+        OR position_name ILIKE '%ai%' 
+        OR position_name ILIKE '%machine learning%' 
+        OR position_name ILIKE '%tester%' 
+        OR position_name ILIKE '%qa%' 
+        OR position_name ILIKE '%devops%' 
+        OR position_name ILIKE '%infra%' 
+        OR position_name ILIKE '%cloud%' 
+        THEN 'ENGINEERING'
+
+        -- PRODUCT / BA
+        WHEN position_name ILIKE '%ba%' 
+        OR position_name ILIKE '%business analyst%' 
+        OR position_name ILIKE '%product%' 
+        THEN 'PRODUCT_BA'
+
+        -- SALES
+        WHEN position_name ILIKE '%sale%' 
+        OR position_name ILIKE '%account%' 
+        OR position_name ILIKE '%business development%' 
+        OR position_name ILIKE '%pre-sales%' 
+        THEN 'SALES'
+
+        -- MARKETING
+        WHEN position_name ILIKE '%marketing%' 
+        OR position_name ILIKE '%mkt%' 
+        OR position_name ILIKE '%content%' 
+        OR position_name ILIKE '%seo%' 
+        THEN 'MARKETING'
+
+        -- HR / ADMIN
+        WHEN position_name ILIKE '%hr%' 
+        OR position_name ILIKE '%admin%' 
+        OR position_name ILIKE '%accountant%' 
+        OR position_name ILIKE '%ta%' 
+        OR position_name ILIKE '%ga%' 
+        THEN 'HR_ADMIN'
+
+        -- OPERATION
+        WHEN position_name ILIKE '%project%' 
+        OR position_name ILIKE '%delivery%' 
+        OR position_name ILIKE '%operation%' 
+        OR position_name ILIKE '%support%' 
+        THEN 'OPERATION'
+
+        ELSE 'OTHER'
+        END as position_group,
+    
     create_date,
     official_date,
     birth_day,
@@ -79,7 +147,7 @@ SELECT
     count_email_duplicates,
     etl_datetime,
     reference_date,
-    
+    extract(year from age(birth_day)) AS current_age,
     -- Ép kiểu sang TEXT để tránh lỗi DQ "float() argument ... not Timedelta"
     age_interval::TEXT as age_interval, 
     

@@ -4,11 +4,11 @@ from sqlalchemy import create_engine
 
 
 def extract_mongo_data(mongo_uri: str, mongo_db: str, mongo_collection: str) -> pd.DataFrame:
-    client = MongoClient(mongo_uri)
-    db = client[mongo_db]
-    collection = db[mongo_collection]
-    df = pd.DataFrame(list(collection.find()))
-    return df
+    """Full load — dùng _id pagination gom lại thành 1 DataFrame."""
+    chunks = list(extract_mongo_data_chunked(mongo_uri, mongo_db, mongo_collection, chunk_size=10_000))
+    if not chunks:
+        return pd.DataFrame()
+    return pd.concat(chunks, ignore_index=True)
 
 def extract_sql_data(sql_uri: str, query: str) -> pd.DataFrame:
     engine = create_engine(sql_uri)
@@ -22,24 +22,27 @@ def extract_sql_data(sql_uri: str, query: str) -> pd.DataFrame:
 
 def extract_mongo_data_chunked(mongo_uri: str, mongo_db: str, mongo_collection: str, chunk_size: int):
     """
-    Generator function để đọc MongoDB theo chunks
-    Yields: DataFrame chunks
-    """
-    client = MongoClient(mongo_uri)
-    db = client[mongo_db]
-    collection = db[mongo_collection]
+    Generator dùng _id cursor pagination thay vì skip/limit.
     
-    skip = 0
+    skip/limit phải scan từ đầu mỗi chunk → O(n²) với collection lớn.
+    _id pagination dùng index có sẵn → O(n) tổng cộng.
+    """
+    from bson import ObjectId
+
+    client = MongoClient(mongo_uri)
     try:
+        collection = client[mongo_db][mongo_collection]
+        last_id = None
+
         while True:
-            cursor = collection.find().skip(skip).limit(chunk_size)
-            chunk_data = list(cursor)
-            
-            if not chunk_data:
+            query = {'_id': {'$gt': last_id}} if last_id else {}
+            batch = list(collection.find(query).sort('_id', 1).limit(chunk_size))
+
+            if not batch:
                 break
-            
-            yield pd.DataFrame(chunk_data)
-            skip += chunk_size
+
+            yield pd.DataFrame(batch)
+            last_id = batch[-1]['_id']
     finally:
         client.close()
 

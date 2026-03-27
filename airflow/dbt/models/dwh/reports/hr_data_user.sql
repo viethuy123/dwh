@@ -70,6 +70,7 @@ SELECT
     position_name,
     user_level,
     user_status,
+    position_group,
     create_date,
     official_date,
     birth_day,
@@ -79,7 +80,7 @@ SELECT
     count_email_duplicates,
     etl_datetime,
     reference_date,
-    
+    extract(year from age(birth_day)) AS current_age,
     -- Ép kiểu sang TEXT để tránh lỗi DQ "float() argument ... not Timedelta"
     age_interval::TEXT as age_interval, 
     

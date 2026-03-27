@@ -203,6 +203,11 @@ select
     COALESCE(NULLIF(branch_name, 'NO'), 'Unknown') AS branch_name,
     COALESCE(NULLIF(branch_code, 'NO'), 'Unknown') AS branch_code,
     COALESCE(NULLIF(department_name, 'NO'), 'Unknown') AS department_name,
+    CASE 
+        WHEN department_name ILIKE '%DU%' THEN
+            REGEXP_REPLACE(department_name, '\.?DU.*', '')
+        ELSE department_name
+        END as department_group,
     COALESCE(NULLIF(position_name, 'NO'), 'Unknown') AS position_name,
     COALESCE(NULLIF(user_level, 'NO'), 'FRESHER') AS user_level,
     COALESCE(NULLIF(user_status, 'NO'), 'Unknown') AS user_status,

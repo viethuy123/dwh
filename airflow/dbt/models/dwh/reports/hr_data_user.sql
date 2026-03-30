@@ -77,9 +77,7 @@ final_transformation as (
 
         -- Bước 4: Chia nhóm thâm niên
         CASE 
-            WHEN total_months < 2 THEN '< 2 tháng'
-            WHEN total_months < 6 THEN '2 – < 6 tháng'
-            WHEN total_months < 12 THEN '6 – < 12 tháng'
+            WHEN total_months < 12 THEN '< 1 năm'
             WHEN total_months < 24 THEN '1 – < 2 năm'
             WHEN total_months < 36 THEN '2 – < 3 năm'
             WHEN total_months < 72 THEN '3 – < 6 năm'
@@ -88,13 +86,12 @@ final_transformation as (
 
         -- Bước 5: Tạo cột sắp xếp (Quan trọng để lên biểu đồ đúng thứ tự)
         CASE 
-            WHEN total_months < 2 THEN 1
-            WHEN total_months < 6 THEN 2
-            WHEN total_months < 12 THEN 3
-            WHEN total_months < 24 THEN 4
-            WHEN total_months < 36 THEN 5
-            WHEN total_months < 72 THEN 6
-            ELSE 7
+
+            WHEN total_months < 12 THEN 1
+            WHEN total_months < 24 THEN 2
+            WHEN total_months < 36 THEN 3
+            WHEN total_months < 72 THEN 4
+            ELSE 5
         END as seniority_group_sort
     FROM diff_parts dp
     LEFT JOIN highest_education he 

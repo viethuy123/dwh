@@ -47,6 +47,21 @@ intermediate_mapping ={
     # 'staff_log_works' : 'stg_create_staff_log_works',
     # 'staff_log_work_jira_deletes' : 'stg_create_staff_log_work_jira_deletes',
     # 'staff_log_work_jira_updates' : 'stg_create_staff_log_work_jira_updates',
+    'odoo_hr_employee': 'src_odoo.stg_odoo_hr_employee',
+    'odoo_hr_employee_education': 'src_odoo.stg_odoo_hr_employee_education',
+    'odoo_hr_employee_school': 'src_odoo.stg_odoo_hr_employee_school',
+    'odoo_hr_graduation_rank': 'src_odoo.stg_odoo_hr_graduation_rank',
+    'odoo_hr_job': 'src_odoo.stg_odoo_hr_job',
+    'odoo_hr_rank': 'src_odoo.stg_odoo_hr_rank',
+    'odoo_hr_skill': 'src_odoo.stg_odoo_hr_skill',
+    'odoo_hr_skill_level': 'src_odoo.stg_odoo_hr_skill_level',
+    'odoo_hr_skill_type': 'src_odoo.stg_odoo_hr_skill_type',
+    'odoo_hr_employee_skill': 'src_odoo.stg_odoo_hr_employee_skill',
+    'odoo_hr_employee_skill_log': 'src_odoo.stg_odoo_hr_employee_skill_log',
+    'odoo_z_academic_level': 'src_odoo.stg_odoo_z_academic_level',
+    'odoo_z_qualification': 'src_odoo.stg_odoo_z_qualification',
+    
+    
 
 }
 
@@ -94,7 +109,9 @@ dim_mapping = {
     "dim_project_cus": "create_project_customer, jisseki_project_cus",
     "dim_skill_members" : "skill_members",
     "dim_projects" : "create_projects, jisseki_projects, pods",
-    "dim_date":""
+    "dim_date":"",
+    "dim_employee_education": "odoo_hr_employee_education",
+    "dim_odoo_employee": "odoo_hr_employee",
 }
 
 fct_mapping = {

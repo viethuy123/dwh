@@ -58,6 +58,7 @@ def get_transformer(source_type: str):
     """
     transformers = {
         'mysql': transform_mysql_data,
+        'postgresql': transform_mysql_data,
         'mongodb': transform_mongodb_data,
     }
     

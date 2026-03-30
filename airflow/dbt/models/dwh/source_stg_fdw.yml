@@ -52,6 +52,25 @@ sources:
       - name: stg_create_staff_log_works
       - name: stg_create_staff_log_work_jira_deletes
       - name: stg_create_staff_log_work_jira_updates
+  - name: odoo
+    database: dwh
+    schema: stg
+    tables:
+      - name: stg_odoo_hr_employee
+      # - name: stg_odoo_hr_department
+      - name: stg_odoo_hr_job
+      - name: stg_odoo_hr_employee_education
+      - name: stg_odoo_hr_employee_school
+      - name: stg_odoo_hr_graduation_rank
+      - name: stg_odoo_hr_rank
+      - name: stg_odoo_hr_skill
+      - name: stg_odoo_hr_skill_level
+      - name: stg_odoo_hr_skill_type
+      - name: stg_odoo_hr_employee_skill
+      - name: stg_odoo_hr_employee_skill_log
+      - name: stg_odoo_z_academic_level
+      - name: stg_odoo_z_qualification
+
   - name: excel
     database: dwh
     schema: stg

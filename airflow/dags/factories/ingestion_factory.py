@@ -74,6 +74,8 @@ def _load_with_chunking(
     transformer,
     chunk_size: int,
     source_db: str = None,
+    order_by: str = None,
+    extract_query: str = None,
 ) -> int:
     from utils.extract_data import extract_mongo_data_chunked, extract_sql_data_chunked
     from utils.data_transformers import transform_dataframe, add_columns_to_table
@@ -81,9 +83,15 @@ def _load_with_chunking(
     if source_type == 'mongodb':
         chunk_iterator = extract_mongo_data_chunked(source_uri, source_db, src_table, chunk_size)
     else:
+        query = (extract_query or '').strip().rstrip(';')
+        if not query:
+            query = f'SELECT * FROM {src_table}'
+            if order_by:
+                query = f'{query} ORDER BY {order_by}'
+
         chunk_iterator = extract_sql_data_chunked(
             source_uri,
-            f'SELECT * FROM {src_table} ORDER BY ID ASC',
+            query,
             chunk_size,
         )
 
@@ -228,7 +236,13 @@ def _create_extract_load_callable(
     Return: dict metrics (được TaskFlow tự push XCom khi dùng trong @task).
     """
 
-    def extract_load_data(src_table: str, tgt_table: str, chunk_size: int = None) -> dict:
+    def extract_load_data(
+        src_table: str,
+        tgt_table: str,
+        chunk_size: int = None,
+        order_by: str = None,
+        extract_query: str = None,
+    ) -> dict:
         from sqlalchemy import create_engine, text, pool
         from config import DB_URIS
         from utils.data_transformers import get_transformer
@@ -269,6 +283,8 @@ def _create_extract_load_callable(
                 transformer,
                 chunk_size=chunk_size or DEFAULT_CHUNK_SIZE,  # fallback nếu không truyền
                 source_db=source_db,
+                order_by=order_by,
+                extract_query=extract_query,
             )
 
             monitor.record_load(total_rows)
@@ -327,6 +343,8 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
             tgt_table = get_target_table_name(src_table, source)
             table_type = table_config['type']
             chunk_size = table_config.get('chunksize')
+            order_by = table_config.get('order_by')
+            extract_query = table_config.get('extract_query')
             pool_name = get_pool_name(table_type)
 
             with TaskGroup(group_id=f'{source}_to_{tgt_table}', dag=dag):
@@ -341,6 +359,8 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                     _src_table=src_table,
                     _tgt_table=tgt_table,
                     _chunk_size=chunk_size,
+                    _order_by=order_by,
+                    _extract_query=extract_query,
                     _fn=extract_load_fn,
                 ) -> dict:
                     """Extract từ source, load vào DWH. Return metrics dict."""
@@ -348,6 +368,8 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                         src_table=_src_table,
                         tgt_table=_tgt_table,
                         chunk_size=_chunk_size,
+                        order_by=_order_by,
+                        extract_query=_extract_query,
                     )
 
                 # ── 2. Success logs → return job_id ─────────────────────────

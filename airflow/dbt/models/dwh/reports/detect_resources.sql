@@ -15,7 +15,7 @@
       },
       
       {
-          "columns": ["branch_code", "department_name", "month_year"],
+          "columns": ["branch_code", "division_name", "month_year"],
           "unique": false,
           "type": "btree",
       },
@@ -310,7 +310,7 @@ SELECT
   m.staff_code,
   m.branch_name,
   m.branch_code,
-  m.department_name,
+  m.division_name,
   m.position_name,
   m.user_level,
   m.user_status,

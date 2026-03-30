@@ -1,5 +1,6 @@
 """Source system configurations (Jira, Create, Jisseki)"""
-from config.databases import get_mysql_uri_builder, get_mongo_uri_builder
+from config.databases import get_mysql_uri_builder, get_mongo_uri_builder, DB_URIS
+from typing import Dict, Callable
 
 SOURCES = {
     'jira': {
@@ -116,5 +117,40 @@ SOURCES = {
                 {'name': 'categories', 'type': 'light', 'chunksize': None},
             ],
         }
-    }
+    },
+    
+    'odoo': {
+        'restore': {
+            'enabled': False,
+        },
+        
+        'ingestion': {
+            'enabled': True,
+            'dag_id': 'dag-odoo_to_staging',
+            'source_type': 'postgresql',
+            'source_db': 'postgres',
+            'source_uri_fn': DB_URIS.get('odoo'),
+            'target_schema': 'stg',
+            'schedule': '0 20 * * *',
+            'timeout_minutes': 60,
+            'wait_for_dag': None,
+            'tables': [
+                {'name': 'hr_employee', 'type': 'light', 'chunksize': None},
+                {'name': 'hr_employee_education', 'type': 'light', 'chunksize': None},
+                {'name': 'z_academic_level', 'type': 'light', 'chunksize': None},
+                {'name': 'z_qualification', 'type': 'light', 'chunksize': None},
+                {'name': 'hr_employee_school', 'type': 'light', 'chunksize': None},
+                {'name': 'hr_graduation_rank', 'type': 'light', 'chunksize': None},
+                {'name': 'hr_job', 'type': 'light', 'chunksize': None},
+                {'name': 'hr_rank', 'type': 'light', 'chunksize': None},
+                {'name': 'hr_skill', 'type': 'light', 'chunksize': None},
+                {'name': 'hr_skill_level', 'type': 'light', 'chunksize': None},
+                {'name': 'hr_skill_type', 'type': 'light', 'chunksize': None},
+                {'name': 'hr_employee_skill', 'type': 'light', 'chunksize': None},
+                {'name': 'hr_employee_skill_log', 'type': 'light', 'chunksize': None},
+                
+
+            ],
+        }
+    },
 }

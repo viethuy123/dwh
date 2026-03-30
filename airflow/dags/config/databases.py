@@ -5,6 +5,7 @@ Lazy evaluation + singleton cache để giảm RAM khi DAG parsing
 from airflow.sdk import Variable
 from functools import lru_cache
 from typing import Dict, Callable
+import urllib.parse
 
 
 class _URIConfigSingleton:
@@ -26,13 +27,16 @@ class _URIConfigSingleton:
             self._variable_cache = {}
             _URIConfigSingleton._initialized = True
     
-    def get_variable(self, key: str) -> str:
+    def get_variable(self, key: str, encode: bool = False) -> str:
         """
         Get Airflow Variable với caching
         Cache trong singleton instance thay vì lru_cache
         """
         if key not in self._variable_cache:
-            self._variable_cache[key] = Variable.get(key)
+            val = Variable.get(key)
+            if encode and val:
+                val = urllib.parse.quote_plus(val)
+            self._variable_cache[key] = val
         return self._variable_cache[key]
     
     def clear_cache(self):
@@ -49,9 +53,18 @@ def _get_pg_uri(db_name: str) -> str:
     """Build PostgreSQL connection URI - với singleton cache"""
     return "postgresql+psycopg2://{}:{}@{}:{}/{}".format(
         _uri_config.get_variable("pg_user"),
-        _uri_config.get_variable("pg_password"),
+        _uri_config.get_variable("pg_password", encode=True),
         _uri_config.get_variable("pg_host"),
         _uri_config.get_variable("pg_port"),
+        db_name
+    )
+def _get_odoo_pg_uri(db_name: str) -> str:
+    """Build PostgreSQL connection URI - với singleton cache"""
+    return "postgresql+psycopg2://{}:{}@{}:{}/{}".format(
+        _uri_config.get_variable("odoo_user"),
+        _uri_config.get_variable("odoo_pw", encode=True),
+        _uri_config.get_variable("odoo_host"),
+        _uri_config.get_variable("odoo_port"),
         db_name
     )
 
@@ -60,7 +73,7 @@ def _get_mysql_uri(db_name: str, prefix: str) -> str:
     """Build MySQL connection URI - với singleton cache"""
     return "mysql+pymysql://{}:{}@{}:{}/{}".format(
         _uri_config.get_variable(f"{prefix}_user"),
-        _uri_config.get_variable(f"{prefix}_password"),
+        _uri_config.get_variable(f"{prefix}_password", encode=True),
         _uri_config.get_variable(f"{prefix}_host"),
         _uri_config.get_variable(f"{prefix}_port"),
         db_name
@@ -71,7 +84,7 @@ def _get_mongo_uri(db_name: str, prefix: str) -> str:
     """Build MongoDB connection URI - với singleton cache"""
     return "mongodb://{}:{}@{}:{}/{}".format(
         _uri_config.get_variable(f"{prefix}_user"),
-        _uri_config.get_variable(f"{prefix}_password"),
+        _uri_config.get_variable(f"{prefix}_password", encode=True),
         _uri_config.get_variable(f"{prefix}_host"),
         _uri_config.get_variable(f"{prefix}_port"),
         db_name
@@ -81,6 +94,7 @@ def _get_mongo_uri(db_name: str, prefix: str) -> str:
 # ✅ Lazy evaluation - functions KHÔNG được call khi import module
 DB_URIS: Dict[str, Callable[[], str]] = {
     'dwh': lambda: _get_pg_uri("dwh"),
+    'odoo': lambda: _get_odoo_pg_uri("gmo-erp-live"),
     'monitoring': lambda: _get_pg_uri("monitoring")
 }
 

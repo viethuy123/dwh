@@ -40,7 +40,7 @@ education_comprehensive AS (
         ed.graduation_year,
         -- Sắp xếp để lấy bằng cấp cao nhất của 1 user
         ROW_NUMBER() OVER (
-            PARTITION BY ed.employee_id 
+            PARTITION BY ed.employee_code 
             ORDER BY al.sequence_order DESC, ed.graduation_year DESC
         ) as edu_rank
     FROM {{ ref('odoo_hr_employee_education') }} ed

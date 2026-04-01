@@ -5,7 +5,7 @@ SELECT
     _id as department_id,
     "branchObjId" as branch_id,
     "departmentName" as department_name,
-    level,
+    level::NUMERIC as level,
     children,
     "parentObjId" as parent_id,
     status,

@@ -9,7 +9,7 @@ SELECT
     "projectCategoryObjId" as project_category,
     "projectDescription" as project_description,
     "projectLeadObjId" as project_lead_id,
-    "jiraProjectId" as jira_project_id,
+    "jiraProjectId"::NUMERIC as jira_project_id,
     "jiraProjectKey" as jira_project_key,
     "projectType" as project_type,
     note,

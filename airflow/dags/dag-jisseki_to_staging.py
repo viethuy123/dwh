@@ -17,7 +17,7 @@ ingestion_config = jisseki_config['ingestion']
 dag = DAG(
     dag_id=ingestion_config['dag_id'],
     default_args=DEFAULT_ARGS,
-    schedule=[Dataset('create_staging_completed')],  # Trigger by datasets
+    schedule=[Dataset('odoo_staging_completed')],  # Trigger by datasets
     catchup=False,
     dagrun_timeout=timedelta(minutes=ingestion_config['timeout_minutes']),
     description='Extract JISSEKI data from MySQL and load to Staging',

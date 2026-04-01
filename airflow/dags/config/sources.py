@@ -83,7 +83,7 @@ SOURCES = {
                 {'name': 'markets', 'type': 'light', 'chunksize': None},
                 {'name': 'project_reports', 'type': 'light', 'chunksize': None},
                 {'name': 'project_report_details', 'type': 'light', 'chunksize': None},
-                {'name': 'staff_log_works', 'type': 'heavy', 'chunksize': 50000},
+                # {'name': 'staff_log_works', 'type': 'heavy', 'chunksize': 50000},
                 {'name': 'staff_log_work_jira_deletes', 'type': 'light', 'chunksize': None},
                 {'name': 'staff_log_work_jira_updates', 'type': 'light', 'chunksize': None},
                 {'name': 'staff_seniorities', 'type': 'light', 'chunksize': None},

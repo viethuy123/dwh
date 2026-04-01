@@ -3,7 +3,7 @@
 with _total_bill as(
     select 
     "projectObjId" as project_id,
-    sum(coalesce("billEffortMenMonth",0)) as total_project_bill_cost
+    sum(coalesce("billEffortMenMonth"::NUMERIC,0)) as total_project_bill_cost
     from {{ source('create', 'stg_create_project_bill_costs') }}
     group by "projectObjId"
 ),

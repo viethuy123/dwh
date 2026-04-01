@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 WITH source AS (
-    SELECT * FROM {{ source('odoo', 'odoo_hr_contract') }}
+    SELECT * FROM {{ source('odoo', 'stg_odoo_hr_contract') }}
 ),
 
 renamed AS (

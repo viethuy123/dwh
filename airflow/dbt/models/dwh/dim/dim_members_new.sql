@@ -176,11 +176,15 @@ dim_assembled AS (
         COALESCE(NULLIF(fd.user_status,  'NO'), 'Unknown') AS user_status,
         COALESCE(NULLIF(oj.job_name,     'NO'), 'Unknown') AS job_name,
         COALESCE(NULLIF(oj.role_name,    'NO'), 'Unknown') AS role_name,
-        case 
-            when fd.user_status = 'Inactivity'
-            then coalesce(oj.contract_type, fd.user_status_source, 'Unknown')
-            else fd.user_status
-        end as user_status_originals_detail,
+        INITCAP(
+            LOWER(
+                CASE 
+                    WHEN fd.user_status = 'Inactivity'
+                    THEN COALESCE(oj.contract_type, fd.user_status_source, 'Unknown')
+                    ELSE fd.user_status
+                END
+            )
+        ) AS user_status_originals_detail,
         case 
             when fd.user_status = 'Inactivity'
             then 'Inactivity'

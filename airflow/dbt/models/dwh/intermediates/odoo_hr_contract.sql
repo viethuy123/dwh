@@ -10,7 +10,7 @@ renamed AS (
         id AS contract_id,
         employee_id,
         contract_type_id,
-        z_contract_type_id as contract_type, 
+        z_contract_type as contract_type, 
         cast(z_employee_code AS INTEGER) AS employee_code,
 
         -- Info (Giữ nguyên nếu kiểu dữ liệu đã đúng)

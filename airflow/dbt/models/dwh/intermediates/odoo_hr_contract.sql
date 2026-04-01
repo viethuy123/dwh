@@ -18,7 +18,8 @@ renamed AS (
         state,
         date_start,
         date_end,
-        resign_date -- Cột quan trọng bạn tìm thấy lúc nãy
+        resign_date,
+        etl_datetime
    
     FROM source
 )

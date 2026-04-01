@@ -13,7 +13,7 @@ latest_contracts as (
         contract_type
     from contracts
     where rn = 1
-),
+)
 SELECT 
 e.* ,
 lc.contract_type

@@ -6,7 +6,7 @@ SELECT
     "attendanceTypeObjId" as attendance_type_id,
     {{ safe_parse_timestamp('"fromDate"') }} as from_date,
     {{ safe_parse_timestamp('"endDate"') }} as end_date,
-    "absentDay" as absent_day,
+    "absentDay"::NUMERIC as absent_day,
     reason as absent_reason,
     "statusApproval" as status_approval,
     {{ safe_parse_timestamp('"dateApproval"') }} as date_approval,

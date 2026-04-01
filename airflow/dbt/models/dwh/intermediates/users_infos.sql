@@ -2,7 +2,7 @@
 
 SELECT
     a._id as id,
-    a."staffCode" as staff_code,
+    a."staffCode"::NUMERIC as staff_code,
     a."firstName" as first_name,
     a."middleName" as middle_name,
     a."lastName" as last_name,

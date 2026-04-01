@@ -37,7 +37,7 @@ SELECT
     
     -- Audit info
     ed.create_date AS record_created_at,
-    ed.etl_datetime AS record_etl_datetime
+    ed.etl_datetime AS setl_datetime
 FROM education ed
 LEFT JOIN schools s ON ed.study_school_id = s.school_id
 LEFT JOIN academic_levels al ON ed.academic_level_id = al.academic_level_id

@@ -3,7 +3,7 @@
 with contracts as (
     select 
         employee_code,
-        row_number() over (partition by z_employee_code order by date_start desc) as rn,
+        row_number() over (partition by employee_code order by date_start desc) as rn,
         contract_type
     from {{ ref('odoo_hr_contract') }}
 ),
@@ -19,4 +19,4 @@ e.* ,
 lc.contract_type
 FROM {{ ref('odoo_hr_employee') }} e
 LEFT JOIN latest_contracts lc
-    ON cast(e.z_employee_code AS INTEGER) = cast(lc.z_employee_code AS INTEGER)
+    ON cast(e.employee_code AS INTEGER) = cast(lc.employee_code AS INTEGER)

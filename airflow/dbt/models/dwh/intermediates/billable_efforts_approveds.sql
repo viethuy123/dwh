@@ -5,7 +5,7 @@ SELECT
     "employeeObjId" as user_id,
     "pODObjId" as pod_id,
     "departmentObjId" as department_id,
-    effort,
+    effort::NUMERIC as effort,
     year || '-' || LPAD(SUBSTRING(month FROM 2), 2, '0') AS month_year,
     role as user_role,
     status,

@@ -87,7 +87,7 @@ user_pod AS (
     LEFT JOIN {{ ref('users') }} u
     on p.user_id = u.user_id
     where (u.user_status IN ('Inactivity', 'null') or u.user_status IS NULL)
-    and effort != 0
+    and effort::NUMERIC != 0
     and p."is_deleted" = 'No'
     group by u.company_email
 ),

@@ -60,6 +60,8 @@ intermediate_mapping ={
     'odoo_hr_employee_skill_log': 'src_odoo.stg_odoo_hr_employee_skill_log',
     'odoo_z_academic_level': 'src_odoo.stg_odoo_z_academic_level',
     'odoo_z_qualification': 'src_odoo.stg_odoo_z_qualification',
+    'odoo_hr_contract': 'src_odoo.stg_odoo_hr_contract',
+    # 'odoo_hr_contract_type': 'src_odoo.stg_odoo_hr_contract_type'
     
     
 

@@ -184,7 +184,7 @@ dim_assembled AS (
                     ELSE fd.user_status
                 END
             )
-        ) AS user_status_originals_detail,
+        ) AS user_status_originals_d,
         case 
             when fd.user_status = 'Inactivity'
             then 'Inactivity'
@@ -232,7 +232,10 @@ SELECT
     branch_code,
     division_name,
     user_status_originals,
-    user_status_originals_detail,
+    case 
+        when user_status_originals_d = 'Probation' then 'Probationary'
+        else user_status_originals_d
+    end as user_status_originals_detail,
 
     -- Division group: tách DU suffix
     CASE

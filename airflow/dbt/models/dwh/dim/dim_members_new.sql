@@ -21,6 +21,12 @@ WITH user_base AS (
             ui.intern_date_use,
             ui.created_at
         )                          AS official_date,
+        ui.official_date_use,
+        case
+            when ui.official_date_use is not null then 'official'
+            when ui.probation_date_use is not null then 'probation'
+            else 'intern'
+        end as user_status_source,
         ui.probation_date_use,
         ui.intern_date_use,
         ui.birth_day,
@@ -40,6 +46,7 @@ WITH user_base AS (
 odoo_job AS (
     SELECT DISTINCT
         e.employee_code,
+        e.contract_type,
         COALESCE(
             {{ parse_python_json('job_info.name_json') }}->>'vi_VN',
             {{ parse_python_json('job_info.name_json') }}->>'en_US',
@@ -50,7 +57,7 @@ odoo_job AS (
             {{ parse_python_json('role_info.name_json') }}->>'en_US',
             'unknown'
         ) AS role_name
-    FROM {{ ref('odoo_hr_employee') }} e
+    FROM {{ ref('dim_odoo_employee') }} e
     JOIN {{ ref('odoo_hr_job') }} job_info
         ON e.job_id = job_info.job_id
     JOIN {{ ref('odoo_hr_job') }} role_info
@@ -169,6 +176,17 @@ dim_assembled AS (
         COALESCE(NULLIF(fd.user_status,  'NO'), 'Unknown') AS user_status,
         COALESCE(NULLIF(oj.job_name,     'NO'), 'Unknown') AS job_name,
         COALESCE(NULLIF(oj.role_name,    'NO'), 'Unknown') AS role_name,
+        case 
+            when fd.user_status = 'Inactivity'
+            then coalesce(oj.contract_type, fd.user_status_source, 'Unknown')
+            else fd.user_status
+        end as user_status_originals_detail,
+        case 
+            when fd.user_status = 'Inactivity'
+            then 'Inactivity'
+            else 'Active'
+        end as user_status_originals,
+
 
         -- Dates
         DATE(fd.create_time)                                AS create_date,
@@ -209,6 +227,8 @@ SELECT
     branch_name,
     branch_code,
     division_name,
+    user_status_originals,
+    user_status_originals_detail,
 
     -- Division group: tách DU suffix
     CASE

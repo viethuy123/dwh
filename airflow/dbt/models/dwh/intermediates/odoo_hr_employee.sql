@@ -19,6 +19,7 @@ renamed AS (
         CAST(user_id AS DOUBLE PRECISION) AS user_id,
         CAST(parent_id AS DOUBLE PRECISION) AS parent_id,
         CAST(coach_id AS DOUBLE PRECISION) AS coach_id,
+        CAST(contract_id AS DOUBLE PRECISION) AS contract_id,
 
         -- Thông tin cơ bản (Text)
         CAST(name AS TEXT) AS name,

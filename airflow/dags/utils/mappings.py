@@ -114,6 +114,7 @@ dim_mapping = {
     "dim_date":"",
     "dim_employee_education": "odoo_hr_employee_education",
     "dim_odoo_employee": "odoo_hr_employee",
+    "dim_attendances": "staff_attendances",
 }
 
 fct_mapping = {

@@ -117,6 +117,7 @@ SELECT
     COALESCE(NULLIF(major, 'N/A'), 'unknown') as major,
     COALESCE(NULLIF(graduation_year, 'N/A'), 'unknown') as graduation_year,
     position_name,
+    role_name as position_company_group,
     user_level,
     user_status,
     user_status_originals,

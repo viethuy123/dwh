@@ -58,9 +58,9 @@ odoo_job AS (
             'unknown'
         ) AS role_name
     FROM {{ ref('dim_odoo_employee') }} e
-    JOIN {{ ref('odoo_hr_job') }} job_info
+    left JOIN {{ ref('odoo_hr_job') }} job_info
         ON e.job_id = job_info.job_id
-    JOIN {{ ref('odoo_hr_job') }} role_info
+    left JOIN {{ ref('odoo_hr_job') }} role_info
         ON job_info.group_role_id = role_info.job_id
 ),
 

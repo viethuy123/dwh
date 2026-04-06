@@ -7,10 +7,10 @@ WITH source AS (
 transformed AS (
     SELECT
         -- Primary Key
-        CAST(id AS INTEGER) AS employee_skill_id,
+        CAST(id AS INTEGER) AS member_skill_id,
         
         -- Foreign Keys
-        CAST(employee_id AS INTEGER) AS employee_id,
+        CAST(employee_id AS INTEGER) AS member_id,
         CAST(skill_id AS INTEGER) AS skill_id,
         CAST(skill_level_id AS INTEGER) AS skill_level_id,
         CAST(skill_type_id AS INTEGER) AS skill_type_id,

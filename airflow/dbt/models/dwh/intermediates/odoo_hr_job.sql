@@ -26,10 +26,10 @@ transformed AS (
         name AS name_json, -- JSONB
         description AS description_json, -- JSONB
         CAST(requirements AS TEXT) AS requirements,
-        CAST(no_of_employee AS INTEGER) AS current_employee_count,
-        CAST(expected_employees AS INTEGER) AS expected_employee_count,
+        CAST(no_of_employee AS INTEGER) AS current_member_count,
+        CAST(expected_employees AS INTEGER) AS expected_member_count,
         CAST(no_of_recruitment AS INTEGER) AS recruitment_target,
-        CAST(no_of_hired_employee AS INTEGER) AS hired_employee_count,
+        CAST(no_of_hired_employee AS INTEGER) AS hired_member_count,
         CAST(sequence AS INTEGER) AS sequence_order,
         CAST(color AS INTEGER) AS color_index,
         CAST(active AS BOOLEAN) AS is_active,

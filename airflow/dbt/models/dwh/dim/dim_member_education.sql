@@ -1,11 +1,11 @@
 {{ config(materialized='table') }}
 
 WITH education AS (
-    SELECT * FROM {{ ref('odoo_hr_employee_education') }}
+    SELECT * FROM {{ ref('odoo_hr_member_education') }}
 ),
 
 schools AS (
-    SELECT * FROM {{ ref('odoo_hr_employee_school') }}
+    SELECT * FROM {{ ref('odoo_hr_member_school') }}
 ),
 
 academic_levels AS (
@@ -21,7 +21,8 @@ grad_ranks AS (
 )
 
 SELECT
-    ed.employee_id,
+    ed.education_id,
+    ed.member_id,
     -- Thông tin trường học
     s.school_name,
     s.school_type,

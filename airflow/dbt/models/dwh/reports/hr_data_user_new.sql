@@ -5,7 +5,7 @@
 with user_data as (
     select 
         *
-    from {{ ref('dim_members_new') }}
+    from {{ ref('dim_odoo_members') }}
 ),
 
 seniority_calc AS (
@@ -31,28 +31,19 @@ diff_parts AS (
 
 education_comprehensive AS (
     SELECT 
-        e.member_code,
-        s.school_name,
-        al.level_name AS academic_level_name,
-        q.qualification_name,
-        gr.graduation_rank_name,
-        ed.faculty AS major,
-        ed.graduation_year,
+        member_id,
+        school_name,
+        academic_level,
+        degree_name,
+        graduation_rating,
+        graduation_year,
         -- Sắp xếp để lấy bằng cấp cao nhất của 1 user
         ROW_NUMBER() OVER (
-            PARTITION BY e.member_code 
-            ORDER BY al.sequence_order DESC, ed.graduation_year DESC
+            PARTITION BY member_id 
+            ORDER BY record_created_at DESC, graduation_year DESC
         ) as edu_rank
-    FROM {{ ref('odoo_hr_member_education') }} ed
-    JOIN {{ ref('odoo_hr_member') }} e ON ed.member_id = e.member_id
-    LEFT JOIN {{ ref('odoo_hr_member_school') }} s 
-        ON ed.study_school_id = s.school_id
-    LEFT JOIN {{ ref('odoo_z_academic_level') }} al 
-        ON ed.academic_level_id = al.academic_level_id
-    LEFT JOIN {{ ref('odoo_z_qualification') }} q 
-        ON ed.qualification_id = q.qualification_id
-    LEFT JOIN {{ ref('odoo_hr_graduation_rank') }} gr 
-        ON ed.rank_id = gr.graduation_rank_id
+    FROM {{ ref('dim_member_education') }} 
+    
 ),
 
 highest_education AS (
@@ -63,10 +54,9 @@ final_transformation as (
     SELECT 
         dp.*,
         he.school_name,
-        he.academic_level_name,
-        he.qualification_name,
-        he.graduation_rank_name,
-        he.major,
+        he.academic_level,
+        he.degree_name,
+        he.graduation_rating,
         he.graduation_year,
         -- Bước 3: Build chuỗi hiển thị thâm niên
         TRIM(
@@ -98,41 +88,42 @@ final_transformation as (
         END as seniority_group_sort
     FROM diff_parts dp
     LEFT JOIN highest_education he 
-    ON dp.staff_code = he.member_code
+    ON dp.member_id = he.member_id
 )
 
 SELECT 
     member_id,
     member_name,
     member_email,
-    staff_code,
+    member_code,
     branch_name,
     branch_code,
     division_name,
     division_group,
     COALESCE(school_name, 'unknown') as school_name,
-    COALESCE(NULLIF(academic_level_name, 'N/A'), 'unknown') as academic_level_name,
-    COALESCE(NULLIF(qualification_name, 'N/A'), 'unknown') as qualification_name,
-    COALESCE(NULLIF(graduation_rank_name, 'N/A'), 'unknown') as graduation_rank_name,
-    COALESCE(NULLIF(major, 'N/A'), 'unknown') as major,
+    COALESCE(NULLIF(academic_level, 'N/A'), 'unknown') as academic_level,
+    COALESCE(NULLIF(degree_name, 'N/A'), 'unknown') as degree_name,
+    COALESCE(NULLIF(graduation_rating, 'N/A'), 'unknown') as graduation_rating,
     COALESCE(NULLIF(graduation_year, 'N/A'), 'unknown') as graduation_year,
     position_name,
-    role_name as position_company_group,
-    user_level,
-    user_status,
-    user_status_originals,
-    user_status_originals_detail,
-    position_group,
-    create_date,
-    official_date,
-    birth_day,
+    group_role_name as position_company_group,
+    member_level,
+    member_status,
+    -- user_status_originals,
+    contract_type as user_status_originals_detail,
+    -- position_group,
     age_at_hire as age,
-    create_date_used,
+    extract(year from age(birthday)) AS current_age,
+
+    -- create_date,
+    official_date,
+    probation_date,
+    traineeship_date,
+    birthday,
+    -- create_date_used,
     end_date,
-    count_email_duplicates,
     etl_datetime,
-    reference_date,
-    extract(year from age(birth_day)) AS current_age,
+    
     -- Ép kiểu sang TEXT để tránh lỗi DQ "float() argument ... not Timedelta"
     age_interval::TEXT as age_interval, 
     

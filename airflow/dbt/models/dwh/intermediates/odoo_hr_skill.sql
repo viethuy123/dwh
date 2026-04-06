@@ -18,7 +18,12 @@ renamed AS (
         
         -- Xử lý JSONB: Lấy giá trị mặc định nếu cần (ví dụ: name->>'en_US')
         -- Hoặc để nguyên để xử lý ở layer sau
-        name AS name_json,
+        -- name AS name_json,
+        COALESCE(
+            {{ parse_python_json('name') }}->>'vi_VN',
+            {{ parse_python_json('name') }}->>'en_US',
+            'unknown'
+        ) AS skill_name,
         
         CAST(allow_select AS BOOLEAN) AS is_selectable,
         

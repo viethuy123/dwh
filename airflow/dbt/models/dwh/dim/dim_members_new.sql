@@ -45,7 +45,7 @@ WITH user_base AS (
 -- ============================================================
 odoo_job AS (
     SELECT DISTINCT
-        e.employee_code,
+        e.member_code,
         e.contract_type,
         COALESCE(
             {{ parse_python_json('job_info.name_json') }}->>'vi_VN',
@@ -57,7 +57,7 @@ odoo_job AS (
             {{ parse_python_json('role_info.name_json') }}->>'en_US',
             'unknown'
         ) AS role_name
-    FROM {{ ref('dim_odoo_employee') }} e
+    FROM {{ ref('dim_odoo_members') }} e
     left JOIN {{ ref('odoo_hr_job') }} job_info
         ON e.job_id = job_info.job_id
     left JOIN {{ ref('odoo_hr_job') }} role_info
@@ -217,7 +217,7 @@ dim_assembled AS (
     LEFT JOIN {{ ref('branches') }}       b   ON fd.branch_id     = b.branch_id
     LEFT JOIN {{ ref('departments') }}    dep ON fd.department_id  = dep.department_id
     LEFT JOIN {{ ref('user_positions') }} pos ON fd.position_id    = pos.position_id
-    LEFT JOIN odoo_job                    oj  ON fd.staff_code     = oj.employee_code
+    LEFT JOIN odoo_job                    oj  ON fd.staff_code     = oj.member_code
 )
 
 -- ============================================================

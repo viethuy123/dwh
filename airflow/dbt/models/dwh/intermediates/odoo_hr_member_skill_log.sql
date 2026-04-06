@@ -10,7 +10,7 @@ transformed AS (
         CAST(id AS INTEGER) AS skill_log_id,
         
         -- Foreign Keys
-        CAST(employee_id AS INTEGER) AS employee_id,
+        CAST(employee_id AS INTEGER) AS member_id,
         CAST(department_id AS INTEGER) AS department_id,
         CAST(skill_id AS INTEGER) AS skill_id,
         CAST(skill_level_id AS INTEGER) AS skill_level_id,

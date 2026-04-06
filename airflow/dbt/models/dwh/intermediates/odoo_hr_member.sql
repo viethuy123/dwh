@@ -9,11 +9,11 @@ renamed AS (
         -- Định dạng: CAST(column_name AS data_type) AS column_name
         
         -- IDs & Foreign Keys (BigInt/Double Precision)
-        CAST(id AS BIGINT) AS employee_id,
+        CAST(id AS BIGINT) AS member_id,
         CAST(resource_id AS BIGINT) AS resource_id,
         CAST(company_id AS BIGINT) AS company_id,
         CAST(resource_calendar_id AS BIGINT) AS resource_calendar_id,
-        CAST(department_id AS BIGINT) AS department_id,
+        CAST(department_id AS BIGINT) AS division_id,
         CAST(address_id AS BIGINT) AS address_id,
         CAST(job_id AS DOUBLE PRECISION) AS job_id,
         CAST(user_id AS DOUBLE PRECISION) AS user_id,
@@ -27,7 +27,7 @@ renamed AS (
         CAST(work_phone AS TEXT) AS work_phone,
         CAST(mobile_phone AS TEXT) AS mobile_phone,
         CAST(work_email AS TEXT) AS work_email,
-        CAST(employee_type AS TEXT) AS employee_type,
+        CAST(employee_type AS TEXT) AS member_type,
 
         -- Thông tin cá nhân & Địa chỉ (Text)
         CAST(gender AS TEXT) AS gender,
@@ -65,12 +65,12 @@ renamed AS (
         CAST(is_union_member AS BOOLEAN) AS is_union_member,
 
         -- Các trường tùy chỉnh (Custom Fields z_ / x_)
-        CAST(z_employee_code AS DOUBLE PRECISION) AS employee_code,
+        CAST(z_employee_code AS DOUBLE PRECISION) AS member_code,
         CAST(z_rank_id AS DOUBLE PRECISION) AS rank_id,
         CAST(z_academic_level_id AS DOUBLE PRECISION) AS academic_level_id,
         CAST(z_qualification_id AS TEXT) AS qualification_id,
         CAST(z_level AS TEXT) AS level,
-        CAST(z_type_employee_id AS DOUBLE PRECISION) AS type_employee_id,
+        CAST(z_type_employee_id AS DOUBLE PRECISION) AS type_member_id,
         CAST(x_id_card_supply_date AS DATE) AS id_card_supply_date,
         CAST(x_id_card_supply_address AS TEXT) AS id_card_supply_address,
 

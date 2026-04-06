@@ -10,7 +10,11 @@ transformed AS (
         CAST(id AS INTEGER) AS skill_type_id,
         
         -- Core Attributes
-        name AS name_json, -- Giữ nguyên JSONB để xử lý đa ngôn ngữ
+        COALESCE(
+            {{ parse_python_json('name') }}->>'vi_VN',
+            {{ parse_python_json('name') }}->>'en_US',
+            'unknown'
+        ) AS skill_type_name,
         CAST(sequence AS INTEGER) AS sequence_order,
         CAST(color AS INTEGER) AS color_index,
         

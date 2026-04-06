@@ -8,7 +8,7 @@ renamed AS (
     SELECT
         -- IDs Chính
         CAST(id AS BIGINT) AS education_id,
-        CAST(employee_id AS DOUBLE PRECISION) AS employee_id,
+        CAST(employee_id AS DOUBLE PRECISION) AS member_id,
         CAST(applicant_id AS DOUBLE PRECISION) AS applicant_id,
 
         -- Khóa ngoại (Reference IDs)

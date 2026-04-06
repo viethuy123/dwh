@@ -150,6 +150,8 @@ SOURCES = {
                 {'name': 'hr_employee_skill_log', 'type': 'light', 'chunksize': None},
                 {'name': 'hr_contract', 'type': 'light', 'chunksize': None},
                 {'name': 'hr_contract_type', 'type': 'light', 'chunksize': None},
+                {'name': 'res_company', 'type': 'light', 'chunksize': None},
+                {'name': 'hr_department', 'type': 'light', 'chunksize': None},
 
             ],
         }

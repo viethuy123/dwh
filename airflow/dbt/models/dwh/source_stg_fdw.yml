@@ -71,6 +71,8 @@ sources:
       - name: stg_odoo_z_academic_level
       - name: stg_odoo_z_qualification
       - name: stg_odoo_hr_contract
+      - name: stg_odoo_res_company
+      - name: stg_odoo_hr_department
       # - name: stg_odoo_hr_contract_type
 
   - name: excel

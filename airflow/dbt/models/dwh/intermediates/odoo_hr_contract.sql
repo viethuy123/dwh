@@ -8,10 +8,10 @@ renamed AS (
     SELECT
         -- Primary Key & Foreign Keys (Nên đổi tên cho rõ ràng)
         id AS contract_id,
-        employee_id,
+        employee_id as member_id, -- Đổi tên để rõ ràng hơn, vì Odoo có thể dùng employee_id cho cả nhân viên và ứng viên
         contract_type_id,
         z_contract_type as contract_type, 
-        cast(z_employee_code AS INTEGER) AS employee_code,
+        cast(z_employee_code AS INTEGER) AS member_code,
 
         -- Info (Giữ nguyên nếu kiểu dữ liệu đã đúng)
         name,

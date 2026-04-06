@@ -26,7 +26,7 @@ SELECT
     a."createdBy" as created_by,
     {{ safe_parse_timestamp('a."updatedAt"') }} as updated_at,
     a."updatedBy" as updated_by,
-    a."employeeID" as employee_id,
+    a."employeeID" as member_id,
     a."flagCron" as flag_cron,
     {{ safe_parse_multiple_dates('a."officialDate"') }} as official_date,
     {{ safe_parse_multiple_dates('a."probationDate"') }} as probation_date,

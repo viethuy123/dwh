@@ -2,7 +2,7 @@
 
 SELECT
     _id as attendance_id,
-    "userObjId" as user_id,
+    "userObjId"    as user_id,
     "attendanceTypeObjId" as attendance_type_id,
     {{ safe_parse_timestamp('"fromDate"') }} as from_date,
     {{ safe_parse_timestamp('"endDate"') }} as end_date,

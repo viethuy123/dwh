@@ -63,6 +63,14 @@ renamed AS (
         CAST(disabled AS BOOLEAN) AS is_disabled,
         CAST(is_party_member AS BOOLEAN) AS is_party_member,
         CAST(is_union_member AS BOOLEAN) AS is_union_member,
+        state as state_root,
+        CASE 
+            WHEN e.state = 'working' THEN 'Active'
+            WHEN e.state = 'leave_already' THEN 'Terminated'
+            WHEN e.state = 'maternity' THEN 'Maternity Leave'
+            WHEN e.state = 'unpaid_leave' THEN 'Unpaid Leave'
+            ELSE 'Unknown'
+        END AS state,
 
         -- Các trường tùy chỉnh (Custom Fields z_ / x_)
         CAST(z_employee_code AS DOUBLE PRECISION) AS member_code,

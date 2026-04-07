@@ -41,6 +41,70 @@ SELECT
     d.division_name,
     d.division_group,
     COALESCE(e.job_title, 'Unknown') AS position_name,
+    CASE 
+        -- INTERN / CTV
+        WHEN e.job_title ILIKE '%intern%' 
+        OR e.job_title ILIKE '%thử việc%' 
+        OR e.job_title ILIKE '%học việc%' 
+        OR e.job_title ILIKE '%cộng tác viên%' 
+        OR e.job_title ILIKE '%CTV%' 
+        THEN 'INTERN_CTV'
+
+        -- MANAGEMENT
+        WHEN e.job_title ILIKE '%manager%' 
+        OR e.job_title ILIKE '%director%' 
+        OR e.job_title ILIKE '%leader%' 
+        OR e.job_title ILIKE '%head%' 
+        OR e.job_title ILIKE '%ceo%' 
+        OR e.job_title ILIKE '%cto%' 
+        THEN 'MANAGEMENT'
+
+        -- ENGINEERING
+        WHEN e.job_title ILIKE '%developer%' 
+        OR e.job_title ILIKE '%engineer%' 
+        OR e.job_title ILIKE '%ai%' 
+        OR e.job_title ILIKE '%data%' 
+        OR e.job_title ILIKE '%tester%' 
+        OR e.job_title ILIKE '%qa%' 
+        OR e.job_title ILIKE '%devops%' 
+        OR e.job_title ILIKE '%cloud%' 
+        THEN 'ENGINEERING'
+
+        -- PRODUCT / BA
+        WHEN e.job_title ILIKE '%ba%' 
+        OR e.job_title ILIKE '%business analyst%' 
+        OR e.job_title ILIKE '%product%' 
+        THEN 'PRODUCT_BA'
+
+        -- SALES
+        WHEN e.job_title ILIKE '%sale%' 
+        OR e.job_title ILIKE '%account%' 
+        OR e.job_title ILIKE '%business development%' 
+        THEN 'SALES'
+
+        -- MARKETING
+        WHEN e.job_title ILIKE '%marketing%' 
+        OR e.job_title ILIKE '%mkt%' 
+        OR e.job_title ILIKE '%content%' 
+        THEN 'MARKETING'
+
+        -- HR / ADMIN
+        WHEN e.job_title ILIKE '%hr%' 
+        OR e.job_title ILIKE '%admin%' 
+        OR e.job_title ILIKE '%accountant%' 
+        OR e.job_title ILIKE '%legal%' 
+        THEN 'HR_ADMIN'
+
+        -- OPERATION
+        WHEN e.job_title ILIKE '%project%' 
+        OR e.job_title ILIKE '%delivery%' 
+        OR e.job_title ILIKE '%support%' 
+        OR e.job_title ILIKE '%operation%' 
+        THEN 'OPERATION'
+
+        ELSE 'OTHER'
+
+        END as position_group,
     COALESCE(j.group_role_name, 'Unknown') AS group_role_name,
     e.state as member_status,
     lc.contract_type,

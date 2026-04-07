@@ -4,7 +4,7 @@ select
     id,
     name as branch_name,
     x_branch_office as address,
-    branch_code,
+    coalesce(branch_code, 'TOKYO') as branch_code,
 
 
     -- CAST(created_at AS TIMESTAMP) as created_at,

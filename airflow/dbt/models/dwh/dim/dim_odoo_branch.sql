@@ -11,6 +11,6 @@ select * ,
         when id = 11 then 'ĐN'
         when id = 10 then 'CUS'
         else coalesce(branch_code, 'TOKYO') 
-    end as branch_group_code,
+    end as branch_group_code
 
 from {{ ref('odoo_branch') }}

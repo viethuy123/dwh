@@ -105,7 +105,12 @@ SELECT
         ELSE 'OTHER'
 
         END as position_group,
-    COALESCE(j.group_role_name, 'Unknown') AS group_role_name,
+    INITCAP(LOWER(
+        COALESCE(NULLIF(j.group_role_name, 'Unknown'), 'Khác')
+        )
+    ) 
+    AS group_role_name,
+    -- COALESCE(j.group_role_name, 'Unknown') AS group_role_name,
     e.state as member_status,
     lc.contract_type,
     initcap(lower(
@@ -133,7 +138,7 @@ SELECT
     -- date
     e.birthday,
     e.joining_date,
-    e.start_working_date as official_date,
+    coalesce(e.start_working_date,e.probation_start_date,e.traineeship_start_date, e.joining_date, e.departure_date ,e.resign_date) as official_date,
     e.probation_start_date as probation_date,
     e.traineeship_start_date as traineeship_date,
     e.departure_date as departure_date,

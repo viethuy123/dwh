@@ -18,7 +18,7 @@ SELECT
     e.member_name,
     -- e.department_name,
     e.position_name,
-    e.user_status AS employee_status, -- Ví dụ: Active, Resigned
+    e.member_status AS employee_status, -- Ví dụ: Active, Resigned
 
     -- 2. Thông tin kỹ năng (Sẽ NULL nếu nhân viên chưa có skill)
     s.skill_id,

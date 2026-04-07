@@ -65,10 +65,10 @@ renamed AS (
         CAST(is_union_member AS BOOLEAN) AS is_union_member,
         state as state_root,
         CASE 
-            WHEN e.state = 'working' THEN 'Active'
-            WHEN e.state = 'leave_already' THEN 'Terminated'
-            WHEN e.state = 'maternity' THEN 'Maternity Leave'
-            WHEN e.state = 'unpaid_leave' THEN 'Unpaid Leave'
+            WHEN state = 'working' THEN 'Active'
+            WHEN state = 'leave_already' THEN 'Terminated'
+            WHEN state = 'maternity' THEN 'Maternity Leave'
+            WHEN state = 'unpaid_leave' THEN 'Unpaid Leave'
             ELSE 'Unknown'
         END AS state,
 

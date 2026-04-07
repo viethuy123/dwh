@@ -21,7 +21,7 @@ SELECT
     e.branch_code,
     e.division_name,
     e.division_group,
-    e.user_status,
+    e.member_status,
 
 
 

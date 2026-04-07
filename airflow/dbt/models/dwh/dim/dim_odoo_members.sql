@@ -34,17 +34,26 @@ SELECT
             COALESCE(e.level, 'FRESHER')
             )
     ) as member_level,
-    b.branch_name,
-    b.branch_code,
+    b.branch_name as branch_root_name,
+    b.branch_code as branch_root_code,
+    b.branch_group_name as branch_name,
+    b.branch_group_code as branch_code,
     d.division_name,
     d.division_group,
     COALESCE(e.job_title, 'Unknown') AS position_name,
     COALESCE(j.group_role_name, 'Unknown') AS group_role_name,
-    case 
-        when e.is_active then 'Active' 
-        else 'Resigned' end 
-    as member_status,
+    e.state as member_status,
     lc.contract_type,
+    initcap(lower(
+        CASE 
+            WHEN e.branch_group_code = 'Onsite' THEN 'Onsite'
+            WHEN lc.contract_type IS NOT NULL THEN lc.contract_type -- Trả về giá trị cột, không để trong nháy đơn
+            WHEN e.start_working_date is not NULL THEN 'Official' 
+            WHEN e.probation_start_date is not NULL THEN 'Probation' 
+            WHEN e.traineeship_start_date is not NULL THEN 'Traineeship'
+            ELSE 'Unknown'
+        END
+    )) AS member_status_detail,
     COALESCE(
             EXTRACT(YEAR FROM e.joining_date)
             - EXTRACT(YEAR FROM e.birthday),

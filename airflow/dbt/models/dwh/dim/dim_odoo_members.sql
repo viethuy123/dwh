@@ -110,7 +110,7 @@ SELECT
     lc.contract_type,
     initcap(lower(
         CASE 
-            WHEN e.branch_group_code = 'Onsite' THEN 'Onsite'
+            WHEN b.branch_group_code = 'Onsite' THEN 'Onsite'
             WHEN lc.contract_type IS NOT NULL THEN lc.contract_type -- Trả về giá trị cột, không để trong nháy đơn
             WHEN e.start_working_date is not NULL THEN 'Official' 
             WHEN e.probation_start_date is not NULL THEN 'Probation' 

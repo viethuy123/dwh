@@ -106,12 +106,12 @@ SELECT
     COALESCE(NULLIF(graduation_rating, 'N/A'), 'unknown') as graduation_rating,
     COALESCE(NULLIF(graduation_year, 'N/A'), 'unknown') as graduation_year,
     position_name,
+    position_group,
     group_role_name as position_company_group,
     member_level,
     member_status,
     -- user_status_originals,
     contract_type as user_status_originals_detail,
-    -- position_group,
     age_at_hire as age,
     extract(year from age(birthday)) AS current_age,
 

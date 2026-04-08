@@ -35,8 +35,11 @@ education_comprehensive AS (
         school_name,
         academic_level,
         degree_name,
+        degree_group,
         graduation_rating,
+        graduation_rating_group,
         graduation_year,
+
         -- Sắp xếp để lấy bằng cấp cao nhất của 1 user
         ROW_NUMBER() OVER (
             PARTITION BY member_id 
@@ -56,7 +59,9 @@ final_transformation as (
         he.school_name,
         he.academic_level,
         he.degree_name,
+        he.degree_group,
         he.graduation_rating,
+        he.graduation_rating_group,
         he.graduation_year,
         -- Bước 3: Build chuỗi hiển thị thâm niên
         TRIM(
@@ -103,7 +108,9 @@ SELECT
     COALESCE(school_name, 'Unknown') as school_name,
     COALESCE(NULLIF(academic_level, 'N/A'), 'Unknown') as academic_level,
     COALESCE(NULLIF(degree_name, 'N/A'), 'Unknown') as degree_name,
+    COALESCE(NULLIF(degree_group, 'N/A'), 'Others') as degree_group,
     COALESCE(NULLIF(graduation_rating, 'N/A'), 'Unknown') as graduation_rating,
+    COALESCE(NULLIF(graduation_rating_group, 'N/A'), 'Unknown') as graduation_rating_group,
     COALESCE(NULLIF(graduation_year, 'N/A'), 'Unknown') as graduation_year,
     position_name,
     position_group,

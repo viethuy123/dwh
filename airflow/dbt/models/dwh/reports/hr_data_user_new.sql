@@ -117,6 +117,8 @@ SELECT
     group_role_name as position_company_group,
     member_level,
     member_status,
+    gender,
+    marital,
     -- user_status_originals,
     member_status_detail as user_status_originals_detail,
     age_at_hire as age,

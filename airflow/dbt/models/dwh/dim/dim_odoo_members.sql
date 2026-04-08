@@ -105,11 +105,14 @@ SELECT
         ELSE 'OTHER'
 
         END as position_group,
-    INITCAP(LOWER(
-        COALESCE(NULLIF(j.group_role_name, 'Unknown'), 'Khác')
+    INITCAP(
+        LOWER(
+            CASE 
+                WHEN j.group_role_name IS NULL OR LOWER(j.group_role_name) = 'unknown' THEN 'Khác'
+                ELSE j.group_role_name 
+            END
         )
-    ) 
-    AS group_role_name,
+    ) AS group_role_name,
     -- COALESCE(j.group_role_name, 'Unknown') AS group_role_name,
     e.state as member_status,
     lc.contract_type,
@@ -118,8 +121,8 @@ SELECT
             WHEN b.branch_group_code = 'Onsite' THEN 'Onsite'
             WHEN lc.contract_type IS NOT NULL THEN lc.contract_type -- Trả về giá trị cột, không để trong nháy đơn
             WHEN e.start_working_date is not NULL THEN 'Official' 
-            WHEN e.probation_start_date is not NULL THEN 'Probation' 
-            WHEN e.traineeship_start_date is not NULL THEN 'Traineeship'
+            WHEN e.probation_start_date is not NULL THEN 'Probationary' 
+            WHEN e.traineeship_start_date is not NULL THEN 'Apprentice'
             ELSE 'Unknown'
         END
     )) AS member_status_detail,

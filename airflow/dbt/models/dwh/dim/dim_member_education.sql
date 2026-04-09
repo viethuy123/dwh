@@ -31,23 +31,57 @@ SELECT
     al.level_name AS academic_level,
     q.qualification_name AS degree_name,
     CASE
-        WHEN LOWER(q.qualification_name) IN (
-            'it-web',
-            'network',
-            'software',
-            'computer science and engineering'
-        )
-            THEN 'Tech - Software'
-        WHEN LOWER(q.qualification_name) ~ '(data|ai|machine learning|nlp|phân tích dữ liệu|devops|cloud|network|mạng|security|qa|qc|tester|kiểm thử)'
-            THEN 'Tech - Data/Infra/QA'
-        WHEN LOWER(q.qualification_name) ~ '(\bit\b|software|web|lập trình|programming|developer|computer science|khoa học máy tính|cntt)'
-            THEN 'Tech - Software'
-        WHEN LOWER(q.qualification_name) ~ '(nhật|japanese|日本語|ngôn ngữ|language|english|tiếng anh|korean|hàn|trung|chinese)'
+        -- =========================
+        -- 1. LANGUAGE (ưu tiên)
+        -- =========================
+        WHEN LOWER(q.qualification_name) ~ 
+        '(ngôn ngữ|tiếng nhật|tiếng anh|tiếng hàn|tiếng trung'
+        '|japanese|日本語|korean|chinese|english'
+        '|nhật bản học|hàn quốc học|biên.*phiên dịch|phương đông học'
+        '|(it|cntt|công nghệ thông tin).*nhật)'
             THEN 'Language'
-        WHEN LOWER(q.qualification_name) ~ '(marketing|truyền thông|communication|pr|content|design|thiết kế|đồ họa|ui|ux)'
-            THEN 'Marketing / Design'
-        WHEN LOWER(q.qualification_name) ~ '(kinh tế|economics|business|quản trị|finance|tài chính|ngân hàng|kế toán|accounting|kiểm toán)'
+
+        -- =========================
+        -- 2. TECH - SOFTWARE (MỞ RỘNG)
+        -- =========================
+        WHEN LOWER(q.qualification_name) ~ 
+        '(software|software engineer|kỹ sư phần mềm|kỹ thuật phần mềm|công nghệ phần mềm'
+        '|computer science|computer science and engineering|khoa học máy tính'
+        '|lập trình|programming|developer|dev\b'
+        '|web|frontend|backend|fullstack|mobile'
+        '|it-web)'
+            THEN 'Tech - Software'
+
+        -- =========================
+        -- 3. TECH - DATA / INFRA / QA
+        -- =========================
+        WHEN LOWER(q.qualification_name) ~ 
+        '(data|ai|machine learning|deep learning|nlp|khoa học dữ liệu|phân tích dữ liệu'
+        '|network|mạng|an ninh|security|devops|cloud'
+        '|qa\b|qc\b|tester|kiểm thử)'
+            THEN 'Tech - Data/Infra/QA'
+
+        -- =========================
+        -- 4. TECH - GENERAL IT (CỰC QUAN TRỌNG)
+        -- =========================
+        WHEN LOWER(q.qualification_name) ~ 
+        '(công nghệ thông tin|information technology|\bit\b|cntt)'
+            THEN 'Tech - Software'
+
+        -- =========================
+        -- 5. BUSINESS / FINANCE
+        -- =========================
+        WHEN LOWER(q.qualification_name) ~ 
+        '(kinh tế|business|tài chính|finance|ngân hàng|banking|kế toán|accounting|kiểm toán)'
             THEN 'Business / Finance'
+
+        -- =========================
+        -- 6. MARKETING / DESIGN
+        -- =========================
+        WHEN LOWER(q.qualification_name) ~ 
+        '(marketing|truyền thông|design|thiết kế|đồ họa|ui|ux)'
+            THEN 'Marketing / Design'
+
         ELSE 'Others'
     END AS degree_group,
     ed.faculty AS major, -- Chuyên ngành

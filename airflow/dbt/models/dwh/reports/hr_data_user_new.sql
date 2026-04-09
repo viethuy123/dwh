@@ -73,8 +73,8 @@ final_transformation as (
         -- Bước 4: Chia nhóm thâm niên
         CASE 
             WHEN total_months < 2 THEN '< 2 tháng'
-            WHEN total_months < 6 THEN '6 – 12 tháng'
-            WHEN total_months < 12 THEN '< 1 năm'
+            WHEN total_months < 6 THEN '2 – < 6 tháng'
+            WHEN total_months < 12 THEN '6 – < 12 tháng'
             WHEN total_months < 24 THEN '1 – < 2 năm'
             WHEN total_months < 36 THEN '2 – < 3 năm'
             WHEN total_months < 72 THEN '3 – < 6 năm'
@@ -101,6 +101,8 @@ SELECT
     member_name,
     member_email,
     member_code,
+    gender,
+    marital,
     branch_name,
     branch_code,
     division_name,
@@ -117,6 +119,8 @@ SELECT
     group_role_name as position_company_group,
     member_level,
     member_status,
+    gender,
+    marital,
     -- user_status_originals,
     member_status_detail as user_status_originals_detail,
     age_at_hire as age,

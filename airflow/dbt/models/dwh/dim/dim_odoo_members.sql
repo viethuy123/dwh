@@ -142,6 +142,7 @@ SELECT
     -- date
     e.birthday,
     e.joining_date,
+    e.start_working_date,
     coalesce(e.start_working_date,e.probation_start_date,e.traineeship_start_date, e.joining_date, e.departure_date ,e.resign_date) as official_date,
     e.probation_start_date as probation_date,
     e.traineeship_start_date as traineeship_date,

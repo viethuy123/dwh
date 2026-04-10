@@ -101,8 +101,6 @@ SELECT
     member_name,
     member_email,
     member_code,
-    gender,
-    marital,
     branch_name,
     branch_code,
     division_name,

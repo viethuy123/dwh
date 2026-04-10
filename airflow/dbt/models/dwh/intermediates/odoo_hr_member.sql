@@ -69,6 +69,7 @@ renamed AS (
             WHEN state = 'leave_already' THEN 'Terminated'
             WHEN state = 'maternity' THEN 'Maternity Leave'
             WHEN state = 'unpaid_leave' THEN 'Unpaid Leave'
+            WHEN state = 'prepare_leave' THEN 'Prepare Leave'
             ELSE 'Unknown'
         END AS state,
 

@@ -125,6 +125,7 @@ SELECT
     extract(year from age(birthday)) AS current_age,
 
     -- create_date,
+    start_working_date,
     official_date,
     probation_date,
     traineeship_date,

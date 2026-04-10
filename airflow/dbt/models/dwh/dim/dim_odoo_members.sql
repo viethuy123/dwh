@@ -115,14 +115,16 @@ SELECT
     ) AS group_role_name,
     -- COALESCE(j.group_role_name, 'Unknown') AS group_role_name,
     e.state as member_status,
+    e.state_root as member_status_root,
     lc.contract_type,
     initcap(lower(
         CASE 
             WHEN b.branch_group_code = 'Onsite' THEN 'Onsite'
-            WHEN lc.contract_type IS NOT NULL THEN lc.contract_type -- Trả về giá trị cột, không để trong nháy đơn
+             -- Trả về giá trị cột, không để trong nháy đơn
             WHEN e.start_working_date is not NULL THEN 'Official' 
             WHEN e.probation_start_date is not NULL THEN 'Probationary' 
             WHEN e.traineeship_start_date is not NULL THEN 'Apprentice'
+            WHEN lc.contract_type IS NOT NULL THEN lc.contract_type
             ELSE 'Unknown'
         END
     )) AS member_status_detail,
@@ -141,6 +143,7 @@ SELECT
     -- date
     e.birthday,
     e.joining_date,
+    e.start_working_date,
     coalesce(e.start_working_date,e.probation_start_date,e.traineeship_start_date, e.joining_date, e.departure_date ,e.resign_date) as official_date,
     e.probation_start_date as probation_date,
     e.traineeship_start_date as traineeship_date,

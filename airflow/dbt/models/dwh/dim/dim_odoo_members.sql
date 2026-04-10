@@ -115,6 +115,7 @@ SELECT
     ) AS group_role_name,
     -- COALESCE(j.group_role_name, 'Unknown') AS group_role_name,
     e.state as member_status,
+    e.state_root as member_status_root,
     lc.contract_type,
     initcap(lower(
         CASE 

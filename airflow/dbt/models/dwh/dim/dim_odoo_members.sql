@@ -141,6 +141,7 @@ SELECT
     e.qualification_id,
 
     -- date
+    e.issue_date_identification,
     e.birthday,
     e.joining_date,
     e.start_working_date,
@@ -149,7 +150,7 @@ SELECT
     e.traineeship_start_date as traineeship_date,
     e.departure_date as departure_date,
     e.resign_date as resign_date,
-    coalesce(e.resign_date, e.departure_date) as end_date,
+    coalesce(e.resign_date) as end_date,
     e.etl_datetime
 
 
@@ -162,4 +163,6 @@ left join {{ ref('dim_odoo_division') }} d
     on e.division_id = d.id
 left join {{ ref('dim_odoo_job') }} j
     on e.job_id = j.job_id
+
+where e.member_code > 1000
 

@@ -55,6 +55,7 @@ renamed AS (
         CAST(write_date AS TIMESTAMP) AS write_date,
         CAST(last_check_in AS TIMESTAMP) AS last_check_in,
         CAST(last_check_out AS TIMESTAMP) AS last_check_out,
+        CAST(issue_date_identification AS TIMESTAMP) AS issue_date_identification,
 
         -- Các trường Boolean (Trạng thái)
         CAST(active AS BOOLEAN) AS is_active,
@@ -69,6 +70,7 @@ renamed AS (
             WHEN state = 'leave_already' THEN 'Terminated'
             WHEN state = 'maternity' THEN 'Maternity Leave'
             WHEN state = 'unpaid_leave' THEN 'Unpaid Leave'
+            WHEN state = 'prepare_leave' THEN 'Prepare Leave'
             ELSE 'Unknown'
         END AS state,
 

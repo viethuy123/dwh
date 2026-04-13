@@ -32,10 +32,11 @@ SELECT
     s.skill_name,
     s.skill_type_name,
     s.is_language_type,
-    s.level_group as skill_level_group,
+    
 
     -- 3. Thông tin trình độ (Sẽ NULL nếu nhân viên chưa có skill)
     f.level_name,
+    f.level_group as skill_level_group,
     f.level_progress_percentage,
     f.updated_at AS last_assessed_at,
 

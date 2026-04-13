@@ -6,7 +6,7 @@ WITH member_skill AS (
 ),
 
 skill_level AS (
-    SELECT * FROM {{ ref('odoo_hr_skill_level') }}
+    SELECT * FROM {{ ref('dim_skill_level') }}
 )
 
 SELECT
@@ -17,6 +17,7 @@ SELECT
     
     -- Denormalize một vài trường quan trọng để BI query nhanh hơn
     sl.level_name,
+    sl.level_group,
     sl.level_progress_percentage,
     
     -- Audit

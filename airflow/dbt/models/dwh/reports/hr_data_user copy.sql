@@ -5,7 +5,7 @@
 with user_data as (
     select 
         *
-    from {{ ref('dim_odoo_members') }}
+    from {{ ref('dim_members_new') }}
 ),
 
 seniority_calc AS (
@@ -29,10 +29,45 @@ diff_parts AS (
     FROM seniority_calc
 ),
 
+education_comprehensive AS (
+    SELECT 
+        e.member_code,
+        s.school_name,
+        al.level_name AS academic_level_name,
+        q.qualification_name,
+        gr.graduation_rank_name,
+        ed.faculty AS major,
+        ed.graduation_year,
+        -- Sắp xếp để lấy bằng cấp cao nhất của 1 user
+        ROW_NUMBER() OVER (
+            PARTITION BY e.member_code 
+            ORDER BY al.sequence_order DESC, ed.graduation_year DESC
+        ) as edu_rank
+    FROM {{ ref('odoo_hr_member_education') }} ed
+    JOIN {{ ref('odoo_hr_member') }} e ON ed.member_id = e.member_id
+    LEFT JOIN {{ ref('odoo_hr_member_school') }} s 
+        ON ed.study_school_id = s.school_id
+    LEFT JOIN {{ ref('odoo_z_academic_level') }} al 
+        ON ed.academic_level_id = al.academic_level_id
+    LEFT JOIN {{ ref('odoo_z_qualification') }} q 
+        ON ed.qualification_id = q.qualification_id
+    LEFT JOIN {{ ref('odoo_hr_graduation_rank') }} gr 
+        ON ed.rank_id = gr.graduation_rank_id
+),
+
+highest_education AS (
+    SELECT * FROM education_comprehensive WHERE edu_rank = 1
+),
 
 final_transformation as (
     SELECT 
         dp.*,
+        he.school_name,
+        he.academic_level_name,
+        he.qualification_name,
+        he.graduation_rank_name,
+        he.major,
+        he.graduation_year,
         -- Bước 3: Build chuỗi hiển thị thâm niên
         TRIM(
             CASE WHEN yrs > 0 THEN yrs || ' năm ' ELSE '' END ||
@@ -70,39 +105,34 @@ SELECT
     member_id,
     member_name,
     member_email,
-    member_code as staff_code,
+    staff_code,
     branch_name,
     branch_code,
     division_name,
     division_group,
+    COALESCE(school_name, 'unknown') as school_name,
+    COALESCE(NULLIF(academic_level_name, 'N/A'), 'unknown') as academic_level_name,
+    COALESCE(NULLIF(qualification_name, 'N/A'), 'unknown') as qualification_name,
+    COALESCE(NULLIF(graduation_rank_name, 'N/A'), 'unknown') as graduation_rank_name,
+    COALESCE(NULLIF(major, 'N/A'), 'unknown') as major,
+    COALESCE(NULLIF(graduation_year, 'N/A'), 'unknown') as graduation_year,
     position_name,
+    role_name as position_company_group,
+    user_level,
+    user_status,
+    user_status_originals,
+    user_status_originals_detail,
     position_group,
-    group_role_name as position_company_group,
-    member_level as user_level,
-    member_status as user_status,
-    gender,
-    marital,
-
-    -- user_status_originals,
-    member_status_detail as user_status_originals_detail,
-    age_at_hire as age,
-    extract(year from age(birthday)) AS current_age,
-
-    -- create_date,
-    start_working_date,
+    create_date,
     official_date,
-    probation_date,
-    traineeship_date,
-    birthday as birth_day,
-    -- create_date_used,
+    birth_day,
+    age_at_hire as age,
+    create_date_used,
     end_date,
+    count_email_duplicates,
     etl_datetime,
-
-    -- count_email_duplicates,
-    -- etl_datetime,
-    -- age_interval::TEXT as age_interval, 
-    -- reference_date,
-    -- extract(year from age(birth_day)) AS current_age,
+    reference_date,
+    extract(year from age(birth_day)) AS current_age,
     -- Ép kiểu sang TEXT để tránh lỗi DQ "float() argument ... not Timedelta"
     age_interval::TEXT as age_interval, 
     

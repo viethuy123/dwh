@@ -31,6 +31,8 @@ SELECT
     e.member_status,
     e.member_status_detail,
     e.group_role_name as position_company_group,
+    e.official_date,
+    e.end_date,
 
 
 

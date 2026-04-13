@@ -12,16 +12,26 @@ dim_employee AS (
     SELECT * FROM {{ ref('dim_odoo_members') }}
 )
 
+,
+dim_date AS (
+    SELECT * FROM {{ ref('dim_date') }}
+)
+
 SELECT
     -- 1. Định danh nhân viên (Gốc để chứa tất cả User)
     e.member_id,
     e.member_name,
+    e.member_code,
     e.position_name,
     e.branch_name,
     e.branch_code,
     e.division_name,
     e.division_group,
+    e.member_level,
     e.member_status,
+    e.member_status_detail,
+    e.group_role_name as position_company_group,
+
 
 
 
@@ -42,8 +52,10 @@ SELECT
     ad.original_from_date,
     ad.original_end_date,
     ad.total_absent_days_original,
+    dd.day_name,
     e.etl_datetime
 
 FROM dim_employee e
 LEFT JOIN attendance_daily ad ON e.member_code = ad.member_code
 LEFT JOIN dim_type dt ON ad.attendance_type_id = dt.attendance_type_id
+LEFT JOIN dim_date dd ON ad.date_actual = dd.date_actual

@@ -62,8 +62,6 @@ final_transformation as (
             ELSE 7
         END as seniority_group_sort
     FROM diff_parts dp
-    LEFT JOIN highest_education he 
-    ON dp.staff_code = he.member_code
 )
 
 SELECT 

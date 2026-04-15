@@ -15,6 +15,22 @@ latest_contracts as (
         contract_type
     from contracts
     where rn = 1
+),
+filtered_members as (
+    select *
+    from (
+        select 
+            *,
+            row_number() over (
+                partition by member_code 
+                order by 
+                    is_active desc,      -- True (1) sẽ đứng trước False (0)
+                    etl_datetime desc    -- Nếu cùng active thì lấy bản ghi mới nhất
+            ) as member_rn
+        from {{ ref('odoo_hr_member') }}
+        where member_code > 1000
+    )
+    where member_rn = 1 -- Loại bỏ các dòng trùng, giữ lại 1 dòng "chuẩn" nhất
 )
 
 
@@ -154,7 +170,7 @@ SELECT
     e.etl_datetime
 
 
-FROM {{ ref('odoo_hr_member') }} e
+FROM filtered_members e
 LEFT JOIN latest_contracts lc
     ON cast(e.member_code AS INTEGER) = cast(lc.member_code AS INTEGER)
 left join {{ ref('dim_odoo_branch') }} b
@@ -164,5 +180,4 @@ left join {{ ref('dim_odoo_division') }} d
 left join {{ ref('dim_odoo_job') }} j
     on e.job_id = j.job_id
 
-where e.member_code > 1000
 

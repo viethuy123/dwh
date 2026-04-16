@@ -13,4 +13,4 @@ UNION ALL
 SELECT 6, '6.  3 – < 6 năm',   6
 UNION ALL
 SELECT 7, '7.  >= 6 năm',      7
-ORDER BY sort_order;
+ORDER BY sort_order

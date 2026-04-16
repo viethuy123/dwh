@@ -16,25 +16,24 @@ latest_contracts as (
     from contracts
     where rn = 1
 ),
+member_ranking as (
+    select 
+        *,
+        row_number() over (
+            partition by member_code 
+            order by 
+                is_active desc, 
+                member_id desc
+        ) as member_rn
+    from {{ ref('odoo_hr_member') }}
+    where member_code > 1000
+),
+
 filtered_members as (
     select *
-    from (
-        select 
-            *,
-            row_number() over (
-                partition by member_code 
-                order by 
-                    is_active desc,      -- True (1) sẽ đứng trước False (0)
-                    etl_datetime desc    -- Nếu cùng active thì lấy bản ghi mới nhất
-            ) as member_rn
-        from {{ ref('odoo_hr_member') }}
-        where member_code > 1000
-    )
-    where member_rn = 1 -- Loại bỏ các dòng trùng, giữ lại 1 dòng "chuẩn" nhất
+    from member_ranking
+    where member_rn = 1
 )
-
-
-
 
 SELECT 
     e.member_id,

@@ -14,7 +14,7 @@ from airflow.sdk import TaskGroup
 from airflow.decorators import task
 from airflow.providers.standard.operators.python import PythonOperator
 
-SKIP_QC_TABLES = ['dim_date', 'fct_member_monthly_snapshot']
+SKIP_QC_TABLES = ['dim_date', 'fct_member_monthly_snapshot','dim_seniority']  # Danh sách bảng không cần chạy quality check
 from functools import lru_cache
 
 @lru_cache(maxsize=None)

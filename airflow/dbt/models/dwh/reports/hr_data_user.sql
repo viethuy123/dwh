@@ -42,13 +42,13 @@ final_transformation as (
 
         -- Bước 4: Chia nhóm thâm niên
         CASE 
-            WHEN total_months < 2 THEN '1. < 2 tháng'
-            WHEN total_months < 6 THEN '2. 6 – 12 tháng'
-            WHEN total_months < 12 THEN '3. < 1 năm'
-            WHEN total_months < 24 THEN '4. 1 – < 2 năm'
-            WHEN total_months < 36 THEN '5. 2 – < 3 năm'
-            WHEN total_months < 72 THEN '6. 3 – < 6 năm'
-            ELSE '7. >= 6 năm'
+            WHEN total_months < 2 THEN  '1.  < 2 tháng'
+            WHEN total_months < 6 THEN  '2.  6 – 12 tháng'
+            WHEN total_months < 12 THEN '3.  < 1 năm'
+            WHEN total_months < 24 THEN '4.  1 – < 2 năm'
+            WHEN total_months < 36 THEN '5.  2 – < 3 năm'
+            WHEN total_months < 72 THEN '6.  3 – < 6 năm'
+            ELSE '7.  >= 6 năm'
         END as seniority_group,
 
         -- Bước 5: Tạo cột sắp xếp (Quan trọng để lên biểu đồ đúng thứ tự)

@@ -17,7 +17,7 @@ with get_level_task as (
     glt.option_id as issue_level_id,
     glt.custom_value as issue_level
 
-    from {{ ref('dim_jira_issues') }} as iss 
+    from {{ ref('fct_jira_issues') }} as iss 
     left join get_level_task as glt
     on iss.issue_id = glt.issue_id
     -- {% if is_incremental() %}

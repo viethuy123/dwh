@@ -1,0 +1,110 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: >
+      [EN] Date dimension table containing one row per calendar date.
+      Provides standardized date attributes for filtering, grouping, and time-based analysis.
+
+      [VI] Bảng thời gian (calendar) với mỗi dòng là 1 ngày.
+      Dùng để filter, group và phân tích theo thời gian.
+
+    columns:
+      - name: date_actual
+        description: >
+          [EN] Calendar date (primary key).
+          [VI] Ngày (khóa chính).
+
+      - name: year_actual
+        description: >
+          [EN] Year of the date.
+          [VI] Năm.
+
+      - name: month_actual
+        description: >
+          [EN] Month number (1–12).
+          [VI] Tháng (1–12).
+
+      - name: day_of_month
+        description: >
+          [EN] Day of month.
+          [VI] Ngày trong tháng.
+
+      - name: quarter_actual
+        description: >
+          [EN] Quarter of the year (1–4).
+          [VI] Quý (1–4).
+
+      - name: day_of_week
+        description: >
+          [EN] Day of week (1 = Monday, 7 = Sunday).
+          [VI] Thứ trong tuần (1 = Thứ 2, 7 = Chủ nhật).
+
+      - name: month_name
+        description: >
+          [EN] Month name.
+          [VI] Tên tháng.
+
+      - name: day_name
+        description: >
+          [EN] Day name.
+          [VI] Tên thứ.
+
+      - name: is_weekend
+        description: >
+          [EN] Whether the date is weekend.
+          [VI] Có phải cuối tuần không.
+
+      - name: last_day_of_month
+        description: >
+          [EN] Last day of the month for this date.
+          [VI] Ngày cuối tháng.
+
+      - name: is_last_day_of_month
+        description: >
+          [EN] Whether this date is the last day of month.
+          [VI] Có phải ngày cuối tháng không.
+
+    meta:
+      semantic_type: dimension
+      primary_key: date_actual
+      grain:
+        - date_actual
+      role: time_dimension
+
+      data_characteristics:
+        contains_derived_fields: true
+        is_static: true
+
+      usage:
+        preferred_for:
+          - date filtering
+          - time grouping (month, quarter, year)
+          - calendar-based analysis
+        avoid_for:
+          - standalone analysis without fact tables
+        warnings:
+          - Ensure the date range in this table covers all dates present in your fact tables
+          - Pay attention to day_of_week starting index (1 = Monday)
+
+      time_mappings:
+        default_date_column: date_actual
+
+      synonyms:
+        date_actual:
+          - ngày
+          - ngày tháng
+        year_actual:
+          - năm
+        month_actual:
+          - tháng
+        quarter_actual:
+          - quý
+        day_of_week:
+          - thứ
+        is_weekend:
+          - cuối tuần
+        last_day_of_month:
+          - ngày cuối tháng
+        is_last_day_of_month:
+          - cuối tháng

@@ -1,0 +1,112 @@
+version: 2
+
+models:
+  - name: dim_attendance_types
+    description: >
+      [EN] Dimension table containing attendance types and their attributes. 
+      Each row represents one attendance type used to classify employee attendance records.
+
+      [VI] Bảng danh mục loại chấm công. 
+      Mỗi dòng là 1 loại chấm công dùng để phân loại dữ liệu nghỉ phép / đi làm.
+
+    columns:
+      - name: attendance_type_id
+        description: >
+          [EN] Unique identifier of attendance type.
+          [VI] Mã định danh loại chấm công.
+
+      - name: attendance_type_name
+        description: >
+          [EN] Name of attendance type (e.g. leave, sick leave).
+          [VI] Tên loại chấm công (ví dụ: nghỉ phép, nghỉ ốm).
+
+      - name: attendance_type_code
+        description: >
+          [EN] Code of attendance type.
+          [VI] Mã loại chấm công.
+
+      - name: attendance_work_day
+        description: >
+          [EN] Workday value associated with attendance type.
+          [VI] Giá trị công tương ứng với loại chấm công.
+
+      - name: status
+        description: >
+          [EN] Status of attendance type.
+          [VI] Trạng thái của loại chấm công.
+
+      - name: is_deleted
+        description: >
+          [EN] Whether this type is deleted.
+          [VI] Đánh dấu đã bị xóa hay chưa.
+
+      - name: type
+        description: >
+          [EN] Category/type of attendance (e.g. leave, working).
+          [VI] Nhóm loại chấm công.
+
+      - name: unit_status
+        description: >
+          [EN] Status of unit configuration.
+          [VI] Trạng thái đơn vị tính.
+
+      - name: unit_type
+        description: >
+          [EN] Type of unit (e.g. day, hour).
+          [VI] Loại đơn vị (ngày, giờ).
+
+      - name: unit_value
+        description: >
+          [EN] Value of unit.
+          [VI] Giá trị đơn vị.
+
+      - name: created_time
+        description: >
+          [EN] Created timestamp.
+          [VI] Thời điểm tạo.
+
+      - name: updated_time
+        description: >
+          [EN] Last updated timestamp.
+          [VI] Thời điểm cập nhật.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: dimension
+      primary_key: attendance_type_id
+      grain:
+        - attendance_type_id
+
+      data_characteristics:
+        contains_derived_fields: false
+        slowly_changing: true
+
+      usage:
+        preferred_for:
+          - join with attendance fact tables
+          - filtering attendance types
+          - grouping by attendance category
+        avoid_for:
+          - standalone analysis without fact tables
+        warnings:
+          - Ensure is_deleted is filtered if only active types are needed
+          - unit_value and attendance_work_day may have different business meanings depending on the system
+
+      synonyms:
+        attendance_type_name:
+          - loại nghỉ
+          - loại chấm công
+        attendance_type_code:
+          - mã loại nghỉ
+        type:
+          - loại
+          - nhóm nghỉ
+        unit_type:
+          - đơn vị
+          - loại đơn vị
+        unit_value:
+          - giá trị công

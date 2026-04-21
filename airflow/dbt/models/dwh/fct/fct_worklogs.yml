@@ -1,0 +1,113 @@
+version: 2
+
+models:
+  - name: fct_worklogs
+    description: >
+      [EN] Fact table storing Jira worklog entries. Each row represents one worklog event created by a user.
+      This table contains raw time tracking data and should be filtered by date for analysis.
+
+      [VI] Bảng fact lưu dữ liệu log công việc từ Jira. Mỗi dòng là 1 lần ghi nhận thời gian làm việc.
+      Đây là dữ liệu raw, cần filter theo thời gian khi phân tích.
+
+    columns:
+      - name: worklog_id
+        description: >
+          [EN] Unique identifier of worklog entry.
+          [VI] Mã định danh của worklog.
+
+      - name: issue_id
+        description: >
+          [EN] Identifier of Jira issue. Foreign key to fct_jira_issues.
+          [VI] Mã issue trong Jira. Khóa ngoại tới fct_jira_issues.
+
+      - name: jira_project_id
+        description: >
+          [EN] Project identifier in Jira. Foreign key to dim_projects.
+          [VI] Mã project trong Jira. Khóa ngoại tới dim_projects.
+
+      - name: worklog_author
+        description: >
+          [EN] Author of worklog (normalized username/email).
+          [VI] Người ghi log công việc.
+
+      - name: worklog_description
+        description: >
+          [EN] Description of worklog entry detailing the tasks performed.
+          [VI] Nội dung công việc.
+
+      - name: start_time
+        description: >
+          [EN] Start time of worklog. Primary time context for filtering.
+          [VI] Thời điểm bắt đầu log. Trường chính dùng để filter thời gian.
+
+      - name: time_worked
+        description: >
+          [EN] Time worked in seconds.
+          [VI] Thời gian làm việc (giây).
+
+      - name: created_time
+        description: >
+          [EN] Time when worklog was created in Jira.
+          [VI] Thời điểm tạo log.
+
+      - name: updated_time
+        description: >
+          [EN] Last update time of the worklog entry.
+          [VI] Thời điểm cập nhật.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: fact
+      primary_key: worklog_id
+      grain:
+        - worklog_id
+
+      foreign_keys:
+        - column: issue_id
+          references: fct.fct_jira_issues.issue_id
+        - column: jira_project_id
+          references: dim.dim_projects.pod_id
+        - column: worklog_author
+          references: dim.dim_employee.member_email
+
+      data_characteristics:
+        high_volume: true
+        is_transactional: true
+        contains_derived_fields: false
+
+      usage:
+        preferred_for:
+          - detailed time tracking and effort analysis
+          - project-level effort calculation
+          - individual productivity monitoring
+        avoid_for:
+          - direct aggregation without grouping by dimensions
+          - headcount calculation (use dim_employee instead)
+          - real-time monitoring (depends on Jira sync frequency)
+        warnings:
+          - ALWAYS filter by start_time or a date range to avoid full table scans.
+          - High data volume may cause slow queries if not indexed or filtered properly.
+          - time_worked is stored in SECONDS. Divide by 3600 to convert to hours.
+          - worklog_description may contain sensitive or unstructured text.
+
+      time_context:
+        reference_date_column: start_time
+
+      constraints:
+        require_date_filter: true
+
+      synonyms:
+        worklog_author:
+          - người log
+          - người làm việc
+        start_time:
+          - thời gian
+          - ngày làm việc
+        time_worked:
+          - thời gian làm
+          - số giờ làm
+          - effort

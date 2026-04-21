@@ -1,0 +1,79 @@
+version: 2
+
+models:
+  - name: dim_odoo_branch
+    description: >
+      [EN] Dimension table containing company branch information.
+      Includes both raw branch attributes and derived grouping logic for reporting.
+
+      [VI] Bảng danh mục chi nhánh công ty.
+      Bao gồm thông tin chi nhánh gốc và các trường phân nhóm phục vụ báo cáo.
+
+    columns:
+      - name: id
+        description: >
+          [EN] Unique identifier of branch.
+          [VI] Mã định danh chi nhánh.
+
+      - name: branch_name
+        description: >
+          [EN] Name of branch.
+          [VI] Tên chi nhánh.
+
+      - name: address
+        description: >
+          [EN] Branch address.
+          [VI] Địa chỉ chi nhánh.
+
+      - name: branch_code
+        description: >
+          [EN] Branch code.
+          [VI] Mã chi nhánh.
+
+      - name: branch_group_name
+        description: >
+          [EN] Derived branch grouping name for reporting purposes.
+          [VI] Tên nhóm chi nhánh dùng cho báo cáo.
+
+      - name: branch_group_code
+        description: >
+          [EN] Derived branch grouping code for reporting.
+          [VI] Mã nhóm chi nhánh.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: dimension
+      primary_key: id
+      grain:
+        - id
+
+      data_characteristics:
+        contains_derived_fields: true
+        slowly_changing: true
+
+      usage:
+        preferred_for:
+          - grouping employees by branch
+          - regional analysis
+          - reporting aggregation
+        avoid_for:
+          - interpreting branch_group as raw source data
+        warnings:
+          - branch_group fields are derived using business rules
+          - Logic may change over time if mapping changes
+          - Ensure addresses are updated if the branch relocates (SCD considerations)
+
+      synonyms:
+        branch_name:
+          - chi nhánh
+        branch_code:
+          - mã chi nhánh
+        branch_group_name:
+          - nhóm chi nhánh
+          - khu vực
+        branch_group_code:
+          - mã nhóm chi nhánh

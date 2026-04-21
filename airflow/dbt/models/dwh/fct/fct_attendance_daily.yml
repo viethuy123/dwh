@@ -1,0 +1,124 @@
+version: 2
+
+models:
+  - name: fct_attendance_daily
+    description: >
+      [EN] Daily-level attendance fact table. 
+      Each row represents one employee on one working day after exploding date ranges into individual days.
+      
+      [VI] Bảng Fact chấm công chi tiết theo ngày. 
+      Mỗi dòng đại diện cho 1 nhân viên trong 1 ngày làm việc sau khi đã bóc tách các đơn nghỉ có dải ngày dài thành từng ngày riêng biệt.
+
+    columns:
+      - name: attendance_id
+        description: >
+          [EN] Unique identifier of the attendance request. Note: Not unique in this table.
+          [VI] Mã định danh đơn nghỉ/chấm công. Lưu ý: Không duy nhất trong bảng này do đơn có thể kéo dài nhiều ngày.
+
+      - name: member_id
+        description: >
+          [EN] Unique identifier of employee. Foreign key to dim_employee.
+          [VI] Mã định danh nhân viên. Khóa ngoại tới dim_employee.
+
+      - name: member_code
+        description: >
+          [EN] Business identifier of employee.
+          [VI] Mã nhân viên hiển thị.
+
+      - name: attendance_type_id
+        description: >
+          [EN] Identifier of attendance type. Foreign key to dim_attendance_types.
+          [VI] Mã loại nghỉ/chấm công. Khóa ngoại tới dim_attendance_types.
+
+      - name: absent_reason
+        description: >
+          [EN] Reason for absence as provided in the request.
+          [VI] Lý do nghỉ.
+
+      - name: original_from_date
+        description: >
+          [EN] Start date of the original attendance request.
+          [VI] Ngày bắt đầu nghỉ theo đơn gốc.
+
+      - name: original_end_date
+        description: >
+          [EN] End date of the original attendance request.
+          [VI] Ngày kết thúc nghỉ theo đơn gốc.
+
+      - name: total_absent_days_original
+        description: >
+          [EN] Total absent days requested in the original form.
+          [VI] Tổng số ngày nghỉ theo đơn gốc.
+
+      - name: date_actual
+        description: >
+          [EN] The specific date of absence (Grain). Foreign key to dim_date.
+          [VI] Ngày nghỉ thực tế (Đơn vị nhỏ nhất của bảng). Khóa ngoại tới dim_date.
+
+      - name: daily_absent_unit
+        description: >
+          [EN] Proportion of the workday absent on this specific date (e.g., 0.5, 1.0).
+          [VI] Số công nghỉ trong ngày thực tế đó (Ví dụ: 0.5 hoặc 1 công).
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: fact
+      primary_key:
+        - attendance_id
+        - date_actual
+      grain:
+        - member_id
+        - date_actual
+
+      foreign_keys:
+        - column: member_id
+          references: dim.dim_employee.member_id
+        - column: attendance_type_id
+          references: dim.dim_attendance_types.attendance_type_id
+        - column: date_actual
+          references: dim.dim_date.date_actual
+
+      data_characteristics:
+        is_transactional: false
+        is_periodic_snapshot: true
+        contains_exploded_dates: true
+
+      usage:
+        preferred_for:
+          - daily leave analysis
+          - monthly/quarterly leave aggregation
+          - leave trends and patterns over time
+          - employee availability reporting
+        avoid_for:
+          - raw attendance request analysis (use original request table instead)
+          - unique count of attendance_id without context
+        warnings:
+          - attendance_id is NOT unique across rows; it repeats for multi-day requests
+          - ALWAYS use SUM(daily_absent_unit) for calculating total leave time
+          - Do not sum total_absent_days_original as it will lead to double counting
+
+      time_context:
+        reference_date_column: date_actual
+
+      synonyms:
+        member_id:
+          - nhân viên
+          - employee
+        member_code:
+          - mã nhân viên
+        date_actual:
+          - ngày
+          - ngày nghỉ
+        attendance_type_id:
+          - loại nghỉ
+        absent_reason:
+          - lý do nghỉ
+        daily_absent_unit:
+          - số ngày nghỉ
+          - số công nghỉ
+        total_absent_days_original:
+          - tổng ngày nghỉ

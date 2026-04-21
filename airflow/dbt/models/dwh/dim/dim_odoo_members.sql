@@ -151,9 +151,9 @@ SELECT
     AS age_at_hire,
 
     -- học vấn
-    e.rank_id,
-    e.academic_level_id,
-    e.qualification_id,
+    -- e.rank_id,
+    -- e.academic_level_id,
+    -- e.qualification_id,
 
     -- date
     e.issue_date_identification,

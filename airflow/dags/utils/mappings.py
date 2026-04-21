@@ -94,14 +94,14 @@ hr_dtm_mapping = {
 report_mapping = {
     "detect_resources": ["dim_members_scd", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members", "dim_pods", "fct_pod_member_efforts"],
     # "mview_member_free_efforts": ["dim_members", "dim_time_series", "fct_worklog","dim_skill_members"],
-    "user_join_projects": ["dim_jira_issues", "dim_members_scd", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members"],
+    "user_join_projects": ["fct_jira_issues", "dim_members_scd", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members"],
     "hr_data_user": ["dim_members_new"],
     "hr_attendance": ["member_attendance_daily", "dim_attendance_types", "dim_odoo_members"],
     "hr_skill_members": ["dim_odoo_members", "dim_skill_odoo", "dim_skill_level", "fct_member_skill"],
-    "hr_data_user_new": ["dim_odoo_members", "dim_member_education", "dim_odoo_branch", "dim_odoo_division"],
+    "hr_data_user_new": ["dim_odoo_members", "fct_member_education", "dim_odoo_branch", "dim_odoo_division"],
 }
 dim_mapping = {
-    "dim_jira_issues": "jira_issues",
+    # "dim_jira_issues": "jira_issues",
     "dim_members": "",
     "dim_pods": "",
     "dim_projects": "",
@@ -122,7 +122,7 @@ dim_mapping = {
     'dim_skill_level' : 'odoo_hr_skill_level',
     "dim_projects" : "create_projects, jisseki_projects, pods",
     "dim_date":"",
-    "dim_member_education": "odoo_hr_member_education",
+    # "dim_member_education": "odoo_hr_member_education",
     "dim_odoo_members": "odoo_hr_member",
     "dim_attendance_types": "create_attendance_types",
     "dim_odoo_branch": "odoo_branch",
@@ -137,6 +137,10 @@ fct_mapping = {
     "fct_project": "jisseki_projects, pods",
     "fct_member_monthly_snapshot": "dim_members_new",
     'fct_member_skill': 'odoo_hr_member_skill',
+    'fct_attendance_daily': 'member_attendance_daily',
+    'fct_jira_issues': 'jira_issues',
+    'fct_member_education': 'odoo_hr_member_education',
+
 }
 
 bridge_mapping = {

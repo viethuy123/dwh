@@ -1,0 +1,186 @@
+version: 2
+
+models:
+  - name: hr_skill_members
+    description: >
+      [EN] Employee skill report combining employee information with their associated skills and proficiency levels. 
+      Each row represents one employee and one skill. Employees without any recorded skills will still appear with NULL skill fields.
+
+      [VI] Bảng báo cáo kỹ năng nhân viên, kết hợp thông tin nhân viên với kỹ năng và trình độ tương ứng. 
+      Mỗi dòng là 1 nhân viên và 1 kỹ năng. Do sử dụng LEFT JOIN từ bảng nhân viên nên những người chưa có dữ liệu kỹ năng vẫn xuất hiện với các trường skill = NULL.
+
+    columns:
+      # =========================
+      # 1. EMPLOYEE INFORMATION
+      # =========================
+      - name: member_id
+        description: >
+          [EN] Unique identifier of employee. Foreign key to dim_employee.
+          [VI] Mã định danh duy nhất của nhân viên. Khóa ngoại tới dim_employee.
+
+      - name: member_name
+        description: >
+          [EN] Full name of employee.
+          [VI] Tên đầy đủ của nhân viên.
+
+      - name: member_code
+        description: >
+          [EN] Business key of employee.
+          [VI] Mã nghiệp vụ của nhân viên.
+
+      - name: position_name
+        description: >
+          [EN] Job title.
+          [VI] Chức danh.
+
+      - name: branch_name
+        description: >
+          [EN] Branch name.
+          [VI] Tên chi nhánh.
+
+      - name: branch_code
+        description: >
+          [EN] Branch code.
+          [VI] Mã chi nhánh.
+
+      - name: division_name
+        description: >
+          [EN] Division (Department) name.
+          [VI] Tên phòng ban.
+
+      - name: division_group
+        description: >
+          [EN] High-level division group.
+          [VI] Nhóm phòng ban.
+
+      - name: member_level
+        description: >
+          [EN] Seniority level of employee.
+          [VI] Cấp bậc nhân viên.
+
+      - name: member_status
+        description: >
+          [EN] Employment status (e.g., Active, Resigned).
+          [VI] Trạng thái làm việc.
+
+      - name: member_status_detail
+        description: >
+          [EN] Detailed employment status from HR system.
+          [VI] Trạng thái chi tiết.
+
+      - name: position_company_group
+        description: >
+          [EN] Company role group classification.
+          [VI] Nhóm vai trò trong công ty.
+
+      # =========================
+      # 2. SKILL INFORMATION
+      # =========================
+      - name: skill_id
+        description: >
+          [EN] Unique identifier of skill. Foreign key to dim_odoo_skill.
+          [VI] Mã định danh của kỹ năng. Khóa ngoại tới dim_odoo_skill.
+
+      - name: skill_name
+        description: >
+          [EN] Name of the skill.
+          [VI] Tên kỹ năng.
+
+      - name: skill_type_name
+        description: >
+          [EN] Type or category of skill (e.g., Technical, Soft Skill).
+          [VI] Loại kỹ năng.
+
+      - name: is_language_type
+        description: >
+          [EN] Boolean indicator if the skill is a language skill.
+          [VI] Đánh dấu có phải kỹ năng ngôn ngữ hay không.
+
+      # =========================
+      # 3. SKILL LEVEL
+      # =========================
+      - name: level_name
+        description: >
+          [EN] Name of skill level (e.g., Junior, Senior, N1, B2).
+          [VI] Tên trình độ kỹ năng.
+
+      - name: skill_level_group
+        description: >
+          [EN] Normalized grouping of skill level for cross-type reporting.
+          [VI] Nhóm trình độ kỹ năng đã chuẩn hóa.
+
+      - name: level_progress_percentage
+        description: >
+          [EN] Progress percentage of skill proficiency (0-100).
+          [VI] Phần trăm tiến độ trình độ kỹ năng.
+
+      - name: last_assessed_at
+        description: >
+          [EN] Timestamp of the last skill assessment or update.
+          [VI] Thời điểm đánh giá gần nhất.
+
+      # =========================
+      # 4. REPORT LOGIC
+      # =========================
+      - name: skill_status
+        description: >
+          [EN] Custom indicator whether employee has any skill recorded (Has Skill / No Skill).
+          [VI] Trạng thái xác định nhân viên đã cập nhật kỹ năng hay chưa.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý dữ liệu. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: report
+      grain:
+        - member_id
+        - skill_id
+
+      foreign_keys:
+        - column: member_id
+          references: dim.dim_odoo_members.member_id
+        - column: skill_id
+          references: dim.dim_odoo_skill.skill_id
+
+
+      data_characteristics:
+        contains_nulls: true
+        is_denormalized: true
+        null_reason: "Skill-related fields are NULL for employees who have not recorded any skills in the system (LEFT JOIN logic)."
+
+      usage:
+        preferred_for:
+          - employee skill matrix and capability analysis
+          - skill distribution reporting across branches/divisions
+          - identifying skill gaps (employees with 'No Skill' status)
+        avoid_for:
+          - headcount calculation (due to multiple rows per employee)
+          - direct summation of levels without filtering specific skills
+        warnings:
+          - Counting total rows will overcount employees; one employee appears multiple times (once per skill).
+          - ALWAYS use COUNT(DISTINCT member_id) for employee-level metrics.
+          - Filtering on 'skill_name' will automatically exclude employees who have no skills recorded.
+
+      synonyms:
+        member_id:
+          - mã nhân viên
+        member_name:
+          - tên nhân viên
+        skill_name:
+          - kỹ năng
+        skill_type_name:
+          - loại kỹ năng
+        skill_level_group:
+          - trình độ
+          - level
+          - cấp độ
+        level_name:
+          - mức kỹ năng
+        level_progress_percentage:
+          - phần trăm kỹ năng
+          - tiến độ kỹ năng
+        skill_status:
+          - có kỹ năng
+          - trạng thái kỹ năng

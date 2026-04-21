@@ -45,7 +45,7 @@ education_comprehensive AS (
             PARTITION BY member_id 
             ORDER BY record_created_at DESC, graduation_year DESC
         ) as edu_rank
-    FROM {{ ref('dim_member_education') }} 
+    FROM {{ ref('fct_member_education') }} 
     
 ),
 

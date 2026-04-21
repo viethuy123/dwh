@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: dim_jira_project_role
+    description: >
+      [EN] Dimension table containing Jira project roles. 
+      Each row represents a role that users can have within a project.
+
+      [VI] Bảng danh mục vai trò trong project Jira. 
+      Mỗi dòng là 1 vai trò mà người dùng có thể đảm nhận trong project.
+
+    columns:
+      - name: id
+        description: >
+          [EN] Unique identifier of project role.
+          [VI] Mã định danh vai trò trong project.
+
+      - name: role_name
+        description: >
+          [EN] Name of the role (e.g. Developer, Tester, Manager).
+          [VI] Tên vai trò (ví dụ: Developer, Tester, Manager).
+
+      - name: description
+        description: >
+          [EN] Description of the role.
+          [VI] Mô tả vai trò.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: dimension
+      primary_key: id
+      grain:
+        - id
+
+      data_characteristics:
+        contains_derived_fields: false
+        slowly_changing: true
+
+      usage:
+        preferred_for:
+          - join with project or user-role mapping tables
+          - grouping by role
+          - filtering by role
+        avoid_for:
+          - standalone analysis
+        warnings:
+          - Ensure this table is joined with mapping tables to get user/project context
+
+      synonyms:
+        role_name:
+          - vai trò
+          - chức năng
+          - role
+        description:
+          - mô tả

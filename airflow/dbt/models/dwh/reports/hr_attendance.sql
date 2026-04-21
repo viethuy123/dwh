@@ -1,7 +1,7 @@
 {{ config(materialized='table') }}
 
 WITH attendance_daily AS (
-    SELECT * FROM {{ ref('member_attendance_daily') }}
+    SELECT * FROM {{ ref('fct_attendance_daily') }}
 ),
 
 dim_type AS (

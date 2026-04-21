@@ -1,0 +1,103 @@
+version: 2
+
+models:
+  - name: dim_odoo_division
+    description: >
+      [EN] Dimension table containing organizational divisions (departments).
+      Includes hierarchical structure and derived grouping for reporting purposes.
+
+      [VI] Bảng danh mục phòng ban trong tổ chức.
+      Bao gồm cấu trúc phân cấp và các trường phân nhóm phục vụ báo cáo.
+
+    columns:
+      - name: id
+        description: >
+          [EN] Unique identifier of division.
+          [VI] Mã định danh phòng ban.
+
+      - name: branch_id
+        description: >
+          [EN] Branch identifier this division belongs to. Foreign key to dim_branch.
+          [VI] Mã chi nhánh của phòng ban. Khóa ngoại tới dim_branch.
+
+      - name: manager_id
+        description: >
+          [EN] Manager identifier of division. Foreign key to dim_employee.
+          [VI] Mã quản lý phòng ban. Khóa ngoại tới dim_employee.
+
+      - name: complete_parent_name
+        description: >
+          [EN] Full hierarchical path of parent division.
+          [VI] Chuỗi phân cấp của phòng ban cha.
+
+      - name: complete_name
+        description: >
+          [EN] Full hierarchical path of division.
+          [VI] Chuỗi phân cấp đầy đủ của phòng ban.
+
+      - name: division_name
+        description: >
+          [EN] Name of division.
+          [VI] Tên phòng ban.
+
+      - name: division_parent_name
+        description: >
+          [EN] Name of parent division.
+          [VI] Tên phòng ban cha.
+
+      - name: division_group
+        description: >
+          [EN] Derived grouping of division based on naming convention (e.g. removing DU suffix).
+          [VI] Nhóm phòng ban được tạo từ logic xử lý tên (loại bỏ hậu tố DU...).
+
+      - name: status
+        description: >
+          [EN] Active status of division.
+          [VI] Trạng thái hoạt động.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: dimension
+      primary_key: id
+      grain:
+        - id
+
+      # foreign_keys:
+      #   - column: branch_id
+      #     references: dim.dim_odoo_branch.id
+      #   - column: manager_id
+      #     references: dim.dim_employee.member_id
+
+      data_characteristics:
+        hierarchical: true
+        contains_derived_fields: true
+        slowly_changing: true
+
+      usage:
+        preferred_for:
+          - grouping employees by division
+          - organizational analysis
+          - hierarchy-based reporting
+        avoid_for:
+          - assuming division_group is raw data
+        warnings:
+          - division_group is derived from division_name using pattern logic
+          - naming convention changes may affect grouping logic
+          - status field may not reflect historical changes if not using SCD Type 2
+
+      synonyms:
+        division_name:
+          - phòng ban
+          - bộ phận
+        division_parent_name:
+          - phòng ban cha
+        division_group:
+          - nhóm phòng ban
+          - khối
+        branch_id:
+          - chi nhánh
+          - mã chi nhánh

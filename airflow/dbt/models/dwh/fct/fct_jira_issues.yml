@@ -1,0 +1,188 @@
+version: 2
+
+models:
+  - name: fct_jira_issues
+    description: >
+      [EN] Fact table containing Jira issues with enriched metadata such as assignee, status, priority, and time tracking.
+      Each row represents one issue. This table is used for issue tracking, workload analysis, and project monitoring.
+
+      [VI] Bảng fact chứa thông tin các issue trong Jira, bao gồm assignee, trạng thái, độ ưu tiên và thời gian.
+      Mỗi dòng là 1 issue. Dùng để phân tích công việc và theo dõi tiến độ.
+
+    columns:
+      - name: issue_id
+        description: >
+          [EN] Unique identifier of issue.
+          [VI] Mã định danh issue.
+
+      - name: assignee_email
+        description: >
+          [EN] Email of assigned user (fallback to reporter if null).
+          [VI] Email người được giao việc (fallback về reporter nếu null).
+
+      - name: issue_number
+        description: >
+          [EN] Issue key/number (e.g. ABC-123).
+          [VI] Mã issue hiển thị.
+
+      - name: jira_project_id
+        description: >
+          [EN] Project identifier. Foreign key to dim_projects.
+          [VI] Mã project. Khóa ngoại tới dim_projects.
+
+      - name: reporter_email
+        description: >
+          [EN] Email of reporter.
+          [VI] Email người tạo issue.
+
+      - name: issue_creator
+        description: >
+          [EN] Creator of issue.
+          [VI] Người tạo issue.
+
+      - name: issue_reporter
+        description: >
+          [EN] Reporter user key.
+          [VI] User key người báo cáo.
+
+      - name: issue_assignee
+        description: >
+          [EN] Assignee user key.
+          [VI] User key người được giao.
+
+      - name: issue_summary
+        description: >
+          [EN] Short summary/title.
+          [VI] Tiêu đề issue.
+
+      - name: issue_description
+        description: >
+          [EN] Detailed description.
+          [VI] Mô tả chi tiết.
+
+      - name: priority
+        description: >
+          [EN] Priority level (e.g. High, Medium).
+          [VI] Mức độ ưu tiên.
+
+      - name: type_id
+        description: >
+          [EN] Issue type identifier.
+          [VI] Mã loại issue.
+
+      - name: type
+        description: >
+          [EN] Issue type name (bug, task, story).
+          [VI] Loại issue.
+
+      - name: resolution
+        description: >
+          [EN] Resolution result.
+          [VI] Kết quả xử lý.
+
+      - name: resolution_date
+        description: >
+          [EN] Date when issue was resolved.
+          [VI] Ngày hoàn thành.
+
+      - name: status
+        description: >
+          [EN] Current status of issue.
+          [VI] Trạng thái hiện tại.
+
+      - name: due_date
+        description: >
+          [EN] Due date of issue.
+          [VI] Hạn deadline.
+
+      - name: time_original_estimate
+        description: >
+          [EN] Original time estimate (seconds).
+          [VI] Thời gian ước tính ban đầu (giây).
+
+      - name: time_estimate
+        description: >
+          [EN] Remaining estimate time (seconds).
+          [VI] Thời gian ước tính còn lại (giây).
+
+      - name: time_spent
+        description: >
+          [EN] Actual time spent (seconds).
+          [VI] Thời gian đã làm (giây).
+
+      - name: created_time
+        description: >
+          [EN] Issue creation timestamp.
+          [VI] Thời điểm tạo issue.
+
+      - name: updated_time
+        description: >
+          [EN] Last updated timestamp.
+          [VI] Thời điểm cập nhật.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: fact
+      primary_key: issue_id
+      grain:
+        - issue_id
+
+      foreign_keys:
+        - column: jira_project_id
+          references: dim.dim_projects.pod_id
+        - column: assignee_email
+          references: dim.dim_member_new.member_email
+
+      data_characteristics:
+        entity_fact: true
+        is_transactional: true
+
+      time_columns:
+        - created_time
+        - updated_time
+        - resolution_date
+
+      usage:
+        preferred_for:
+          - issue tracking
+          - workload analysis
+          - project monitoring
+        avoid_for:
+          - direct time aggregation without understanding units
+          - employee-level counting without grouping
+        warnings:
+          - time fields are in seconds (divide by 3600 for hours)
+          - this is issue-level data, not individual worklogs
+          - assignee_email may fallback to reporter if no one is assigned
+          - resolution_date can be null for open issues
+
+      synonyms:
+        issue_id:
+          - mã issue
+        assignee_email:
+          - người được giao
+          - người xử lý
+        reporter_email:
+          - người tạo
+          - người báo cáo
+        status:
+          - trạng thái
+        priority:
+          - độ ưu tiên
+        type:
+          - loại issue
+          - bug
+          - task
+        resolution:
+          - kết quả
+        time_spent:
+          - thời gian làm
+          - effort
+        created_time:
+          - ngày tạo
+        resolution_date:
+          - ngày hoàn thành

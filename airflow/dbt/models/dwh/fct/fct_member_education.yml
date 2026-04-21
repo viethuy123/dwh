@@ -1,0 +1,125 @@
+version: 2
+
+models:
+  - name: fct_member_education
+    description: >
+      [EN] Fact table storing employee education records enriched with school, degree, and classification logic. 
+      Each row represents one education record of an employee.
+
+      [VI] Bảng fact lưu thông tin học vấn của nhân viên.
+      Mỗi dòng là 1 bằng cấp / học vấn của nhân viên, đã được enrich thêm thông tin trường, trình độ và phân loại.
+
+    columns:
+      - name: education_id
+        description: >
+          [EN] Unique identifier of education record.
+          [VI] Mã định danh bản ghi học vấn.
+
+      - name: member_id
+        description: >
+          [EN] Employee identifier. Foreign key to dim_employee.
+          [VI] Mã nhân viên. Khóa ngoại tới dim_employee.
+
+      - name: school_name
+        description: >
+          [EN] Name of school.
+          [VI] Tên trường.
+
+      - name: school_type
+        description: >
+          [EN] Type of school (e.g. University, College, International).
+          [VI] Loại trường.
+
+      - name: academic_level
+        description: >
+          [EN] Academic level (e.g. Bachelor, Master).
+          [VI] Trình độ học vấn.
+
+      - name: degree_name
+        description: >
+          [EN] Degree or qualification name.
+          [VI] Tên bằng cấp.
+
+      - name: degree_group
+        description: >
+          [EN] Classified degree group (e.g. Tech, Business, Language).
+          [VI] Nhóm bằng cấp đã phân loại.
+
+      - name: major
+        description: >
+          [EN] Major/field of study.
+          [VI] Chuyên ngành.
+
+      - name: graduation_year
+        description: >
+          [EN] Graduation year.
+          [VI] Năm tốt nghiệp.
+
+      - name: graduation_rating
+        description: >
+          [EN] Graduation rating as stated in original records.
+          [VI] Xếp loại tốt nghiệp.
+
+      - name: graduation_rating_group
+        description: >
+          [EN] Normalized graduation rating group for consistent reporting.
+          [VI] Nhóm xếp loại tốt nghiệp đã chuẩn hóa.
+
+      - name: record_created_at
+        description: >
+          [EN] Record creation timestamp in the source system.
+          [VI] Thời điểm tạo bản ghi.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: fact
+      primary_key: education_id
+      grain:
+        - education_id
+
+      foreign_keys:
+        - column: member_id
+          references: dim.dim_odoo_members.member_id
+
+      data_characteristics:
+        relationship_table: true
+        contains_derived_fields: true
+        is_transactional: true
+
+      usage:
+        preferred_for:
+          - education and qualification analysis
+          - degree distribution reporting
+          - workforce capability and qualification monitoring
+        avoid_for:
+          - employee-level counting without proper aggregation
+        warnings:
+          - One employee may have multiple education records (e.g., both Bachelor and Master)
+          - Always use COUNT(DISTINCT member_id) when calculating the number of employees with specific degrees
+          - graduation_rating_group is derived using business mapping logic
+
+      synonyms:
+        member_id:
+          - mã nhân viên
+        school_name:
+          - trường
+        academic_level:
+          - trình độ
+          - học vấn
+        degree_name:
+          - bằng cấp
+        degree_group:
+          - nhóm ngành
+          - nhóm bằng
+        major:
+          - chuyên ngành
+        graduation_year:
+          - năm tốt nghiệp
+        graduation_rating:
+          - xếp loại
+        graduation_rating_group:
+          - nhóm xếp loại

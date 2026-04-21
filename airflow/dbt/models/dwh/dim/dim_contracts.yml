@@ -1,0 +1,114 @@
+version: 2
+
+models:
+  - name: dim_contracts
+    description: >
+      [EN] Employee contract dimension table. 
+      Contains contract information including type, duration, and employment status.
+      
+      [VI] Bảng hợp đồng nhân viên. 
+      Lưu thông tin hợp đồng bao gồm loại hợp đồng, thời gian và trạng thái.
+
+    columns:
+      - name: contract_id
+        description: >
+          [EN] Unique identifier of contract.
+          [VI] Mã hợp đồng.
+
+      - name: member_id
+        description: >
+          [EN] Employee identifier. Foreign key to dim_employee.
+          [VI] Mã nhân viên. Khóa ngoại tới dim_employee.
+
+      - name: contract_type_id
+        description: >
+          [EN] Contract type identifier.
+          [VI] Mã loại hợp đồng.
+
+      - name: contract_type
+        description: >
+          [EN] Contract type name (e.g. Probation, Full-time, Internship).
+          [VI] Tên loại hợp đồng.
+
+      - name: member_code
+        description: >
+          [EN] Display employee code.
+          [VI] Mã nhân viên hiển thị.
+
+      - name: name
+        description: >
+          [EN] Contract name or title.
+          [VI] Tên hợp đồng.
+
+      - name: state
+        description: >
+          [EN] Contract state (e.g. Draft, Open, Close).
+          [VI] Trạng thái hợp đồng.
+
+      - name: date_start
+        description: >
+          [EN] Contract effective start date.
+          [VI] Ngày bắt đầu hợp đồng.
+
+      - name: date_end
+        description: >
+          [EN] Contract end date. Null if indefinite.
+          [VI] Ngày kết thúc hợp đồng. Để trống nếu là hợp đồng không thời hạn.
+
+      - name: resign_date
+        description: >
+          [EN] Resignation date or actual last day of work.
+          [VI] Ngày nghỉ việc thực tế.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: dimension
+      primary_key: contract_id
+      grain:
+        - contract_id
+
+      foreign_keys:
+        - column: member_id
+          references: dim.dim_employee.member_id
+
+      data_characteristics:
+        slowly_changing: true
+        contains_time_attributes: true
+
+      temporal_logic:
+        active_contract:
+          condition_sql: >
+            date_start <= CURRENT_DATE 
+            AND (date_end IS NULL OR date_end > CURRENT_DATE)
+        contract_at_time:
+          condition_sql: >
+            date_start <= :target_date 
+            AND (date_end IS NULL OR date_end > :target_date)
+
+      usage:
+        preferred_for:
+          - contract type and duration analysis
+          - employee lifecycle and tenure tracking
+          - joining with employee dimension for detailed HR reporting
+        avoid_for:
+          - determining currently active employees (use dim_employee for primary status)
+        warnings:
+          - An employee may have multiple contracts over time (SCD Type 2 behavior).
+          - Always apply date filters when analyzing contract counts to avoid overcounting historical records.
+          - Resign date may differ from contract end date depending on HR policy.
+
+      synonyms:
+        contract_type:
+          - loại hợp đồng
+        date_start:
+          - ngày bắt đầu hợp đồng
+        date_end:
+          - ngày kết thúc hợp đồng
+        resign_date:
+          - ngày nghỉ việc
+        state:
+          - trạng thái hợp đồng

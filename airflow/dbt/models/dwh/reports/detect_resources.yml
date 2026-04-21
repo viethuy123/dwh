@@ -1,0 +1,204 @@
+version: 2
+
+models:
+  - name: detect_resources
+    description: >
+      [EN] Employee monthly effort and skill report combining actual workload, predicted workload, and skill information. 
+      Each row represents one employee per month per skill. Includes effort calculations, workload classification, and future predictions.
+
+      [VI] Bảng báo cáo tổng hợp effort theo tháng của nhân viên kết hợp với kỹ năng. 
+      Mỗi dòng đại diện cho 1 nhân viên trong 1 tháng ứng với 1 kỹ năng cụ thể. 
+      Bảng bao gồm các chỉ số effort thực tế, effort dự báo và phân loại trạng thái tải công việc (workload).
+
+    columns:
+      # =========================
+      # 1. EMPLOYEE INFO
+      # =========================
+      - name: member_email_full
+        description: >
+          [EN] Primary identifier of employee (email). Foreign key to dim_employee.
+          [VI] Email chính của nhân viên. Khóa ngoại tới dim_employee.
+
+      - name: member_name
+        description: >
+          [EN] Full name of employee.
+          [VI] Tên nhân viên.
+
+      - name: staff_code
+        description: >
+          [EN] Staff code of employee.
+          [VI] Mã nhân viên.
+
+      - name: branch_name
+        description: >
+          [EN] Branch name.
+          [VI] Chi nhánh.
+
+      - name: branch_code
+        description: >
+          [EN] Branch code.
+          [VI] Mã chi nhánh.
+
+      - name: division_name
+        description: >
+          [EN] Division (Department) name.
+          [VI] Phòng ban.
+
+      - name: position_name
+        description: >
+          [EN] Job title or position.
+          [VI] Chức danh.
+
+      - name: user_level
+        description: >
+          [EN] User seniority level.
+          [VI] Cấp bậc nhân viên.
+
+      - name: user_status
+        description: >
+          [EN] Employment status (e.g., Active, Resigned).
+          [VI] Trạng thái làm việc.
+
+      # =========================
+      # 2. TIME
+      # =========================
+      - name: month_year
+        description: >
+          [EN] Month of record (YYYY-MM-01). Foreign key to dim_date.
+          [VI] Tháng của dữ liệu. Khóa ngoại tới dim_date.
+
+      # =========================
+      # 3. EFFORTS
+      # =========================
+      - name: actual_efforts
+        description: >
+          [EN] Actual effort derived from Jira worklogs.
+          [VI] Effort thực tế tính toán từ Jira.
+
+      - name: pod_efforts
+        description: >
+          [EN] Effort allocated via the POD system.
+          [VI] Effort được gán từ hệ thống POD.
+
+      - name: predicting_efforts
+        description: >
+          [EN] Predicted effort based on historical patterns and trends.
+          [VI] Effort dự đoán dựa trên dữ liệu quá khứ.
+
+      - name: normal_efforts
+        description: >
+          [EN] Standard expected effort capacity (usually = 1.0).
+          [VI] Effort chuẩn định mức (thường = 1).
+
+      - name: free_efforts
+        description: >
+          [EN] Remaining capacity after subtracting actual or predicted effort.
+          [VI] Phần effort còn lại (độ rảnh tổng thể của nhân viên).
+
+      - name: free_effort_unique
+        description: >
+          [EN] Adjusted free effort divided by the number of skills to avoid double counting during aggregation.
+          [VI] Effort rảnh đã được chia đều theo số lượng kỹ năng để tránh cộng dồn sai.
+
+      # =========================
+      # 4. CLASSIFICATION
+      # =========================
+      - name: efforts_status
+        description: >
+          [EN] Workload classification (e.g., Overloaded, Normal, Free, Underloaded).
+          [VI] Phân loại trạng thái workload (quá tải, bình thường, rảnh, thiếu việc).
+
+      - name: has_history_efforts_4_months
+        description: >
+          [EN] Boolean flag indicating if the employee has effort history in the last 4 months.
+          [VI] Đánh dấu có dữ liệu effort trong 4 tháng gần nhất hay không.
+
+      - name: log_work_status
+        description: >
+          [EN] Indicator if the employee has recorded any Jira worklogs in this period.
+          [VI] Trạng thái có ghi nhận log công việc hay không.
+
+      # =========================
+      # 5. SKILL
+      # =========================
+      - name: skill_name
+        description: >
+          [EN] Name of the skill.
+          [VI] Tên kỹ năng.
+
+      - name: skill_parent
+        description: >
+          [EN] Parent skill category or group.
+          [VI] Nhóm kỹ năng cấp cha.
+
+      - name: skill_level
+        description: >
+          [EN] Proficiency level of the skill.
+          [VI] Trình độ kỹ năng.
+
+      # =========================
+      # 6. SYSTEM
+      # =========================
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý dữ liệu. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: report
+      grain:
+        - member_email_full
+        - month_year
+        - skill_name
+
+      data_characteristics:
+        contains_nulls: true
+        contains_derived_fields: true
+        contains_predicted_data: true
+        null_reason: "Some effort or skill fields may be NULL due to missing source records or LEFT JOIN logic."
+
+      usage:
+        preferred_for:
+          - workload and resource utilization analysis
+          - capacity planning and resource allocation
+          - effort forecasting for future months
+          - skill-based resource searching (detecting free resources with specific skills)
+        avoid_for:
+          - simple headcount calculation (due to multiple rows per employee)
+          - financial auditing (use raw effort tables for exact billing)
+        warnings:
+          - Multiple rows per employee: One employee will appear multiple times per month if they have multiple skills recorded.
+          - Aggregation: Use AVERAGE for effort metrics or COUNT(DISTINCT member_email_full) when calculating human resources.
+          - Predicted Data: Future months reflect estimations, not actual work done.
+          - Free Effort: Use `free_effort_unique` when summing across skills to avoid overestimating capacity.
+
+      time_context:
+        reference_date_column: month_year
+
+      constraints:
+        require_date_filter: true
+
+      synonyms:
+        member_name:
+          - tên nhân viên
+        staff_code:
+          - mã nhân viên
+        month_year:
+          - tháng
+          - theo tháng
+        actual_efforts:
+          - effort thực tế
+          - công thực tế
+        predicting_efforts:
+          - effort dự đoán
+          - dự báo workload
+        free_efforts:
+          - effort rảnh
+          - độ rảnh
+        efforts_status:
+          - trạng thái workload
+          - mức độ tải
+        skill_name:
+          - kỹ năng
+        skill_level:
+          - trình độ kỹ năng

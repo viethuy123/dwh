@@ -1,0 +1,103 @@
+version: 2
+
+models:
+  - name: dim_odoo_job
+    description: >
+      [EN] Dimension table containing job positions within the organization.
+      Includes position hierarchy such as group roles for higher-level classification.
+
+      [VI] Bảng danh mục chức danh trong tổ chức.
+      Bao gồm phân cấp chức danh và nhóm chức danh phục vụ phân tích.
+
+    columns:
+      - name: job_id
+        description: >
+          [EN] Unique identifier of position.
+          [VI] Mã định danh chức danh.
+
+      - name: division_id
+        description: >
+          [EN] Division (department) identifier. Foreign key to dim_division.
+          [VI] Mã phòng ban. Khóa ngoại tới dim_division.
+
+      - name: branch_id
+        description: >
+          [EN] Branch identifier. Foreign key to dim_branch.
+          [VI] Mã chi nhánh. Khóa ngoại tới dim_branch.
+
+      - name: manager_id
+        description: >
+          [EN] Manager identifier of this position. Foreign key to dim_employee.
+          [VI] Mã quản lý của chức danh. Khóa ngoại tới dim_employee.
+
+      - name: group_role_id
+        description: >
+          [EN] Identifier of parent/group position.
+          [VI] Mã nhóm chức danh.
+
+      - name: group_job_id
+        description: >
+          [EN] Secondary grouping identifier.
+          [VI] Mã nhóm phụ của chức danh.
+
+      - name: job_code
+        description: >
+          [EN] Code of position.
+          [VI] Mã chức danh.
+
+      - name: job_name
+        description: >
+          [EN] Name of position.
+          [VI] Tên chức danh.
+
+      - name: group_role_name
+        description: >
+          [EN] Name of parent/group position.
+          [VI] Tên nhóm chức danh.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: dimension
+      primary_key: job_id
+      grain:
+        - job_id
+
+      # foreign_keys:
+      #   - column: division_id
+      #     references: dim.dim_division.id
+      #   - column: branch_id
+      #     references: dim.dim_branch.id
+      #   - column: manager_id
+      #     references: dim.dim_employee.member_id
+
+      data_characteristics:
+        hierarchical: true
+        slowly_changing: true
+
+      usage:
+        preferred_for:
+          - grouping employees by position
+          - organizational structure analysis
+          - role-based reporting
+        avoid_for:
+          - treating group_role_name as independent dimension
+        warnings:
+          - group_role_name represents a higher-level grouping of positions
+          - one group_role may contain multiple positions
+          - Ensure hierarchical logic is consistent with the latest organization chart
+
+      synonyms:
+        job_name:
+          - chức danh
+          - vị trí
+        group_role_name:
+          - nhóm chức danh
+          - nhóm vị trí
+        division_id:
+          - phòng ban
+        branch_id:
+          - chi nhánh

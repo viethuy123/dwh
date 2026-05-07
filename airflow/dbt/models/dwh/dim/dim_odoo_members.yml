@@ -51,14 +51,14 @@ models:
         description: >
           [EN] Position identifier. Foreign key to dim_odoo_job.
           [VI] Mã chức danh. Khóa ngoại tới dim_odoo_job.
-        meta: >
+        meta:
           synonyms: ["position_id"]
 
       - name: position_name
         description: >
           [EN] Raw job title from source system .
           [VI] Chức danh gốc từ hệ thống nguồn.
-        meta: >
+        meta:
           synonyms: ["job_name", "job_title"]
 
       - name: position_group

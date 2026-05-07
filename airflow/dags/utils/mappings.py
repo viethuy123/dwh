@@ -72,13 +72,13 @@ intermediate_mapping ={
 
 }
 
-hr_dtm_mapping = {
-    "dim_branches": "branches",
-    "dim_departments": "departments",
-    "dim_month_year": "time_series",
-    "dim_positions": "user_positions",
-    "fct_hrm_employees": ["time_series", "users", "staff_attendances"]
-}
+# hr_dtm_mapping = {
+#     "dim_branches": "branches",
+#     "dim_departments": "departments",
+#     "dim_month_year": "time_series",
+#     "dim_positions": "user_positions",
+#     "fct_hrm_employees": ["time_series", "users", "staff_attendances"]
+# }
 
 # jira_dtm_mapping = {
 #     "dim_members": ["users", "branches", "departments", "user_positions"],

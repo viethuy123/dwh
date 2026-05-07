@@ -1,0 +1,274 @@
+version: 2
+
+models:
+  - name: hr_data_user_new
+    description: >
+      [EN] Employee profile table enriched with seniority and education information. 
+      Each row represents one employee with calculated tenure, education, and demographic attributes.
+      Seniority is calculated using official_date and reference_date (end_date or current date).
+
+      [VI] Bảng hồ sơ nhân viên được bổ sung thông tin thâm niên và học vấn.
+      Mỗi dòng là 1 nhân viên với các thông tin về thâm niên, học vấn và nhân khẩu học.
+      Thâm niên được tính dựa trên official_date và reference_date (end_date hoặc ngày hiện tại).
+
+    columns:
+      # =========================
+      # 1. CORE IDENTIFIERS
+      # =========================
+      - name: member_id
+        description: >
+          [EN] Unique identifier of employee. Foreign key to dim_employee.
+          [VI] Mã định danh của nhân viên. Khóa ngoại tới dim_employee.
+
+      - name: member_name
+        description: >
+          [EN] Full name of employee.
+          [VI] Tên đầy đủ của nhân viên.
+
+      - name: member_email
+        description: >
+          [EN] Email of employee.
+          [VI] Email của nhân viên.
+
+      - name: member_code
+        description: >
+          [EN] Business key of employee.
+          [VI] Mã nghiệp vụ của nhân viên.
+
+      # =========================
+      # 2. ORGANIZATION INFO
+      # =========================
+      - name: branch_name
+        description: >
+          [EN] Branch name.
+          [VI] Tên chi nhánh.
+
+      - name: branch_code
+        description: >
+          [EN] Branch code.
+          [VI] Mã chi nhánh.
+
+      - name: division_name
+        description: >
+          [EN] Division (Department) name.
+          [VI] Tên phòng ban.
+
+      - name: division_group
+        description: >
+          [EN] High-level division group.
+          [VI] Nhóm phòng ban.
+
+      - name: position_name
+        description: >
+          [EN] Job title.
+          [VI] Chức danh.
+
+      - name: position_group
+        description: >
+          [EN] Position group classification.
+          [VI] Nhóm chức danh.
+
+      - name: position_company_group
+        description: >
+          [EN] Company role group.
+          [VI] Nhóm vai trò trong công ty.
+
+      - name: member_level
+        description: >
+          [EN] Seniority level of employee.
+          [VI] Cấp bậc nhân viên.
+
+      - name: member_status
+        description: >
+          [EN] Current employment status (Active/Resigned).
+          [VI] Trạng thái làm việc.
+
+      - name: user_status_originals_detail
+        description: >
+          [EN] Detailed employment status from HR system.
+          [VI] Trạng thái chi tiết.
+
+      # =========================
+      # 3. EDUCATION INFO
+      # =========================
+      - name: school_name
+        description: >
+          [EN] School name of highest education achieved.
+          [VI] Trường học của bằng cấp cao nhất.
+
+      - name: academic_level
+        description: >
+          [EN] Highest academic level (e.g. Bachelor, Master).
+          [VI] Trình độ học vấn.
+
+      - name: degree_name
+        description: >
+          [EN] Specific degree name.
+          [VI] Tên bằng cấp.
+
+      - name: degree_group
+        description: >
+          [EN] Classified degree group (e.g. Tech, Language).
+          [VI] Nhóm bằng cấp.
+
+      - name: graduation_rating
+        description: >
+          [EN] Graduation rating.
+          [VI] Xếp loại tốt nghiệp.
+
+      - name: graduation_rating_group
+        description: >
+          [EN] Normalized graduation rating group.
+          [VI] Nhóm xếp loại tốt nghiệp.
+
+      - name: graduation_year
+        description: >
+          [EN] Year of graduation.
+          [VI] Năm tốt nghiệp.
+
+      # =========================
+      # 4. DEMOGRAPHICS & DATES
+      # =========================
+      - name: gender
+        description: >
+          [EN] Gender of employee.
+          [VI] Giới tính.
+
+      - name: marital
+        description: >
+          [EN] Marital status.
+          [VI] Tình trạng hôn nhân.
+
+      - name: age
+        description: >
+          [EN] Age at the time of hiring.
+          [VI] Tuổi khi vào làm.
+
+      - name: current_age
+        description: >
+          [EN] Current age of employee as of reporting date.
+          [VI] Tuổi hiện tại của nhân viên.
+
+      - name: birthday
+        description: >
+          [EN] Date of birth.
+          [VI] Ngày sinh.
+
+      - name: traineeship_date
+        description: >
+          [EN] Trainee start date.
+          [VI] Ngày bắt đầu học việc.
+
+      - name: probation_date
+        description: >
+          [EN] Probation start date.
+          [VI] Ngày bắt đầu thử việc.
+
+      - name: start_working_date
+        description: >
+          [EN] First day at work.
+          [VI] Ngày bắt đầu làm việc.
+
+      - name: official_date
+        description: >
+          [EN] Official employment date (start of official contract).
+          [VI] Ngày chính thức.
+
+      - name: end_date
+        description: >
+          [EN] Last day of work (if resigned).
+          [VI] Ngày nghỉ việc.
+
+      # =========================
+      # 5. TENURE / SENIORITY
+      # =========================
+      - name: age_interval
+        description: >
+          [EN] Raw interval string between reference_date and official_date.
+          [VI] Khoảng thời gian thô giữa ngày tham chiếu và ngày chính thức.
+
+      - name: yrs
+        description: >
+          [EN] Full years of tenure.
+          [VI] Số năm thâm niên.
+
+      - name: mons
+        description: >
+          [EN] Remaining months of tenure after full years.
+          [VI] Số tháng thâm niên (sau khi trừ số năm).
+
+      - name: total_months
+        description: >
+          [EN] Total tenure expressed in months.
+          [VI] Tổng số tháng thâm niên.
+
+      - name: seniority_display
+        description: >
+          [EN] Formatted tenure string (e.g. "2 years 3 months").
+          [VI] Chuỗi hiển thị thâm niên (ví dụ: 2 năm 3 tháng).
+
+      - name: seniority_group
+        description: >
+          [EN] Classification of tenure (e.g. Under 1 year, 1-3 years).
+          [VI] Nhóm thâm niên.
+
+      - name: seniority_group_sort
+        description: >
+          [EN] Numeric sort order for seniority_group.
+          [VI] Thứ tự sắp xếp nhóm thâm niên.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý dữ liệu. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: report
+      primary_key: member_id
+      grain:
+        - member_id
+
+      foreign_keys:
+        - column: member_id
+          references: dim.dim_employee.member_id
+
+      data_characteristics:
+        is_denormalized: true
+        contains_derived_fields: true
+        slowly_changing: true
+
+      usage:
+        preferred_for:
+          - comprehensive employee profiling (Employee 360)
+          - workforce seniority and tenure distribution analysis
+          - educational background and qualification reporting
+          - demographic analysis (age, gender, marital status)
+        avoid_for:
+          - granular daily attendance analysis (use hr_attendance instead)
+          - real-time effort tracking
+        warnings:
+          - >
+            Seniority is calculated based on 'official_date'; periods of 
+            traineeship/probation may be excluded depending on business logic.
+          - >
+            'current_age' and tenure fields are updated as of the last ETL run.
+          - >
+            Employees who have resigned will have tenure fixed at their 'end_date'.
+
+      synonyms:
+        member_id:
+          - mã nhân viên
+        member_name:
+          - tên nhân viên
+        total_months:
+          - số tháng làm việc
+          - tổng tháng làm việc
+        yrs:
+          - số năm làm việc
+        seniority_display:
+          - thâm niên
+          - thời gian làm việc
+        seniority_group:
+          - nhóm thâm niên
+        seniority_group_sort:
+          - thứ tự nhóm thâm niên

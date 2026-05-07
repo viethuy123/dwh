@@ -1,0 +1,88 @@
+version: 2
+
+models:
+  - name: dim_odoo_skill
+    description: >
+      [EN] Dimension table containing skill definitions and their categories.
+      Each row represents one skill, including its type and classification.
+
+      [VI] Bảng danh mục kỹ năng.
+      Mỗi dòng là 1 kỹ năng, bao gồm loại kỹ năng và các thông tin phân loại.
+
+    columns:
+      - name: skill_id
+        description: >
+          [EN] Unique identifier of skill.
+          [VI] Mã định danh kỹ năng.
+
+      - name: skill_name
+        description: >
+          [EN] Name of skill.
+          [VI] Tên kỹ năng.
+
+      - name: skill_type_id
+        description: >
+          [EN] Identifier of skill type. Foreign key to dim_skill_type.
+          [VI] Mã loại kỹ năng. Khóa ngoại tới dim_skill_type.
+
+      - name: skill_type_name
+        description: >
+          [EN] Name of skill type (e.g. Programming, Language).
+          [VI] Tên loại kỹ năng.
+
+      - name: is_language_type
+        description: >
+          [EN] Whether the skill belongs to language category.
+          [VI] Có phải kỹ năng ngôn ngữ hay không.
+
+      - name: is_active
+        description: >
+          [EN] Indicates if skill is active/selectable.
+          [VI] Kỹ năng còn được sử dụng hay không.
+
+      - name: sequence_order
+        description: >
+          [EN] Ordering of skill for display purposes.
+          [VI] Thứ tự sắp xếp kỹ năng.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: dimension
+      primary_key: skill_id
+      grain:
+        - skill_id
+
+      # foreign_keys:
+      #   - column: skill_type_id
+      #     references: dim.dim_odoo_skill_type.id
+
+      data_characteristics:
+        contains_flags: true
+        slowly_changing: true
+
+      usage:
+        preferred_for:
+          - skill filtering
+          - grouping skills by type
+          - joining with skill fact tables
+        avoid_for:
+          - interpreting is_active as employee skill availability
+        warnings:
+          - is_active indicates skill availability in system, not employee capability
+          - one skill_type may contain multiple skills
+          - is_language_type is a boolean flag for quick filtering of language skills
+
+      synonyms:
+        skill_name:
+          - kỹ năng
+        skill_type_name:
+          - loại kỹ năng
+        is_language_type:
+          - kỹ năng ngôn ngữ
+        is_active:
+          - đang dùng
+          - còn sử dụng

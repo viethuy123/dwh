@@ -1,0 +1,110 @@
+version: 2
+
+models:
+  - name: fct_member_skill
+    description: >
+      [EN] Fact table linking employees to their skills and skill levels.
+      Each row represents one employee with one skill and its corresponding level.
+      This table is used as a bridge between employee and skill dimensions.
+
+      [VI] Bảng fact liên kết nhân viên với kỹ năng và trình độ kỹ năng.
+      Mỗi dòng là 1 nhân viên với 1 kỹ năng và level tương ứng.
+      Bảng này dùng làm cầu nối giữa nhân viên và kỹ năng.
+
+    columns:
+      - name: member_skill_id
+        description: >
+          [EN] Unique identifier of employee-skill record.
+          [VI] Mã định danh của bản ghi nhân viên - kỹ năng.
+
+      - name: member_id
+        description: >
+          [EN] Employee identifier. Foreign key to dim_employee.
+          [VI] Mã nhân viên. Khóa ngoại tới dim_employee.
+
+      - name: skill_id
+        description: >
+          [EN] Skill identifier. Foreign key to dim_odoo_skill.
+          [VI] Mã kỹ năng. Khóa ngoại tới dim_odoo_skill.
+
+      - name: skill_level_id
+        description: >
+          [EN] Skill level identifier. Foreign key to dim_skill_level.
+          [VI] Mã cấp độ kỹ năng. Khóa ngoại tới dim_skill_level.
+
+      - name: level_name
+        description: >
+          [EN] Name of skill level.
+          [VI] Tên cấp độ kỹ năng.
+
+      - name: level_group
+        description: >
+          [EN] Group of skill level (e.g., Beginner, Intermediate).
+          [VI] Nhóm cấp độ kỹ năng.
+
+      - name: level_progress_percentage
+        description: >
+          [EN] Progress percentage of skill level (0-100).
+          [VI] Phần trăm tiến độ của kỹ năng.
+
+      - name: created_at
+        description: >
+          [EN] Record creation timestamp in source system.
+          [VI] Thời điểm tạo bản ghi.
+
+      - name: updated_at
+        description: >
+          [EN] Last update timestamp in source system.
+          [VI] Thời điểm cập nhật.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: fact
+      primary_key: member_skill_id
+      grain:
+        - member_skill_id
+
+      foreign_keys:
+        - column: member_id
+          references: dim.dim_odoo_members.member_id
+        - column: skill_id
+          references: dim.dim_odoo_skill.skill_id
+        - column: skill_level_id
+          references: dim.dim_skill_level.skill_level_id
+
+      data_characteristics:
+        relationship_table: true
+        contains_derived_fields: true
+        is_transactional: false
+
+      usage:
+        preferred_for:
+          - skill mapping and heatmaps
+          - employee skill capability analysis
+          - skill distribution across departments
+        avoid_for:
+          - time-based historical analysis (table only reflects current skills)
+          - direct aggregation without grouping by member or skill
+        warnings:
+          - One employee can have multiple skills → avoid counting rows as unique employees
+          - ALWAYS use COUNT(DISTINCT member_id) for employee-level metrics
+          - This table does not track historical changes of skill levels over time
+          - level_group and progress are often snapshots of the current state
+
+      synonyms:
+        member_id:
+          - mã nhân viên
+        skill_id:
+          - mã kỹ năng
+        level_name:
+          - cấp độ
+          - trình độ
+        level_group:
+          - nhóm trình độ
+        level_progress_percentage:
+          - phần trăm kỹ năng
+          - tiến độ kỹ năng

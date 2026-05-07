@@ -1,0 +1,184 @@
+version: 2
+
+models:
+  - name: dim_projects
+    description: >
+      [EN] Dimension table containing project (POD) information.
+      Each row represents one project, including attributes such as type, size, ownership, and timeline milestones.
+
+      [VI] Bảng danh mục dự án (POD).
+      Mỗi dòng là 1 dự án, bao gồm thông tin loại, quy mô, người phụ trách và các mốc thời gian.
+
+    columns:
+      - name: pod_id
+        description: >
+          [EN] Unique identifier of project.
+          [VI] Mã dự án.
+
+      - name: project_code
+        description: >
+          [EN] Project code.
+          [VI] Mã dự án.
+
+      - name: project_name
+        description: >
+          [EN] Project name.
+          [VI] Tên dự án.
+
+      - name: project_type
+        description: >
+          [EN] Type of project.
+          [VI] Loại dự án.
+
+      - name: project_size
+        description: >
+          [EN] Size of project.
+          [VI] Quy mô dự án.
+
+      - name: project_rank
+        description: >
+          [EN] Priority or ranking of project.
+          [VI] Mức độ ưu tiên dự án.
+
+      - name: project_overview
+        description: >
+          [EN] Overview/description of project.
+          [VI] Mô tả dự án.
+
+      - name: project_category
+        description: >
+          [EN] Category of project.
+          [VI] Nhóm dự án.
+
+      - name: jira_url
+        description: >
+          [EN] Jira link of project.
+          [VI] Link Jira.
+
+      - name: code_jira
+        description: >
+          [EN] Extracted Jira project code.
+          [VI] Mã project Jira.
+
+      - name: department_id
+        description: >
+          [EN] Division responsible for project. Foreign key to dim_division.
+          [VI] Phòng ban phụ trách. Khóa ngoại tới dim_division.
+
+      - name: pm_id
+        description: >
+          [EN] Project manager. Foreign key to dim_employee.
+          [VI] PM. Khóa ngoại tới dim_employee.
+
+      - name: sale_id
+        description: >
+          [EN] Sales owner. Foreign key to dim_employee.
+          [VI] Sales phụ trách. Khóa ngoại tới dim_employee.
+
+      - name: customer_id
+        description: >
+          [EN] Customer identifier.
+          [VI] Khách hàng.
+
+      - name: domain
+        description: >
+          [EN] Business domain.
+          [VI] Lĩnh vực.
+
+      - name: market_id
+        description: >
+          [EN] Market identifier.
+          [VI] Thị trường.
+
+      - name: sub_pm_id
+        description: >
+          [EN] Sub project manager. Foreign key to dim_employee.
+          [VI] PM phụ. Khóa ngoại tới dim_employee.
+
+      - name: start_date
+        description: >
+          [EN] Project start date.
+          [VI] Ngày bắt đầu dự án.
+
+      - name: plan_uat_date
+        description: >
+          [EN] Planned UAT date.
+          [VI] Ngày UAT dự kiến.
+
+      - name: plan_release_date
+        description: >
+          [EN] Planned release date.
+          [VI] Ngày release dự kiến.
+
+      - name: final_release_date
+        description: >
+          [EN] Actual release date.
+          [VI] Ngày release thực tế.
+
+      - name: pod_status
+        description: >
+          [EN] Project lifecycle status.
+          [VI] Trạng thái dự án.
+
+      - name: status
+        description: >
+          [EN] Raw status field from source system.
+          [VI] Trạng thái gốc.
+
+      - name: is_deleted
+        description: >
+          [EN] Soft delete flag.
+          [VI] Cờ xóa.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: dimension
+      primary_key: pod_id
+      grain:
+        - pod_id
+
+      foreign_keys:
+        - column: department_id
+          references: dim.dim_division.id
+        - column: pm_id
+          references: dim.dim_employee.member_id
+        - column: sale_id
+          references: dim.dim_employee.member_id
+        - column: sub_pm_id
+          references: dim.dim_employee.member_id
+
+      data_characteristics:
+        contains_time_attributes: true
+        slowly_changing: true
+
+      usage:
+        preferred_for:
+          - project filtering
+          - grouping by project attributes
+          - joining with effort/worklog tables
+        avoid_for:
+          - interpreting project dates as activity logs
+        warnings:
+          - project dates represent milestones, not continuous activity
+          - pod_status should not be used for historical analysis (current status only)
+          - pod_id is the primary joining key for all project-related facts
+
+      synonyms:
+        project_name:
+          - dự án
+        project_type:
+          - loại dự án
+        project_size:
+          - quy mô
+        pm_id:
+          - quản lý dự án
+        start_date:
+          - ngày bắt đầu
+        final_release_date:
+          - ngày release
+        pod_status:
+          - trạng thái dự án

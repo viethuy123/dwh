@@ -1,0 +1,182 @@
+version: 2
+
+models:
+  - name: hr_attendance
+    description: >
+      [EN] Employee attendance report at daily grain. Each row represents one employee on one specific date.
+      Built using LEFT JOIN from employee table, so employees without attendance records will still appear.
+
+      [VI] Báo cáo chấm công chi tiết theo ngày. Mỗi dòng là 1 nhân viên tại 1 ngày cụ thể.
+      Do sử dụng LEFT JOIN từ bảng nhân viên nên những nhân viên không có dữ liệu chấm công (đi làm đủ) vẫn xuất hiện với giá trị NULL ở các cột attendance.
+
+    columns:
+      - name: member_id
+        description: >
+          [EN] Unique identifier of the employee. Foreign key to dim_employee.
+          [VI] Mã định danh duy nhất của nhân viên. Khóa ngoại tới dim_employee.
+
+      - name: member_name
+        description: >
+          [EN] Full name of the employee.
+          [VI] Tên đầy đủ của nhân viên.
+
+      - name: member_code
+        description: >
+          [EN] Business key used to join attendance data.
+          [VI] Mã nghiệp vụ dùng để join với dữ liệu chấm công.
+
+      - name: position_name
+        description: >
+          [EN] Job title of the employee.
+          [VI] Chức danh của nhân viên.
+
+      - name: branch_name
+        description: >
+          [EN] Branch where the employee is assigned.
+          [VI] Chi nhánh làm việc của nhân viên.
+
+      - name: branch_code
+        description: >
+          [EN] Code of the branch.
+          [VI] Mã chi nhánh.
+
+      - name: division_name
+        description: >
+          [EN] Division (Department) of the employee.
+          [VI] Khối/phòng ban của nhân viên.
+
+      - name: division_group
+        description: >
+          [EN] Group of division for high-level reporting.
+          [VI] Nhóm khối/phòng ban.
+
+      - name: member_level
+        description: >
+          [EN] Seniority level of employee.
+          [VI] Cấp bậc của nhân viên.
+
+      - name: member_status
+        description: >
+          [EN] Current employment status (e.g. Active, Resigned).
+          [VI] Trạng thái làm việc hiện tại.
+
+      - name: member_status_detail
+        description: >
+          [EN] Detailed employment status (e.g. Probation, Official).
+          [VI] Trạng thái chi tiết của nhân viên.
+
+      - name: position_company_group
+        description: >
+          [EN] Group role classification within the company.
+          [VI] Nhóm chức danh trong công ty.
+
+      - name: official_date
+        description: >
+          [EN] Official employment start date.
+          [VI] Ngày chính thức vào làm.
+
+      - name: end_date
+        description: >
+          [EN] End date of employment (if applicable).
+          [VI] Ngày nghỉ việc.
+
+      - name: date_actual
+        description: >
+          [EN] Specific attendance date. Foreign key to dim_date.
+          [VI] Ngày nghỉ thực tế (grain thời gian).
+
+      - name: daily_absent_unit
+        description: >
+          [EN] Number of absent units on this date (e.g. 1.0, 0.5).
+          [VI] Số ngày nghỉ trong ngày này.
+
+      - name: attendance_type_name
+        description: >
+          [EN] Name of attendance type (e.g. Annual Leave, Sick Leave).
+          [VI] Tên loại nghỉ.
+
+      - name: attendance_type_code
+        description: >
+          [EN] Code of attendance type.
+          [VI] Mã loại nghỉ.
+
+      - name: category_type
+        description: >
+          [EN] Category of attendance type for grouping.
+          [VI] Nhóm loại nghỉ.
+
+      - name: attendance_id
+        description: >
+          [EN] Original attendance record ID from source system.
+          [VI] Mã bản ghi chấm công.
+
+      - name: absent_reason
+        description: >
+          [EN] Reason for absence.
+          [VI] Lý do nghỉ.
+
+      - name: original_from_date
+        description: >
+          [EN] Start date of the original leave request.
+          [VI] Ngày bắt đầu đơn nghỉ.
+
+      - name: original_end_date
+        description: >
+          [EN] End date of the original leave request.
+          [VI] Ngày kết thúc đơn nghỉ.
+
+      - name: total_absent_days_original
+        description: >
+          [EN] Total absent days in the original request.
+          [VI] Tổng số ngày nghỉ của đơn gốc.
+
+      - name: day_name
+        description: >
+          [EN] Day of week (e.g. Monday, Tuesday).
+          [VI] Thứ trong tuần.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: report
+      grain:
+        - member_id
+        - date_actual
+
+      data_characteristics:
+        contains_nulls: true
+        is_denormalized: true
+        null_reason: "Attendance-related columns are NULL for employees who were present (no leave record) on that date."
+
+      usage:
+        preferred_for:
+          - individual daily attendance tracking
+          - headcount vs. attendance analysis
+          - branch or division-level leave rate reporting
+        avoid_for:
+          - raw fact calculation (use fct_attendance_daily for cleaner fact-only logic)
+        warnings:
+          - Use `COALESCE(daily_absent_unit, 0)` if you need to calculate total working vs. absent days.
+          - Filtering on `attendance_type_name` will exclude employees who were present.
+          - Ensure date filters are used to manage volume and accuracy.
+
+      time_context:
+        reference_date_column: date_actual
+
+      constraints:
+        require_date_filter: true
+
+      synonyms:
+        member_id:
+          - mã nhân viên
+        member_name:
+          - tên nhân viên
+        date_actual:
+          - ngày
+          - ngày công
+        daily_absent_unit:
+          - số ngày nghỉ
+          - nghỉ

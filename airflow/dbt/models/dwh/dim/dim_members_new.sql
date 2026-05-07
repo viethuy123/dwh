@@ -82,7 +82,7 @@ last_active_date AS (
     -- Jira issues
     SELECT i.assignee_email AS email,
            MAX(DATE_TRUNC('month', i.created_time)::DATE) AS last_date
-    FROM {{ ref('dim_jira_issues') }} i
+    FROM {{ ref('fct_jira_issues') }} i
     JOIN {{ ref('users') }} du ON i.assignee_email = du.company_email
     WHERE du.user_status IN ('Inactivity', 'null') OR du.user_status IS NULL
     GROUP BY i.assignee_email

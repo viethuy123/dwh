@@ -1,0 +1,117 @@
+version: 2
+
+models:
+  - name: fct_pod_member_efforts
+    description: >
+      [EN] Fact table storing approved billable effort per employee per month.
+      Each row represents one employee’s effort allocation in a specific month.
+      This table is already aggregated and should be used for monthly effort analysis.
+
+      [VI] Bảng fact lưu effort billable đã được duyệt theo từng nhân viên và từng tháng.
+      Mỗi dòng là effort của 1 nhân viên trong 1 tháng cụ thể.
+      Đây là dữ liệu đã được tổng hợp, dùng cho phân tích effort theo tháng.
+
+    columns:
+      - name: pod_id
+        description: >
+          [EN] Identifier of POD/project group. Foreign key to dim_projects.
+          [VI] Mã POD / nhóm dự án. Khóa ngoại tới dim_projects.
+
+      - name: member_id
+        description: >
+          [EN] Employee identifier. Foreign key to dim_employee.
+          [VI] Mã nhân viên. Khóa ngoại tới dim_employee.
+
+      - name: department_id
+        description: >
+          [EN] Department identifier. Foreign key to dim_division.
+          [VI] Mã phòng ban. Khóa ngoại tới dim_division.
+
+      - name: user_role
+        description: >
+          [EN] Role of employee in project/POD.
+          [VI] Vai trò của nhân viên trong dự án/POD.
+
+      - name: effort
+        description: >
+          [EN] Approved effort value (usually normalized, e.g. 1 = full capacity).
+          [VI] Effort đã được duyệt (thường chuẩn hóa, ví dụ 1 = full công suất).
+
+      - name: month_year
+        description: >
+          [EN] Month of effort (YYYY-MM-01). Foreign key to dim_date.
+          [VI] Tháng của effort. Khóa ngoại tới dim_date.
+
+      - name: status
+        description: >
+          [EN] Approval status of effort.
+          [VI] Trạng thái duyệt effort.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: fact
+      primary_key:
+        - member_id
+        - month_year
+        - pod_id
+      grain:
+        - member_id
+        - month_year
+        - pod_id
+
+      foreign_keys:
+        - column: pod_id
+          references: dim.dim_projects.pod_id
+        - column: member_id
+          references: dim.dim_employee.member_id
+        - column: department_id
+          references: dim.dim_division.id
+        - column: month_year
+          references: dim.dim_date.date_actual
+
+      data_characteristics:
+        aggregated: true
+        is_periodic_snapshot: true
+        contains_derived_fields: false
+
+      usage:
+        preferred_for:
+          - monthly effort analysis
+          - billable utilization and profitability reporting
+          - employee capacity and workload tracking
+        avoid_for:
+          - daily analysis or granular time-series below month level
+          - real-time effort tracking (this is approved monthly data)
+        warnings:
+          - Data is already aggregated at the month level; avoid double aggregation if querying at month grain.
+          - One employee may have multiple rows per month if they are allocated to multiple PODs.
+          - Summing effort across multiple PODs for one employee may exceed 1 (over-allocation).
+          - Ensure status is filtered (e.g., 'approved') if calculating final billable metrics.
+
+      time_context:
+        reference_date_column: month_year
+
+      constraints:
+        require_date_filter: true
+
+      synonyms:
+        member_id:
+          - mã nhân viên
+        month_year:
+          - tháng
+          - theo tháng
+        effort:
+          - effort
+          - công
+          - công suất
+          - workload
+        status:
+          - trạng thái
+          - trạng thái duyệt
+        user_role:
+          - vai trò
+          - role

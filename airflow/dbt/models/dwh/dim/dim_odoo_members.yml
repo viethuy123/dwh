@@ -1,0 +1,281 @@
+version: 2
+
+models:
+  - name: dim_odoo_members
+    description: >
+      [EN] Core employee dimension table enriched with contract, position, and organizational information.
+      Each row represents one employee after deduplication and latest record selection.
+      Includes derived fields for reporting such as position group and employment status.
+
+      [VI] Bảng nhân viên chính đã được enrich với thông tin hợp đồng, chức danh và tổ chức.
+      Mỗi dòng là 1 nhân viên sau khi xử lý loại bỏ trùng và lấy bản ghi mới nhất.
+      Bao gồm các trường phân loại phục vụ báo cáo như nhóm chức danh và trạng thái làm việc.
+
+    columns:
+      - name: member_id
+        description: >
+          [EN] Unique identifier of employee.
+          [VI] Mã định danh nhân viên.
+
+      - name: member_name
+        description: >
+          [EN] Full name of employee.
+          [VI] Tên nhân viên.
+
+      - name: member_email
+        description: >
+          [EN] Work email of employee.
+          [VI] Email công việc của nhân viên.
+
+      - name: member_code
+        description: >
+          [EN] Business identifier of employee (from source system).
+          [VI] Mã nhân viên từ hệ thống nguồn.
+
+      - name: member_type
+        description: >
+          [EN] Type of employee.
+          [VI] Loại nhân viên.
+
+      - name: gender
+        description: >
+          [EN] Gender of employee.
+          [VI] Giới tính.
+
+      - name: marital
+        description: >
+          [EN] Marital status.
+          [VI] Tình trạng hôn nhân.
+
+      - name: job_id
+        description: >
+          [EN] Position identifier. Foreign key to dim_odoo_job.
+          [VI] Mã chức danh. Khóa ngoại tới dim_odoo_job.
+        meta: >
+          synonyms: ["position_id"]
+
+      - name: position_name
+        description: >
+          [EN] Raw job title from source system .
+          [VI] Chức danh gốc từ hệ thống nguồn.
+        meta: >
+          synonyms: ["job_name", "job_title"]
+
+      - name: position_group
+        description: >
+          [EN] Derived grouping of position based on job_title pattern matching.
+          Values: ENGINEERING, SALES, MARKETING, HR_ADMIN, MANAGEMENT, PRODUCT_BA, OPERATION, INTERN_CTV, OTHER.
+          Do not use for exact job title filtering — use position_name instead.
+          [VI] Nhóm chức danh được phân loại từ job_title. Không dùng để filter chức danh chính xác.
+
+      - name: group_role_name
+        description: >
+          [EN] Higher-level role grouping. Defaults to 'Khác' if unknown.
+          [VI] Nhóm vai trò cấp cao hơn. Mặc định là 'Khác' nếu không xác định.
+
+      - name: branch_root_name
+        description: >
+          [EN] Root branch name.
+          [VI] Tên chi nhánh gốc.
+
+      - name: branch_root_code
+        description: >
+          [EN] Root branch code.
+          [VI] Mã chi nhánh gốc.
+
+      - name: branch_name
+        description: >
+          [EN] Branch group name. Use this for branch-level reporting.
+          [VI] Tên nhóm chi nhánh. Dùng cái này cho báo cáo theo chi nhánh.
+
+      - name: branch_code
+        description: >
+          [EN] Branch group code.
+          [VI] Mã nhóm chi nhánh.
+
+      - name: division_name
+        description: >
+          [EN] Division name.
+          [VI] Tên phòng ban.
+
+      - name: division_group
+        description: >
+          [EN] Division grouping.
+          [VI] Nhóm phòng ban.
+
+      - name: member_level
+        description: >
+          [EN] Employee level. Defaults to FRESHER if not set.
+          [VI] Cấp bậc nhân viên. Mặc định là FRESHER nếu không có.
+
+      - name: member_status
+        description: >
+          [EN] Raw employment status from source system.
+          WARNING: Do not use alone to determine if employee is active.
+          Use official_date + end_date pair instead for point-in-time queries.
+          [VI] Trạng thái gốc từ hệ thống. KHÔNG dùng để xác định nhân viên đang làm — dùng official_date + end_date.
+
+      - name: member_status_root
+        description: >
+          [EN] Root-level employment status.
+          [VI] Trạng thái cấp cao.
+
+      - name: member_status_detail
+        description: >
+          [EN] Derived detailed employment status. Values: Official, Probationary, Apprentice, or contract type.
+          Derived from date fields in this order: start_working_date → probation_start_date → traineeship_start_date → contract_type.
+          Preferred field for employment status reporting over member_status.
+          [VI] Trạng thái chi tiết được suy ra từ các trường ngày. Ưu tiên dùng cái này thay vì member_status.
+
+      - name: contract_type
+        description: >
+          [EN] Latest contract type from most recent contract record.
+          [VI] Loại hợp đồng mới nhất.
+
+      - name: age_at_hire
+        description: >
+          [EN] Age at joining date, computed as joining_date year minus birthday year.
+          [VI] Tuổi khi vào làm, tính từ năm joining_date trừ năm sinh.
+
+      - name: official_date
+        description: >
+          [EN] Primary employment start date for point-in-time analysis.
+          Fallback order: start_working_date → probation_start_date → traineeship_start_date → joining_date → departure_date → resign_date.
+          Always pair with end_date to determine active status at any target date.
+          Use this as the primary date field for tenure calculations.
+          [VI] Ngày bắt đầu làm chính. Thứ tự fallback như trên.
+          Luôn kết hợp với end_date để xác định trạng thái tại thời điểm bất kỳ.
+          Dùng cột này để tính thâm niên.
+
+      - name: end_date
+        description: >
+          [EN] Employment end date. NULL means the employee is currently active.
+          Use with official_date for point-in-time headcount queries.
+          Pattern: official_date <= :target_date AND (end_date IS NULL OR end_date > :target_date)
+          [VI] Ngày nghỉ việc. NULL = đang làm việc.
+          Kết hợp với official_date để query headcount tại thời điểm bất kỳ.
+
+      - name: birthday
+        description: >
+          [EN] Date of birth.
+          [VI] Ngày sinh.
+
+      - name: joining_date
+        description: >
+          [EN] Initial joining date (first day at company).
+          [VI] Ngày vào công ty lần đầu.
+
+      - name: start_working_date
+        description: >
+          [EN] Official working start date (after probation/traineeship).
+          [VI] Ngày bắt đầu làm chính thức (sau thử việc/học việc).
+
+      - name: probation_date
+        description: >
+          [EN] Probation period start date.
+          [VI] Ngày bắt đầu thử việc.
+
+      - name: traineeship_date
+        description: >
+          [EN] Traineeship/apprentice start date.
+          [VI] Ngày bắt đầu học việc.
+
+      - name: departure_date
+        description: >
+          [EN] Departure date from position (may differ from resign_date).
+          [VI] Ngày rời vị trí (có thể khác resign_date).
+
+      - name: resign_date
+        description: >
+          [EN] Official resignation date.
+          [VI] Ngày nghỉ việc chính thức.
+
+      - name: etl_datetime
+        description: >
+          [EN] ETL processing timestamp. For pipeline monitoring only.
+          [VI] Thời điểm xử lý ETL. Chỉ dùng cho monitoring pipeline.
+
+    meta:
+      semantic_type: dimension
+      primary_key: member_id
+      grain:
+        - member_id
+
+      foreign_keys:
+        - column: job_id
+          references: dim.dim_odoo_job.job_id
+        - column: company_id
+          references: dim.dim_odoo_branch.id
+        - column: division_id
+          references: dim.dim_odoo_division.id
+        
+
+      data_characteristics:
+        contains_derived_fields: true
+        slowly_changing: true
+        dedup_note: >
+          Source may have duplicate member_code. Dedup logic already applied
+          (latest is_active DESC + member_id DESC, member_code > 1000).
+          Do not re-deduplicate in queries.
+
+      temporal_logic:
+        active_employee: >
+          official_date <= CURRENT_DATE
+          AND (end_date IS NULL OR end_date > CURRENT_DATE)
+        point_in_time: >
+          official_date <= :target_date
+          AND (end_date IS NULL OR end_date > :target_date)
+
+      usage:
+        preferred_for:
+          - employee analysis
+          - historical headcount
+          - joining with fact tables
+          - organizational reporting
+        avoid_for:
+          - determining active status via member_status alone
+          - exact job title filtering (use position_name, not position_group)
+        warnings:
+          - Never use member_status alone to filter active employees
+          - Always use official_date + end_date pair for point-in-time queries
+          - end_date IS NULL means currently employed
+          - position_group is derived from job_title using pattern matching — may misclassify edge cases
+          - member_status_detail is derived using business logic from date fields
+          - official_date uses fallback logic across multiple date fields
+
+      synonyms:
+        member_id:
+          - mã nhân viên
+          - employee id
+        member_name:
+          - tên nhân viên
+          - họ tên
+        member_code:
+          - mã nv
+        position_name:
+          - chức danh
+          - job title
+        position_group:
+          - nhóm chức danh
+          - nhóm vị trí
+        division_name:
+          - phòng ban
+          - bộ phận
+        branch_name:
+          - chi nhánh
+          - văn phòng
+        member_status_detail:
+          - trạng thái
+          - trạng thái chi tiết
+        official_date:
+          - ngày chính thức
+          - ngày bắt đầu
+        end_date:
+          - ngày nghỉ
+          - ngày kết thúc
+        active_employee:
+          - đang làm
+          - còn làm
+          - nhân viên active
+          - nhân viên đang làm việc
+          - nhân viên hiện tại

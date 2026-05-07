@@ -34,14 +34,14 @@ intermediate_mapping ={
     'pods': 'src_create.stg_pods',
     'billable_efforts_approveds': 'stg_create_billable_efforts_approveds',
     'create_project': 'stg_create_projects',
-    'jisseki_project': 'stg_jisseki_projects',
-    # New intermediates
+    # 'jisseki_project': 'stg_jisseki_projects',
+    # # New intermediates
 
-    'jisseki_categories': 'src_jisseki.stg_project_categories',
-    'jisseki_countries': 'src_jisseki.stg_countries',
-    'jisseki_customers': 'src_jisseki.stg_project_customer',
-    'jisseki_project_cate': 'src_jisseki.stg_project_categories',
-    'jisseki_project_cus': 'src_jisseki.stg_project_customer',
+    # 'jisseki_categories': 'src_jisseki.stg_project_categories',
+    # 'jisseki_countries': 'src_jisseki.stg_countries',
+    # 'jisseki_customers': 'src_jisseki.stg_project_customer',
+    # 'jisseki_project_cate': 'src_jisseki.stg_project_categories',
+    # 'jisseki_project_cus': 'src_jisseki.stg_project_customer',
     'skill_members' : 'stg_skill_members',
     'create_project_customer' : 'stg_create_project_customer',
     'create_project_cate' : 'stg_create_project_categories',
@@ -72,13 +72,13 @@ intermediate_mapping ={
 
 }
 
-hr_dtm_mapping = {
-    "dim_branches": "branches",
-    "dim_departments": "departments",
-    "dim_month_year": "time_series",
-    "dim_positions": "user_positions",
-    "fct_hrm_employees": ["time_series", "users", "staff_attendances"]
-}
+# hr_dtm_mapping = {
+#     "dim_branches": "branches",
+#     "dim_departments": "departments",
+#     "dim_month_year": "time_series",
+#     "dim_positions": "user_positions",
+#     "fct_hrm_employees": ["time_series", "users", "staff_attendances"]
+# }
 
 # jira_dtm_mapping = {
 #     "dim_members": ["users", "branches", "departments", "user_positions"],

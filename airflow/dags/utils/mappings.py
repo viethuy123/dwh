@@ -128,7 +128,7 @@ dim_mapping = {
     "dim_odoo_branch": "odoo_branch",
     "dim_odoo_division": "odoo_division",
     "dim_odoo_job": "odoo_hr_job",
-    "dim_seniority": ""
+    # "dim_seniority": ""
 }
 
 fct_mapping = {

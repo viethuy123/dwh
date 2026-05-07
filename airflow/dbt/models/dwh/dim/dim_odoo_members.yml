@@ -49,13 +49,17 @@ models:
 
       - name: job_id
         description: >
-          [EN] Position identifier. Foreign key to dim_position.
-          [VI] Mã chức danh. Khóa ngoại tới dim_position.
+          [EN] Position identifier. Foreign key to dim_odoo_job.
+          [VI] Mã chức danh. Khóa ngoại tới dim_odoo_job.
+        meta: >
+          synonyms: ["position_id"]
 
       - name: position_name
         description: >
-          [EN] Raw job title from source system.
+          [EN] Raw job title from source system .
           [VI] Chức danh gốc từ hệ thống nguồn.
+        meta: >
+          synonyms: ["job_name", "job_title"]
 
       - name: position_group
         description: >

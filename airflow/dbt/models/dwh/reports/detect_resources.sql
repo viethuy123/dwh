@@ -39,12 +39,14 @@ WITH
   dim_members as (
     select
       m.*,
-      coalesce(m.official_date, m.joining_date, m.end_date)::DATE as create_date_used,
-      m.member_code as staff_code,
-      m.member_level as user_level,
-      m.member_status_root as user_status,
-      coalesce(m.end_date, '2999-12-31'::DATE) as end_date_used
-    from {{ ref('dim_odoo_members') }} m
+      coalesce(o.official_date, o.joining_date, m.create_date_used)::DATE as create_date_used,
+      -- m.member_code as staff_code,
+      -- m.member_level as user_level,
+      -- m.member_status_root as user_status,
+      coalesce(o.end_date,m.end_date::date, '2999-12-31'::DATE) as end_date_used
+    from {{ ref('dim_members_new') }} m
+    join {{ ref('dim_odoo_members') }} o
+      on m.staff_code = o.member_code
 
   ),
 

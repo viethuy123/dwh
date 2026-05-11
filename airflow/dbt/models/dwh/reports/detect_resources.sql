@@ -39,12 +39,14 @@ WITH
   dim_members as (
     select
       m.*,
-      coalesce(m.official_date, m.joining_date, m.end_date)::DATE as create_date_used,
-      m.member_code as staff_code,
-      m.member_level as user_level,
-      m.member_status_root as user_status,
-      coalesce(m.end_date, '2999-12-31'::DATE) as end_date_used
-    from {{ ref('dim_odoo_members') }} m
+      coalesce(o.official_date, o.joining_date, m.create_date_used)::DATE as start_date_used,
+      -- m.member_code as staff_code,
+      -- m.member_level as user_level,
+      -- m.member_status_root as user_status,
+      coalesce(o.end_date,m.end_date::date, '2999-12-31'::DATE) as end_date_used
+    from {{ ref('dim_members_new') }} m
+    join {{ ref('dim_odoo_members') }} o
+      on m.staff_code = o.member_code
 
   ),
 
@@ -67,7 +69,7 @@ WITH
       dim_members m
       CROSS JOIN _time_series ts
     WHERE
-      ts.month_year >= DATE_TRUNC('month', m.create_date_used) 
+      ts.month_year >= DATE_TRUNC('month', m.start_date_used) 
       AND ts.month_year <= DATE_TRUNC('month', m.end_date_used)
   ),
 
@@ -113,7 +115,7 @@ WITH
       _pod_efforts_raw pme
       JOIN dim_members m 
       ON m.member_id = pme.member_id
-      and pme.month_year_date >= m.create_date_used
+      and pme.month_year_date >= m.start_date_used
       and pme.month_year_date <= m.end_date_used
     GROUP BY
       m.member_email,
@@ -335,7 +337,7 @@ SELECT
   dim_members m
   LEFT JOIN  _final as f
   ON m.member_email = f.member_email_full
-  AND f.month_year >= m.create_date_used
+  AND f.month_year >= m.start_date_used
   AND f.month_year <= m.end_date_used
   WHERE COALESCE(f.month_year, DATE_TRUNC('month', NOW())::DATE) <= DATE_TRUNC('month', NOW()) + INTERVAL '3 months'
   and m.member_name is not null

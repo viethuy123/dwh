@@ -1,2 +1,4 @@
 airflow/variables.json
 airflow/great_expectations/
+dbt_packages
+package-lock.yml

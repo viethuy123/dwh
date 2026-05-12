@@ -37,7 +37,14 @@ def _get_table_mapping(mapping_var: str) -> dict:
         'bridge_mapping': bridge_mapping,
     }
     return mappings.get(mapping_var, {})
-
+def create_dbt_deps_task(dag):
+    """Task chạy dbt deps, dùng chung cho tất cả DAG."""
+    from airflow.providers.standard.operators.bash import BashOperator
+    return BashOperator(
+        task_id='dbt_deps',
+        bash_command='cd /opt/airflow/dbt && dbt deps --profiles-dir /opt/airflow/dbt',
+        dag=dag,
+    )
 
 def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict) -> TaskGroup:
     """

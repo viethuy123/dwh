@@ -9,7 +9,7 @@ with date_series as (
     -- Sử dụng hàm đặc trưng của Postgres để gen chuỗi ngày
     select 
         generate_series(
-            '2020-01-01'::date, 
+            '2000-01-01'::date, 
             current_date, 
             '1 day'::interval
         )::date as date_actual

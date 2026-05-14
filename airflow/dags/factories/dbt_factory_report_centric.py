@@ -46,7 +46,7 @@ def create_dbt_deps_task(dag):
         dag=dag,
     )
 
-def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict) -> TaskGroup:
+def create_dbt_transformation_task_group_report_centric(dag, source: str, pipeline_config: dict) -> TaskGroup:
     """
     Tạo TaskGroup chứa toàn bộ DBT transformation pipeline cho từng bảng.
 
@@ -73,22 +73,38 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
     task_group_prefix = f'{source}_to_{target_schema}'
 
     with TaskGroup(group_id=task_group_prefix, dag=dag) as outer_group:
+        dbt_run_reports = None
+        if pipeline_config['table_mapping_var'] == 'report_mapping':
+            from airflow_dbt_python.operators.dbt import DbtRunOperator
+            dbt_run_reports = DbtRunOperator(
+                task_id=f'dbt_{target_schema}_all_reports',
+                project_dir=DBT_CONFIG['project_dir'],
+                profiles_dir=DBT_CONFIG['profiles_dir'],
+                target=dbt_target,
+                profile=DBT_CONFIG['profile'],
+                upload_dbt_project=True,
+                select=[f'path:{models_path}/{target_schema}'],
+                dag=dag,
+            )
 
         for tgt_table, _ in table_mapping.items():
 
             with TaskGroup(group_id=f'{source}_to_{tgt_table}', dag=dag):
 
                 # ── 1. DBT Run ──────────────────────────────────────────────
-                dbt_run = _create_dbt_operator(
-                    task_id=f'dbt_{target_schema}_{tgt_table}',
-                    mapping_var=pipeline_config['table_mapping_var'],
-                    models_path=models_path,
-                    target_schema=target_schema,
-                    tgt_table=tgt_table,
-                    dag=dag,
-                    dbt_target=dbt_target,
-                    DBT_CONFIG=DBT_CONFIG,
-                )
+                if dbt_run_reports is not None:
+                    dbt_run = dbt_run_reports
+                else:
+                    dbt_run = _create_dbt_operator(
+                        task_id=f'dbt_{target_schema}_{tgt_table}',
+                        mapping_var=pipeline_config['table_mapping_var'],
+                        models_path=models_path,
+                        target_schema=target_schema,
+                        tgt_table=tgt_table,
+                        dag=dag,
+                        dbt_target=dbt_target,
+                        DBT_CONFIG=DBT_CONFIG,
+                    )
 
                 # ── 2. Success logs → trả về job_id ────────────────────────
                 @task(task_id=f'success_save_logs_{target_schema}_{tgt_table}', dag=dag)

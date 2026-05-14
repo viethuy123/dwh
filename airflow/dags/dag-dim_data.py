@@ -7,7 +7,7 @@ from airflow.providers.standard.operators.empty import EmptyOperator
 from airflow.datasets import Dataset
 from datetime import timedelta
 from config import DBT_PIPELINES, DEFAULT_ARGS, DEFAULT_CHECK_DAG
-from factories.dbt_factory import create_dbt_transformation_task_group
+from factories.dbt_factory import create_dbt_transformation_task_group, create_dbt_deps_task
 
 # Lấy config
 pipeline_config = DBT_PIPELINES['dim_data']
@@ -25,11 +25,11 @@ dag = DAG(
 
 with dag:
     start = EmptyOperator(task_id='start')
-    
+    dbt_deps = create_dbt_deps_task(dag) 
     # DBT transformation tasks
     transformation_group = create_dbt_transformation_task_group(dag,'dwh', pipeline_config)
     
     end = EmptyOperator(task_id='end', outlets=[Dataset('dim_data_completed')], trigger_rule= DEFAULT_CHECK_DAG['trigger_rule'])
     
     # Dependencies
-    start >> transformation_group >> end
+    start >> dbt_deps >> transformation_group >> end

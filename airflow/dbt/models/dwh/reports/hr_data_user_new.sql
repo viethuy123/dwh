@@ -94,9 +94,25 @@ final_transformation as (
     FROM diff_parts dp
     LEFT JOIN highest_education he 
     ON dp.member_id = he.member_id
+),
+
+full_date as (
+    SELECT 
+        d.date_actual,
+        d.day_name,
+        d.day_of_week,
+        d.is_weekend,
+        ft.*,
+    FROM {{ ref('dim_date') }} d
+    left join final_transformation ft
+    on d.date_actual = ft.official_date
 )
 
 SELECT 
+    date_actual,
+    day_name,
+    day_of_week,
+    is_weekend,
     member_id,
     member_name,
     member_email,
@@ -143,4 +159,4 @@ SELECT
     seniority_display,
     seniority_group,
     seniority_group_sort
-FROM final_transformation
+FROM full_date

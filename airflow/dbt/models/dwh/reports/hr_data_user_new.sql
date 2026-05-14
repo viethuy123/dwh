@@ -102,7 +102,7 @@ full_date as (
         d.day_name,
         d.day_of_week,
         d.is_weekend,
-        ft.*,
+        ft.*
     FROM {{ ref('dim_date') }} d
     left join final_transformation ft
     on d.date_actual = ft.official_date

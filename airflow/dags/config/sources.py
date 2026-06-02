@@ -152,7 +152,7 @@ SOURCES = {
                 {'name': 'hr_contract_type', 'type': 'light', 'chunksize': None},
                 {'name': 'res_company', 'type': 'light', 'chunksize': None},
                 {'name': 'hr_department', 'type': 'light', 'chunksize': None},
-
+                {'name': 'z_type_employee', 'type': 'light', 'chunksize': None},
             ],
         }
     },

@@ -34,7 +34,7 @@ select
     division_name,
     CASE
         WHEN division_name ILIKE '%DU%'
-        THEN TRIM(REGEXP_REPLACE(division_name, '\.?DU.*', ''))
+        THEN TRIM(SUBSTRING(division_name FROM 'DU.*'))
         ELSE division_name
     END
     AS division_group,

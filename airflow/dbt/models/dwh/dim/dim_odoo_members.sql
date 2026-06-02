@@ -132,14 +132,14 @@ SELECT
     e.state as member_status,
     e.state_root as member_status_root,
     lc.contract_type,
+    t.member_type_name as member_status_detail_root,
     initcap(lower(
         CASE 
-            -- WHEN b.branch_group_code = 'Onsite' THEN 'Onsite'
-             -- Trả về giá trị cột, không để trong nháy đơn
-            WHEN e.start_working_date is not NULL THEN 'Official' 
-            WHEN e.probation_start_date is not NULL THEN 'Probationary' 
-            WHEN e.traineeship_start_date is not NULL THEN 'Apprentice'
-            WHEN lc.contract_type IS NOT NULL THEN lc.contract_type
+            WHEN LOWER(t.member_type_name) = 'thôi việc' THEN 'Chính thức'
+            WHEN t.member_type_name is not NULL then t.member_type_name
+            WHEN e.start_working_date is not NULL THEN 'Chính thức' 
+            WHEN e.probation_start_date is not NULL THEN 'Thử việc' 
+            WHEN e.traineeship_start_date is not NULL THEN 'Thực tập'
             ELSE 'Unknown'
         END
     )) AS member_status_detail,
@@ -170,6 +170,8 @@ SELECT
 
 
 FROM filtered_members e
+left join {{ ref('odoo_z_type_employee') }} t
+    on cast(e.type_member_id AS INTEGER) = cast(t.member_type_id AS INTEGER)
 LEFT JOIN latest_contracts lc
     ON cast(e.member_code AS INTEGER) = cast(lc.member_code AS INTEGER)
 left join {{ ref('dim_odoo_branch') }} b

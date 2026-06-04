@@ -98,9 +98,9 @@ SELECT
     e.joining_date,
     e.start_working_date,
     coalesce(
-        e.start_working_date,
-        e.probation_start_date,
         e.traineeship_start_date, 
+        e.probation_start_date,
+        e.start_working_date,
         e.joining_date, 
         e.departure_date ,
         e.resign_date,

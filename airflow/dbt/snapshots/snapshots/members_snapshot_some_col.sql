@@ -32,7 +32,7 @@ SELECT
     update_time,
     expired_time,
     welcome_day,
-    job_id,
+    job_id::double precision,
     performance_factor,
     sub_position_id,
     etl_datetime

@@ -8,7 +8,7 @@ priority_status AS (
     SELECT 
         u.*,
         MIN(dbt_updated_at) OVER (PARTITION BY company_email) as min_dbt_updated_at
-    FROM {{ ref('members_snapshot') }} u
+    FROM {{ ref('members_snapshot_some_col') }} u
     where staff_code is not null
  ),
 create_date_used AS (

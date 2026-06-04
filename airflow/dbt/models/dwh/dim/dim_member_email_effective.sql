@@ -1,5 +1,6 @@
-{{ config(materialized='table') }}
+{#
 
+{{ config(materialized='table') }}
 WITH priority_status AS (
     SELECT 
         u.*,
@@ -180,3 +181,4 @@ FROM _final
 WHERE company_email IS NOT NULL
   AND company_email != 'null'
   AND company_email NOT LIKE 'Inactive%'
+  #}

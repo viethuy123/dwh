@@ -9,8 +9,11 @@ with date_series as (
     -- Sử dụng hàm đặc trưng của Postgres để gen chuỗi ngày
     select 
         generate_series(
-            '2000-01-01'::date, 
-            current_date, 
+            '2000-01-01'::date,
+            (
+                date_trunc('month', current_date)
+                + interval '1 month - 1 day'
+            )::date,
             '1 day'::interval
         )::date as date_actual
 ),

@@ -30,7 +30,7 @@ base_data AS (
 
     SELECT *
 
-    FROM {{ ref('dim_odoo_members') }}
+    FROM {{ ref('dim_odoo_members_scd') }}
 
     WHERE member_code IS NOT NULL
 
@@ -51,6 +51,11 @@ snapshot_data AS (
             '_',
             TO_CHAR(ds.report_date, 'YYYYMMDD')
         ) AS snapshot_key,
+
+        b.dbt_scd_id,
+        b.dbt_valid_from,
+        b.dbt_valid_to,
+        b.is_current,
 
         b.member_id,
         b.member_code,
@@ -131,6 +136,11 @@ snapshot_data AS (
             b.end_date IS NULL
             OR b.end_date > ds.report_date
        )
+       AND b.dbt_valid_from::date <= ds.report_date
+       AND (
+            b.dbt_valid_to IS NULL
+            OR b.dbt_valid_to::date > ds.report_date
+       )
 
 )
 
@@ -142,6 +152,11 @@ SELECT
     report_month_no,
 
     snapshot_key,
+
+    dbt_scd_id,
+    dbt_valid_from,
+    dbt_valid_to,
+    is_current,
 
     member_id,
     member_code,

@@ -95,18 +95,20 @@ intermediate_mapping ={
 report_mapping = {
     "detect_resources": ["dim_members_scd", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members", "dim_pods", "fct_pod_member_efforts"],
     # "mview_member_free_efforts": ["dim_members", "dim_time_series", "fct_worklog","dim_skill_members"],
-    "user_join_projects": ["fct_jira_issues", "dim_members_scd", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members"],
-    "hr_data_user": ["dim_members_new"],
+    # "user_join_projects": ["fct_jira_issues", "dim_members_scd", "dim_projects", "dim_time_series", "fct_worklog", "fct_project_members"],
+    # "hr_data_user": ["dim_members_new"],
     "hr_attendance": ["member_attendance_daily", "dim_attendance_types", "dim_odoo_members"],
     "hr_skill_members": ["dim_odoo_members", "dim_skill_odoo", "dim_skill_level", "fct_member_skill"],
     "hr_data_user_new": ["dim_odoo_members", "fct_member_education", "dim_odoo_branch", "dim_odoo_division"],
+    "hr_data_user_snapshot": ["dim_hc_snapshot_month"],
+    "hr_data_user_snapshot_scd": ["dim_hc_snapshot_month_scd"]
 }
 dim_mapping = {
     # "dim_jira_issues": "jira_issues",
     "dim_members": "",
     "dim_pods": "",
     "dim_projects": "",
-    "dim_members_scd": "",
+    # "dim_members_scd": "",
     "dim_members_new": "",
     "dim_branches": "branches",
     "dim_departments": "departments",
@@ -129,7 +131,9 @@ dim_mapping = {
     "dim_odoo_branch": "odoo_branch",
     "dim_odoo_division": "odoo_division",
     "dim_odoo_job": "odoo_hr_job",
+    "dim_odoo_members_scd": "odoo_members_snapshot",
     "dim_hc_snapshot_month": "dim_odoo_members",
+    "dim_hc_snapshot_month_scd": "dim_odoo_members_scd",
     # "dim_seniority": ""
 }
 
@@ -153,7 +157,7 @@ bridge_mapping = {
 }
 
 snapshot_mapping = {
-    "members_snapshot": "users",
+    "odoo_members_snapshot": "dim_odoo_members",
     "members_snapshot_full": "users",
     "members_snapshot_some_col": "users"
 }

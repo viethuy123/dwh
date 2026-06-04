@@ -129,6 +129,7 @@ dim_mapping = {
     "dim_odoo_branch": "odoo_branch",
     "dim_odoo_division": "odoo_division",
     "dim_odoo_job": "odoo_hr_job",
+    "dim_hc_snapshot_month": "dim_odoo_members",
     # "dim_seniority": ""
 }
 
@@ -141,6 +142,7 @@ fct_mapping = {
     'fct_attendance_daily': 'member_attendance_daily',
     'fct_jira_issues': 'jira_issues',
     'fct_member_education': 'odoo_hr_member_education',
+    # 'fct_hc_snapshot': 'dim_odoo_members'
 
 }
 

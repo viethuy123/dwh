@@ -136,7 +136,16 @@ SELECT
     gender,
     marital,
     -- user_status_originals,
-    member_status_detail as user_status_originals_detail,
+    INITCAP(
+        LOWER(
+            CASE
+                WHEN LOWER(member_status_detail) = 'thôi việc'
+                    THEN 'chính thức'
+                ELSE member_status_detail
+            END
+        )
+    ) as user_status_originals_detail,
+    -- member_status_detail as user_status_originals_detail,
     age_at_hire as age,
     extract(year from age(birthday)) AS current_age,
 
@@ -160,3 +169,4 @@ SELECT
     seniority_group,
     seniority_group_sort
 FROM full_date
+where member_code is not null

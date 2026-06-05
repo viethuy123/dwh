@@ -72,7 +72,6 @@ SELECT
     t.member_type_name as member_status_detail_root,
     initcap(lower(
         CASE 
-            WHEN LOWER(t.member_type_name) = 'thôi việc' THEN 'Chính thức'
             WHEN t.member_type_name is not NULL then t.member_type_name
             WHEN e.start_working_date is not NULL THEN 'Chính thức' 
             WHEN e.probation_start_date is not NULL THEN 'Thử việc' 

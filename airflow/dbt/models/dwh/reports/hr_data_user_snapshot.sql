@@ -80,7 +80,7 @@ SELECT
     -- =====================================
     hc.position_name,
     hc.position_group,
-    hc.group_role_name,
+    hc.group_role_name as position_company_group,
 
     -- =====================================
     -- Status

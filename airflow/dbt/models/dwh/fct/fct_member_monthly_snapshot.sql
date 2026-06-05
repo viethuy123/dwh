@@ -38,7 +38,7 @@ FROM last_days ld
 JOIN dim_member m 
   -- ĐIỀU KIỆN 1: Dòng dữ liệu (Role/Branch) phải đang có hiệu lực
   ON m.eff_date <= ld.date 
-  AND (m.exp_date IS NULL OR m.exp_date > ld.date)
+  AND (m.exp_date IS NULL OR m.exp_date >= ld.date)
   -- ĐIỀU KIỆN 2: Nhân viên phải đang trong trạng thái làm việc (Chưa nghỉ hẳn)
   AND m.official_date <= ld.date
-  AND (m.end_date IS NULL OR m.end_date > ld.date)
+  AND (m.end_date IS NULL OR m.end_date >= ld.date)

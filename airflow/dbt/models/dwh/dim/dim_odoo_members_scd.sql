@@ -89,9 +89,6 @@ SELECT
     INITCAP(
         LOWER(
             CASE
-                WHEN LOWER(t.member_type_name) = 'thôi việc'
-                    THEN 'chính thức'
-
                 WHEN t.member_type_name IS NOT NULL
                     THEN t.member_type_name
 

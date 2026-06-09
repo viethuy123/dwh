@@ -1,14 +1,14 @@
 pandas==2.1.4
 dbt-core==1.8.6
 dbt-postgres==1.8.2
-astronomer-cosmos==1.*
-airflow-dbt-python[postgres]
-psycopg2-binary
-great_expectations
-openpyxl
-minio
-PyMySQL
-pymongo
-cryptography
+astronomer-cosmos==1.14.2
+airflow-dbt-python[postgres]==3.6.0
+psycopg2-binary==2.9.11
+great_expectations==1.18.0
+openpyxl==3.1.5
+minio==7.2.20
+PyMySQL==1.1.2
+pymongo==4.17.0
+cryptography==42.0.8
 # python-telegram-bot
-slack-sdk
+slack-sdk==3.40.1

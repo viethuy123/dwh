@@ -43,6 +43,7 @@ dag = DAG(
     default_args=DEFAULT_ARGS,
     schedule=[Dataset("fct_data_completed")],
     catchup=False,
+    max_active_tasks=1,
     dagrun_timeout=timedelta(minutes=60),
     description=f"Cosmos dbt report-centric pipeline for {REPORT_NAME}",
     tags=["dbt", "cosmos", "report-centric", REPORT_NAME],

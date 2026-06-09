@@ -79,3 +79,36 @@ def send_validation_results(
     except Exception as e:
         logger.error(f"Failed to send Slack message: {str(e)}")
         raise
+    
+def send_failure_notification(
+    report_name: str,
+    slack_bot_token: str,
+    slack_channel_id: str,
+    error_message: str | None = None,
+) -> None:
+
+    try:
+
+        client = WebClient(token=slack_bot_token)
+
+        message = (
+            f":x: *DBT Report Failed* :x:\n"
+            f"*Report*: {report_name}\n"
+            f"{f'*Error*: {error_message}\n' if error_message else ''}"
+        )
+
+        client.chat_postMessage(
+            channel=slack_channel_id,
+            text=message,
+            mrkdwn=True,
+        )
+
+        logger.info("Failure notification sent")
+
+    except SlackApiError as e:
+        logger.error(f"Failed to send Slack message: {e.response['error']}")
+        raise
+
+    except Exception as e:
+        logger.error(f"Failed to send Slack message: {str(e)}")
+        raise

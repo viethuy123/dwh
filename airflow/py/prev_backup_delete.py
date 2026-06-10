@@ -1,4 +1,5 @@
-from datetime import datetime, timedelta
+from datetime import timedelta
+import pendulum
 import re
 from minio import Minio
 from minio.error import S3Error
@@ -12,7 +13,7 @@ def main():
             secure=False
         )
     
-    today = datetime.now().date()
+    today = pendulum.now('Asia/Ho_Chi_Minh').date()
 
     bucket_name = "database-backup"
 
@@ -23,7 +24,7 @@ def main():
         match = date_pattern.search(obj.object_name) # type: ignore
         if match:
             try:
-                obj_date = datetime.strptime(match.group(1), "%Y%m%d").date()
+                obj_date = pendulum.parse(match.group(1), exact=False).date()
                 if obj_date < today - timedelta(days=1):
                     to_delete.append(obj.object_name)
             except ValueError:

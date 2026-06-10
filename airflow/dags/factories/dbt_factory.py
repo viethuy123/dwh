@@ -99,9 +99,8 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                     _target_db=target_db,
                 ) -> int:
                     """Lưu job log thành công, return job_id cho các task tiếp theo."""
-                    from config import DB_URIS
+                    from config import DB_URIS, get_local_now
                     from utils.monitoring import save_job_log
-                    from datetime import datetime
                     from airflow.operators.python import get_current_context
                     import json
                     context = get_current_context()
@@ -113,7 +112,7 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                         'source_table': json.dumps(_src),
                         'target_table': _tgt_table,
                         'status': 'SUCCESS',
-                        'execution_time': datetime.utcnow(),
+                        'execution_time': get_local_now(),
                         'dag_id': context['dag'].dag_id,
                         'task_id': context['task'].task_id, 
                     }
@@ -132,10 +131,9 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                     _target_db_uri_fn=target_db_uri_fn,
                 ) -> None:
                     """Lưu metrics sau khi DBT chạy xong."""
-                    from config import DB_URIS, DBT_CONFIG
+                    from config import DB_URIS, DBT_CONFIG, get_local_now, to_local_datetime
                     from utils.monitoring import save_metrics as _save_metrics
                     from sqlalchemy import create_engine, text
-                    from datetime import datetime
                     import os, json
 
                     if not job_id:
@@ -171,9 +169,10 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
 
                     data_delay_minutes = None
                     if max_updated_at:
-                        now = datetime.utcnow()
+                        now = get_local_now()
+                        max_updated_at = to_local_datetime(max_updated_at)
                         data_delay_minutes = int(
-                            (now - max_updated_at.replace(tzinfo=None)).total_seconds() / 60
+                            (now - max_updated_at).total_seconds() / 60
                         )
 
                     metrics = {
@@ -279,9 +278,8 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                     _target_db=target_db,
                 ) -> None:
                     """Lưu job log khi có lỗi."""
-                    from config import DB_URIS
+                    from config import DB_URIS, get_local_now
                     from utils.monitoring import save_job_log
-                    from datetime import datetime
                     from airflow.operators.python import get_current_context
                     import json
 
@@ -293,7 +291,7 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                         'source_table': json.dumps(_src),
                         'target_table': _tgt_table,
                         'status': 'FAILURE',
-                        'execution_time': datetime.utcnow(),
+                        'execution_time': get_local_now(),
                         'dag_id': context['dag'].dag_id,
                         'task_id': context['task'].task_id,
                     }

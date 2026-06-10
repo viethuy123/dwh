@@ -14,7 +14,7 @@ SOURCES = {
             'backup_filename_template': 'jira8db_bk_{date}_22.zip',
             'restore_script': '/opt/airflow/scripts/restore_jira8db.sh',
             'unzip_script': '/opt/airflow/py/unzip_backup_file.py',
-            'schedule': '0 9 * * *',
+            'schedule': '0 2 * * *',
             'timeout_minutes': 60,
         },
         

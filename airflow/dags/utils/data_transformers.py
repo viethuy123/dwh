@@ -74,13 +74,13 @@ def normalize_column_name(col_name: str) -> str:
 
 def transform_dataframe(df, transformer):
 
-    from datetime import datetime
+    from config import get_local_now
     
     for col in df.columns:
         if df[col].dtype == 'object':
             df[col] = df[col].apply(transformer) 
     
-    df['etl_datetime'] = datetime.now()
+    df['etl_datetime'] = get_local_now()
     return df
 
 

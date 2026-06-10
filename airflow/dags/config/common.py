@@ -1,7 +1,24 @@
 """Common DAG settings and helper functions"""
-from datetime import datetime, timedelta
+from datetime import timedelta
 import pendulum
-TIMEZONE = pendulum.timezone('Asia/Ho_Chi_Minh')
+TIMEZONE_NAME = 'Asia/Ho_Chi_Minh'
+TIMEZONE = pendulum.timezone(TIMEZONE_NAME)
+
+
+def get_local_now():
+    return pendulum.now(TIMEZONE)
+
+
+def to_local_datetime(value):
+    if value is None:
+        return None
+
+    if value.tzinfo is None:
+        return pendulum.instance(value, tz=TIMEZONE)
+
+    return pendulum.instance(value).in_timezone(TIMEZONE)
+
+
 DEFAULT_ARGS = {
     'owner': 'huy',
     'start_date': pendulum.datetime(2026, 1, 1, tz=TIMEZONE),

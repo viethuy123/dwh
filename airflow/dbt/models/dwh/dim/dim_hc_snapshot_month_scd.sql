@@ -134,7 +134,7 @@ snapshot_data AS (
         ON b.official_date <= ds.report_date
        AND (
             b.end_date IS NULL
-            OR b.end_date >= ds.report_date
+            OR b.end_date > ds.report_date
        )
        AND b.dbt_valid_from::date <= ds.report_date
        AND (

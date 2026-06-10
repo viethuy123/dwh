@@ -169,4 +169,4 @@ SELECT
     seniority_group,
     seniority_group_sort
 FROM full_date
-where member_code is not null
+-- where member_code is not null

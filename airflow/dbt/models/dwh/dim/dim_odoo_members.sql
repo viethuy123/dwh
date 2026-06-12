@@ -70,6 +70,7 @@ SELECT
     e.state_root as member_status_root,
     lc.contract_type,
     t.member_type_name as member_status_detail_root,
+    e.type_member_id,
     initcap(lower(
         CASE 
             WHEN t.member_type_name is not NULL then t.member_type_name

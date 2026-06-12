@@ -1,4 +1,13 @@
-{{ config(materialized='table') }}
+{{ config(
+    materialized='table',
+    indexes=[
+      {'columns': ['report_date']},
+      {'columns': ['member_id']},
+      {'columns': ['member_code']},
+      {'columns': ['report_date', 'member_status']},
+    ]
+    
+    ) }}
 
 WITH education_comprehensive AS (
 

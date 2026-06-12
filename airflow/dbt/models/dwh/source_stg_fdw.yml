@@ -74,6 +74,7 @@ sources:
       - name: stg_odoo_res_company
       - name: stg_odoo_hr_department
       - name: stg_odoo_z_type_employee
+      - name: stg_odoo_employee_transfer
       # - name: stg_odoo_hr_contract_type
 
   - name: excel

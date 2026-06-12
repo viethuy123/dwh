@@ -67,6 +67,7 @@ intermediate_mapping ={
     'odoo_branch': 'src_odoo.stg_res_company',
     'odoo_division': 'src_odoo.stg_hr_department',
     'odoo_z_type_employee': 'src_odoo.stg_odoo_z_type_employee',
+    'odoo_employee_transfer': 'src_odoo.stg_odoo_employee_transfer'
     # 'odoo_hr_contract_type': 'src_odoo.stg_odoo_hr_contract_type'
     
     

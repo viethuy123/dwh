@@ -1,5 +1,11 @@
 {{ config(
-    materialized='table'
+    materialized='table',
+    indexes=[
+      {'columns': ['official_date']},
+      {'columns': ['end_date']},
+      {'columns': ['member_code']},
+      {'columns': ['official_date', 'end_date', 'member_status']},
+    ]
 ) }}
 
 with user_data as (
@@ -169,4 +175,4 @@ SELECT
     seniority_group,
     seniority_group_sort
 FROM full_date
-where member_code is not null
+-- where member_code is not null

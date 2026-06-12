@@ -36,6 +36,16 @@ base_data AS (
 
 ),
 
+transfers as (
+    select 
+        member_id,
+        transfer_type_id,
+        transfer_start_date,
+        transfer_end_date
+    from {{ ref('odoo_employee_transfer') }}
+    where transfer_type_id in (1,2,3)
+),
+
 snapshot_data AS (
 
     SELECT
@@ -81,6 +91,7 @@ snapshot_data AS (
 
         b.member_status_detail,
         b.member_status_detail_root,
+        b.type_member_id,
 
         b.contract_type,
 
@@ -120,6 +131,9 @@ snapshot_data AS (
                 )
             )
         )::INT AS total_months,
+        t.transfer_type_id,
+        t.transfer_start_date,
+        t.transfer_end_date,
 
         b.etl_datetime
 
@@ -129,8 +143,16 @@ snapshot_data AS (
         ON b.official_date <= ds.report_date
        AND (
             b.end_date IS NULL
-            OR b.end_date >= ds.report_date
+            OR b.end_date > ds.report_date
        )
+
+    LEFT JOIN transfers t
+        ON b.member_id = t.member_id
+       AND 
+            ds.report_date >= t.transfer_start_date
+       AND 
+            ds.report_date <= t.transfer_end_date
+
 
 )
 
@@ -153,6 +175,7 @@ SELECT
     marital,
 
     member_level,
+    type_member_id,
 
     branch_root_name,
     branch_root_code,
@@ -169,8 +192,60 @@ SELECT
 
     member_status,
     member_status_root,
+    INITCAP(
+            LOWER(
+        CASE
 
-    member_status_detail,
+            -- Transfer ưu tiên cao nhất
+            WHEN type_member_id in (7,8) 
+            THEN member_status_detail
+            WHEN transfer_type_id = 1
+            THEN 'Nghỉ thai sản'
+
+            WHEN transfer_type_id = 2
+            THEN 'Nghỉ không lương'
+
+            WHEN transfer_type_id = 3
+            THEN 'Onsite'
+
+            -- Thực tập
+
+            WHEN traineeship_date IS NOT NULL
+                AND report_date >= traineeship_date
+                AND (
+                        probation_date IS NULL
+                        OR report_date < probation_date
+                    )
+                AND (
+                        joining_date IS NULL
+                        OR report_date < joining_date
+                    )
+            THEN 'Thực tập'
+
+            -- Thử việc
+
+            WHEN probation_date IS NOT NULL
+                AND report_date >= probation_date
+                AND (
+                        joining_date IS NULL
+                        OR report_date < joining_date
+                    )
+            THEN 'Thử việc'
+
+            -- Chính thức
+
+            WHEN joining_date IS NOT NULL
+                AND report_date >= joining_date
+            THEN 'Chính thức'
+
+            -- Fallback
+
+            ELSE member_status_detail
+
+        END 
+            ))
+    AS member_status_detail,
+
     member_status_detail_root,
 
     contract_type,
@@ -201,6 +276,9 @@ SELECT
         WHEN total_months < 72 THEN '6. 3 – < 6 năm'
         ELSE '7. >= 6 năm'
     END AS seniority_group,
+    transfer_type_id,
+    transfer_start_date,
+    transfer_end_date,
 
     etl_datetime
 

@@ -109,6 +109,13 @@ snapshot_data AS (
         b.departure_date,
         b.resign_date,
         b.end_date,
+        CASE
+            WHEN end_date IS NOT NULL
+                AND DATE_TRUNC('month', end_date)
+                    = DATE_TRUNC('month', report_date)
+            THEN 'Inactive'
+            ELSE 'Active'
+        END AS active_status,    
 
         (
             EXTRACT(
@@ -143,7 +150,7 @@ snapshot_data AS (
         ON b.official_date <= ds.report_date
        AND (
             b.end_date IS NULL
-            OR b.end_date > ds.report_date
+            OR b.end_date >= date_trunc('month', ds.report_date)
        )
 
     LEFT JOIN transfers t
@@ -191,6 +198,7 @@ SELECT
     group_role_name,
 
     member_status,
+    active_status,
     member_status_root,
     INITCAP(
             LOWER(

@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, text
-from datetime import datetime
+from config import get_local_now
 import json
 
 
@@ -23,5 +23,5 @@ def save_etl_job_logs(sql_uri: str, log_table: str, **kwargs) -> None:
             'task_id': kwargs.get('task_id'),
             'execution_time': kwargs.get('execution_time'),
             'status': kwargs.get('status'),
-            'created_time': datetime.now()
+            'created_time': get_local_now()
         })

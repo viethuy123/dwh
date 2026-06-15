@@ -1,10 +1,10 @@
-from datetime import datetime
+import pendulum
 from minio import Minio
 from minio.error import S3Error
 
 def main():
 
-    today_str = datetime.now().strftime("%Y%m%d")
+    today_str = pendulum.now('Asia/Ho_Chi_Minh').strftime("%Y%m%d")
 
     client = Minio(
         "minio:9000",

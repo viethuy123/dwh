@@ -38,7 +38,7 @@ jobs:
               echo ">>> Deploying Airflow..."
               cd airflow
               if git diff --name-only $BEFORE_SHA $AFTER_SHA | grep -qE "airflow/(Dockerfile|requirements.txt|docker-compose.yaml)|dbt/(packages.yml|dbt_project.yml)"; then
-                docker-compose up -d --build
+                docker compose up -d --build
               else
                 echo "DAGs updated, Airflow will auto-reload"
               fi
@@ -48,25 +48,25 @@ jobs:
             # 2. MYSQL
             if check_changes "mysql"; then
               echo ">>> Deploying MySQL..."
-              cd mysql && docker-compose up -d && cd ..
+              cd mysql && docker compose up -d && cd ..
             fi
             
             # 3. POSTGRES
             if check_changes "postgre"; then
               echo ">>> Deploying Postgres..."
-              cd postgre && docker-compose up -d && cd ..
+              cd postgre && docker compose up -d && cd ..
             fi
             
             # 4. MINIO
             if check_changes "minio"; then
               echo ">>> Deploying MinIO..."
-              cd minio && docker-compose up -d && cd ..
+              cd minio && docker compose up -d && cd ..
             fi
             
             # 5. METABASE
             if check_changes "metabase"; then
               echo ">>> Deploying Metabase..."
-              cd metabase && docker-compose up -d && cd ..
+              cd metabase && docker compose up -d && cd ..
             fi
             
             echo "✅ Deploy completed!"

@@ -95,6 +95,7 @@ SELECT
     -- Status
     -- =====================================
     hc.member_status,
+    hc.active_status,
     hc.member_status_detail,
 
     -- =====================================

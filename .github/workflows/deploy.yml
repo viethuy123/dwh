@@ -6,6 +6,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -19,6 +20,8 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           port: 7001
+          command_timeout: 60m
+          script_stop: true 
           script: |
             set -e
             cd /home/user/warehouse
@@ -38,7 +41,16 @@ jobs:
               echo ">>> Deploying Airflow..."
               cd airflow
               if git diff --name-only $BEFORE_SHA $AFTER_SHA | grep -qE "airflow/(Dockerfile|requirements.txt|docker-compose.yaml)|dbt/(packages.yml|dbt_project.yml)"; then
-                docker compose up -d --build --force-recreate
+                echo ">>> Full rebuild required..."
+                docker compose up -d --build --force-recreate 2>&1 | tee /tmp/airflow-deploy.log
+                echo ">>> Waiting for Airflow to be healthy..."
+                timeout 300 bash -c '
+                  until docker compose ps | grep "airflow-apiserver" | grep -q "healthy"; do
+                    echo "Still waiting... $(date)"
+                    sleep 10
+                  done
+                '
+                echo ">>> Airflow is up!"
               else
                 echo "DAGs updated, Airflow will auto-reload"
               fi

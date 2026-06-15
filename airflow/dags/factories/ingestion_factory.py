@@ -380,9 +380,8 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                     _target_schema=target_schema,
                 ) -> int:
                     """Lưu job log thành công, return job_id."""
-                    from config import DB_URIS
+                    from config import DB_URIS, get_local_now
                     from utils.monitoring import save_job_log
-                    from datetime import datetime
                     from airflow.operators.python import get_current_context
                     import json
                     context = get_current_context()
@@ -394,7 +393,7 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                         'source_table': json.dumps(_src),
                         'target_table': _tgt_table,
                         'status': 'SUCCESS',
-                        'execution_time': datetime.utcnow(),
+                        'execution_time': get_local_now(),
                         'dag_id': context['dag'].dag_id,
                         'task_id': context['task'].task_id, 
                     }
@@ -413,10 +412,9 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                     _uri_fn=target_db_uri_fn,
                 ) -> None:
                     """Lưu metrics vào monitoring DB."""
-                    from config import DB_URIS
+                    from config import DB_URIS, get_local_now, to_local_datetime
                     from utils.monitoring import save_metrics as _save_metrics
                     from sqlalchemy import create_engine, text
-                    from datetime import datetime
 
                     if not job_id or not metrics:
                         print(f'[save_metrics] Warning: thiếu job_id hoặc metrics cho {_tgt_table}')
@@ -432,8 +430,10 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
 
                     data_delay_minutes = None
                     if max_updated_at:
+                        now = get_local_now()
+                        max_updated_at = to_local_datetime(max_updated_at)
                         data_delay_minutes = int(
-                            (datetime.utcnow() - max_updated_at.replace(tzinfo=None)).total_seconds() / 60
+                            (now - max_updated_at).total_seconds() / 60
                         )
 
                     metrics['max_updated_at'] = max_updated_at
@@ -533,9 +533,8 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                     _tgt_table=tgt_table,
                 ) -> None:
                     """Lưu job log khi có lỗi."""
-                    from config import DB_URIS
+                    from config import DB_URIS, get_local_now
                     from utils.monitoring import save_job_log
-                    from datetime import datetime
                     from airflow.operators.python import get_current_context
                     import json
                     context = get_current_context()
@@ -546,7 +545,7 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                         'source_table': json.dumps(_src),
                         'target_table': _tgt_table,
                         'status': 'FAILURE',
-                        'execution_time': datetime.utcnow(),
+                        'execution_time': get_local_now(),
                         'dag_id': context['dag'].dag_id,
                         'task_id': context['task'].task_id,
                     }

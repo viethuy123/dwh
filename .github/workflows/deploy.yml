@@ -25,7 +25,7 @@ jobs:
           script: |
             set -e
             cd /home/user/warehouse
-            
+            git checkout -- .
             BEFORE_SHA=$(git rev-parse HEAD)
             git pull origin main
             AFTER_SHA=$(git rev-parse HEAD)

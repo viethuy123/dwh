@@ -22,7 +22,7 @@ def to_local_datetime(value):
 DEFAULT_ARGS = {
     'owner': 'huy',
     'start_date': pendulum.datetime(2026, 1, 1, tz=TIMEZONE),
-    'retries': 1,
+    'retries': 5,
     'retry_delay': timedelta(minutes=1),
     'depends_on_past': False,
 }

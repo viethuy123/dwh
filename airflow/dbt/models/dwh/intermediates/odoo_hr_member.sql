@@ -23,7 +23,7 @@ renamed AS (
 
         -- Thông tin cơ bản (Text)
         CAST(name AS TEXT) AS name,
-        CAST(job_title AS TEXT) AS job_title,
+        TRIM(CAST(job_title AS TEXT)) AS job_title,
         CAST(work_phone AS TEXT) AS work_phone,
         CAST(mobile_phone AS TEXT) AS mobile_phone,
         CAST(work_email AS TEXT) AS work_email,

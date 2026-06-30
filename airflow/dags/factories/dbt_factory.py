@@ -12,7 +12,6 @@ from __future__ import annotations
 
 from airflow.sdk import TaskGroup
 from airflow.decorators import task
-from airflow.providers.standard.operators.python import PythonOperator
 
 SKIP_QC_TABLES = ['dim_date', 'fct_member_monthly_snapshot']  # Danh sách bảng không cần chạy quality check
 from functools import lru_cache
@@ -51,12 +50,12 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
     Tạo TaskGroup chứa toàn bộ DBT transformation pipeline cho từng bảng.
 
     Flow mỗi bảng:
-        dbt_run → success_logs → save_metrics → quality_check → notification
-                ↘ failure_logs (trigger_rule=all_failed)
+        dbt_run → success_logs → save_metrics
+                ↘ failure_logs → failure_notification (trigger_rule=all_failed)
 
     Với SKIP_QC_TABLES:
         dbt_run → success_logs
-                ↘ failure_logs
+                ↘ failure_logs → failure_notification
     """
     source_db = pipeline_config['source_db']
     target_db = pipeline_config['target_db']
@@ -128,6 +127,7 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                     _src=source,
                     _tgt_table=tgt_table,
                     _target_schema=target_schema,
+                    _dbt_target=dbt_target,
                     _target_db_uri_fn=target_db_uri_fn,
                 ) -> None:
                     """Lưu metrics sau khi DBT chạy xong."""
@@ -141,31 +141,58 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                         return
 
                     dbt_project_dir = DBT_CONFIG['project_dir']
-                    target_name = DBT_CONFIG['target_name']
                     run_results_path = os.path.join(
-                        dbt_project_dir, 'target', target_name, 'run_results.json'
+                        dbt_project_dir, 'target', _dbt_target, 'run_results.json'
                     )
 
                     execution_time = 0
                     if os.path.exists(run_results_path):
                         with open(run_results_path) as f:
                             run_results = json.load(f)
+
                         for r in run_results.get('results', []):
-                            if r['unique_id'].endswith(_tgt_table):
+                            unique_id = r.get('unique_id', '')
+                            model_name = unique_id.split('.')[-1] if unique_id else ''
+                            if model_name == _tgt_table:
                                 execution_time = r.get('execution_time', 0)
                                 break
                     else:
                         print(f'[save_metrics] Warning: run_results.json không tìm thấy')
 
-                    engine = create_engine(DB_URIS['dwh']())
+                    target_db_uri = (
+                        _target_db_uri_fn()
+                        if callable(_target_db_uri_fn)
+                        else _target_db_uri_fn
+                    )
+                    engine = create_engine(target_db_uri)
                     with engine.connect() as conn:
                         row_count = conn.execute(
                             text(f'SELECT COUNT(*) FROM {_target_schema}.{_tgt_table}')
                         ).scalar()
 
-                        max_updated_at = conn.execute(
-                            text(f'SELECT MAX(etl_datetime) FROM {_target_schema}.{_tgt_table}')
+                        has_etl_datetime = conn.execute(
+                            text(
+                                """
+                                SELECT EXISTS (
+                                    SELECT 1
+                                    FROM information_schema.columns
+                                    WHERE table_schema = :table_schema
+                                      AND table_name = :table_name
+                                      AND column_name = 'etl_datetime'
+                                )
+                                """
+                            ),
+                            {
+                                'table_schema': _target_schema,
+                                'table_name': _tgt_table,
+                            },
                         ).scalar()
+
+                        max_updated_at = None
+                        if has_etl_datetime:
+                            max_updated_at = conn.execute(
+                                text(f'SELECT MAX(etl_datetime) FROM {_target_schema}.{_tgt_table}')
+                            ).scalar()
 
                     data_delay_minutes = None
                     if max_updated_at:
@@ -190,82 +217,7 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                     _save_metrics(log_uri, job_id, metrics)
                     print(f'[save_metrics] Saved metrics for job_id={job_id}, table={_tgt_table}')
 
-                # ── 4. Quality check → trả về validation result ─────────────
-                @task(task_id=f'{target_schema}_{tgt_table}_quality_check', dag=dag)
-                def quality_check(
-                    _tgt_table=tgt_table,
-                    _target_schema=target_schema,
-                    _target_db_uri_fn=target_db_uri_fn,
-                ) -> dict:
-                    """Chạy data quality check, return kết quả cho notification."""
-                    from utils.extract_data import extract_sql_data
-                    from utils.data_quality import validate_dataframe
-
-                    uri = _target_db_uri_fn() if callable(_target_db_uri_fn) else _target_db_uri_fn
-                    full_table = f'{_target_schema}.{_tgt_table}'
-                    suite_name = f'{_target_schema}_{_tgt_table}'
-
-                    data = extract_sql_data(uri, f'SELECT * FROM {full_table} LIMIT 1000')
-                    result = validate_dataframe(df=data, suite_name=suite_name)
-                    trimmed = {
-                        'success': result.get('success'),
-                        'suite_name': result.get('suite_name'),
-                        'statistics': result.get('statistics'),
-                        'results': [          # ← giữ nguyên key 'results' để không vỡ downstream
-                            {
-                                'success': r.get('success'),
-                                'expectation_config': {
-                                    'type': r['expectation_config']['type'],
-                                    'kwargs': {'column': r['expectation_config']['kwargs'].get('column')},
-                                },
-                                'result': r.get('result'),
-                            }
-                            for r in result.get('results', [])
-                            if not r.get('success')  # chỉ giữ failed
-                        ],
-                    }
-                    return trimmed
-
-                # ── 5. Notification — nhận validation_result trực tiếp ──────
-                @task(task_id=f'{target_schema}_{tgt_table}_notification', dag=dag)
-                def notification(
-                    validation_result: dict,  # nhận từ quality_check qua TaskFlow
-                    _src=source,
-                    _tgt_table=tgt_table,
-                    _target_schema=target_schema,
-                    _target_db_uri_fn=target_db_uri_fn,
-                ) -> None:
-                    """Gửi notification lên Slack với kết quả validation."""
-                    from airflow.sdk import Variable
-                    from utils.extract_data import extract_sql_data
-                    from utils.data_quality_notification import send_validation_results
-                    from config import get_slack_config
-
-                    uri = _target_db_uri_fn() if callable(_target_db_uri_fn) else _target_db_uri_fn
-                    suite_name = f'{_target_schema}_{_tgt_table}'
-                    full_table = f'{_target_schema}.{_tgt_table}'
-
-                    total_rows = extract_sql_data(
-                        uri, f'SELECT count(*) as total_rows FROM {full_table}'
-                    )['total_rows'][0]
-
-                    prev_rows = int(Variable.get(f'{suite_name}_prev_rows', default=0))
-                    new_rows_inserted = total_rows - prev_rows
-
-                    slack_config = get_slack_config()
-                    send_validation_results(
-                        table_name=suite_name,
-                        validation_result=validation_result,
-                        slack_channel_id=slack_config['chat_id'],
-                        slack_bot_token=slack_config['bot_token'],
-                        total_rows=total_rows,
-                        new_rows_inserted=new_rows_inserted,
-                    )
-
-                    Variable.set(f'{suite_name}_prev_rows', str(total_rows))
-                    print(f'[notification] Sent notification for {suite_name}')
-
-                # ── 6. Failure logs ─────────────────────────────────────────
+                # ── 5. Failure logs ─────────────────────────────────────────
                 @task(
                     task_id=f'failure_save_logs_{target_schema}_{tgt_table}',
                     dag=dag,
@@ -299,21 +251,82 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                     save_job_log(log_uri, log_data)
                     print(f'[failure_logs] Saved failure log for {_tgt_table}')
 
+                @task(
+                    task_id=f'failure_notification_{target_schema}_{tgt_table}',
+                    dag=dag,
+                    trigger_rule='all_failed',
+                )
+                def send_failure_notification(
+                    _src=source,
+                    _tgt_table=tgt_table,
+                    _source_db=source_db,
+                    _target_db=target_db,
+                    _target_schema=target_schema,
+                ) -> None:
+                    """Gửi Telegram notification chỉ khi DBT task thất bại."""
+                    from airflow.operators.python import get_current_context
+                    # from slack_sdk import WebClient
+                    # from config import get_slack_config
+                    from config import get_telegram_config, get_local_now
+                    from utils.telegram_notification import send_telegram_message
+                    import html
+
+                    context = get_current_context()
+                    ti = context['ti']
+                    run_id = context['dag_run'].run_id
+                    log_url = ti.log_url
+                    execution_time = get_local_now().format('YYYY-MM-DD HH:mm:ss')
+
+                    # slack_config = get_slack_config()
+                    # client = WebClient(token=slack_config['bot_token'])
+                    # message = (
+                    #     ':x: *DBT task failed*\n'
+                    #     f'*Source*: {_src}\n'
+                    #     f'*Target DB*: {_target_db}\n'
+                    #     f'*Target Table*: {_target_schema}.{_tgt_table}\n'
+                    #     f'*DAG*: {context["dag"].dag_id}\n'
+                    #     f'*Run ID*: {run_id}\n'
+                    #     f'*Log*: {log_url}'
+                    # )
+                    # client.chat_postMessage(
+                    #     channel=slack_config['chat_id'],
+                    #     text=message,
+                    #     mrkdwn=True,
+                    # )
+                    
+                    telegram_config = get_telegram_config()
+                    message = (
+                        '❌ <b>DBT task failed</b>\n'
+                        f'<b>Source</b>: {html.escape(str(_src))}\n'
+                        f'<b>Target DB</b>: {html.escape(str(_target_db))}\n'
+                        f'<b>Target Table</b>: {html.escape(str(_target_schema))}.{html.escape(str(_tgt_table))}\n'
+                        f'<b>DAG</b>: {html.escape(str(context["dag"].dag_id))}\n'
+                        f'<b>Run ID</b>: {html.escape(str(run_id))}\n'
+                        f'<b>Execution Time</b>: {execution_time}\n'
+                        f'<b>Log</b>: <a href="{html.escape(str(log_url))}">View Log</a>'
+                    )
+                    send_telegram_message(
+                        message=message,
+                        bot_token=telegram_config['bot_token'],
+                        chat_id=telegram_config['chat_id']
+                    )
+                    print(f'[failure_notification] Sent Telegram failure alert for {_tgt_table}')
+
                 # ── Wire dependencies ───────────────────────────────────────
                 logs = save_success_logs()
                 failure = save_failure_logs()
+                failure_notification = send_failure_notification()
 
                 if tgt_table in SKIP_QC_TABLES:
                     # Skip QC: dbt → success_logs
                     dbt_run >> logs
                 else:
-                    # Full flow: dbt → success_logs → metrics → quality_check → notification
+                    # Full flow: dbt → success_logs → metrics
                     metrics_result = save_metrics(logs)
-                    qc_result = quality_check()
-                    notif = notification(qc_result)
-                    dbt_run >> logs >> metrics_result >> qc_result >> notif
+                    dbt_run >> logs >> metrics_result
 
-                # Failure logs luôn chạy khi dbt fail
+                # Failure branch chỉ notify khi dbt fail
                 dbt_run >> failure
+                dbt_run >> failure_notification
 
     return outer_group

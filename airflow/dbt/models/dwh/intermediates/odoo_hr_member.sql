@@ -23,7 +23,7 @@ renamed AS (
 
         -- Thông tin cơ bản (Text)
         CAST(name AS TEXT) AS name,
-        CAST(job_title AS TEXT) AS job_title,
+        TRIM(CAST(job_title AS TEXT)) AS job_title,
         CAST(work_phone AS TEXT) AS work_phone,
         CAST(mobile_phone AS TEXT) AS mobile_phone,
         CAST(work_email AS TEXT) AS work_email,
@@ -75,7 +75,12 @@ renamed AS (
         END AS state,
 
         -- Các trường tùy chỉnh (Custom Fields z_ / x_)
-        CAST(z_employee_code AS DOUBLE PRECISION) AS member_code,
+        -- CAST(z_employee_code AS DOUBLE PRECISION) AS member_code,
+        CASE
+            WHEN TRIM(z_employee_code) ~ '^[0-9]+$'
+            THEN z_employee_code::BIGINT
+            ELSE NULL
+        END AS member_code,
         CAST(z_rank_id AS DOUBLE PRECISION) AS rank_id,
         CAST(z_academic_level_id AS DOUBLE PRECISION) AS academic_level_id,
         CAST(z_qualification_id AS TEXT) AS qualification_id,

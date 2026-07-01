@@ -147,11 +147,14 @@ snapshot_data AS (
     FROM date_series ds
 
     INNER JOIN base_data b
-        ON b.official_date <= ds.report_date
-       AND (
-            b.end_date IS NULL
-            OR b.end_date >= date_trunc('month', ds.report_date)
-       )
+        ON (
+                b.official_date <= ds.report_date
+                OR b.official_date IS NULL
+        )
+        AND (
+                b.end_date IS NULL
+                OR b.end_date > ds.report_date
+        )
 
     LEFT JOIN transfers t
         ON b.member_id = t.member_id

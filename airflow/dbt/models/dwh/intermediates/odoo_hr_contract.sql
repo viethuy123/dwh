@@ -11,7 +11,12 @@ renamed AS (
         employee_id as member_id, -- Đổi tên để rõ ràng hơn, vì Odoo có thể dùng employee_id cho cả nhân viên và ứng viên
         contract_type_id,
         z_contract_type as contract_type, 
-        cast(z_employee_code AS INTEGER) AS member_code,
+        -- cast(z_employee_code AS INTEGER) AS member_code,
+        CASE
+            WHEN TRIM(z_employee_code) ~ '^[0-9]+$'
+            THEN z_employee_code::BIGINT
+            ELSE NULL
+        END AS member_code,
 
         -- Info (Giữ nguyên nếu kiểu dữ liệu đã đúng)
         name,

@@ -251,11 +251,12 @@ def create_dbt_transformation_task_group_report_centric(dag, source: str, pipeli
                     _target_schema=target_schema,
                     _target_db_uri_fn=target_db_uri_fn,
                 ) -> None:
-                    """Gửi notification lên Slack với kết quả validation."""
+                    """Gửi notification lên Telegram với kết quả validation."""
                     from airflow.sdk import Variable
                     from utils.extract_data import extract_sql_data
                     from utils.data_quality_notification import send_validation_results
-                    from config import get_slack_config
+                    # from config import get_slack_config
+                    from config import get_telegram_config
 
                     uri = _target_db_uri_fn() if callable(_target_db_uri_fn) else _target_db_uri_fn
                     suite_name = f'{_target_schema}_{_tgt_table}'
@@ -268,12 +269,22 @@ def create_dbt_transformation_task_group_report_centric(dag, source: str, pipeli
                     prev_rows = int(Variable.get(f'{suite_name}_prev_rows', default=0))
                     new_rows_inserted = total_rows - prev_rows
 
-                    slack_config = get_slack_config()
+                    # slack_config = get_slack_config()
+                    # send_validation_results(
+                    #     table_name=suite_name,
+                    #     validation_result=validation_result,
+                    #     slack_channel_id=slack_config['chat_id'],
+                    #     slack_bot_token=slack_config['bot_token'],
+                    #     total_rows=total_rows,
+                    #     new_rows_inserted=new_rows_inserted,
+                    # )
+
+                    telegram_config = get_telegram_config()
                     send_validation_results(
                         table_name=suite_name,
                         validation_result=validation_result,
-                        slack_channel_id=slack_config['chat_id'],
-                        slack_bot_token=slack_config['bot_token'],
+                        telegram_chat_id=telegram_config['chat_id'],
+                        telegram_bot_token=telegram_config['bot_token'],
                         total_rows=total_rows,
                         new_rows_inserted=new_rows_inserted,
                     )

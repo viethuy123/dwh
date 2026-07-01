@@ -12,7 +12,8 @@ from config.common import (
     to_local_datetime,
 )
 from config.databases import DB_URIS
-from config.external import get_slack_config, get_dropbox_config
+# from config.external import get_slack_config, get_dropbox_config
+from config.external import get_telegram_config, get_dropbox_config
 from config.sources import SOURCES
 from config.dbt import DBT_PIPELINES, DBT_CONFIG
 
@@ -20,7 +21,8 @@ __all__ = [
     'DEFAULT_ARGS',
     'DEFAULT_CHECK_DAG',
     'DB_URIS',
-    'get_slack_config',
+    # 'get_slack_config',
+    'get_telegram_config',
     'get_dropbox_config',
     'DBT_CONFIG',
     'SOURCES',

@@ -75,7 +75,12 @@ renamed AS (
         END AS state,
 
         -- Các trường tùy chỉnh (Custom Fields z_ / x_)
-        CAST(z_employee_code AS DOUBLE PRECISION) AS member_code,
+        -- CAST(z_employee_code AS DOUBLE PRECISION) AS member_code,
+        CASE
+            WHEN TRIM(z_employee_code) ~ '^[0-9]+$'
+            THEN z_employee_code::BIGINT
+            ELSE NULL
+        END AS member_code,
         CAST(z_rank_id AS DOUBLE PRECISION) AS rank_id,
         CAST(z_academic_level_id AS DOUBLE PRECISION) AS academic_level_id,
         CAST(z_qualification_id AS TEXT) AS qualification_id,

@@ -315,8 +315,8 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
     Tạo TaskGroup chứa toàn bộ ingestion pipeline cho từng bảng.
 
     Flow mỗi bảng:
-        extract_load → success_logs → save_metrics → quality_check → notification
-                     ↘ failure_logs (trigger_rule=all_failed)
+        extract_load → success_logs → save_metrics
+                     ↘ failure_logs → failure_notification (trigger_rule=all_failed)
     """
     source_type = ingestion_config['source_type']
     source_uri_fn = ingestion_config['source_uri_fn']
@@ -380,9 +380,8 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                     _target_schema=target_schema,
                 ) -> int:
                     """Lưu job log thành công, return job_id."""
-                    from config import DB_URIS
+                    from config import DB_URIS, get_local_now
                     from utils.monitoring import save_job_log
-                    from datetime import datetime
                     from airflow.operators.python import get_current_context
                     import json
                     context = get_current_context()
@@ -394,7 +393,7 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                         'source_table': json.dumps(_src),
                         'target_table': _tgt_table,
                         'status': 'SUCCESS',
-                        'execution_time': datetime.utcnow(),
+                        'execution_time': get_local_now(),
                         'dag_id': context['dag'].dag_id,
                         'task_id': context['task'].task_id, 
                     }
@@ -413,27 +412,49 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                     _uri_fn=target_db_uri_fn,
                 ) -> None:
                     """Lưu metrics vào monitoring DB."""
-                    from config import DB_URIS
+                    from config import DB_URIS, get_local_now, to_local_datetime
                     from utils.monitoring import save_metrics as _save_metrics
                     from sqlalchemy import create_engine, text
-                    from datetime import datetime
 
                     if not job_id or not metrics:
                         print(f'[save_metrics] Warning: thiếu job_id hoặc metrics cho {_tgt_table}')
                         return
 
+                    uri = _uri_fn() if callable(_uri_fn) else _uri_fn
                     # Bổ sung max_updated_at và data_delay_minutes từ DB
                     # vì ETLMonitor không track các field này
-                    engine = create_engine(_uri_fn())
+                    engine = create_engine(uri)
                     with engine.connect() as conn:
-                        max_updated_at = conn.execute(
-                            text(f'SELECT MAX(etl_datetime) FROM {_target_schema}.{_tgt_table}')
+                        has_etl_datetime = conn.execute(
+                            text(
+                                """
+                                SELECT EXISTS (
+                                    SELECT 1
+                                    FROM information_schema.columns
+                                    WHERE table_schema = :table_schema
+                                      AND table_name = :table_name
+                                      AND column_name = 'etl_datetime'
+                                )
+                                """
+                            ),
+                            {
+                                'table_schema': _target_schema,
+                                'table_name': _tgt_table,
+                            },
                         ).scalar()
+
+                        max_updated_at = None
+                        if has_etl_datetime:
+                            max_updated_at = conn.execute(
+                                text(f'SELECT MAX(etl_datetime) FROM {_target_schema}.{_tgt_table}')
+                            ).scalar()
 
                     data_delay_minutes = None
                     if max_updated_at:
+                        now = get_local_now()
+                        max_updated_at = to_local_datetime(max_updated_at)
                         data_delay_minutes = int(
-                            (datetime.utcnow() - max_updated_at.replace(tzinfo=None)).total_seconds() / 60
+                            (now - max_updated_at).total_seconds() / 60
                         )
 
                     metrics['max_updated_at'] = max_updated_at
@@ -447,81 +468,6 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                     _save_metrics(log_uri, job_id, metrics)
                     print(f'[save_metrics] Saved for job_id={job_id}, table={_tgt_table}')
 
-                # ── 4. Quality check → return validation result ──────────────
-                @task(task_id=f'{target_schema}_{tgt_table}_quality_check', dag=dag)
-                def quality_check(
-                    _tgt_table=tgt_table,
-                    _target_schema=target_schema,
-                    _uri_fn=target_db_uri_fn,
-                ) -> dict:
-                    """Chạy data quality check, return kết quả."""
-                    from utils.extract_data import extract_sql_data
-                    from utils.data_quality import validate_dataframe
-
-                    uri = _uri_fn() if callable(_uri_fn) else _uri_fn
-                    suite_name = f'{_target_schema}_{_tgt_table}'
-                    data = extract_sql_data(
-                        uri, f'SELECT * FROM {_target_schema}.{_tgt_table} LIMIT 1000'
-                    )
-                    result = validate_dataframe(df=data, suite_name=suite_name)
-                    trimmed = {
-                        'success': result.get('success'),
-                        'suite_name': result.get('suite_name'),
-                        'statistics': result.get('statistics'),
-                        'results': [          # ← giữ nguyên key 'results' để không vỡ downstream
-                            {
-                                'success': r.get('success'),
-                                'expectation_config': {
-                                    'type': r['expectation_config']['type'],
-                                    'kwargs': {'column': r['expectation_config']['kwargs'].get('column')},
-                                },
-                                'result': r.get('result'),
-                            }
-                            for r in result.get('results', [])
-                            if not r.get('success')  # chỉ giữ failed
-                        ],
-                    }
-                    return trimmed
-
-                # ── 5. Notification — nhận validation_result trực tiếp ──────
-                @task(task_id=f'{target_schema}_{tgt_table}_notification', dag=dag)
-                def notification(
-                    validation_result: dict,  # nhận từ quality_check qua TaskFlow
-                    _src=source,
-                    _tgt_table=tgt_table,
-                    _target_schema=target_schema,
-                    _uri_fn=target_db_uri_fn,
-                ) -> None:
-                    """Gửi Slack notification với kết quả validation."""
-                    from airflow.sdk import Variable
-                    from utils.extract_data import extract_sql_data
-                    from utils.data_quality_notification import send_validation_results
-                    from config import get_slack_config
-
-                    uri = _uri_fn() if callable(_uri_fn) else _uri_fn
-                    suite_name = f'{_target_schema}_{_tgt_table}'
-                    full_table = f'{_target_schema}.{_tgt_table}'
-
-                    total_rows = extract_sql_data(
-                        uri, f'SELECT count(*) as total_rows FROM {full_table}'
-                    )['total_rows'][0]
-
-                    prev_rows = int(Variable.get(f'{suite_name}_prev_rows', default=0))
-                    new_rows_inserted = total_rows - prev_rows
-
-                    slack_config = get_slack_config()
-                    send_validation_results(
-                        table_name=suite_name,
-                        validation_result=validation_result,
-                        slack_channel_id=slack_config['chat_id'],
-                        slack_bot_token=slack_config['bot_token'],
-                        total_rows=total_rows,
-                        new_rows_inserted=new_rows_inserted,
-                    )
-
-                    Variable.set(f'{suite_name}_prev_rows', str(total_rows))
-                    print(f'[notification] Sent notification for {suite_name}')
-
                 # ── 6. Failure logs ──────────────────────────────────────────
                 @task(
                     task_id=f'failure_save_logs_{target_schema}_{tgt_table}',
@@ -533,9 +479,8 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                     _tgt_table=tgt_table,
                 ) -> None:
                     """Lưu job log khi có lỗi."""
-                    from config import DB_URIS
+                    from config import DB_URIS, get_local_now
                     from utils.monitoring import save_job_log
-                    from datetime import datetime
                     from airflow.operators.python import get_current_context
                     import json
                     context = get_current_context()
@@ -546,7 +491,7 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                         'source_table': json.dumps(_src),
                         'target_table': _tgt_table,
                         'status': 'FAILURE',
-                        'execution_time': datetime.utcnow(),
+                        'execution_time': get_local_now(),
                         'dag_id': context['dag'].dag_id,
                         'task_id': context['task'].task_id,
                     }
@@ -554,17 +499,75 @@ def create_ingestion_task_group(dag, source: str, ingestion_config: dict) -> Tas
                     save_job_log(log_uri, log_data)
                     print(f'[failure_logs] Saved failure log for {_tgt_table}')
 
+                @task(
+                    task_id=f'failure_notification_{target_schema}_{tgt_table}',
+                    dag=dag,
+                    trigger_rule='all_failed',
+                )
+                def send_failure_notification(
+                    _src=source,
+                    _tgt_table=tgt_table,
+                    _target_schema=target_schema,
+                ) -> None:
+                    """Gửi Telegram notification chỉ khi ingestion task thất bại."""
+                    from airflow.operators.python import get_current_context
+                    # from slack_sdk import WebClient
+                    # from config import get_slack_config
+                    from config import get_telegram_config, get_local_now
+                    from utils.telegram_notification import send_telegram_message
+                    import html
+
+                    context = get_current_context()
+                    ti = context['ti']
+                    run_id = context['dag_run'].run_id
+                    log_url = ti.log_url
+                    execution_time = get_local_now().format('YYYY-MM-DD HH:mm:ss')
+
+                    # slack_config = get_slack_config()
+                    # client = WebClient(token=slack_config['bot_token'])
+                    # message = (
+                    #     ':x: *Ingestion task failed*\n'
+                    #     f'*Source*: {_src}\n'
+                    #     f'*Target Table*: {_target_schema}.{_tgt_table}\n'
+                    #     f'*DAG*: {context["dag"].dag_id}\n'
+                    #     f'*Run ID*: {run_id}\n'
+                    #     f'*Log*: {log_url}'
+                    # )
+                    # client.chat_postMessage(
+                    #     channel=slack_config['chat_id'],
+                    #     text=message,
+                    #     mrkdwn=True,
+                    # )
+                    
+                    telegram_config = get_telegram_config()
+                    message = (
+                        '❌ <b>Ingestion task failed</b>\n'
+                        f'<b>Source</b>: {html.escape(str(_src))}\n'
+                        f'<b>Target Table</b>: {html.escape(str(_target_schema))}.{html.escape(str(_tgt_table))}\n'
+                        f'<b>DAG</b>: {html.escape(str(context["dag"].dag_id))}\n'
+                        f'<b>Run ID</b>: {html.escape(str(run_id))}\n'
+                        f'<b>Execution Time</b>: {execution_time}\n'
+                        f'<b>Log</b>: <a href="{html.escape(str(log_url))}">View Log</a>'
+                    )
+                    send_telegram_message(
+                        message=message,
+                        bot_token=telegram_config['bot_token'],
+                        chat_id=telegram_config['chat_id']
+                    )
+                    print(f'[failure_notification] Sent Telegram failure alert for {_tgt_table}')
+
                 # ── Wire dependencies ────────────────────────────────────────
                 el_result = extract_load()          # return metrics dict
                 logs = save_success_logs()          # return job_id
                 failure = save_failure_logs()
+                failure_notification = send_failure_notification()
 
                 # metrics nhận cả job_id lẫn metrics từ extract_load — không cần XCom string
                 metrics_task = save_metrics(job_id=logs, metrics=el_result)
-                qc_result = quality_check()
-                notif = notification(qc_result)
 
-                el_result >> logs >> metrics_task >> qc_result >> notif
-                el_result >> failure  # failure log chạy khi extract_load fail
+                el_result >> logs >> metrics_task
+                # chỉ log và notify khi extract_load fail
+                el_result >> failure
+                el_result >> failure_notification
 
     return outer_group

@@ -17,12 +17,21 @@ select
             {{ parse_python_json('d1.name') }}->>'en_US',
             'unknown'
         ) AS division_parent_name,
-        d.active as status,
-        d.etl_datetime
+    COALESCE(
+            {{ parse_python_json('d2.name') }}->>'vi_VN',
+            {{ parse_python_json('d2.name') }}->>'en_US',
+            'unknown'
+        ) AS division_master_name,
+    
+    d.active as status,
+    d.etl_datetime
 from {{ source('odoo','stg_odoo_hr_department') }} d
 left join {{ source('odoo','stg_odoo_hr_department') }} d1 
-on d.master_department_id = d1.id
+on d.parent_id = d1.id
+left join {{ source('odoo','stg_odoo_hr_department') }} d2
+on d.master_department_id = d2.id
 ),
+
 
 division_group as (
 select 
@@ -32,12 +41,7 @@ select
     complete_parent_name,
     complete_name,
     division_name,
-    CASE
-        WHEN division_name ILIKE '%DU%'
-        THEN TRIM(REGEXP_REPLACE(division_name, '\.?DU.*', ''))
-        ELSE division_name
-    END
-    AS division_group,
+    COALESCE(division_master_name, division_name) AS division_group,
     division_parent_name,
     status,
     etl_datetime    

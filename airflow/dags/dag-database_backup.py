@@ -2,12 +2,13 @@ from datetime import timedelta
 from airflow.sdk import DAG, Variable
 from airflow.providers.standard.operators.bash import BashOperator
 from airflow.providers.standard.operators.empty import EmptyOperator
-from datetime import datetime, timedelta
+from config import TIMEZONE
+import pendulum
 
  
 default_args = {
     'owner': 'huynnx',
-    'start_date': datetime.today() - timedelta(days=1),
+    'start_date': pendulum.datetime(2026, 1, 1, tz=TIMEZONE),
     'retries': 3,
     'retry_delay': timedelta(minutes=1),
     'depends_on_past': False,

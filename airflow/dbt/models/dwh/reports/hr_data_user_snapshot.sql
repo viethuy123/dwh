@@ -1,4 +1,13 @@
-{{ config(materialized='table') }}
+{{ config(
+    materialized='table',
+    indexes=[
+      {'columns': ['report_date']},
+      {'columns': ['member_id']},
+      {'columns': ['member_code']},
+      {'columns': ['report_date', 'member_status']},
+    ]
+    
+    ) }}
 
 WITH education_comprehensive AS (
 
@@ -86,6 +95,7 @@ SELECT
     -- Status
     -- =====================================
     hc.member_status,
+    hc.active_status,
     hc.member_status_detail,
 
     -- =====================================

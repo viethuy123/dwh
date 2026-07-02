@@ -16,6 +16,10 @@ def save_success_log(report_name: str):
         DB_URIS["monitoring"](),
         {
             "job_name": report_name,
+            "source_db": "dbt",
+            "target_db": "dwh",
+            "source_table": None,
+            "target_table": report_name,
             "status": "SUCCESS",
             "execution_time": datetime.utcnow(),
             "dag_id": context["dag"].dag_id,
@@ -59,11 +63,16 @@ def save_metrics(job_id: int, report_name: str):
         "peak_memory_mb": None,
     }
 
+    if job_id is None:
+        print(f"Skipping metrics save for {report_name}: job_id is None")
+        return None
+
     _save_metrics(
         DB_URIS["monitoring"](),
         job_id,
         metrics,
     )
+
 
 @task(trigger_rule=TriggerRule.ONE_FAILED)
 def save_failure_log(report_name: str):
@@ -79,6 +88,10 @@ def save_failure_log(report_name: str):
         DB_URIS["monitoring"](),
         {
             "job_name": report_name,
+            "source_db": "dbt",
+            "target_db": "dwh",
+            "source_table": None,
+            "target_table": report_name,
             "status": "FAILURE",
             "execution_time": datetime.utcnow(),
             "dag_id": context["dag"].dag_id,

@@ -2,6 +2,9 @@ version: 2
 
 models:
   - name: hr_data_user_new
+    data_tests:
+      - dbt_utils.expression_is_true:
+          expression: "count(*) > 0"
     description: >
       [EN] Employee profile table enriched with seniority and education information. 
       Each row represents one employee with calculated tenure, education, and demographic attributes.
@@ -19,6 +22,9 @@ models:
         description: >
           [EN] Unique identifier of employee. Foreign key to dim_employee.
           [VI] Mã định danh của nhân viên. Khóa ngoại tới dim_employee.
+        data_tests:
+          - not_null
+          - unique
 
       - name: member_name
         description: >
@@ -34,6 +40,8 @@ models:
         description: >
           [EN] Business key of employee.
           [VI] Mã nghiệp vụ của nhân viên.
+        data_tests:
+          - not_null
 
       # =========================
       # 2. ORGANIZATION INFO

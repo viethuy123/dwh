@@ -16,6 +16,7 @@ from config.databases import DB_URIS
 from config.external import get_telegram_config, get_dropbox_config
 from config.sources import SOURCES
 from config.dbt import DBT_PIPELINES, DBT_CONFIG
+from config.cosmos_config import DBT_EXECUTABLE_PATH, DBT_PROFILES_DIR, DBT_PROJECT_DIR, REPORTS
 
 __all__ = [
     'DEFAULT_ARGS',
@@ -33,4 +34,8 @@ __all__ = [
     'TIMEZONE_NAME',
     'get_local_now',
     'to_local_datetime',
+    'DBT_EXECUTABLE_PATH',
+    'DBT_PROFILES_DIR',
+    'DBT_PROJECT_DIR',
+    'REPORTS'
 ]

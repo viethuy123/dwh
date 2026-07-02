@@ -1,4 +1,4 @@
-FROM apache/airflow:3.0.3-python3.11
+FROM apache/airflow:3.1.8-python3.11
 
 USER root
 RUN apt-get update \

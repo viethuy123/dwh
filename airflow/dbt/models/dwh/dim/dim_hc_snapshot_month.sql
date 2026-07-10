@@ -110,12 +110,47 @@ snapshot_data AS (
         b.resign_date,
         b.end_date,
         CASE
-            WHEN end_date IS NOT NULL
-                AND DATE_TRUNC('month', end_date)
-                    = DATE_TRUNC('month', report_date)
+            WHEN b.official_date >= DATE_TRUNC('month', ds.report_date)::date
+             AND b.official_date < (DATE_TRUNC('month', ds.report_date) + INTERVAL '1 month')::date
+             AND b.end_date >= DATE_TRUNC('month', ds.report_date)::date
+             AND b.end_date < (DATE_TRUNC('month', ds.report_date) + INTERVAL '1 month')::date
+            THEN 'in_and_out'
+            WHEN b.official_date >= DATE_TRUNC('month', ds.report_date)::date
+             AND b.official_date < (DATE_TRUNC('month', ds.report_date) + INTERVAL '1 month')::date
+            THEN 'in'
+            WHEN b.end_date >= DATE_TRUNC('month', ds.report_date)::date
+             AND b.end_date < (DATE_TRUNC('month', ds.report_date) + INTERVAL '1 month')::date
+            THEN 'out'
+            ELSE 'current'
+        END AS user_status_period,
+        CASE
+            WHEN b.official_date >= DATE_TRUNC('month', ds.report_date)::date
+             AND b.official_date < (DATE_TRUNC('month', ds.report_date) + INTERVAL '1 month')::date
+            THEN 1
+            ELSE 0
+        END AS is_user_in,
+        CASE
+            WHEN b.end_date >= DATE_TRUNC('month', ds.report_date)::date
+             AND b.end_date < (DATE_TRUNC('month', ds.report_date) + INTERVAL '1 month')::date
+            THEN 1
+            ELSE 0
+        END AS is_user_out,
+        CASE
+            WHEN b.official_date <= ds.report_date
+             AND (b.end_date IS NULL OR b.end_date > ds.report_date)
+            THEN 1
+            ELSE 0
+        END AS is_current_user,
+        CASE
+            WHEN b.end_date IS NOT NULL
+             AND DATE_TRUNC('month', b.end_date) = DATE_TRUNC('month', ds.report_date)
             THEN 'Inactive'
+            WHEN b.official_date IS NOT NULL
+             AND b.official_date >= DATE_TRUNC('month', ds.report_date)::date
+             AND b.official_date < (DATE_TRUNC('month', ds.report_date) + INTERVAL '1 month')::date
+            THEN 'Active'
             ELSE 'Active'
-        END AS active_status,    
+        END AS active_status,
 
         (
             EXTRACT(
@@ -148,12 +183,18 @@ snapshot_data AS (
 
     INNER JOIN base_data b
         ON (
-                b.official_date <= ds.report_date
-                OR b.official_date IS NULL
-        )
-        AND (
-                b.end_date IS NULL
-                OR b.end_date > ds.report_date
+                (
+                    b.official_date <= ds.report_date
+                    AND (b.end_date IS NULL OR b.end_date > ds.report_date)
+                )
+                OR (
+                    b.official_date >= DATE_TRUNC('month', ds.report_date)::date
+                    AND b.official_date < (DATE_TRUNC('month', ds.report_date) + INTERVAL '1 month')::date
+                )
+                OR (
+                    b.end_date >= DATE_TRUNC('month', ds.report_date)::date
+                    AND b.end_date < (DATE_TRUNC('month', ds.report_date) + INTERVAL '1 month')::date
+                )
         )
 
     LEFT JOIN transfers t
@@ -202,6 +243,10 @@ SELECT
 
     member_status,
     active_status,
+    user_status_period,
+    is_user_in,
+    is_user_out,
+    is_current_user,
     member_status_root,
     INITCAP(
             LOWER(

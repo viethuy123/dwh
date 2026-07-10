@@ -88,6 +88,9 @@ SOURCES = {
                 {'name': 'staff_log_work_jira_updates', 'type': 'light', 'chunksize': None},
                 {'name': 'staff_seniorities', 'type': 'light', 'chunksize': None},
                 {'name': 'staff_seniorities_years', 'type': 'light', 'chunksize': None},
+                {'name': 'staff_overtime_details', 'type': 'light', 'chunksize': None},
+                {'name': 'staff_overtimes', 'type': 'light', 'chunksize': None},
+                {'name': 'closing_months', 'type': 'light', 'chunksize': None},
             ],
 
         }

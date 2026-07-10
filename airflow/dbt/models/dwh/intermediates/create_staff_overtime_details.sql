@@ -1,0 +1,33 @@
+{{ config(materialized='table') }}
+
+SELECT
+    _id AS overtime_detail_id,
+    "fromDate"::date AS from_date,
+    "endDate"::date AS end_date,
+    "absentDay"::NUMERIC AS absent_day,
+    "absentHour"::NUMERIC AS absent_hour,
+    reason,
+    "statusApproval" AS status_approval,
+    {{ safe_parse_timestamp('"dateApproval"') }} AS approval_time,
+    "userApprovalObjId" AS approver_id,
+    comment,
+    status,
+    "order"::INTEGER AS order_no,
+    "isDeleted"::BOOLEAN AS is_deleted,
+    "userObjId" AS member_id,
+    "staffOvertimeObjId" AS member_overtime_id,
+    "reportObjId" AS report_id,
+    "projectObjId" AS project_id,
+    "createdBy" AS created_by,
+    {{ safe_parse_timestamp('"createdAt"') }} AS created_time,
+    "updatedBy" AS updated_by,
+    {{ safe_parse_timestamp('"updatedAt"') }} AS updated_time,
+    "isOT100"::BOOLEAN AS is_ot100,
+    "reasonManagerEdit" AS reason_manager_edit,
+    "absentHourPrevious"::NUMERIC AS absent_hour_previous,
+    "isClose"::BOOLEAN AS is_close,
+    "hrAccount" AS hr_account,
+    {{ safe_parse_timestamp('"hrImportedAt"') }} AS hr_imported_time,
+    branch,
+    etl_datetime
+FROM {{ source('create', 'stg_create_staff_overtime_details') }}

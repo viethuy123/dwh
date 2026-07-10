@@ -52,6 +52,9 @@ sources:
       - name: stg_create_staff_log_works
       - name: stg_create_staff_log_work_jira_deletes
       - name: stg_create_staff_log_work_jira_updates
+      - name: stg_create_staff_overtime_details
+      - name: stg_create_staff_overtimes
+      - name: stg_create_closing_months
   - name: odoo
     database: dwh
     schema: stg

@@ -46,6 +46,25 @@ transfers as (
     where transfer_type_id in (1,2,3)
 ),
 
+snapshot_overtime AS(
+    select
+    date_trunc('month',ot.from_date) as report_date,
+    sum(ot.absent_hour) as ot_hour,
+    o.member_code
+
+        
+    from {{ ref('create_staff_overtime_details') }} ot
+    join {{ ref('bridge_member_create_with_odoo')}} o
+        on ot.member_id = o.member_id
+    where ot.status_approval = 'APPROVED'
+    and ot.is_deleted = 'No'
+    group by
+    date_trunc('month',ot.from_date),
+    o.member_code
+    )
+    
+,
+
 snapshot_data AS (
 
     SELECT
@@ -336,6 +355,10 @@ SELECT
     transfer_start_date,
     transfer_end_date,
 
+    ot_hour,
+
     etl_datetime
 
 FROM snapshot_data
+left join snapshot_overtime
+    using(report_date,member_code)

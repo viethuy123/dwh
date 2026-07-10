@@ -16,7 +16,7 @@ pipeline_config = DBT_PIPELINES['dim_data']
 dag = DAG(
     dag_id=pipeline_config['dag_id'],
     default_args=DEFAULT_ARGS,
-    schedule=[Dataset('staging_to_dwh_completed')],  # Trigger by datasets
+    schedule=[Dataset('bridge_data_completed')],  # Trigger by datasets
     catchup=False,
     dagrun_timeout=timedelta(minutes=pipeline_config['timeout_minutes']),
     description='DBT transformation from Staging to Data Warehouse',

@@ -55,7 +55,7 @@ def _create_dbt_operator(
         profiles_dir=DBT_CONFIG['profiles_dir'],
         target=dbt_target,
         profile=DBT_CONFIG['profile'],
-        upload_dbt_project=True,
+        upload_dbt_project=False,
         dag=dag,
     )
 

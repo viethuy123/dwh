@@ -35,7 +35,6 @@ highest_education AS (
     SELECT *
     FROM education_comprehensive
     WHERE edu_rank = 1
-
 )
 
 SELECT
@@ -60,6 +59,12 @@ SELECT
         THEN TRUE
         ELSE FALSE
     END AS is_current_snapshot,
+
+    hc.user_status_period AS user_status,
+    hc.user_status_period,
+    hc.is_user_in,
+    hc.is_user_out,
+    hc.is_current_user,
 
     -- =====================================
     -- Employee

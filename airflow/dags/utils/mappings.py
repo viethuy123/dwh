@@ -45,6 +45,9 @@ intermediate_mapping ={
     'skill_members' : 'stg_skill_members',
     'create_project_customer' : 'stg_create_project_customer',
     'create_project_cate' : 'stg_create_project_categories',
+    'create_staff_overtimes' : 'src_create.stg_create_staff_overtimes',
+    'create_staff_overtime_details' : 'src_create.stg_create_staff_overtime_details',
+    'create_closing_month' : 'src_create.stg_create_closing_month',
     # 'staff_log_works' : 'stg_create_staff_log_works',
     # 'staff_log_work_jira_deletes' : 'stg_create_staff_log_work_jira_deletes',
     # 'staff_log_work_jira_updates' : 'stg_create_staff_log_work_jira_updates',
@@ -154,7 +157,8 @@ fct_mapping = {
 bridge_mapping = {
     "bridge_project_customer": "create_project_customer, jisseki_project_cus",
     "bridge_project_category": "create_project_cate, jisseki_project_cate",
-    "bridge_project_role": "create_project_role, jisseki_project_role"
+    "bridge_project_role": "create_project_role, jisseki_project_role",
+    "bridge_member_create_with_odoo": "dim_odoo_members, dim_members_new"
 }
 
 snapshot_mapping = {

@@ -70,8 +70,9 @@ intermediate_mapping ={
     'odoo_branch': 'src_odoo.stg_res_company',
     'odoo_division': 'src_odoo.stg_hr_department',
     'odoo_z_type_employee': 'src_odoo.stg_odoo_z_type_employee',
-    'odoo_employee_transfer': 'src_odoo.stg_odoo_employee_transfer'
+    'odoo_employee_transfer': 'src_odoo.stg_odoo_employee_transfer',
     # 'odoo_hr_contract_type': 'src_odoo.stg_odoo_hr_contract_type'
+    'odoo_res_country': 'src_odoo.stg_res_country'
     
     
 
@@ -138,6 +139,8 @@ dim_mapping = {
     "dim_odoo_members_scd": "odoo_members_snapshot",
     "dim_hc_snapshot_month": "dim_odoo_members",
     "dim_hc_snapshot_month_scd": "dim_odoo_members_scd",
+    "dim_member_status": "dim_odoo_members",
+    "dim_country": "odoo_res_country",
     # "dim_seniority": ""
 }
 
@@ -151,6 +154,7 @@ fct_mapping = {
     'fct_jira_issues': 'jira_issues',
     'fct_member_education': 'odoo_hr_member_education',
     # 'fct_hc_snapshot': 'dim_odoo_members'
+    'fct_member_overtime': 'create_staff_overtime_detail'
 
 }
 

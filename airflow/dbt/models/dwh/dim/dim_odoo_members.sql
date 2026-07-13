@@ -44,6 +44,7 @@ SELECT
     e.gender,
     e.marital,
     e.job_id,
+    e.country_id,
     initcap(
         lower(
             COALESCE(e.level, 'FRESHER')
@@ -71,6 +72,13 @@ SELECT
     lc.contract_type,
     t.member_type_name as member_status_detail_root,
     e.type_member_id,
+    CASE 
+        WHEN e.job_id = 4080 THEN 'Thành viên HĐQT'
+        WHEN e.type_member_id = 9 THEN 'Nhân viên phái cử'
+        WHEN e.type_member_id in (7,6) THEN 'Nhân viên part-time'
+        ELSE 'Nhân viên chính thức'
+    END AS type_hire_name,
+    coalesce(c.country_name,'Unknown') as country_name,
     initcap(lower(
         CASE 
             WHEN t.member_type_name is not NULL then t.member_type_name
@@ -125,5 +133,7 @@ left join {{ ref('dim_odoo_division') }} d
     on e.division_id = d.id
 left join {{ ref('dim_odoo_job') }} j
     on e.job_id = j.job_id
+left join {{ ref('dim_country') }} c
+    on e.country_id = c.country_id
 
 

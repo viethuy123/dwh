@@ -7,7 +7,10 @@
     REGEXP_REPLACE(
         REGEXP_REPLACE(
             REGEXP_REPLACE(
-                REGEXP_REPLACE({{ col }}, '''([^'']*?)''', '"\1"', 'g'),
+                REGEXP_REPLACE(
+                    {{ col }},
+                    '"([^"]*)"|''([^'']*)''', '"\1\2"', 'g'
+                ),
                 '\bTrue\b',  'true',  'g'
             ),
             '\bFalse\b', 'false', 'g'

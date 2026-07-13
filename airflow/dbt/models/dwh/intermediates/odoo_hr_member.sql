@@ -12,6 +12,7 @@ renamed AS (
         CAST(id AS BIGINT) AS member_id,
         CAST(resource_id AS BIGINT) AS resource_id,
         CAST(company_id AS BIGINT) AS company_id,
+        CAST(country_id AS BIGINT) AS country_id,
         CAST(resource_calendar_id AS BIGINT) AS resource_calendar_id,
         CAST(department_id AS BIGINT) AS division_id,
         CAST(address_id AS BIGINT) AS address_id,

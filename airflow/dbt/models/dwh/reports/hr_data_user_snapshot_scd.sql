@@ -89,7 +89,8 @@ SELECT
     hc.position_name,
     hc.position_group,
     hc.group_role_name,
-
+    hc.type_hire_name,
+    hc.country_name,
     -- =====================================
     -- Status
     -- =====================================

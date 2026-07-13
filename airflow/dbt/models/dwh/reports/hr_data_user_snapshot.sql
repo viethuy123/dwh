@@ -88,7 +88,9 @@ SELECT
 
     hc.division_name,
     hc.division_group,
-
+    hc.type_hire_name,
+    hc.country_name,
+    hc.ot_hour,
     -- =====================================
     -- Position
     -- =====================================

@@ -48,22 +48,9 @@ transfers as (
 
 snapshot_overtime AS(
     select
-    date_trunc('month',ot.from_date) as report_date,
-    sum(ot.absent_hour) as ot_hour,
-    o.member_code
-
-        
-    from {{ ref('create_staff_overtime_details') }} ot
-    join {{ ref('bridge_member_create_with_odoo')}} o
-        on ot.member_id = o.member_id
-    where ot.status_approval = 'APPROVED'
-    and ot.is_deleted = 'No'
-    group by
-    date_trunc('month',ot.from_date),
-    o.member_code
-    )
-    
-,
+        *
+    from {{ ref('fct_member_overtime')}}
+),
 
 snapshot_data AS (
 
@@ -104,11 +91,12 @@ snapshot_data AS (
         b.position_name,
         b.position_group,
         b.group_role_name,
-
+        b.country_name,
+        b.job_id,
         b.member_status,
         b.member_status_root,
 
-        b.member_status_detail,
+        -- b.member_status_detail,
         b.member_status_detail_root,
         b.type_member_id,
 
@@ -225,63 +213,65 @@ snapshot_data AS (
 
 
 )
+,
+_final as (
 
-SELECT
+    SELECT
 
-    report_date,
-    report_month,
-    report_year,
-    report_month_no,
+        report_date,
+        report_month,
+        report_year,
+        report_month_no,
 
-    snapshot_key,
+        snapshot_key,
 
-    member_id,
-    member_code,
-    member_name,
-    member_email,
+        member_id,
+        member_code,
+        member_name,
+        member_email,
 
-    member_type,
-    gender,
-    marital,
+        member_type,
+        gender,
+        marital,
 
-    member_level,
-    type_member_id,
+        member_level,
+        type_member_id,
 
-    branch_root_name,
-    branch_root_code,
+        branch_root_name,
+        branch_root_code,
 
-    branch_name,
-    branch_code,
+        branch_name,
+        branch_code,
 
-    division_name,
-    division_group,
+        division_name,
+        division_group,
+        country_name,
+        job_id,
+        position_name,
+        position_group,
+        group_role_name,
 
-    position_name,
-    position_group,
-    group_role_name,
+        member_status,
+        active_status,
+        user_status_period,
+        is_user_in,
+        is_user_out,
+        is_current_user,
+        member_status_root,
 
-    member_status,
-    active_status,
-    user_status_period,
-    is_user_in,
-    is_user_out,
-    is_current_user,
-    member_status_root,
-    INITCAP(
-            LOWER(
         CASE
 
             -- Transfer ưu tiên cao nhất
-            WHEN type_member_id in (7,8) 
-            THEN member_status_detail
+            WHEN type_member_id in (7,8,9) 
+            THEN type_member_id
             WHEN transfer_type_id = 1
-            THEN 'Nghỉ thai sản'
+            THEN 12
 
             WHEN transfer_type_id = 2
-            THEN 'Nghỉ không lương'
+            THEN 11
 
             WHEN transfer_type_id = 3
-            THEN 'Onsite'
+            THEN 9
 
             -- Thực tập
 
@@ -295,7 +285,7 @@ SELECT
                         joining_date IS NULL
                         OR report_date < joining_date
                     )
-            THEN 'Thực tập'
+            THEN 6
 
             -- Thử việc
 
@@ -305,60 +295,76 @@ SELECT
                         joining_date IS NULL
                         OR report_date < joining_date
                     )
-            THEN 'Thử việc'
+            THEN 5
 
             -- Chính thức
 
             WHEN joining_date IS NOT NULL
                 AND report_date >= joining_date
-            THEN 'Chính thức'
+            THEN 4
 
             -- Fallback
 
-            ELSE member_status_detail
+            ELSE type_member_id
 
         END 
-            ))
-    AS member_status_detail,
 
-    member_status_detail_root,
+        AS member_status_detail_no,
 
-    contract_type,
+        member_status_detail_root,
 
-    age_at_hire,
+        contract_type,
 
-    issue_date_identification,
-    birthday,
+        age_at_hire,
 
-    joining_date,
-    official_date,
-    start_working_date,
-    probation_date,
-    traineeship_date,
+        issue_date_identification,
+        birthday,
 
-    departure_date,
-    resign_date,
-    end_date,
+        joining_date,
+        official_date,
+        start_working_date,
+        probation_date,
+        traineeship_date,
 
-    total_months,
+        departure_date,
+        resign_date,
+        end_date,
 
-    CASE
-        WHEN total_months < 2  THEN '1. < 2 tháng'
-        WHEN total_months < 6  THEN '2. 2 – < 6 tháng'
-        WHEN total_months < 12 THEN '3. 6 – < 12 tháng'
-        WHEN total_months < 24 THEN '4. 1 – < 2 năm'
-        WHEN total_months < 36 THEN '5. 2 – < 3 năm'
-        WHEN total_months < 72 THEN '6. 3 – < 6 năm'
-        ELSE '7. >= 6 năm'
-    END AS seniority_group,
-    transfer_type_id,
-    transfer_start_date,
-    transfer_end_date,
+        total_months,
 
-    ot_hour,
+        CASE
+            WHEN total_months < 2  THEN '1. < 2 tháng'
+            WHEN total_months < 6  THEN '2. 2 – < 6 tháng'
+            WHEN total_months < 12 THEN '3. 6 – < 12 tháng'
+            WHEN total_months < 24 THEN '4. 1 – < 2 năm'
+            WHEN total_months < 36 THEN '5. 2 – < 3 năm'
+            WHEN total_months < 72 THEN '6. 3 – < 6 năm'
+            ELSE '7. >= 6 năm'
+        END AS seniority_group,
+        transfer_type_id,
+        transfer_start_date,
+        transfer_end_date,
 
-    etl_datetime
+        ot_hour,
 
-FROM snapshot_data
-left join snapshot_overtime
-    using(report_date,member_code)
+        etl_datetime
+
+    FROM snapshot_data
+    left join snapshot_overtime
+        using(report_month,member_code)
+
+)
+
+Select f.*,
+    CASE 
+        WHEN job_id = 4080 THEN 'Thành viên HĐQT'
+        WHEN member_status_detail_no = 9 THEN 'Nhân viên phái cử'
+        WHEN member_status_detail_no in (7,6) THEN 'Nhân viên part-time'
+        ELSE 'Nhân viên chính thức'
+    END AS type_hire_name,
+
+    coalesce(dms.member_status_detail,f.member_status_detail_root, 'Unknown')   AS member_status_detail
+
+from _final f
+left join {{ ref('dim_member_status') }} dms
+    on f.member_status_detail_no = dms.type_member_id

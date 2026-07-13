@@ -9,7 +9,6 @@ from datetime import timedelta
 from config import DBT_PIPELINES, DEFAULT_ARGS, DEFAULT_CHECK_DAG
 from factories.dbt_factory_report_centric import (
     create_dbt_transformation_task_group_report_centric,
-    create_dbt_deps_task,
 )
 
 # Lấy config
@@ -28,10 +27,9 @@ dag = DAG(
 
 with dag:
     start = EmptyOperator(task_id='start')
-    dbt_deps = create_dbt_deps_task(dag) 
     # DBT transformation tasks
     transformation_group = create_dbt_transformation_task_group_report_centric(dag,'dwh', pipeline_config)
     end = EmptyOperator(task_id='end', outlets=[Dataset('reports_completed')], trigger_rule= DEFAULT_CHECK_DAG['trigger_rule'])
     
     # Dependencies
-    start >> dbt_deps >> transformation_group >> end
+    start >> transformation_group >> end

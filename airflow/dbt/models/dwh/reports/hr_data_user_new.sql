@@ -127,6 +127,8 @@ SELECT
     branch_code,
     division_name,
     division_group,
+    country_name,
+    type_hire_name,
     COALESCE(school_name, 'Unknown') as school_name,
     COALESCE(NULLIF(academic_level, 'N/A'), 'Unknown') as academic_level,
     COALESCE(NULLIF(degree_name, 'N/A'), 'Unknown') as degree_name,

@@ -46,12 +46,6 @@ transfers as (
     where transfer_type_id in (1,2,3)
 ),
 
-snapshot_overtime AS(
-    select
-        *
-    from {{ ref('fct_member_overtime')}}
-),
-
 snapshot_data AS (
 
     SELECT
@@ -345,17 +339,14 @@ _final as (
         transfer_start_date,
         transfer_end_date,
 
-        ot_hour,
 
         etl_datetime
 
     FROM snapshot_data
-    left join snapshot_overtime
-        using(report_month,member_code)
-
 )
 
 Select f.*,
+    cm.work_standard as month_standard,
     CASE 
         WHEN job_id = 4080 THEN 'Thành viên HĐQT'
         WHEN member_status_detail_no = 9 THEN 'Nhân viên phái cử'
@@ -368,3 +359,5 @@ Select f.*,
 from _final f
 left join {{ ref('dim_member_status') }} dms
     on f.member_status_detail_no = dms.type_member_id
+LEFT JOIN {{ ref('dim_closing_month') }} cm
+    ON cm.report_month = f.report_month

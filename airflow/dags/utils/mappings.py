@@ -47,7 +47,7 @@ intermediate_mapping ={
     'create_project_cate' : 'stg_create_project_categories',
     'create_staff_overtimes' : 'src_create.stg_create_staff_overtimes',
     'create_staff_overtime_details' : 'src_create.stg_create_staff_overtime_details',
-    'create_closing_month' : 'src_create.stg_create_closing_month',
+    'create_closing_months' : 'src_create.stg_create_closing_months',
     # 'staff_log_works' : 'stg_create_staff_log_works',
     # 'staff_log_work_jira_deletes' : 'stg_create_staff_log_work_jira_deletes',
     # 'staff_log_work_jira_updates' : 'stg_create_staff_log_work_jira_updates',
@@ -140,6 +140,7 @@ dim_mapping = {
     "dim_hc_snapshot_month": "dim_odoo_members",
     "dim_hc_snapshot_month_scd": "dim_odoo_members_scd",
     "dim_member_status": "dim_odoo_members",
+    "dim_closing_month": "create_closing_months",
     "dim_country": "odoo_res_country",
     # "dim_seniority": ""
 }

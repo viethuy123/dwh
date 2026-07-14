@@ -90,7 +90,7 @@ SELECT
     hc.division_group,
     hc.type_hire_name,
     hc.country_name,
-    hc.ot_hour,
+    ot.ot_hour,
     -- =====================================
     -- Position
     -- =====================================
@@ -178,7 +178,7 @@ SELECT
     hc.total_months,
 
     hc.seniority_group,
-
+    hc.month_standard,
     CASE
         WHEN hc.total_months < 2 THEN 1
         WHEN hc.total_months < 6 THEN 2
@@ -201,3 +201,6 @@ FROM {{ ref('dim_hc_snapshot_month') }} hc
 
 LEFT JOIN highest_education he
     ON hc.member_id = he.member_id
+LEFT JOIN {{ ref('fct_member_overtime') }} ot
+    ON hc.report_month = ot.report_month 
+    AND hc.member_code = ot.member_code

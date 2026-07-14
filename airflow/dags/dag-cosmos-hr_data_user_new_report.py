@@ -18,7 +18,7 @@ from factories import build_report_task_group
 dag = DAG(
     dag_id="dag_cosmos_reports_report_centric",
     default_args=DEFAULT_ARGS,
-    schedule=[Dataset("fct_data_completed")],
+    schedule=[Dataset("staging_to_dwh_completed")],
     catchup=False,
     max_active_tasks=1,
     dagrun_timeout=timedelta(minutes=60),

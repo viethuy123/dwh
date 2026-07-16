@@ -1,4 +1,5 @@
-{{ config(materialized='table') }}
+
+    {{ config(enabled=false) }}
 select
     id,
     project_id,

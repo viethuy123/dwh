@@ -1,22 +1,24 @@
-{{ config(materialized='table') }}
 
-WITH
-create_jira_project as (
-    select 
-    cp.id::TEXT as project_id,
-    cp.project_category_id::TEXT as category_id,
-    etl_datetime
-from {{ ref('create_project') }} cp
-),
+    {{ config(enabled=false) }}
 
-jisseki_project as (
-    select 
-    project_id::TEXT as project_id,
-    category_id::TEXT as category_id,
-    etl_datetime
-from {{ ref('jisseki_project_cate') }}
-)
+    WITH
+    create_jira_project as (
+        select 
+        cp.id::TEXT as project_id,
+        cp.project_category_id::TEXT as category_id,
+        etl_datetime
+    from {{ ref('create_project') }} cp
+    ),
 
-select * from create_jira_project
-union
-select * from jisseki_project
+    jisseki_project as (
+        select 
+        project_id::TEXT as project_id,
+        category_id::TEXT as category_id,
+        etl_datetime
+    from {{ ref('jisseki_project_cate') }}
+    )
+
+    select * from create_jira_project
+    union
+    select * from jisseki_project
+

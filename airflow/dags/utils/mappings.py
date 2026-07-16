@@ -160,9 +160,9 @@ fct_mapping = {
 }
 
 bridge_mapping = {
-    "bridge_project_customer": "create_project_customer, jisseki_project_cus",
-    "bridge_project_category": "create_project_cate, jisseki_project_cate",
-    "bridge_project_role": "create_project_role, jisseki_project_role",
+    # "bridge_project_customer": "create_project_customer, jisseki_project_cus",
+    # "bridge_project_category": "create_project_cate, jisseki_project_cate",
+    # "bridge_project_role": "create_project_role, jisseki_project_role",
     "bridge_member_create_with_odoo": "dim_odoo_members, dim_members_new"
 }
 

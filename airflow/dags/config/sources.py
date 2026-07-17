@@ -58,7 +58,7 @@ SOURCES = {
             'source_db': 'portal',
             'source_uri_fn': get_mongo_uri_builder('portal', 'create'),
             'target_schema': 'stg',
-            'schedule': '0 20 * * *',
+            'schedule': '30 2 * * *',
             'timeout_minutes': 60,
             'wait_for_dag': None,
             'tables': [
@@ -134,7 +134,7 @@ SOURCES = {
             'source_db': 'postgres',
             'source_uri_fn': DB_URIS.get('odoo'),
             'target_schema': 'stg',
-            'schedule': '0 20 * * *',
+            'schedule': '30 2 * * *',
             'timeout_minutes': 60,
             'wait_for_dag': None,
             'tables': [

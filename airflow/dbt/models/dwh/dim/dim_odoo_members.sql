@@ -44,6 +44,7 @@ SELECT
     e.gender,
     e.marital,
     e.job_id,
+    j.group_role_id,
     e.country_id,
     initcap(
         lower(
@@ -73,7 +74,7 @@ SELECT
     t.member_type_name as member_status_detail_root,
     e.type_member_id,
     CASE 
-        WHEN e.job_id = 4080 THEN 'Thành viên HĐQT'
+        WHEN j.group_role_id = 4080 THEN 'Thành viên HĐQT'
         WHEN e.type_member_id = 9 THEN 'Nhân viên phái cử'
         WHEN e.type_member_id in (7,6) THEN 'Nhân viên part-time'
         ELSE 'Nhân viên chính thức'

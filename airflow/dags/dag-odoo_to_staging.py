@@ -17,7 +17,7 @@ ingestion_config = odoo_config['ingestion']
 dag = DAG(
     dag_id=ingestion_config['dag_id'],
     default_args=DEFAULT_ARGS,
-    schedule=[Dataset('create_staging_completed')],  # Trigger by datasets
+    schedule=ingestion_config['schedule'],
     catchup=False,
     dagrun_timeout=timedelta(minutes=ingestion_config['timeout_minutes']),
     description='Extract Odoo data from PostgreSQL and load to Staging',

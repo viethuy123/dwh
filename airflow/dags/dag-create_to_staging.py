@@ -17,7 +17,7 @@ ingestion_config = create_config['ingestion']
 dag = DAG(
     dag_id=ingestion_config['dag_id'],
     default_args=DEFAULT_ARGS,
-    schedule=[Dataset('jira_staging_completed')],  # Trigger by datasets
+    schedule=ingestion_config['schedule'],
     catchup=False,
     dagrun_timeout=timedelta(minutes=ingestion_config['timeout_minutes']),
     description='Extract CREATE data from MongoDB and load to Staging',

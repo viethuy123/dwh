@@ -348,7 +348,7 @@ _final as (
 Select f.*,
     cm.work_standard as month_standard,
     CASE 
-        WHEN job_id = 4080 THEN 'Thành viên HĐQT'
+        WHEN group_role_id = 4080 THEN 'Thành viên HĐQT'
         WHEN member_status_detail_no = 9 THEN 'Nhân viên phái cử'
         WHEN member_status_detail_no in (7,6) THEN 'Nhân viên part-time'
         ELSE 'Nhân viên chính thức'

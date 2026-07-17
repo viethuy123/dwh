@@ -35,10 +35,6 @@ with dag:
         trigger_rule=DEFAULT_CHECK_DAG["trigger_rule"],
     )
 
-    prev_task = start
     for report_name in REPORTS:
         report_task = build_report_task_group(report_name)
-        prev_task >> report_task
-        prev_task = report_task
-
-    prev_task >> end
+        start >> report_task >> end

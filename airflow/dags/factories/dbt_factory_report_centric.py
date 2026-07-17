@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from airflow.sdk import TaskGroup
 from airflow.decorators import task
-from airflow.providers.standard.operators.python import PythonOperator
+
 
 SKIP_QC_TABLES = ['dim_date', 'fct_member_monthly_snapshot']  # Danh sách bảng không cần chạy quality check
 from functools import lru_cache
@@ -147,31 +147,27 @@ def create_dbt_transformation_task_group_report_centric(dag, source: str, pipeli
                     _target_db_uri_fn=target_db_uri_fn,
                 ) -> None:
                     """Lưu metrics sau khi DBT chạy xong."""
-                    from config import DB_URIS, DBT_CONFIG, get_local_now, to_local_datetime
+                    from config import DB_URIS, get_local_now, to_local_datetime
                     from utils.monitoring import save_metrics as _save_metrics
                     from sqlalchemy import create_engine, text
-                    import os, json
+                    from airflow.operators.python import get_current_context
 
                     if not job_id:
                         print(f'[save_metrics] Warning: không có job_id cho {_tgt_table}')
                         return
 
-                    dbt_project_dir = DBT_CONFIG['project_dir']
-                    target_name = DBT_CONFIG['target_name']
-                    run_results_path = os.path.join(
-                        dbt_project_dir, 'target', target_name, 'run_results.json'
-                    )
-
+                    # Lấy dbt execution time từ Airflow task instance
+                    # (thay vì đọc run_results.json — tránh race condition trên đa worker)
                     execution_time = 0
-                    if os.path.exists(run_results_path):
-                        with open(run_results_path) as f:
-                            run_results = json.load(f)
-                        for r in run_results.get('results', []):
-                            if r['unique_id'].endswith(_tgt_table):
-                                execution_time = r.get('execution_time', 0)
+                    try:
+                        ctx = get_current_context()
+                        dbt_task_key = f'dbt_{_target_schema}_{_tgt_table}'
+                        for ti in ctx['dag_run'].get_task_instances():
+                            if ti.task_id.endswith(dbt_task_key) and ti.duration:
+                                execution_time = round(ti.duration, 2)
                                 break
-                    else:
-                        print(f'[save_metrics] Warning: run_results.json không tìm thấy')
+                    except Exception as e:
+                        print(f'[save_metrics] Could not get dbt task duration: {e}')
 
                     engine = create_engine(DB_URIS['dwh']())
                     with engine.connect() as conn:
@@ -182,6 +178,8 @@ def create_dbt_transformation_task_group_report_centric(dag, source: str, pipeli
                         max_updated_at = conn.execute(
                             text(f'SELECT MAX(etl_datetime) FROM {_target_schema}.{_tgt_table}')
                         ).scalar()
+
+                    engine.dispose()
 
                     data_delay_minutes = None
                     if max_updated_at:
@@ -255,7 +253,6 @@ def create_dbt_transformation_task_group_report_centric(dag, source: str, pipeli
                     from airflow.sdk import Variable
                     from utils.extract_data import extract_sql_data
                     from utils.data_quality_notification import send_validation_results
-                    # from config import get_slack_config
                     from config import get_telegram_config
 
                     uri = _target_db_uri_fn() if callable(_target_db_uri_fn) else _target_db_uri_fn
@@ -268,16 +265,6 @@ def create_dbt_transformation_task_group_report_centric(dag, source: str, pipeli
 
                     prev_rows = int(Variable.get(f'{suite_name}_prev_rows', default=0))
                     new_rows_inserted = total_rows - prev_rows
-
-                    # slack_config = get_slack_config()
-                    # send_validation_results(
-                    #     table_name=suite_name,
-                    #     validation_result=validation_result,
-                    #     slack_channel_id=slack_config['chat_id'],
-                    #     slack_bot_token=slack_config['bot_token'],
-                    #     total_rows=total_rows,
-                    #     new_rows_inserted=new_rows_inserted,
-                    # )
 
                     telegram_config = get_telegram_config()
                     send_validation_results(

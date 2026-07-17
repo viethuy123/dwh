@@ -127,37 +127,30 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                     _src=source,
                     _tgt_table=tgt_table,
                     _target_schema=target_schema,
-                    _dbt_target=dbt_target,
                     _target_db_uri_fn=target_db_uri_fn,
                 ) -> None:
                     """Lưu metrics sau khi DBT chạy xong."""
-                    from config import DB_URIS, DBT_CONFIG, get_local_now, to_local_datetime
+                    from config import DB_URIS, get_local_now, to_local_datetime
                     from utils.monitoring import save_metrics as _save_metrics
                     from sqlalchemy import create_engine, text
-                    import os, json
+                    from airflow.operators.python import get_current_context
 
                     if not job_id:
                         print(f'[save_metrics] Warning: không có job_id cho {_tgt_table}')
                         return
 
-                    dbt_project_dir = DBT_CONFIG['project_dir']
-                    run_results_path = os.path.join(
-                        dbt_project_dir, 'target', _dbt_target, 'run_results.json'
-                    )
-
+                    # Lấy dbt execution time từ Airflow task instance
+                    # (thay vì đọc run_results.json — tránh race condition trên đa worker)
                     execution_time = 0
-                    if os.path.exists(run_results_path):
-                        with open(run_results_path) as f:
-                            run_results = json.load(f)
-
-                        for r in run_results.get('results', []):
-                            unique_id = r.get('unique_id', '')
-                            model_name = unique_id.split('.')[-1] if unique_id else ''
-                            if model_name == _tgt_table:
-                                execution_time = r.get('execution_time', 0)
+                    try:
+                        ctx = get_current_context()
+                        dbt_task_key = f'dbt_{_target_schema}_{_tgt_table}'
+                        for ti in ctx['dag_run'].get_task_instances():
+                            if ti.task_id.endswith(dbt_task_key) and ti.duration:
+                                execution_time = round(ti.duration, 2)
                                 break
-                    else:
-                        print(f'[save_metrics] Warning: run_results.json không tìm thấy')
+                    except Exception as e:
+                        print(f'[save_metrics] Could not get dbt task duration: {e}')
 
                     target_db_uri = (
                         _target_db_uri_fn()
@@ -193,6 +186,8 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                             max_updated_at = conn.execute(
                                 text(f'SELECT MAX(etl_datetime) FROM {_target_schema}.{_tgt_table}')
                             ).scalar()
+
+                    engine.dispose()
 
                     data_delay_minutes = None
                     if max_updated_at:
@@ -265,8 +260,6 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                 ) -> None:
                     """Gửi Telegram notification chỉ khi DBT task thất bại."""
                     from airflow.operators.python import get_current_context
-                    # from slack_sdk import WebClient
-                    # from config import get_slack_config
                     from config import get_telegram_config, get_local_now
                     from utils.telegram_notification import send_telegram_message
                     import html
@@ -277,23 +270,6 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                     log_url = ti.log_url
                     execution_time = get_local_now().format('YYYY-MM-DD HH:mm:ss')
 
-                    # slack_config = get_slack_config()
-                    # client = WebClient(token=slack_config['bot_token'])
-                    # message = (
-                    #     ':x: *DBT task failed*\n'
-                    #     f'*Source*: {_src}\n'
-                    #     f'*Target DB*: {_target_db}\n'
-                    #     f'*Target Table*: {_target_schema}.{_tgt_table}\n'
-                    #     f'*DAG*: {context["dag"].dag_id}\n'
-                    #     f'*Run ID*: {run_id}\n'
-                    #     f'*Log*: {log_url}'
-                    # )
-                    # client.chat_postMessage(
-                    #     channel=slack_config['chat_id'],
-                    #     text=message,
-                    #     mrkdwn=True,
-                    # )
-                    
                     telegram_config = get_telegram_config()
                     message = (
                         '❌ <b>DBT task failed</b>\n'
@@ -325,8 +301,7 @@ def create_dbt_transformation_task_group(dag, source: str, pipeline_config: dict
                     metrics_result = save_metrics(logs)
                     dbt_run >> logs >> metrics_result
 
-                # Failure branch chỉ notify khi dbt fail
-                dbt_run >> failure
-                dbt_run >> failure_notification
+                # Failure branch: logs trước, notification sau
+                dbt_run >> failure >> failure_notification
 
     return outer_group

@@ -85,6 +85,7 @@ snapshot_data AS (
         b.position_name,
         b.position_group,
         b.group_role_name,
+        b.group_role_id,
         b.country_name,
         b.job_id,
         b.member_status,
@@ -244,6 +245,7 @@ _final as (
         position_name,
         position_group,
         group_role_name,
+        group_role_id,
 
         member_status,
         active_status,
@@ -348,7 +350,7 @@ _final as (
 Select f.*,
     cm.work_standard as month_standard,
     CASE 
-        WHEN group_role_id = 4080 THEN 'Thành viên HĐQT'
+        WHEN f.group_role_id = 4080 THEN 'Thành viên HĐQT'
         WHEN member_status_detail_no = 9 THEN 'Nhân viên phái cử'
         WHEN member_status_detail_no in (7,6) THEN 'Nhân viên part-time'
         ELSE 'Nhân viên chính thức'

@@ -91,8 +91,8 @@ snapshot_data AS (
         b.member_status,
         b.member_status_root,
 
-        -- b.member_status_detail,
-        b.member_status_detail_root,
+        b.member_status_detail,
+        -- b.member_status_detail_root,
         b.type_member_id,
 
         b.contract_type,
@@ -199,12 +199,18 @@ snapshot_data AS (
                 )
         )
 
-    LEFT JOIN transfers t
-        ON b.member_id = t.member_id
-       AND 
-            ds.report_date >= t.transfer_start_date
-       AND 
-            ds.report_date <= t.transfer_end_date
+    LEFT JOIN LATERAL (
+        SELECT
+            t.transfer_type_id,
+            t.transfer_start_date,
+            t.transfer_end_date
+        FROM transfers t
+        WHERE t.member_id = b.member_id
+          AND ds.report_date >= t.transfer_start_date
+          AND ds.report_date <= t.transfer_end_date
+        ORDER BY t.transfer_start_date DESC
+        LIMIT 1
+    ) t ON TRUE
 
 
 )
@@ -307,7 +313,7 @@ _final as (
 
         AS member_status_detail_no,
 
-        member_status_detail_root,
+        member_status_detail,
 
         contract_type,
 
@@ -356,7 +362,7 @@ Select f.*,
         ELSE 'Nhân viên chính thức'
     END AS type_hire_name,
 
-    coalesce(dms.member_status_detail,f.member_status_detail_root, 'Unknown')   AS member_status_detail
+    coalesce(dms.member_status_detail,f.member_status_detail, 'Unknown')   AS member_status_detail
 
 from _final f
 left join {{ ref('dim_member_status') }} dms

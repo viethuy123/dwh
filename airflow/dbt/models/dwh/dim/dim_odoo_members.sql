@@ -71,7 +71,7 @@ SELECT
     e.state as member_status,
     e.state_root as member_status_root,
     lc.contract_type,
-    t.member_type_name as member_status_detail_root,
+    coalesce(t.member_type_name, e.state_root) as member_status_detail_root,
     e.type_member_id,
     CASE 
         WHEN j.group_role_id = 4080 THEN 'Thành viên HĐQT'
@@ -83,6 +83,9 @@ SELECT
     initcap(lower(
         CASE 
             WHEN t.member_type_name is not NULL then t.member_type_name
+            when e.state_root = 'unpaid_leave' THEN 'Nghỉ không lương' 
+            when e.state_root = 'maternity' THEN 'Nghỉ thai sản' 
+
             WHEN e.start_working_date is not NULL THEN 'Chính thức' 
             WHEN e.probation_start_date is not NULL THEN 'Thử việc' 
             WHEN e.traineeship_start_date is not NULL THEN 'Thực tập'

@@ -1,33 +1,40 @@
-# dags/dag_staging_to_dwh.py
+# dags/dag-fct_data.py
 """
-DBT Transformation: Staging → Data Warehouse
+DBT Transformation: Fact Layer (Cosmos)
+
+Dùng Cosmos với danh sách model từ fct_mapping.
+Cosmos tự xây graph dependency nội bộ giữa các fct model.
 """
 from airflow.sdk import DAG
 from airflow.providers.standard.operators.empty import EmptyOperator
 from airflow.datasets import Dataset
 from datetime import timedelta
-from config import DBT_PIPELINES, DEFAULT_ARGS, DEFAULT_CHECK_DAG
-from factories.dbt_factory import create_dbt_transformation_task_group
+from config import DEFAULT_ARGS, DEFAULT_CHECK_DAG
+from factories import build_cosmos_layer_group
+from utils.mappings import fct_mapping
 
-# Lấy config
-pipeline_config = DBT_PIPELINES['fct_data']
-
-# Tạo DAG
 dag = DAG(
-    dag_id=pipeline_config['dag_id'],
+    dag_id='dag_fct_data',
     default_args=DEFAULT_ARGS,
-    schedule=[Dataset('dim_data_completed')],  # Trigger by datasets
+    schedule=[Dataset('dim_data_completed')],
     catchup=False,
-    dagrun_timeout=timedelta(minutes=pipeline_config['timeout_minutes']),
-    description='DBT transformation from Staging to Data Warehouse',
-    tags=['dbt', 'transformation', 'staging', 'warehouse']
+    dagrun_timeout=timedelta(minutes=60),
+    description='Cosmos dbt transformation for fct layer - auto dependency resolution',
+    tags=['dbt', 'cosmos', 'fct', 'warehouse'],
 )
 
 with dag:
     start = EmptyOperator(task_id='start')
-    # DBT transformation tasks
-    transformation_group = create_dbt_transformation_task_group(dag,'dwh', pipeline_config)
-    end = EmptyOperator(task_id='end', outlets=[Dataset('fct_data_completed')], trigger_rule= DEFAULT_CHECK_DAG['trigger_rule'])
-    
-    # Dependencies
-    start >> transformation_group >> end
+
+    fct_layer = build_cosmos_layer_group(
+        layer_name='fct',
+        select_models=list(fct_mapping.keys()),
+    )
+
+    end = EmptyOperator(
+        task_id='end',
+        outlets=[Dataset('fct_data_completed')],
+        trigger_rule=DEFAULT_CHECK_DAG['trigger_rule'],
+    )
+
+    start >> fct_layer >> end

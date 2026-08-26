@@ -1,6 +1,8 @@
 # dags/dag-bridge_data.py
 """
-DBT Transformation: Data Warehouse Bridge Models
+DBT Transformation: Bridge Layer (Cosmos)
+
+Dùng Cosmos với danh sách model từ bridge_mapping.
 """
 from datetime import timedelta
 
@@ -8,33 +10,32 @@ from airflow.datasets import Dataset
 from airflow.providers.standard.operators.empty import EmptyOperator
 from airflow.sdk import DAG
 
-from config import DBT_PIPELINES, DEFAULT_ARGS, DEFAULT_CHECK_DAG
-from factories.dbt_factory import create_dbt_transformation_task_group
+from config import DEFAULT_ARGS, DEFAULT_CHECK_DAG
+from factories import build_cosmos_layer_group
+from utils.mappings import bridge_mapping
 
-
-# Lấy config
-pipeline_config = DBT_PIPELINES['bridge_data']
-
-
-# Tạo DAG
 dag = DAG(
-    dag_id=pipeline_config['dag_id'],
+    dag_id='dag_bridge_data',
     default_args=DEFAULT_ARGS,
     schedule=[Dataset('staging_to_dwh_completed')],
     catchup=False,
-    dagrun_timeout=timedelta(minutes=pipeline_config['timeout_minutes']),
-    description='DBT transformation for bridge models in Data Warehouse',
-    tags=['dbt', 'transformation', 'bridge', 'warehouse'],
+    dagrun_timeout=timedelta(minutes=60),
+    description='Cosmos dbt transformation for bridge models in Data Warehouse',
+    tags=['dbt', 'cosmos', 'bridge', 'warehouse'],
 )
-
 
 with dag:
     start = EmptyOperator(task_id='start')
-    transformation_group = create_dbt_transformation_task_group(dag, 'dwh', pipeline_config)
+
+    bridge_layer = build_cosmos_layer_group(
+        layer_name='bridge',
+        select_models=list(bridge_mapping.keys()),
+    )
+
     end = EmptyOperator(
         task_id='end',
         outlets=[Dataset('bridge_data_completed')],
         trigger_rule=DEFAULT_CHECK_DAG['trigger_rule'],
     )
 
-    start >> transformation_group >> end
+    start >> bridge_layer >> end

@@ -1,34 +1,44 @@
-# dags/dag_dim_data.py
+# dags/dag-dim_data.py
 """
-DBT Transformation: Staging → Data Warehouse
+DBT Transformation: Dim Layer (Cosmos)
+
+Dùng Cosmos với danh sách model từ dim_mapping để:
+ - Chỉ chạy đúng các model đang active (không bị broken/disabled).
+ - Cosmos tự đọc ref() giữa các model đó và xếp thứ tự chạy đúng.
+   Ví dụ: dim_odoo_members sẽ chạy trước dim_hc_snapshot_month.
 """
 from airflow.sdk import DAG
 from airflow.providers.standard.operators.empty import EmptyOperator
 from airflow.datasets import Dataset
 from datetime import timedelta
-from config import DBT_PIPELINES, DEFAULT_ARGS, DEFAULT_CHECK_DAG
-from factories.dbt_factory import create_dbt_transformation_task_group
+from config import DEFAULT_ARGS, DEFAULT_CHECK_DAG
+from factories import build_cosmos_layer_group
+from utils.mappings import dim_mapping
 
-# Lấy config
-pipeline_config = DBT_PIPELINES['dim_data']
-
-# Tạo DAG
 dag = DAG(
-    dag_id=pipeline_config['dag_id'],
+    dag_id='dag_dim_data',
     default_args=DEFAULT_ARGS,
-    schedule=[Dataset('bridge_data_completed')],  # Trigger by datasets
+    schedule=[Dataset('bridge_data_completed')],
     catchup=False,
-    dagrun_timeout=timedelta(minutes=pipeline_config['timeout_minutes']),
-    description='DBT transformation from Staging to Data Warehouse',
-    tags=['dbt', 'transformation', 'staging', 'warehouse']
+    dagrun_timeout=timedelta(minutes=60),
+    description='Cosmos dbt transformation for dim layer - auto dependency resolution',
+    tags=['dbt', 'cosmos', 'dim', 'warehouse'],
 )
 
 with dag:
     start = EmptyOperator(task_id='start')
-    # DBT transformation tasks
-    transformation_group = create_dbt_transformation_task_group(dag,'dwh', pipeline_config)
-    
-    end = EmptyOperator(task_id='end', outlets=[Dataset('dim_data_completed')], trigger_rule= DEFAULT_CHECK_DAG['trigger_rule'])
-    
-    # Dependencies
-    start >> transformation_group >> end
+
+    # Truyền đúng danh sách model từ dim_mapping
+    # Cosmos vẫn tự xây dependency graph giữa các model này dựa trên ref()
+    dim_layer = build_cosmos_layer_group(
+        layer_name='dim',
+        select_models=list(dim_mapping.keys()),
+    )
+
+    end = EmptyOperator(
+        task_id='end',
+        outlets=[Dataset('dim_data_completed')],
+        trigger_rule=DEFAULT_CHECK_DAG['trigger_rule'],
+    )
+
+    start >> dim_layer >> end

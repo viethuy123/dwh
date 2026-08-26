@@ -1,33 +1,43 @@
-# dags/dag_staging_to_dwh.py
+# dags/dag-reports.py
 """
-DBT Transformation: Staging → Data Warehouse
+DBT Transformation: Reports Layer (Cosmos)
+
+Chỉ chạy các model trong report_mapping - KHÔNG kéo upstream (không dùng dấu +).
+Cosmos tự xây dependency graph giữa các report model nếu có ref() lẫn nhau.
+Các tầng dim/fct đã được trigger qua Airflow Dataset trước đó.
 """
 from airflow.sdk import DAG
 from airflow.providers.standard.operators.empty import EmptyOperator
 from airflow.datasets import Dataset
 from datetime import timedelta
-from config import DBT_PIPELINES, DEFAULT_ARGS, DEFAULT_CHECK_DAG
-from factories.dbt_factory import create_dbt_transformation_task_group
+from config import DEFAULT_ARGS, DEFAULT_CHECK_DAG
+from factories import build_cosmos_layer_group
+from utils.mappings import report_mapping
 
-# Lấy config
-pipeline_config = DBT_PIPELINES['reports']
-
-# Tạo DAG
 dag = DAG(
-    dag_id=pipeline_config['dag_id'],
+    dag_id='dag_reports',
     default_args=DEFAULT_ARGS,
-    schedule=[Dataset('fct_data_completed')],  # Trigger by datasets
+    schedule=[Dataset('fct_data_completed')],
     catchup=False,
-    dagrun_timeout=timedelta(minutes=pipeline_config['timeout_minutes']),
-    description='DBT transformation from Staging to Data Warehouse',
-    tags=['dbt', 'transformation', 'staging', 'warehouse']
+    dagrun_timeout=timedelta(minutes=60),
+    description='Cosmos dbt transformation for reports layer only (no upstream rerun)',
+    tags=['dbt', 'cosmos', 'reports', 'warehouse'],
 )
 
 with dag:
     start = EmptyOperator(task_id='start')
-    # DBT transformation tasks
-    transformation_group = create_dbt_transformation_task_group(dag,'dwh', pipeline_config)
-    end = EmptyOperator(task_id='end', outlets=[Dataset('reports_completed')], trigger_rule= DEFAULT_CHECK_DAG['trigger_rule'])
-    
-    # Dependencies
-    start >> transformation_group >> end
+
+    # Chỉ chạy đúng các report trong report_mapping
+    # Không có dấu + nên Cosmos không kéo dim/fct upstream vào graph
+    reports_layer = build_cosmos_layer_group(
+        layer_name='reports',
+        select_models=list(report_mapping.keys()),
+    )
+
+    end = EmptyOperator(
+        task_id='end',
+        outlets=[Dataset('reports_completed')],
+        trigger_rule=DEFAULT_CHECK_DAG['trigger_rule'],
+    )
+
+    start >> reports_layer >> end

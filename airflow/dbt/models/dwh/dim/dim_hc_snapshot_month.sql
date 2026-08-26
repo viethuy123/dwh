@@ -199,12 +199,18 @@ snapshot_data AS (
                 )
         )
 
-    LEFT JOIN transfers t
-        ON b.member_id = t.member_id
-       AND 
-            ds.report_date >= t.transfer_start_date
-       AND 
-            ds.report_date <= t.transfer_end_date
+    LEFT JOIN LATERAL (
+        SELECT
+            t.transfer_type_id,
+            t.transfer_start_date,
+            t.transfer_end_date
+        FROM transfers t
+        WHERE t.member_id = b.member_id
+          AND ds.report_date >= t.transfer_start_date
+          AND ds.report_date <= t.transfer_end_date
+        ORDER BY t.transfer_start_date DESC
+        LIMIT 1
+    ) t ON TRUE
 
 
 )

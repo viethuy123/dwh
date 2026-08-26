@@ -91,8 +91,8 @@ snapshot_data AS (
         b.member_status,
         b.member_status_root,
 
-        -- b.member_status_detail,
-        b.member_status_detail_root,
+        b.member_status_detail,
+        -- b.member_status_detail_root,
         b.type_member_id,
 
         b.contract_type,
@@ -313,7 +313,7 @@ _final as (
 
         AS member_status_detail_no,
 
-        member_status_detail_root,
+        member_status_detail,
 
         contract_type,
 
@@ -362,7 +362,7 @@ Select f.*,
         ELSE 'Nhân viên chính thức'
     END AS type_hire_name,
 
-    coalesce(dms.member_status_detail,f.member_status_detail_root, 'Unknown')   AS member_status_detail
+    coalesce(dms.member_status_detail,f.member_status_detail, 'Unknown')   AS member_status_detail
 
 from _final f
 left join {{ ref('dim_member_status') }} dms

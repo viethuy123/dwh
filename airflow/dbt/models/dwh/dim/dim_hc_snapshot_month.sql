@@ -313,7 +313,7 @@ _final as (
 
         AS member_status_detail_no,
 
-        member_status_detail,
+        member_status_detail AS member_status_detail_orig,
 
         contract_type,
 
@@ -362,7 +362,7 @@ Select f.*,
         ELSE 'Nhân viên chính thức'
     END AS type_hire_name,
 
-    coalesce(dms.member_status_detail,f.member_status_detail, 'Unknown')   AS member_status_detail
+    coalesce(dms.member_status_detail, f.member_status_detail_orig, 'Unknown')   AS member_status_detail
 
 from _final f
 left join {{ ref('dim_member_status') }} dms

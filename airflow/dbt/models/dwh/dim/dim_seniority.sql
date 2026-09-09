@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', enabled=false) }}
 
 SELECT 1 AS seniority_group_id, '1.  < 2 tháng'      AS seniority_group, 1 AS sort_order
 UNION ALL

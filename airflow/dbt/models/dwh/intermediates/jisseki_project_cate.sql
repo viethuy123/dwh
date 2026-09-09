@@ -1,5 +1,6 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', enabled=false) }}
 
+/*
 -- có customer , category
 SELECT
     id,
@@ -9,3 +10,4 @@ SELECT
     "updated_at" as update_time,
     etl_datetime
 FROM {{ source('jisseki', 'stg_jisseki_project_categories') }}
+*/

@@ -1,7 +1,8 @@
 """Report-centric dbt orchestration with Cosmos.
 
-Các report chạy tuần tự để tránh conflict shared models (vd: user.sql).
-Thêm report mới: cập nhật REPORTS trong config/cosmos_config.py.
+Dùng path: selector để chạy TẤT CẢ reports trong 1 DbtTaskGroup.
+Cosmos tự parse ref() và sắp xếp thứ tự, KHÔNG chạy lại upstream dim/fct
+(vì chúng đã chạy ở DAG riêng trước đó).
 """
 from __future__ import annotations
 
@@ -12,8 +13,7 @@ from airflow.providers.standard.operators.empty import EmptyOperator
 from airflow.sdk import DAG
 
 from config import DEFAULT_ARGS, DEFAULT_CHECK_DAG
-from config.cosmos_config import REPORTS
-from factories import build_report_task_group
+from factories.cosmos_factory import build_layer_task_group
 
 dag = DAG(
     dag_id="dag_cosmos_reports_report_centric",
@@ -29,12 +29,13 @@ dag = DAG(
 with dag:
     start = EmptyOperator(task_id="start")
 
+    # 1 DbtTaskGroup cho cả folder reports — không duplicate upstream
+    reports_group = build_layer_task_group("reports", "models/dwh/reports")
+
     end = EmptyOperator(
         task_id="end",
         outlets=[Dataset("all_reports_completed")],
         trigger_rule=DEFAULT_CHECK_DAG["trigger_rule"],
     )
 
-    for report_name in REPORTS:
-        report_task = build_report_task_group(report_name)
-        start >> report_task >> end
+    start >> reports_group >> end

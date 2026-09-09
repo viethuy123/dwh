@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', enabled=false) }}
 
 WITH education AS (
     SELECT * FROM {{ ref('odoo_hr_member_education') }}

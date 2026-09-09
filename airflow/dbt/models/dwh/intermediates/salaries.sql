@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', enabled=false) }}
 
 SELECT
     _id as salary_id,

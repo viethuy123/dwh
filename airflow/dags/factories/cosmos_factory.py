@@ -105,3 +105,52 @@ def build_report_task_group(report_name: str):
         [metrics, failure_log, failure_alert_task] >> group_end
 
     return tg
+
+
+def build_layer_task_group(
+    layer_name: str,
+    select_path: str,
+    install_deps: bool = True,
+) -> TaskGroup:
+    """Tạo Cosmos DbtTaskGroup cho 1 layer (intermediates, dim, fct, bridge, reports).
+
+    Cosmos tự parse ref() và sắp xếp thứ tự chạy model trong layer.
+    Không cần khai báo dependency thủ công.
+
+    Args:
+        layer_name: Tên layer (dùng cho group_id và monitoring log)
+        select_path: Đường dẫn dbt models, vd "models/dwh/dim"
+        install_deps: Có chạy dbt deps trước không (default True)
+    """
+    with TaskGroup(group_id=f"cosmos_{layer_name}") as tg:
+
+        dbt_group = DbtTaskGroup(
+            group_id="dbt",
+            project_config=ProjectConfig(
+                dbt_project_path=DBT_PROJECT_DIR,
+                install_dbt_deps=install_deps,
+            ),
+            profile_config=profile_config,
+            execution_config=execution_config,
+            render_config=RenderConfig(
+                select=[f"path:{select_path}"],
+                test_behavior="after_all",
+            ),
+        )
+
+        success_log = save_success_log.override(task_id="success_log")(layer_name)
+        metrics = save_metrics.override(task_id="metrics")(success_log, layer_name)
+        failure_log = save_failure_log.override(task_id="failure_log")(layer_name)
+        failure_alert_task = failure_alert.override(task_id="failure_alert")(layer_name)
+
+        dbt_group >> success_log >> metrics
+        dbt_group >> failure_log
+        dbt_group >> failure_alert_task
+
+        group_end = EmptyOperator(
+            task_id="group_end",
+            trigger_rule="none_failed",
+        )
+        [metrics, failure_log, failure_alert_task] >> group_end
+
+    return tg

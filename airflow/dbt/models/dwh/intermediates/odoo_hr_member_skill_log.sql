@@ -1,4 +1,4 @@
-{{ config(materialized='table') }}
+{{ config(materialized='table', enabled=false) }}
 
 WITH source AS (
     SELECT * FROM {{ source('odoo', 'stg_odoo_hr_employee_skill_log') }}

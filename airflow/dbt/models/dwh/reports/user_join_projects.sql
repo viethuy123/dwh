@@ -1,3 +1,4 @@
+{{ config(enabled=false) }}
 -- {{ config(materialized='table') }}
 -- with get_level_task as (
 --     select cv.issue_id,

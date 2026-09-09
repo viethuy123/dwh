@@ -1,6 +1,7 @@
 # dags/dag-bridge_data.py
 """
 DBT Transformation: Data Warehouse Bridge Models
+Dùng Cosmos để tự động resolve ref() dependency.
 """
 from datetime import timedelta
 
@@ -9,7 +10,7 @@ from airflow.providers.standard.operators.empty import EmptyOperator
 from airflow.sdk import DAG
 
 from config import DBT_PIPELINES, DEFAULT_ARGS, DEFAULT_CHECK_DAG
-from factories.dbt_factory import create_dbt_transformation_task_group
+from factories.cosmos_factory import build_layer_task_group
 
 
 # Lấy config
@@ -23,14 +24,14 @@ dag = DAG(
     schedule=[Dataset('staging_to_dwh_completed')],
     catchup=False,
     dagrun_timeout=timedelta(minutes=pipeline_config['timeout_minutes']),
-    description='DBT transformation for bridge models in Data Warehouse',
-    tags=['dbt', 'transformation', 'bridge', 'warehouse'],
+    description='DBT transformation for bridge models - Cosmos auto dependency',
+    tags=['dbt', 'transformation', 'bridge', 'warehouse', 'cosmos'],
 )
 
 
 with dag:
     start = EmptyOperator(task_id='start')
-    transformation_group = create_dbt_transformation_task_group(dag, 'dwh', pipeline_config)
+    transformation_group = build_layer_task_group("bridge", "models/dwh/bridge")
     end = EmptyOperator(
         task_id='end',
         outlets=[Dataset('bridge_data_completed')],

@@ -1,13 +1,14 @@
 # dags/dag_staging_to_dwh.py
 """
 DBT Transformation: Staging → Data Warehouse
+Dùng Cosmos để tự động resolve ref() dependency.
 """
 from airflow.sdk import DAG
 from airflow.providers.standard.operators.empty import EmptyOperator
 from airflow.datasets import Dataset
 from datetime import timedelta
 from config import DBT_PIPELINES, DEFAULT_ARGS, DEFAULT_CHECK_DAG
-from factories.dbt_factory import create_dbt_transformation_task_group, create_dbt_deps_task
+from factories.cosmos_factory import build_layer_task_group
 
 # Lấy config
 pipeline_config = DBT_PIPELINES['intermediate_mapping']
@@ -20,15 +21,16 @@ dag = DAG(
     catchup=False,
     dagrun_timeout=timedelta(minutes=pipeline_config['timeout_minutes']),
     description='DBT transformation from Staging to Data Warehouse',
-    tags=['dbt', 'transformation', 'staging', 'warehouse']
+    tags=['dbt', 'transformation', 'staging', 'warehouse', 'cosmos']
 )
 
 with dag:
     start = EmptyOperator(task_id='start')
-    dbt_deps = create_dbt_deps_task(dag) 
-    # DBT transformation tasks
-    transformation_group = create_dbt_transformation_task_group(dag,'stg', pipeline_config)
-    end = EmptyOperator(task_id='end', outlets=[Dataset('staging_to_dwh_completed')], trigger_rule= DEFAULT_CHECK_DAG['trigger_rule'])
-    
+    # Cosmos tự handle dbt deps + resolve ref() dependency
+    transformation_group = build_layer_task_group(
+        "intermediates", "models/dwh/intermediates", install_deps=True
+    )
+    end = EmptyOperator(task_id='end', outlets=[Dataset('staging_to_dwh_completed')], trigger_rule=DEFAULT_CHECK_DAG['trigger_rule'])
+
     # Dependencies
-    start >> dbt_deps >> transformation_group >> end
+    start >> transformation_group >> end
